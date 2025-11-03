@@ -50,6 +50,8 @@
       <nav class="menu">
         <a href="#inicio">Inicio</a>
         <a href="#convenio">Convenio</a>
+        <a href="salaries.html">Salarios</a>
+        <a href="tramites.html">Trámites</a>
         <a href="#noticias">Noticias</a>
         <a href="#contacto">Contacto</a>
       </nav>
@@ -63,7 +65,7 @@
       <p>ATRM es el sindicato de referencia para los trabajadores de limpieza viaria y servicios municipales en la Región de Murcia. Te acompañamos en cada paso: asesoría laboral, negociación colectiva y acciones para mejorar las condiciones del sector.</p>
       <div class="cta">
         <a class="btn" href="#convenio">Ver Convenio</a>
-        <a class="btn alt" href="#contacto">Contactar</a>
+        <a class="btn alt" href="tramites.html">Trámites</a>
       </div>
     </section>
     <aside class="card news" id="noticias">
@@ -90,9 +92,12 @@
     </div>
     <div class="card tile">
       <h3>Documentación</h3>
-      <p>Accede al texto completo del convenio publicado en el BORM nº 34.</p>
+      <p>Accede a la tabla salarial actualizada y al texto completo del convenio.</p>
       <div class="update-notice">
-        📄 <strong>Próximamente:</strong> Enlace directo al PDF oficial del convenio y búsqueda avanzada de artículos.
+        💰 <strong>Nuevo:</strong> <a href="salaries.html" style="color:var(--primary)">Ver tabla salarial 2025</a> con incrementos aplicados.
+      </div>
+      <div class="update-notice">
+        🏛️ <strong>Nuevo:</strong> <a href="tramites.html" style="color:var(--primary)">Trámites con administración</a> - guías paso a paso.
       </div>
     </div>
   </section>
@@ -196,8 +201,7 @@
     }
     
     function abrirIA(){ 
-      const dlg = document.getElementById('iaModal');
-      dlg.showModal();
+      document.getElementById('iaModal').showModal(); 
       document.getElementById('preguntaIA').focus();
     }
     
@@ -213,14 +217,12 @@
       const respuestaDiv = document.getElementById('respuestaIA');
       const vistaRespuesta = document.getElementById('vistaRespuesta');
       
-      // Mostrar loading
       btn.disabled = true;
       loading.style.display = 'flex';
       respuestaDiv.style.display = 'none';
       if (vistaRespuesta) vistaRespuesta.style.display = 'none';
       
       try {
-        // Fallback local
         const respuesta = generarRespuestaLocal(pregunta);
         
         respuestaDiv.innerHTML = respuesta;
@@ -251,8 +253,14 @@
           (p.includes('madre') && p.includes('hospital')) ||
           (p.includes('hospital') && p.includes('familiar')) ||
           p.includes('hospitalización') ||
-          p.includes('hospitalizacion')) {
-        return '🏥 <strong>Permiso por hospitalización/ingreso familiar:</strong><br><br>✅ Tienes derecho a <strong>5 días retribuidos</strong> por:<br>- Ingreso hospitalario de familiares hasta 2º grado<br>- Accidente o enfermedad grave<br>- Intervención quirúrgica<br><br>👥 <strong>Familiares incluidos:</strong> madre, padre, hijos, hermanos, abuelos, suegros, cónyuge<br><br>✨ <strong>Ampliación:</strong> Si la hospitalización supera 15 días, el permiso se puede ampliar<br><br>📞 <strong>Gestionar permiso:</strong> Contacta ATRM 968 626 511';
+          p.includes('hospitalizacion') ||
+          (p.includes('operación') && (p.includes('hermano') || p.includes('familiar'))) ||
+          (p.includes('intervención') && (p.includes('hermano') || p.includes('familiar'))) ||
+          (p.includes('cirugía') && (p.includes('hermano') || p.includes('familiar')))) {
+        return '🏥 <strong>Permiso por hospitalización/intervención familiar:</strong><br><br>✅ Tienes derecho a <strong>5 días retribuidos</strong> por:<br>- Ingreso hospitalario de familiares hasta 2º grado<br>- Accidente o enfermedad grave<br>- Intervención quirúrgica<br><br>👥 <strong>Familiares incluidos:</strong> madre, padre, hijos, hermanos, abuelos, suegros, cónyuge<br><br>✨ <strong>Ampliación:</strong> Si la hospitalización supera 15 días, el permiso se puede ampliar<br><br>📞 <strong>Gestionar permiso:</strong> Contacta ATRM 968 626 511';
+      }
+      if (p.includes('lluvia') || p.includes('llueve') || p.includes('tormenta') || p.includes('impermeable')) {
+        return '🌧️ <strong>Días de lluvia intensa:</strong><br><br>**Si la empresa facilitó impermeable y botas:**<br>- La decisión de parar se toma conjuntamente entre empresa y representantes<br>- Si no hay representantes, con los propios trabajadores<br><br>**Si la empresa NO facilitó prendas:**<br>- La decisión la toman los representantes de los trabajadores<br>- Si no los hay, los propios trabajadores<br><br>**Si se para por lluvia:**<br>- Las personas trabajadoras permanecen en el centro durante la jornada<br><br>📞 <strong>Contacto:</strong> ATRM 968 626 511';
       }
       if (p.includes('jornada') || p.includes('hora')) {
         return '⏰ <strong>Jornada laboral:</strong><br>37 horas y 30 minutos semanales (1.680 horas anuales).<br>Descanso: 20 minutos bocadillo (computable) + 10 minutos adicionales opcionales.<br>Turno general de mañana.';
@@ -272,7 +280,7 @@
       if (p.includes('baja') || p.includes('enferm')) {
         return '🏥 <strong>Prestaciones por baja:</strong><br>Baja laboral: complemento hasta 100% del salario real los primeros 60 días<br>Accidente de trabajo: 100% del salario real desde el primer día';
       }
-      return '🤖 <strong>No encuentro información específica.</strong><br><br>📁 <strong>Ejemplos de preguntas:</strong><br>• "ingreso de madre" o "mi madre está ingresada"<br>• "jornada laboral" o "cuántas horas trabajo"<br>• "incremento salarial 2025"<br>• "pagas extra" o "cuándo cobro"<br>• "vacaciones"<br><br>📞 <strong>Consultas personalizadas:</strong> ATRM 968 626 511';
+      return '🤖 <strong>No encuentro información específica.</strong><br><br>📁 <strong>Ejemplos de preguntas:</strong><br>• "operación de hermano" o "mi hermano está ingresado"<br>• "días de lluvia" o "llueve mucho"<br>• "jornada laboral" o "cuántas horas trabajo"<br>• "incremento salarial 2025"<br>• "pagas extra" o "cuándo cobro"<br>• "vacaciones"<br><br>📞 <strong>Consultas personalizadas:</strong> ATRM 968 626 511';
     }
     
     document.addEventListener('DOMContentLoaded', function(){

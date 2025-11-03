@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ATRM · Trámites y Administración</title>
+  <style>
+    :root{ --primary:#FF6B35; --secondary:#FF8C42; --accent:#FFA726; --dark:#2C3E50; }
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial;color:var(--dark);background:linear-gradient(180deg,#fff,#fff7f0)}
+    header{position:sticky;top:0;background:linear-gradient(90deg,var(--primary),var(--secondary));color:#fff;padding:12px 16px;font-weight:800;z-index:100}
+    main{max-width:1100px;margin:16px auto;padding:0 16px}
+    .toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+    .btn{padding:10px 12px;border-radius:10px;background:linear-gradient(90deg,var(--primary),var(--secondary));color:#fff;border:none;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
+    .card{background:#fff;border:1px solid #ffe2cf;border-radius:18px;box-shadow:0 10px 24px rgba(255,119,51,.08);padding:20px;margin-bottom:16px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+    .step{background:#fff3e6;border-left:4px solid var(--accent);padding:12px;border-radius:8px;margin:8px 0}
+    .warning{background:#fff3cd;border-left:4px solid #ffc107;padding:12px;border-radius:8px;margin:8px 0}
+    .success{background:#d4edda;border-left:4px solid #28a745;padding:12px;border-radius:8px;margin:8px 0}
+    .checklist{list-style:none;padding:0}
+    .checklist li{padding:8px 0;cursor:pointer}
+    .checklist input[type="checkbox"]{margin-right:8px}
+    .progress{width:100%;background:#f0f0f0;border-radius:8px;height:8px;margin:12px 0}
+    .progress-bar{height:100%;background:linear-gradient(90deg,var(--primary),var(--secondary));border-radius:8px;transition:width 0.3s}
+    .search-box{width:100%;padding:12px;border:1px solid #ffd2b5;border-radius:10px;margin:8px 0;font-size:16px}
+    .results{max-height:300px;overflow-y:auto;border:1px solid #ffe2cf;border-radius:8px;margin-top:12px}
+    .result-item{padding:12px;border-bottom:1px solid #f0f0f0;cursor:pointer}
+    .result-item:hover{background:#fff7f0}
+    a{color:var(--primary);text-decoration:none}
+    a:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+  <header>ATRM · Trámites y Administración Pública</header>
+  <main>
+    <div class="toolbar">
+      <a class="btn" href="./index.html">← Volver</a>
+    </div>
+
+    <div class="card">
+      <h2>🏛️ Trámites rápidos con la administración</h2>
+      <p>Gestiona tus trámites administrativos con guías paso a paso y acceso directo a los servicios oficiales.</p>
+    </div>
+
+    <div class="grid">
+      <!-- Vida Laboral -->
+      <div class="card">
+        <h3>📊 Solicitar Informe de Vida Laboral</h3>
+        <p>Obtén tu historial laboral oficial de la Seguridad Social en menos de 5 minutos.</p>
+        
+        <div class="step">
+          <strong>🎯 ¿Para qué lo necesitas?</strong><br>
+          • Solicitudes de empleo<br>
+          • Cálculos de pensión<br>
+          • Préstamos bancarios<br>
+          • Verificar cotizaciones
+        </div>
+
+        <h4>📋 Requisitos previos:</h4>
+        <ul class="checklist" id="vidaLaboralChecklist">
+          <li><input type="checkbox"> DNI/NIE en vigor</li>
+          <li><input type="checkbox"> Móvil registrado en Seg. Social</li>
+          <li><input type="checkbox"> Cl@ve PIN/certificado digital (opcional)</li>
+          <li><input type="checkbox"> Email activo</li>
+        </ul>
+        
+        <div class="progress">
+          <div class="progress-bar" id="progressVidaLaboral" style="width:0%"></div>
+        </div>
+        
+        <div class="success" id="vidaLaboralReady" style="display:none">
+          ✅ <strong>Todo listo.</strong> Haz clic en el botón para acceder al portal oficial.
+        </div>
+        
+        <a href="https://sede.seg-social.gob.es/wps/portal/sede/sede/Ciudadanos/informacion/29490" 
+           class="btn" target="_blank" rel="noopener">
+          🚀 Solicitar Vida Laboral (Import@ss)
+        </a>
+        
+        <div class="warning">
+          ⚠️ <strong>Importante:</strong> Si es tu primera vez, elige "Sin certificado digital" y usa SMS.
+        </div>
+      </div>
+
+      <!-- Buscador Datos Públicos -->
+      <div class="card">
+        <h3>🔍 Buscador de Datos Públicos</h3>
+        <p>Consulta información oficial sobre empleo, convenios y normativas.</p>
+        
+        <input type="text" class="search-box" id="searchPublicData" 
+               placeholder="Busca: convenio limpieza, empleo Murcia, prestaciones...">
+        
+        <div class="step">
+          <strong>💡 Búsquedas populares:</strong><br>
+          <a href="#" onclick="searchData('convenio limpieza viaria')">Convenio limpieza viaria</a> •
+          <a href="#" onclick="searchData('empleo Murcia')">Empleo Murcia</a> •
+          <a href="#" onclick="searchData('seguridad social')">Seguridad Social</a>
+        </div>
+        
+        <div class="results" id="searchResults" style="display:none">
+          <div class="result-item">Cargando resultados...</div>
+        </div>
+        
+        <div class="success">
+          📈 <strong>Fuente oficial:</strong> <a href="https://datos.gob.es" target="_blank">datos.gob.es</a> 
+          - Portal de transparencia del Gobierno de España
+        </div>
+      </div>
+
+      <!-- Registro Electrónico -->
+      <div class="card">
+        <h3>📝 Registro Electrónico (Escritos y Solicitudes)</h3>
+        <p>Presenta documentos oficiales ante cualquier administración pública.</p>
+        
+        <div class="step">
+          <strong>🎯 ¿Cuándo usarlo?</strong><br>
+          • Reclamaciones laborales<br>
+          • Solicitudes al ayuntamiento<br>
+          • Recursos administrativos<br>
+          • Quejas y sugerencias oficiales
+        </div>
+
+        <h4>🔧 Plataformas disponibles:</h4>
+        <div style="display:grid;gap:8px">
+          <a href="https://rec.redsara.es/registro/action/are/acceso.do" 
+             class="btn" target="_blank" rel="noopener">
+            📤 SIR - Registro General
+          </a>
+          <a href="https://sede.administracionespublicas.gob.es/pagina/index/directorio/geiser" 
+             class="btn" target="_blank" rel="noopener">
+            🏛️ GEISER - Gestión Integrada
+          </a>
+        </div>
+        
+        <div class="warning">
+          📋 <strong>Documentos necesarios:</strong> Certificado digital o Cl@ve, documento a presentar (PDF), justificante de representación si actúas por terceros.
+        </div>
+      </div>
+
+      <!-- Citas Previas -->
+      <div class="card">
+        <h3>📅 Citas en Administración</h3>
+        <p>Solicita citas previas en los principales organismos públicos.</p>
+        
+        <div style="display:grid;gap:8px">
+          <a href="https://www.sepe.es/HomeSepe/que-es-el-sepe/oficinas/pedir-cita-previa.html" 
+             class="btn" target="_blank" rel="noopener">
+            💼 SEPE (Empleo)
+          </a>
+          <a href="https://sede.seg-social.gob.es/wps/portal/sede/sede/Ciudadanos/CitaPrevia" 
+             class="btn" target="_blank" rel="noopener">
+            🏥 Seguridad Social
+          </a>
+          <a href="https://www.carm.es/web/pagina?IDCONTENIDO=1134&IDTIPO=100" 
+             class="btn" target="_blank" rel="noopener">
+            🏛️ CARM (Reg. Murcia)
+          </a>
+        </div>
+        
+        <div class="step">
+          💡 <strong>Consejo:</strong> Solicita citas con 7-15 días de antelación. Lleva siempre DNI y documentación relacionada con tu consulta.
+        </div>
+      </div>
+
+      <!-- Ayudas y Subvenciones -->
+      <div class="card">
+        <h3>💰 Buscador de Ayudas</h3>
+        <p>Encuentra subvenciones y ayudas públicas disponibles para trabajadores.</p>
+        
+        <input type="text" class="search-box" id="searchAyudas" 
+               placeholder="Busca ayudas por: formación, familia, vivienda...">
+        
+        <div class="step">
+          <strong>🎯 Tipos de ayudas:</strong><br>
+          • Formación para el empleo<br>
+          • Ayudas familiares<br>
+          • Subvenciones vivienda<br>
+          • Programas de inserción laboral
+        </div>
+        
+        <a href="https://www.buscadorayudas.gob.es/" 
+           class="btn" target="_blank" rel="noopener">
+          🔍 Buscador Oficial de Ayudas
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Checklist vida laboral
+    const checkboxes = document.querySelectorAll('#vidaLaboralChecklist input[type="checkbox"]');
+    const progressBar = document.getElementById('progressVidaLaboral');
+    const readyMessage = document.getElementById('vidaLaboralReady');
+    
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', updateProgress);
+    });
+    
+    function updateProgress() {
+      const checked = document.querySelectorAll('#vidaLaboralChecklist input[type="checkbox"]:checked').length;
+      const total = checkboxes.length;
+      const percentage = (checked / total) * 100;
+      
+      progressBar.style.width = percentage + '%';
+      
+      if (checked === total) {
+        readyMessage.style.display = 'block';
+      } else {
+        readyMessage.style.display = 'none';
+      }
+    }
+    
+    // Buscador datos públicos
+    const searchInput = document.getElementById('searchPublicData');
+    const searchResults = document.getElementById('searchResults');
+    
+    searchInput.addEventListener('input', debounce(performSearch, 500));
+    
+    function debounce(func, wait) {
+      let timeout;
+      return function executedFunction(...args) {
+        const later = () => {
+          clearTimeout(timeout);
+          func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+      };
+    }
+    
+    async function performSearch() {
+      const query = searchInput.value.trim();
+      if (query.length < 3) {
+        searchResults.style.display = 'none';
+        return;
+      }
+      
+      searchResults.style.display = 'block';
+      searchResults.innerHTML = '<div class="result-item">🔍 Buscando en datos.gob.es...</div>';
+      
+      try {
+        // Simulación de búsqueda - en producción conectar con API datos.gob.es
+        setTimeout(() => {
+          const mockResults = generateMockResults(query);
+          displaySearchResults(mockResults);
+        }, 1000);
+        
+      } catch (error) {
+        searchResults.innerHTML = '<div class="result-item">❌ Error en la búsqueda. Intenta de nuevo.</div>';
+      }
+    }
+    
+    function generateMockResults(query) {
+      const results = [
+        {
+          title: "Convenio Colectivo Limpieza Pública Viaria - Región de Murcia",
+          description: "Texto completo del convenio vigente 2024-2027",
+          url: "https://www.borm.es/services/anuncio/ano/2025/numero/599/pdf"
+        },
+        {
+          title: "Estadísticas de Empleo - Región de Murcia",
+          description: "Datos oficiales de empleo y paro por sectores",
+          url: "https://datos.gob.es/es/catalogo/a05003465-estadistica-de-empleo"
+        },
+        {
+          title: "Portal de Transparencia - CARM",
+          description: "Información pública de la Comunidad Autónoma",
+          url: "https://transparencia.carm.es/"
+        }
+      ];
+      
+      return results.filter(r => 
+        r.title.toLowerCase().includes(query.toLowerCase()) ||
+        r.description.toLowerCase().includes(query.toLowerCase())
+      );
+    }
+    
+    function displaySearchResults(results) {
+      if (results.length === 0) {
+        searchResults.innerHTML = '<div class="result-item">🤷 No se encontraron resultados. Prueba con otros términos.</div>';
+        return;
+      }
+      
+      const resultsHTML = results.map(result => `
+        <div class="result-item" onclick="window.open('${result.url}', '_blank')">
+          <strong>${result.title}</strong><br>
+          <small>${result.description}</small>
+        </div>
+      `).join('');
+      
+      searchResults.innerHTML = resultsHTML;
+    }
+    
+    function searchData(query) {
+      searchInput.value = query;
+      performSearch();
+    }
+    
+    // Buscador ayudas (similar al anterior)
+    const searchAyudas = document.getElementById('searchAyudas');
+    searchAyudas.addEventListener('input', debounce(() => {
+      // Implementación similar para ayudas
+      console.log('Buscando ayudas:', searchAyudas.value);
+    }, 500));
+  </script>
+</body>
+</html>

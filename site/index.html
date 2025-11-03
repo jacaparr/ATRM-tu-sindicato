@@ -207,30 +207,9 @@
       respuestaDiv.style.display = 'none';
       
       try {
-        // Intentar con API de IA
-        let respuesta = '';
-        let fuente = '';
-        
-        try {
-          const response = await fetch(API_ENDPOINT, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ pregunta })
-          });
-          
-          if (response.ok) {
-            const data = await response.json();
-            respuesta = data.respuesta;
-            fuente = data.fuente || 'IA Asistente ATRM';
-          } else {
-            throw new Error('API no disponible');
-          }
-        } catch (apiError) {
-          // Fallback con respuestas locales mejoradas
-          console.log('API no disponible, usando fallback local');
-          respuesta = generarRespuestaLocal(pregunta);
-          fuente = 'Convenio Colectivo ATRM 2024-2027 (asistente local)';
-        }
+        // SIEMPRE usar fallback local (API desactivada temporalmente)
+        const respuesta = generarRespuestaLocal(pregunta);
+        const fuente = 'Convenio Colectivo ATRM 2024-2027 (asistente local)';
         
         respuestaDiv.innerHTML = `
           <div style="margin-bottom:8px">${respuesta}</div>
@@ -250,12 +229,22 @@
     
     function generarRespuestaLocal(pregunta) {
       const p = pregunta.toLowerCase();
+      console.log('Pregunta recibida:', p); // Debug
       
-      // Mapeo inteligente para casos comunes
-      if (p.includes('ingreso') && (p.includes('madre') || p.includes('padre') || p.includes('familiar') || p.includes('hospital'))) {
-        return '🏥 <strong>Permiso por hospitalización familiar:</strong><br>Tienes derecho a <strong>5 días retribuidos</strong> por ingreso hospitalario, accidente o enfermedad grave de familiares hasta 2º grado (madre, padre, hijos, hermanos, abuelos, suegros).<br><br>✨ <strong>Extra:</strong> Si la hospitalización supera 15 días, el permiso se puede ampliar.<br><br>📞 Para gestionar el permiso, contacta con ATRM: 968 626 511';
+      // PRIMERA PRIORIDAD: Casos de ingreso/hospitalización familiar
+      if ((p.includes('ingreso') && p.includes('madre')) || 
+          (p.includes('ingreso') && p.includes('padre')) ||
+          (p.includes('ingreso') && p.includes('familiar')) ||
+          (p.includes('madre') && p.includes('ingresada')) ||
+          (p.includes('padre') && p.includes('ingresado')) ||
+          (p.includes('madre') && p.includes('hospital')) ||
+          (p.includes('hospital') && p.includes('familiar')) ||
+          p.includes('hospitalización') ||
+          p.includes('hospitalizacion')) {
+        return '🏥 <strong>Permiso por hospitalización/ingreso familiar:</strong><br><br>✅ Tienes derecho a <strong>5 días retribuidos</strong> por:<br>- Ingreso hospitalario de familiares hasta 2º grado<br>- Accidente o enfermedad grave<br>- Intervención quirúrgica<br><br>👥 <strong>Familiares incluidos:</strong> madre, padre, hijos, hermanos, abuelos, suegros, cónyuge<br><br>✨ <strong>Ampliación:</strong> Si la hospitalización supera 15 días, el permiso se puede ampliar<br><br>📞 <strong>Gestionar permiso:</strong> Contacta ATRM 968 626 511';
       }
       
+      // Otros casos
       if (p.includes('jornada') || p.includes('hora')) {
         return '⏰ <strong>Jornada laboral:</strong><br>37 horas y 30 minutos semanales (1.680 horas anuales).<br>Descanso: 20 minutos bocadillo (computable) + 10 minutos adicionales opcionales.<br>Turno general de mañana.';
       }
@@ -280,8 +269,8 @@
         return '🏥 <strong>Prestaciones por baja:</strong><br>Baja laboral: complemento hasta 100% del salario real los primeros 60 días<br>Accidente de trabajo: 100% del salario real desde el primer día';
       }
       
-      // Respuesta genérica
-      return '🤖 No encuentro información específica para tu pregunta. <br><br>📁 <strong>Temas disponibles:</strong> jornada, incrementos salariales, pagas extra, vacaciones, permisos (incluyendo ingreso familiar), pluses, bajas médicas, categorías.<br><br>📞 <strong>Para consultas específicas:</strong> ATRM 968 626 511';
+      // Respuesta genérica con ejemplos claros
+      return '🤖 <strong>No encuentro información específica.</strong><br><br>📁 <strong>Ejemplos de preguntas:</strong><br>• "ingreso de madre" o "mi madre está ingresada"<br>• "jornada laboral" o "cuántas horas trabajo"<br>• "incremento salarial 2025"<br>• "pagas extra" o "cuándo cobro"<br>• "vacaciones"<br><br>📞 <strong>Consultas personalizadas:</strong> ATRM 968 626 511';
     }
     
     document.addEventListener('DOMContentLoaded', function(){

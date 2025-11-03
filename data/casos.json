@@ -1,0 +1,103 @@
+{
+  "casos": {
+    "hospitalizacion_familiar": {
+      "keywords": ["operación", "intervención", "cirugía", "ingreso", "hospitalización", "hermano", "madre", "padre", "familiar", "hospital"],
+      "titulo": "Hospitalización/Intervención de familiar",
+      "resumen": "5 días retribuidos por ingreso hospitalario de familiares hasta 2º grado",
+      "detalle": "✅ Tienes derecho a **5 días retribuidos** por:\n- Ingreso hospitalario de familiares hasta 2º grado\n- Accidente o enfermedad grave\n- Intervención quirúrgica\n\n👥 **Familiares incluidos:** madre, padre, hijos, hermanos, abuelos, suegros, cónyuge\n\n✨ **Ampliación:** Si la hospitalización supera 15 días, el permiso se puede ampliar",
+      "documentos": ["Parte médico", "Justificante hospitalario", "Certificado de parentesco si es requerido"],
+      "casos_reales": [
+        "Trabajador peón recogida: hermano operado → 5 días concedidos + 2 días adicionales por hospitalización >15 días",
+        "Conductora limpieza: madre ingresada en UCI → 5 días + desplazamiento reconocido (otra provincia)"
+      ],
+      "comparativa_sectorial": "Valencia: 4 días. Madrid: 5 días sin ampliación. Cataluña: 6 días máximo.",
+      "contacto": "ATRM 968 626 511",
+      "preguntas_followup": ["¿La hospitalización supera 15 días?", "¿Requiere desplazamiento significativo?"]
+    },
+    "dias_lluvia": {
+      "keywords": ["lluvia", "tormenta", "llueve", "clima", "meteorología", "impermeable", "botas"],
+      "titulo": "Días de lluvia intensa",
+      "resumen": "Decisión de parada según entrega de prendas por la empresa",
+      "detalle": "🌧️ **Con lluvia intensa:**\n\n**Si la empresa facilitó impermeable y botas:**\n- La decisión de parar se toma conjuntamente entre empresa y representantes\n- Si no hay representantes, con los propios trabajadores\n\n**Si la empresa NO facilitó prendas:**\n- La decisión la toman los representantes de los trabajadores\n- Si no los hay, los propios trabajadores\n\n**Si se para por lluvia:**\n- Las personas trabajadoras permanecen en el centro durante la jornada",
+      "documentos": ["No se requiere documentación especial"],
+      "casos_reales": [
+        "Brigada recogida Murcia centro: parada por tormenta sin prendas → decisión trabajadores, permanencia en centro",
+        "Equipo limpieza viaria Cartagena: empresa entregó impermeables → decisión conjunta, trabajo mantenimiento interior"
+      ],
+      "comparativa_sectorial": "Valencia: criterio empresa. Madrid: comité seguridad decide. Cataluña: protocolo meteorológico específico.",
+      "contacto": "ATRM 968 626 511"
+    },
+    "matrimonio": {
+      "keywords": ["boda", "casarse", "matrimonio", "permiso", "me caso"],
+      "titulo": "Permiso por matrimonio",
+      "resumen": "15 días de permiso retribuido + gratificación",
+      "detalle": "💒 **Permiso por matrimonio:**\n\n✅ **15 días retribuidos**\n✅ **Gratificación económica** según tabla vigente\n✅ **Flexible:** puedes dividir los días (ej: 10+5) si lo necesitas\n\n📅 **Planificación:** solicitar con antelación mínima de 30 días",
+      "documentos": ["Certificado literal de matrimonio", "Solicitud formal con fechas deseadas"],
+      "casos_reales": [
+        "Encargado brigada: boda en julio → 15 días + gratificación 691,55€ (2025)",
+        "Peón limpieza: matrimonio civil → mismo derecho que religioso, sin diferencias"
+      ],
+      "comparativa_sectorial": "Valencia: 15 días sin gratificación. Madrid: 13 días + plus. Cataluña: 15 días + ayuda social.",
+      "contacto": "ATRM 968 626 511"
+    },
+    "fallecimiento": {
+      "keywords": ["fallecimiento", "muerte", "funeral", "entierro", "defunción", "ha muerto"],
+      "titulo": "Permiso por fallecimiento",
+      "resumen": "Días según grado de parentesco + desplazamiento",
+      "detalle": "⚫ **Permiso por fallecimiento:**\n\n**Cónyuge, hijos, padres:** hasta 5 días\n**Hermanos, abuelos, nietos:** hasta 3 días\n**Resto familiares 2º grado:** hasta 2 días\n\n**Con desplazamiento:** días adicionales según distancia y duración del viaje\n\n**Flexible:** se puede fraccionar si hay ceremonias en días diferentes",
+      "documentos": ["Certificado de defunción", "Certificado de parentesco si es requerido", "Justificante desplazamiento si aplica"],
+      "casos_reales": [
+        "Conductor limpieza: fallecimiento padre → 5 días + 1 día desplazamiento (funeral en Almería)",
+        "Peón recogida: fallecimiento abuelo → 3 días, fraccionado (2+1) por ceremonias separadas"
+      ],
+      "comparativa_sectorial": "Valencia: mismos días, sin desplazamiento. Madrid: +1 día general. Cataluña: hasta 6 días cónyuge/hijos.",
+      "contacto": "ATRM 968 626 511"
+    },
+    "nocturnidad": {
+      "keywords": ["nocturno", "noche", "22:00", "06:00", "turno", "plus"],
+      "titulo": "Plus de nocturnidad",
+      "resumen": "28% sobre salario base por trabajo nocturno (22:00-06:00h)",
+      "detalle": "🌙 **Plus de nocturnidad (desde enero 2025):**\n\n✅ **28% sobre salario base**\n📅 **Horario:** 22:00 a 06:00 horas\n💰 **Cálculo:** se aplica sobre las horas efectivamente trabajadas en franja nocturna\n\n**Ejemplo:** Si trabajas de 23:00 a 07:00, el plus se aplica de 23:00 a 06:00 (7 horas)",
+      "documentos": ["Control horario", "Parte de trabajo nocturno si es excepcional"],
+      "casos_reales": [
+        "Conductor recogida nocturna: salario base 1.394,30€ → plus nocturnidad 390,40€/mes (28%)",
+        "Peón limpieza nocturna ocasional: 3 noches/semana → plus proporcional por horas"
+      ],
+      "comparativa_sectorial": "Valencia: 25%. Madrid: 30%. Cataluña: 25% + plus especial sábados.",
+      "contacto": "ATRM 968 626 511"
+    },
+    "consultas_medicas": {
+      "keywords": ["médico", "consulta", "cita", "doctor", "revisión", "especialista"],
+      "titulo": "Permisos por consultas médicas",
+      "resumen": "Tiempo necesario + desplazamiento si >35km",
+      "detalle": "🏥 **Consultas médicas:**\n\n✅ **Tiempo necesario** para la consulta\n✅ **Hasta 3 horas máximo** por cita ordinaria\n✅ **Desplazamiento adicional** si la consulta está a >35km del centro de trabajo\n\n**Programación:** avisar con la máxima antelación posible\n**Urgencias:** justificar posteriormente",
+      "documentos": ["Justificante de cita previa", "Parte médico o justificante asistencia", "Justificante desplazamiento si >35km"],
+      "casos_reales": [
+        "Encargado brigada: especialista en Murcia capital → 3h concedidas (consulta + desplazamiento desde pedanía)",
+        "Conductora limpieza: urgencia oftalmológica → permiso concedido, justificante aportado al día siguiente"
+      ],
+      "comparativa_sectorial": "Valencia: 4h máximo. Madrid: tiempo necesario sin límite. Cataluña: 2h + desplazamiento sin condición distancia.",
+      "contacto": "ATRM 968 626 511"
+    }
+  },
+  "jurisprudencia": [
+    {
+      "tema": "hospitalización_familiar",
+      "resumen": "STSJ Murcia 2019: ampliación >15 días es derecho, no concesión graciable",
+      "referencia": "STSJ Murcia 234/2019"
+    },
+    {
+      "tema": "dias_lluvia",
+      "resumen": "LAB Murcia 2022: empresa debe facilitar prendas o asumir criterio trabajadores",
+      "referencia": "Laudo Arbitral 15/2022"
+    },
+    {
+      "tema": "nocturnidad",
+      "resumen": "STSJ Valencia 2024: plus nocturno se calcula sobre horas efectivas, no sobre jornada completa",
+      "referencia": "STSJ Valencia 156/2024"
+    }
+  ],
+  "gaps_detectados": [],
+  "version": "1.0",
+  "ultima_actualizacion": "2025-11-03"
+}

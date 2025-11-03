@@ -19,8 +19,10 @@
     .badge{display:inline-block;background:linear-gradient(90deg,var(--secondary),var(--accent));color:#4e2b00;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700}
     h1{margin:10px 0 14px;font-size:36px}
     .cta{display:flex;gap:12px;margin-top:18px}
-    .btn{background:linear-gradient(90deg,var(--primary),var(--secondary));border:none;color:#fff;padding:12px 16px;border-radius:12px;cursor:pointer;font-weight:700;text-decoration:none;display:inline-block}
+    .btn{background:linear-gradient(90deg,var(--primary),var(--secondary));border:none;color:#fff;padding:12px 16px;border-radius:12px;cursor:pointer;font-weight:700;text-decoration:none;display:inline-block;transition:.2s}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(255,107,53,.3)}
     .btn.alt{background:#fff;color:var(--primary);border:2px solid var(--primary)}
+    .btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
     .news{padding:18px}
     .news h3{margin:0 0 8px}
     .news .item{border-top:1px solid #f3d7c2;padding:12px 0}
@@ -28,6 +30,10 @@
     .tile{padding:20px}
     .tile h3{margin-top:0}
     .update-notice{background:linear-gradient(90deg,#fff3e7,#ffe2cf);border-left:4px solid var(--accent);padding:12px;margin:12px 0;border-radius:8px;font-size:14px}
+    .ai-notice{background:linear-gradient(90deg,#e8f5e8,#f0fff0);border-left:4px solid #4CAF50;padding:12px;margin:12px 0;border-radius:8px;font-size:14px}
+    .loading{display:none;align-items:center;gap:8px;margin-top:10px}
+    .spinner{width:20px;height:20px;border:2px solid var(--accent);border-radius:50%;border-top-color:transparent;animation:spin 1s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
     @media(max-width:900px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
   </style>
 </head>
@@ -69,7 +75,7 @@
       <h3>Convenio Colectivo 2024–2027</h3>
       <p id="convenioResumen"></p>
       <ul id="convenioDatos"></ul>
-      <button class="btn" onclick="abrirLLM()">Pregúntale al asistente sobre el convenio</button>
+      <button class="btn" onclick="abrirIA()">Pregúntale a la IA sobre el convenio</button>
     </div>
     <div class="card tile">
       <h3>Ámbito de aplicación</h3>
@@ -102,35 +108,42 @@
     </div>
   </section>
 
-  <dialog id="llmModal" style="max-width:750px;width:95%;border:none;border-radius:16px;padding:0;overflow:hidden">
-    <div style="background:linear-gradient(90deg,var(--secondary),var(--accent));padding:14px 18px;color:#4e2b00;font-weight:800">Asistente del Convenio ATRM</div>
+  <dialog id="iaModal" style="max-width:750px;width:95%;border:none;border-radius:16px;padding:0;overflow:hidden">
+    <div style="background:linear-gradient(90deg,var(--secondary),var(--accent));padding:14px 18px;color:#4e2b00;font-weight:800">🤖 Asistente IA del Convenio ATRM</div>
     <div style="padding:16px">
-      <p style="margin-top:0">Haz tu pregunta sobre el convenio. El asistente se basa en la información oficial del convenio vigente.</p>
-      <input id="q" placeholder="Ej. ¿Cuál es la jornada anual? ¿Qué incremento habrá en 2025?" style="width:100%;padding:12px;border:1px solid #ffd2b5;border-radius:10px" />
-      <button class="btn" style="margin-top:10px" onclick="responder()">Preguntar</button>
-      <div id="a" style="margin-top:12px;padding:12px;background:#fff7f0;border-radius:8px;display:none"></div>
+      <div class="ai-notice">
+        🎆 <strong>IA Real integrada</strong><br>
+        Este asistente usa inteligencia artificial para entender tus preguntas en lenguaje natural sobre el convenio.
+      </div>
+      <p style="margin-top:0">Haz tu pregunta sobre el convenio. Ejemplos: "ingreso de madre", "cuánto cobraré en 2025", "tengo derecho a vacaciones"...</p>
+      <input id="preguntaIA" placeholder="Ej. Mi madre está ingresada, ¿cuántos días tengo de permiso?" style="width:100%;padding:12px;border:1px solid #ffd2b5;border-radius:10px" />
+      <button id="btnPreguntar" class="btn" style="margin-top:10px" onclick="preguntarIA()">Preguntar a la IA</button>
+      <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <span>La IA está procesando tu pregunta...</span>
+      </div>
+      <div id="respuestaIA" style="margin-top:12px;padding:12px;background:#fff7f0;border-radius:8px;display:none"></div>
     </div>
     <div style="padding:10px 16px;background:#fff3e7;text-align:right">
-      <button class="btn alt" onclick="document.getElementById('llmModal').close()">Cerrar</button>
+      <button class="btn alt" onclick="document.getElementById('iaModal').close()">Cerrar</button>
     </div>
   </dialog>
 
   <script>
+    let API_ENDPOINT = '/api/chat'; // Para Vercel/Netlify
+    
     async function cargar(){
       try {
         const res = await fetch('data/atrm_sindicato_data.json');
         const data = await res.json();
         
-        // Noticias con fecha de última actualización
+        // Noticias
         const news = [...data.noticias];
         const list = document.getElementById('newsList');
-        
-        // Añadir indicador de última actualización
         const lastUpdate = document.createElement('div');
         lastUpdate.style.cssText = 'font-size:12px;color:#666;margin-bottom:8px;text-align:right';
         lastUpdate.textContent = `Última actualización: ${new Date().toLocaleDateString('es-ES')}`;
         list.appendChild(lastUpdate);
-        
         news.forEach(n=>{
           const div = document.createElement('div');
           div.className = 'item';
@@ -144,13 +157,11 @@
         const li1 = document.createElement('li'); 
         li1.textContent = `Jornada: ${data.convenio.jornada}`; 
         ul.appendChild(li1);
-        
         Object.entries(data.convenio.incrementos_salariales).forEach(([k,v])=>{
           const li = document.createElement('li');
           li.textContent = `Incremento ${k}: ${v}`;
           ul.appendChild(li);
         });
-        
         document.getElementById('ambito').textContent = data.convenio.ambito_aplicacion;
         
         // Contacto
@@ -160,9 +171,7 @@
           Información: <strong>${c.telefono_informacion}</strong><br>
           Email: <strong>${c.email_general}</strong><br>
           Dirección: ${c.direccion}</p>`;
-        
         document.getElementById('horario').textContent = c.horario_atencion;
-        
         const reps = document.getElementById('reps');
         c.representantes.forEach(r=>{
           const p = document.createElement('p');
@@ -170,60 +179,120 @@
           reps.appendChild(p);
         });
         
-        window.__CONVENIO__ = data.convenio;
-        
       } catch(error) {
         console.error('Error cargando datos:', error);
         document.getElementById('newsList').innerHTML = '<p style="color:#999">Error cargando las noticias. Por favor, recarga la página.</p>';
       }
     }
     
-    function abrirLLM(){ 
-      document.getElementById('llmModal').showModal(); 
-      document.getElementById('q').focus();
+    function abrirIA(){ 
+      document.getElementById('iaModal').showModal(); 
+      document.getElementById('preguntaIA').focus();
     }
     
-    function responder(){
-      const q = document.getElementById('q').value.toLowerCase();
-      const c = window.__CONVENIO__;
-      const answerDiv = document.getElementById('a');
-      
-      let r = '❌ No encuentro esa información específica. Intenta preguntar sobre: jornada laboral, vigencia del convenio, incrementos salariales o ámbito de aplicación.';
-      
-      if(q.includes('jornada')||q.includes('horas')||q.includes('tiempo')) {
-        r = `⏰ <strong>Jornada laboral:</strong> ${c.jornada}`;
-      }
-      else if(q.includes('vigencia')||q.includes('duración')||q.includes('cuándo')||q.includes('período')) {
-        r = `📅 <strong>Vigencia:</strong> ${c.vigencia}`;
-      }
-      else if(q.includes('increment')||q.includes('salari')||q.includes('aumento')||q.includes('subida')) {
-        r = `💰 <strong>Incrementos salariales:</strong><br>
-        • 2024: ${c.incrementos_salariales["2024"]}<br>
-        • 2025: ${c.incrementos_salariales["2025"]}<br>
-        • 2026: ${c.incrementos_salariales["2026"]}<br>
-        • 2027: ${c.incrementos_salariales["2027"]}`;
-      }
-      else if(q.includes('ámbito')||q.includes('ambito')||q.includes('aplicación')||q.includes('empresas')||q.includes('qué trabajadores')) {
-        r = `🏢 <strong>Ámbito de aplicación:</strong> ${c.ambito_aplicacion}`;
-      }
-      else if(q.includes('código')||q.includes('numero')||q.includes('identificación')) {
-        r = `📋 <strong>Código del convenio:</strong> ${c.codigo}`;
+    async function preguntarIA() {
+      const pregunta = document.getElementById('preguntaIA').value.trim();
+      if (!pregunta) {
+        alert('Por favor, escribe tu pregunta');
+        return;
       }
       
-      answerDiv.innerHTML = r;
-      answerDiv.style.display = 'block';
-    }
-    
-    // Permitir enviar pregunta con Enter
-    document.addEventListener('DOMContentLoaded', function() {
-      document.getElementById('q').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-          responder();
+      const btn = document.getElementById('btnPreguntar');
+      const loading = document.getElementById('loading');
+      const respuestaDiv = document.getElementById('respuestaIA');
+      
+      // Mostrar loading
+      btn.disabled = true;
+      loading.style.display = 'flex';
+      respuestaDiv.style.display = 'none';
+      
+      try {
+        // Intentar con API de IA
+        let respuesta = '';
+        let fuente = '';
+        
+        try {
+          const response = await fetch(API_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ pregunta })
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            respuesta = data.respuesta;
+            fuente = data.fuente || 'IA Asistente ATRM';
+          } else {
+            throw new Error('API no disponible');
+          }
+        } catch (apiError) {
+          // Fallback con respuestas locales mejoradas
+          console.log('API no disponible, usando fallback local');
+          respuesta = generarRespuestaLocal(pregunta);
+          fuente = 'Convenio Colectivo ATRM 2024-2027 (asistente local)';
         }
-      });
-    });
+        
+        respuestaDiv.innerHTML = `
+          <div style="margin-bottom:8px">${respuesta}</div>
+          <small style="color:#666;font-style:italic">📚 ${fuente}</small>
+        `;
+        respuestaDiv.style.display = 'block';
+        
+      } catch (error) {
+        console.error('Error:', error);
+        respuestaDiv.innerHTML = '<div style="color:#e74c3c">❌ Error procesando la pregunta. Intenta de nuevo o contacta ATRM: 968 626 511</div>';
+        respuestaDiv.style.display = 'block';
+      } finally {
+        btn.disabled = false;
+        loading.style.display = 'none';
+      }
+    }
     
-    cargar();
+    function generarRespuestaLocal(pregunta) {
+      const p = pregunta.toLowerCase();
+      
+      // Mapeo inteligente para casos comunes
+      if (p.includes('ingreso') && (p.includes('madre') || p.includes('padre') || p.includes('familiar') || p.includes('hospital'))) {
+        return '🏥 <strong>Permiso por hospitalización familiar:</strong><br>Tienes derecho a <strong>5 días retribuidos</strong> por ingreso hospitalario, accidente o enfermedad grave de familiares hasta 2º grado (madre, padre, hijos, hermanos, abuelos, suegros).<br><br>✨ <strong>Extra:</strong> Si la hospitalización supera 15 días, el permiso se puede ampliar.<br><br>📞 Para gestionar el permiso, contacta con ATRM: 968 626 511';
+      }
+      
+      if (p.includes('jornada') || p.includes('hora')) {
+        return '⏰ <strong>Jornada laboral:</strong><br>37 horas y 30 minutos semanales (1.680 horas anuales).<br>Descanso: 20 minutos bocadillo (computable) + 10 minutos adicionales opcionales.<br>Turno general de mañana.';
+      }
+      
+      if (p.includes('increment') || p.includes('salari') || p.includes('sueld') || p.includes('cobra')) {
+        return '💰 <strong>Incrementos salariales:</strong><br>2024: 400€ lineales para todas las categorías<br>2025: IPC real nacional de 2024<br>2026: IPC real nacional de 2025<br>2027: IPC real nacional de 2026';
+      }
+      
+      if (p.includes('paga') || p.includes('extra') || p.includes('productiv')) {
+        return '🎁 <strong>Pagas extras:</strong><br>Junio y Diciembre: salario base + antigüedad + plus<br>Productividad: 30 días (marzo)<br>Septiembre: 30 días (septiembre)<br>Bolsa enero: según tabla + 400€ incremento 2024';
+      }
+      
+      if (p.includes('vacacion')) {
+        return '🏖️ <strong>Vacaciones:</strong><br>28 días laborales + días asuntos propios<br>Festividad patronal: San Martín de Porres (3 noviembre)<br>Desde 2026: días compensatorios por festivos coincidentes con descanso';
+      }
+      
+      if (p.includes('plus') || p.includes('toxico') || p.includes('nocturno')) {
+        return '✨ <strong>Pluses especiales:</strong><br>Toxicidad: 30% sobre salario base (conductores, peones, talleres)<br>Asistencia: 30% sobre salario base (resto de personal)<br>Nocturnidad: 28% sobre salario base (22:00-06:00h) desde enero 2025';
+      }
+      
+      if (p.includes('baja') || p.includes('enferm')) {
+        return '🏥 <strong>Prestaciones por baja:</strong><br>Baja laboral: complemento hasta 100% del salario real los primeros 60 días<br>Accidente de trabajo: 100% del salario real desde el primer día';
+      }
+      
+      // Respuesta genérica
+      return '🤖 No encuentro información específica para tu pregunta. <br><br>📁 <strong>Temas disponibles:</strong> jornada, incrementos salariales, pagas extra, vacaciones, permisos (incluyendo ingreso familiar), pluses, bajas médicas, categorías.<br><br>📞 <strong>Para consultas específicas:</strong> ATRM 968 626 511';
+    }
+    
+    document.addEventListener('DOMContentLoaded', function(){
+      cargar();
+      const input = document.getElementById('preguntaIA');
+      if (input) {
+        input.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') preguntarIA();
+        });
+      }
+    });
   </script>
 </body>
 </html>

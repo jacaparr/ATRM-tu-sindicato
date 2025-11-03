@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ATRM - Tu Sindicato</title>
+  <style>
+    :root{ --primary:#FF6B35; --secondary:#FF8C42; --accent:#FFA726; --dark:#2C3E50; --light:#FFFFFF; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial;color:var(--dark);background:linear-gradient(180deg, #fff 0%, #fff7f0 100%)}
+    header{position:sticky;top:0;z-index:10;background:linear-gradient(90deg,var(--primary),var(--secondary));color:#fff}
+    .nav{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
+    .logo{font-weight:800;letter-spacing:.3px}
+    .menu a{color:#fff;text-decoration:none;margin:0 10px;padding:8px 12px;border-radius:10px;transition:.2s}
+    .menu a:hover{background:rgba(255,255,255,.15)}
+    .hero{max-width:1100px;margin:28px auto;padding:24px 20px;display:grid;grid-template-columns:1.1fr .9fr;gap:28px}
+    .card{background:#fff;border:1px solid #ffe2cf;border-radius:18px;box-shadow:0 10px 24px rgba(255,119,51,.08)}
+    .hero .left{padding:28px}
+    .badge{display:inline-block;background:linear-gradient(90deg,var(--secondary),var(--accent));color:#4e2b00;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700}
+    h1{margin:10px 0 14px;font-size:36px}
+    .cta{display:flex;gap:12px;margin-top:18px}
+    .btn{background:linear-gradient(90deg,var(--primary),var(--secondary));border:none;color:#fff;padding:12px 16px;border-radius:12px;cursor:pointer;font-weight:700;text-decoration:none;display:inline-block}
+    .btn.alt{background:#fff;color:var(--primary);border:2px solid var(--primary)}
+    .news{padding:18px}
+    .news h3{margin:0 0 8px}
+    .news .item{border-top:1px solid #f3d7c2;padding:12px 0}
+    .grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:0 20px 40px}
+    .tile{padding:20px}
+    .tile h3{margin-top:0}
+    .update-notice{background:linear-gradient(90deg,#fff3e7,#ffe2cf);border-left:4px solid var(--accent);padding:12px;margin:12px 0;border-radius:8px;font-size:14px}
+    @media(max-width:900px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="logo">ATRM · Tu Sindicato</div>
+      <nav class="menu">
+        <a href="#inicio">Inicio</a>
+        <a href="#convenio">Convenio</a>
+        <a href="#noticias">Noticias</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio" class="hero">
+    <section class="left card">
+      <span class="badge">Limpieza Pública Viaria · Región de Murcia</span>
+      <h1>Defendemos tus derechos con cercanía y resultados</h1>
+      <p>ATRM es el sindicato de referencia para los trabajadores de limpieza viaria y servicios municipales en la Región de Murcia. Te acompañamos en cada paso: asesoría laboral, negociación colectiva y acciones para mejorar las condiciones del sector.</p>
+      <div class="cta">
+        <a class="btn" href="#convenio">Ver Convenio</a>
+        <a class="btn alt" href="#contacto">Contactar</a>
+      </div>
+    </section>
+    <aside class="card news" id="noticias">
+      <h3>Últimas noticias</h3>
+      <div class="update-notice">
+        📅 <strong>Noticias actualizadas semanalmente</strong><br>
+        Revisa esta sección cada semana para estar al día con las novedades del sector y las acciones del sindicato.
+      </div>
+      <div id="newsList"></div>
+    </aside>
+  </main>
+
+  <section id="convenio" class="grid">
+    <div class="card tile">
+      <h3>Convenio Colectivo 2024–2027</h3>
+      <p id="convenioResumen"></p>
+      <ul id="convenioDatos"></ul>
+      <button class="btn" onclick="abrirLLM()">Pregúntale al asistente sobre el convenio</button>
+    </div>
+    <div class="card tile">
+      <h3>Ámbito de aplicación</h3>
+      <p id="ambito"></p>
+    </div>
+    <div class="card tile">
+      <h3>Documentación</h3>
+      <p>Accede al texto completo del convenio publicado en el BORM nº 34.</p>
+      <div class="update-notice">
+        📄 <strong>Próximamente:</strong> Enlace directo al PDF oficial del convenio y búsqueda avanzada de artículos.
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="grid">
+    <div class="card tile">
+      <h3>Contacto</h3>
+      <div id="contactoData"></div>
+    </div>
+    <div class="card tile">
+      <h3>Representantes</h3>
+      <div id="reps"></div>
+    </div>
+    <div class="card tile">
+      <h3>Atención</h3>
+      <p id="horario"></p>
+      <div class="update-notice">
+        ℹ️ <strong>Información actualizada:</strong> Los datos de contacto y representantes se actualizan regularmente. Para emergencias laborales, utiliza siempre el teléfono principal.
+      </div>
+    </div>
+  </section>
+
+  <dialog id="llmModal" style="max-width:750px;width:95%;border:none;border-radius:16px;padding:0;overflow:hidden">
+    <div style="background:linear-gradient(90deg,var(--secondary),var(--accent));padding:14px 18px;color:#4e2b00;font-weight:800">Asistente del Convenio ATRM</div>
+    <div style="padding:16px">
+      <p style="margin-top:0">Haz tu pregunta sobre el convenio. El asistente se basa en la información oficial del convenio vigente.</p>
+      <input id="q" placeholder="Ej. ¿Cuál es la jornada anual? ¿Qué incremento habrá en 2025?" style="width:100%;padding:12px;border:1px solid #ffd2b5;border-radius:10px" />
+      <button class="btn" style="margin-top:10px" onclick="responder()">Preguntar</button>
+      <div id="a" style="margin-top:12px;padding:12px;background:#fff7f0;border-radius:8px;display:none"></div>
+    </div>
+    <div style="padding:10px 16px;background:#fff3e7;text-align:right">
+      <button class="btn alt" onclick="document.getElementById('llmModal').close()">Cerrar</button>
+    </div>
+  </dialog>
+
+  <script>
+    async function cargar(){
+      try {
+        const res = await fetch('data/atrm_sindicato_data.json');
+        const data = await res.json();
+        
+        // Noticias con fecha de última actualización
+        const news = [...data.noticias];
+        const list = document.getElementById('newsList');
+        
+        // Añadir indicador de última actualización
+        const lastUpdate = document.createElement('div');
+        lastUpdate.style.cssText = 'font-size:12px;color:#666;margin-bottom:8px;text-align:right';
+        lastUpdate.textContent = `Última actualización: ${new Date().toLocaleDateString('es-ES')}`;
+        list.appendChild(lastUpdate);
+        
+        news.forEach(n=>{
+          const div = document.createElement('div');
+          div.className = 'item';
+          div.innerHTML = `<strong>${n.fecha}</strong><br>${n.titulo}<br><small style="color:#888">${n.fuente}</small>`;
+          list.appendChild(div);
+        });
+        
+        // Convenio
+        document.getElementById('convenioResumen').textContent = `${data.convenio.nombre} (código ${data.convenio.codigo}). Vigencia: ${data.convenio.vigencia}.`;
+        const ul = document.getElementById('convenioDatos');
+        const li1 = document.createElement('li'); 
+        li1.textContent = `Jornada: ${data.convenio.jornada}`; 
+        ul.appendChild(li1);
+        
+        Object.entries(data.convenio.incrementos_salariales).forEach(([k,v])=>{
+          const li = document.createElement('li');
+          li.textContent = `Incremento ${k}: ${v}`;
+          ul.appendChild(li);
+        });
+        
+        document.getElementById('ambito').textContent = data.convenio.ambito_aplicacion;
+        
+        // Contacto
+        const c = data.contactos;
+        document.getElementById('contactoData').innerHTML = `
+          <p>Teléfono principal: <strong>${c.telefono_principal}</strong><br>
+          Información: <strong>${c.telefono_informacion}</strong><br>
+          Email: <strong>${c.email_general}</strong><br>
+          Dirección: ${c.direccion}</p>`;
+        
+        document.getElementById('horario').textContent = c.horario_atencion;
+        
+        const reps = document.getElementById('reps');
+        c.representantes.forEach(r=>{
+          const p = document.createElement('p');
+          p.innerHTML = `<strong>${r.cargo}</strong><br>${r.nombre}<br>${r.telefono}<br><a href="mailto:${r.email}" style="color:var(--primary)">${r.email}</a>`;
+          reps.appendChild(p);
+        });
+        
+        window.__CONVENIO__ = data.convenio;
+        
+      } catch(error) {
+        console.error('Error cargando datos:', error);
+        document.getElementById('newsList').innerHTML = '<p style="color:#999">Error cargando las noticias. Por favor, recarga la página.</p>';
+      }
+    }
+    
+    function abrirLLM(){ 
+      document.getElementById('llmModal').showModal(); 
+      document.getElementById('q').focus();
+    }
+    
+    function responder(){
+      const q = document.getElementById('q').value.toLowerCase();
+      const c = window.__CONVENIO__;
+      const answerDiv = document.getElementById('a');
+      
+      let r = '❌ No encuentro esa información específica. Intenta preguntar sobre: jornada laboral, vigencia del convenio, incrementos salariales o ámbito de aplicación.';
+      
+      if(q.includes('jornada')||q.includes('horas')||q.includes('tiempo')) {
+        r = `⏰ <strong>Jornada laboral:</strong> ${c.jornada}`;
+      }
+      else if(q.includes('vigencia')||q.includes('duración')||q.includes('cuándo')||q.includes('período')) {
+        r = `📅 <strong>Vigencia:</strong> ${c.vigencia}`;
+      }
+      else if(q.includes('increment')||q.includes('salari')||q.includes('aumento')||q.includes('subida')) {
+        r = `💰 <strong>Incrementos salariales:</strong><br>
+        • 2024: ${c.incrementos_salariales["2024"]}<br>
+        • 2025: ${c.incrementos_salariales["2025"]}<br>
+        • 2026: ${c.incrementos_salariales["2026"]}<br>
+        • 2027: ${c.incrementos_salariales["2027"]}`;
+      }
+      else if(q.includes('ámbito')||q.includes('ambito')||q.includes('aplicación')||q.includes('empresas')||q.includes('qué trabajadores')) {
+        r = `🏢 <strong>Ámbito de aplicación:</strong> ${c.ambito_aplicacion}`;
+      }
+      else if(q.includes('código')||q.includes('numero')||q.includes('identificación')) {
+        r = `📋 <strong>Código del convenio:</strong> ${c.codigo}`;
+      }
+      
+      answerDiv.innerHTML = r;
+      answerDiv.style.display = 'block';
+    }
+    
+    // Permitir enviar pregunta con Enter
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('q').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          responder();
+        }
+      });
+    });
+    
+    cargar();
+  </script>
+</body>
+</html>

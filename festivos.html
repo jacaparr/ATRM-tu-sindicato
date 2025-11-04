@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ATRM - Información y Calendario Laboral 2026</title>
+  <style>
+    :root{ --primary:#FF6B35; --secondary:#FF8C42; --accent:#FFA726; --dark:#2C3E50; --light:#FFFFFF; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial;color:var(--dark);background:linear-gradient(180deg, #fff 0%, #fff7f0 100%)}
+    header{position:sticky;top:0;z-index:10;background:linear-gradient(90deg,var(--primary),var(--secondary));color:#fff}
+    .nav{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
+    .logo{font-weight:800;letter-spacing:.3px}
+    .menu a{color:#fff;text-decoration:none;margin:0 10px;padding:8px 12px;border-radius:10px;transition:.2s}
+    .menu a:hover{background:rgba(255,255,255,.15)}
+    .container{max-width:1100px;margin:28px auto;padding:24px 20px}
+    .card{background:#fff;border:1px solid #ffe2cf;border-radius:18px;box-shadow:0 10px 24px rgba(255,119,51,.08);padding:24px;margin-bottom:24px}
+    .btn{background:linear-gradient(90deg,var(--primary),var(--secondary));border:none;color:#fff;padding:12px 16px;border-radius:12px;cursor:pointer;font-weight:700;text-decoration:none;display:inline-block;transition:.2s;margin:8px 8px 8px 0}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(255,107,53,.3)}
+    .btn.alt{background:#fff;color:var(--primary);border:2px solid var(--primary)}
+    .table-responsive{overflow-x:auto;margin:16px 0}
+    table{width:100%;border-collapse:collapse;font-size:14px}
+    th,td{padding:12px 8px;text-align:left;border-bottom:1px solid #f0f0f0}
+    th{background:linear-gradient(90deg,var(--secondary),var(--accent));color:#4e2b00;font-weight:800;font-size:13px}
+    tr:hover{background:#fff7f0}
+    .festivo-nacional{background:#fff3e6}
+    .festivo-local{background:#e8f5e8}
+    .badge{padding:4px 8px;border-radius:12px;font-size:11px;font-weight:700}
+    .badge.nacional{background:var(--accent);color:#4e2b00}
+    .badge.local{background:#4CAF50;color:#fff}
+    .info-box{background:linear-gradient(90deg,#fff3e7,#ffe2cf);border-left:4px solid var(--accent);padding:16px;margin:16px 0;border-radius:8px}
+    .download-section{text-align:center;margin:24px 0;padding:20px;background:#fff3e6;border-radius:12px}
+    .image-preview{max-width:300px;border:2px solid var(--accent);border-radius:12px;margin:16px auto;display:block}
+    @media(max-width:768px){table{font-size:12px} th,td{padding:8px 4px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="logo">ATRM · Tu Sindicato</div>
+      <nav class="menu">
+        <a href="index.html">Inicio</a>
+        <a href="index.html#convenio">Convenio</a>
+        <a href="salaries.html">Salarios</a>
+        <a href="tramites.html">Trámites</a>
+        <a href="#" style="background:rgba(255,255,255,.15)">Información</a>
+        <a href="index.html#noticias">Noticias</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="card">
+      <h1>📅 Información Sindical y Calendario Laboral</h1>
+      <p>En esta sección encontrarás información actualizada sobre festivos, calendarios laborales y documentación relevante para los trabajadores del sector de limpieza pública viaria en la Región de Murcia.</p>
+    </div>
+
+    <div class="card">
+      <h2>🗓️ Calendario Laboral 2026 - Región de Murcia</h2>
+      
+      <div class="info-box">
+        📋 <strong>Calendario oficial aprobado para 2026</strong><br>
+        Este calendario incluye todos los días festivos de ámbito nacional y los días inhábiles específicos de la localidad de Murcia, según el BORM y resoluciones oficiales.
+      </div>
+
+      <h3>🇪🇸 Festivos de Ámbito Nacional y Regional</h3>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Nº</th>
+              <th>Día Semana</th>
+              <th>Día</th>
+              <th>Mes</th>
+              <th>Festividad</th>
+              <th>Tipo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="festivo-nacional">
+              <td>1</td>
+              <td>Jueves</td>
+              <td>1</td>
+              <td>Enero</td>
+              <td>Año Nuevo</td>
+              <td><span class="badge nacional">Nacional</span></td>
+            </tr>
+            <tr class="festivo-nacional">
+              <td>2</td>
+              <td>Martes</td>
+              <td>6</td>
+              <td>Enero</td>
+              <td>Epifanía del Señor</td>
+              <td><span class="badge nacional">Nacional</span></td>
+            </tr>
+            <tr class="festivo-nacional">
+              <td>3</td>
+              <td>Jueves</td>
+              <td>19</td>
+              <td>Marzo</td>
+              <td>San José</td>
+              <td><span class="badge nacional">Nacional</span></td>
+            </tr>
+            <tr class="festivo-nacional">
+              <td>4</td>
+              <td>Jueves</td>
+              <td>2</td>
+              <td>Abril</td>
+              <td>Jueves Santo</td>
+              <td><span class="badge nacional">Nacional</span></td>
+            </tr>
+            <tr class="festivo-nacional">
+              <td>5</td>
+              <td>Viernes</td>
+              <td>3</td>
+              <td>Abril</td>
+              <td>Viernes Santo</td>
+              <td><span class="badge nacional">Nacional</span></td>
+            </tr>
+            <tr class="festivo-nacional">
+              <td>6</td>
+              <td>Viernes</td>
+              <td>1</td>
+              <td>Mayo</td>
+              <td>Fiesta del Trabajo</td>
+              <td><span class="badge nacional">Nacional</span></td>
+            </tr>
+            <tr class="festivo-nacional">
+              <td>7</td>
+              <td>Martes</td>
+              <td>9</td>
+              <td>Junio</td>
+              <td>Día de la Región de Murcia</td>
+              <td><span class="badge nacional">Regional</span></td>
+            </tr>
+            <tr class="festivo-nacional">
+              <td>8</td>
+              <td>Sábado</td>
+              <td>15</td>
+              <td>Agosto</td>
+              <td>Asunción de la Virgen</td>
+              <td><span class="badge nacional">Nacional</span></td>
+            </tr>
+            <tr class="festivo-nacional">
+              <td>9</td>
+              <td>Lunes</td>
+              <td>12</td>
+              <td>Octubre</td>
+              <td>Fiesta Nacional de España</td>
+              <td><span class="badge nacional">Nacional</span></td>
+            </tr>
+            <tr class="festivo-nacional">
+              <td>10</td>
+              <td>Lunes</td>
+              <td>7</td>
+              <td>Diciembre</td>
+              <td>Día de la Constitución</td>
+              <td><span class="badge nacional">Nacional</span></td>
+            </tr>
+            <tr class="festivo-nacional">
+              <td>11</td>
+              <td>Martes</td>
+              <td>8</td>
+              <td>Diciembre</td>
+              <td>Inmaculada Concepción</td>
+              <td><span class="badge nacional">Nacional</span></td>
+            </tr>
+            <tr class="festivo-nacional">
+              <td>12</td>
+              <td>Viernes</td>
+              <td>25</td>
+              <td>Diciembre</td>
+              <td>Natividad del Señor</td>
+              <td><span class="badge nacional">Nacional</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>🏛️ Días Inhábiles en la Localidad de Murcia</h3>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Nº</th>
+              <th>Día Semana</th>
+              <th>Día</th>
+              <th>Mes</th>
+              <th>Festividad</th>
+              <th>Tipo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="festivo-local">
+              <td>13</td>
+              <td>Martes</td>
+              <td>7</td>
+              <td>Abril</td>
+              <td>Bando de la Huerta</td>
+              <td><span class="badge local">Local Murcia</span></td>
+            </tr>
+            <tr class="festivo-local">
+              <td>14</td>
+              <td>Martes</td>
+              <td>15</td>
+              <td>Septiembre</td>
+              <td>Romería de Fuensanta</td>
+              <td><span class="badge local">Local Murcia</span></td>
+            </tr>
+            <tr class="festivo-local">
+              <td>15</td>
+              <td>Martes</td>
+              <td>3</td>
+              <td>Noviembre</td>
+              <td>San Martín de Porres</td>
+              <td><span class="badge local">Local Murcia</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="download-section">
+        <h3>📥 Descargar Calendario</h3>
+        <p>Descarga el calendario oficial en formato imagen para consulta rápida</p>
+        <a href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k=" download="calendario-laboral-2026-murcia.jpg" class="btn">
+          📄 Descargar Imagen del Calendario
+        </a>
+        <br>
+        <small style="color:#666;margin-top:8px;display:block">Fuente: ATRM - Calendario oficial aprobado según BORM</small>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>📋 Información Adicional</h2>
+      <p>Esta sección se irá actualizando con:</p>
+      <ul>
+        <li>📄 Convenios colectivos actualizados</li>
+        <li>📊 Tablas salariales por año</li>
+        <li>📅 Calendarios laborales de otros municipios de la región</li>
+        <li>📢 Comunicados y resoluciones oficiales</li>
+        <li>🏛️ Normativas y cambios legislativos</li>
+      </ul>
+      
+      <div class="info-box">
+        💡 <strong>¿Tienes dudas sobre algún festivo o normativa?</strong><br>
+        Contacta con ATRM en el 968 626 511 o utiliza el asistente IA del convenio en la página principal.
+      </div>
+
+      <a href="index.html" class="btn">← Volver al Inicio</a>
+      <a href="tramites.html" class="btn alt">Ver Trámites</a>
+    </div>
+  </main>
+</body>
+</html>

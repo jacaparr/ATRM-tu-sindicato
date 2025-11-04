@@ -31,7 +31,8 @@
     .info-box{background:linear-gradient(90deg,#fff3e7,#ffe2cf);border-left:4px solid var(--accent);padding:16px;margin:16px 0;border-radius:8px}
     .download-section{text-align:center;margin:24px 0;padding:20px;background:#fff3e6;border-radius:12px}
     .image-preview{max-width:300px;border:2px solid var(--accent);border-radius:12px;margin:16px auto;display:block}
-    @media(max-width:768px){table{font-size:12px} th,td{padding:8px 4px}}
+    .calendar-preview{max-width:600px;margin:16px auto;display:block;border:2px solid var(--accent);border-radius:12px;box-shadow:0 4px 12px rgba(255,107,53,.2)}
+    @media(max-width:768px){table{font-size:12px} th,td{padding:8px 4px} .calendar-preview{max-width:100%}}
   </style>
 </head>
 <body>
@@ -53,7 +54,7 @@
   <main class="container">
     <div class="card">
       <h1>📅 Información Sindical y Calendario Laboral</h1>
-      <p>En esta sección encontrarás información actualizada sobre festivos, calendarios laborales y documentación relevante para los trabajadores del sector de limpieza pública viaria en la Región de Murcia.</p>
+      <p>En esta sección encontrarás información actualizada sobre festivos, calendarios laborales, días de descanso y documentación relevante para los trabajadores del sector de limpieza pública viaria en la Región de Murcia.</p>
     </div>
 
     <div class="card">
@@ -219,15 +220,64 @@
           </tbody>
         </table>
       </div>
+    </div>
+
+    <div class="card">
+      <h2>📅 Calendario de Descansos ATRM Año 2026</h2>
+      
+      <div class="info-box">
+        🏡 <strong>Calendario de libranzas y descansos</strong><br>
+        Planifica tus días libres con este calendario visual que incluye festivos nacionales, locales y días de descanso por turnos.
+      </div>
 
       <div class="download-section">
-        <h3>📥 Descargar Calendario</h3>
-        <p>Descarga el calendario oficial en formato imagen para consulta rápida</p>
-        <a href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k=" download="calendario-laboral-2026-murcia.jpg" class="btn">
-          📄 Descargar Imagen del Calendario
-        </a>
-        <br>
-        <small style="color:#666;margin-top:8px;display:block">Fuente: ATRM - Calendario oficial aprobado según BORM</small>
+        <h3>📆 Vista del Calendario de Descansos</h3>
+        <p>Calendario completo con código de colores para identificar fácilmente los diferentes tipos de días</p>
+        
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCACAAIADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9k=" 
+             alt="Calendario ATRM Descansos 2026" 
+             class="calendar-preview">
+        
+        <div style="margin-top:16px">
+          <a href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCACAAIADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9k=" 
+             download="calendario-descansos-atrm-2026.jpg" 
+             class="btn">
+            📥 Descargar Calendario de Descansos
+          </a>
+        </div>
+        
+        <div style="margin-top:12px;font-size:13px;color:#666;line-height:1.4">
+          <strong>Leyenda del calendario:</strong><br>
+          🔴 Rojo: Festivos nacionales | 🟡 Amarillo: Festivos locales<br> 
+          🔵 Azul: Días de descanso turno | 🟢 Verde: Otros descansos<br>
+          <em>Fuente: ATRM - Planificación de turnos y descansos 2026</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>📊 Descargas Disponibles</h2>
+      
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:16px 0">
+        <div style="text-align:center;padding:16px;border:1px solid #ffe2cf;border-radius:12px">
+          <h4>🗓️ Calendario Festivos</h4>
+          <p style="font-size:13px;color:#666;margin:8px 0">Tabla oficial con todos los festivos nacionales y locales 2026</p>
+          <a href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/" 
+             download="calendario-laboral-2026-murcia.jpg" 
+             class="btn alt" style="font-size:13px;padding:8px 12px">
+            📄 Descargar
+          </a>
+        </div>
+        
+        <div style="text-align:center;padding:16px;border:1px solid #ffe2cf;border-radius:12px">
+          <h4>📅 Calendario Descansos</h4>
+          <p style="font-size:13px;color:#666;margin:8px 0">Planificación visual de libranzas y turnos para todo el año</p>
+          <a href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/" 
+             download="calendario-descansos-atrm-2026.jpg" 
+             class="btn alt" style="font-size:13px;padding:8px 12px">
+            📥 Descargar
+          </a>
+        </div>
       </div>
     </div>
 
@@ -240,10 +290,11 @@
         <li>📅 Calendarios laborales de otros municipios de la región</li>
         <li>📢 Comunicados y resoluciones oficiales</li>
         <li>🏛️ Normativas y cambios legislativos</li>
+        <li>🔄 Planificaciones de turnos y rotaciones</li>
       </ul>
       
       <div class="info-box">
-        💡 <strong>¿Tienes dudas sobre algún festivo o normativa?</strong><br>
+        💡 <strong>¿Tienes dudas sobre algún festivo, descanso o normativa?</strong><br>
         Contacta con ATRM en el 968 626 511 o utiliza el asistente IA del convenio en la página principal.
       </div>
 

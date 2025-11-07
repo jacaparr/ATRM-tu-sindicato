@@ -180,6 +180,57 @@
   </dialog>
 
   <script>
+  // Cargar IA mejorada para el asistente del convenio
+  const scriptIA = document.createElement('script');
+  scriptIA.src = 'js/ia_mejorada.js';
+  document.head.appendChild(scriptIA);
+
+  function abrirIA(){
+    document.getElementById('iaModal').showModal();
+    document.getElementById('preguntaIA').focus();
+  }
+
+  async function preguntarIA() {
+    const pregunta = document.getElementById('preguntaIA').value.trim();
+    if (!pregunta) {
+      alert('Por favor, escribe tu pregunta');
+      return;
+    }
+    const btn = document.getElementById('btnPreguntar');
+    const respuestaDiv = document.getElementById('respuestaIA');
+    btn.disabled = true;
+    respuestaDiv.style.display = 'none';
+    try {
+      // Esperar a que la IA esté cargada
+      if (!window.iaContextual) {
+        await new Promise(resolve => {
+          const check = setInterval(() => {
+            if (window.iaContextual) {
+              clearInterval(check);
+              resolve();
+            }
+          }, 100);
+        });
+      }
+      const respuesta = await window.iaContextual.procesarMultiConsulta(pregunta);
+      respuestaDiv.innerHTML = respuesta;
+      respuestaDiv.style.display = 'block';
+    } catch (error) {
+      respuestaDiv.innerHTML = '<div style="color:#e74c3c">❌ Error procesando la pregunta. Intenta de nuevo o contacta ATRM: 968 30 00 37</div>';
+      respuestaDiv.style.display = 'block';
+    } finally {
+      btn.disabled = false;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    const input = document.getElementById('preguntaIA');
+    if (input) {
+      input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') preguntarIA();
+      });
+    }
+  });
   // Formulario de contacto ATRM
   document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('contactForm');

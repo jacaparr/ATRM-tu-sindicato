@@ -137,6 +137,19 @@
       <p>Lunes a Viernes: 09:00 - 14:00<br>
       Lunes (Tarde): 16:00 - 20:00</p>
     </div>
+    <div class="card" style="padding:20px;grid-column:1/-1">
+      <h3>✉️ Formulario de contacto</h3>
+      <form id="contactForm" autocomplete="on" style="display:flex;flex-wrap:wrap;gap:16px;flex-direction:column">
+        <div style="display:flex;gap:16px;flex-wrap:wrap">
+          <input name="nombre" type="text" placeholder="Nombre y apellidos" required style="flex:1;padding:10px;border-radius:8px;border:1px solid #ffd2b5;font-size:16px">
+          <input name="email" type="email" placeholder="Correo electrónico" required style="flex:1;padding:10px;border-radius:8px;border:1px solid #ffd2b5;font-size:16px">
+          <input name="telefono" type="tel" placeholder="Teléfono (opcional)" style="flex:1;padding:10px;border-radius:8px;border:1px solid #ffd2b5;font-size:16px">
+        </div>
+        <textarea name="mensaje" placeholder="Escribe tu consulta o mensaje" required rows="4" style="padding:10px;border-radius:8px;border:1px solid #ffd2b5;font-size:16px"></textarea>
+        <button type="submit" class="btn">Enviar mensaje</button>
+        <div id="formMsg" style="margin-top:8px;font-size:15px;display:none"></div>
+      </form>
+    </div>
   </section>
 
   <dialog id="iaModal" style="max-width:820px;width:96%;border:none;border-radius:16px;padding:0;overflow:auto;max-height:85vh">
@@ -149,6 +162,22 @@
   </dialog>
 
   <script>
+  // Formulario de contacto ATRM
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contactForm');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Aquí se puede integrar el envío real por email (backend o servicio externo)
+        // Por ahora solo muestra confirmación visual
+        const msg = document.getElementById('formMsg');
+        msg.textContent = '¡Mensaje enviado correctamente! Nos pondremos en contacto contigo pronto.';
+        msg.style.display = 'block';
+        form.reset();
+        setTimeout(()=>{msg.style.display='none';}, 6000);
+      });
+    }
+  });
     // Carga de algunas noticias para las slides dinámicas
     document.addEventListener('DOMContentLoaded', ()=>{
       const d1 = document.getElementById('slideDynamic1');

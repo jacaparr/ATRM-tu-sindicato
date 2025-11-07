@@ -5,15 +5,25 @@
     "sector": "Limpieza Pública Viaria y Servicios Municipales"
   },
   "contactos": {
-    "telefono_principal": "968 626 511",
-    "telefono_informacion": "900 878 830",
+    "telefono_principal": "968 30 00 37",
+    "telefono_secundario": "658 876 771",
+    "fax": "968 30 00 37",
+    "telefonos_adicionales": [
+      "628 304 954",
+      "658 876 771",
+      "696 446 421",
+      "649 549 495",
+      "616 973 186",
+      "653 878 579",
+      "635 457 212"
+    ],
     "email_general": "info@atrm-sindicato.es",
-    "direccion": "Plaza Presidente Adolfo Suárez, 1, 30565 Las Torres de Cotillas, Murcia",
-    "horario_atencion": "Lunes a Viernes: 09:00 - 14:00",
+    "direccion": "C/ Carril La Torre, 27 Bajo, 30006 Puente Tocinos (MURCIA)",
+    "horario_atencion": "Lunes a Viernes: 09:00 - 14:00 y Lunes (Tarde): 16:00 - 20:00",
     "representantes": [
-      {"cargo": "Secretario General","nombre": "Por determinar","telefono": "968 626 511 - Ext. 001","email": "secretario@atrm-sindicato.es"},
-      {"cargo": "Responsable de Limpieza Viaria","nombre": "Por determinar","telefono": "968 626 511 - Ext. 002","email": "limpieza@atrm-sindicato.es"},
-      {"cargo": "Asesor Legal","nombre": "Por determinar","telefono": "968 626 511 - Ext. 003","email": "legal@atrm-sindicato.es"}
+      {"cargo": "Secretario General","nombre": "Por determinar","telefono": "968 30 00 37","email": "secretario@atrm-sindicato.es"},
+      {"cargo": "Responsable de Limpieza Viaria","nombre": "Por determinar","telefono": "628 304 954","email": "limpieza@atrm-sindicato.es"},
+      {"cargo": "Asesor Legal","nombre": "Por determinar","telefono": "658 876 771","email": "legal@atrm-sindicato.es"}
     ]
   },
   "convenio": {

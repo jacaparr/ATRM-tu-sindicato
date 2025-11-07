@@ -170,11 +170,16 @@
         
         // Contacto
         const c = data.contactos;
+        const telefonosHTML = c.telefonos_adicionales 
+          ? `<div style="margin-top:8px"><strong>Teléfonos adicionales:</strong><br>${c.telefonos_adicionales.join(' · ')}</div>`
+          : '';
         document.getElementById('contactoData').innerHTML = `
-          <p>Teléfono principal: <strong>${c.telefono_principal}</strong><br>
-          Información: <strong>${c.telefono_informacion}</strong><br>
-          Email: <strong>${c.email_general}</strong><br>
-          Dirección: ${c.direccion}</p>`;
+          <p><strong>📞 Teléfono principal:</strong> ${c.telefono_principal}<br>
+          ${c.telefono_secundario ? `<strong>📱 Teléfono:</strong> ${c.telefono_secundario}<br>` : ''}
+          ${c.fax ? `<strong>📠 FAX:</strong> ${c.fax}<br>` : ''}
+          <strong>📧 Email:</strong> <a href="mailto:${c.email_general}" style="color:var(--primary)">${c.email_general}</a><br>
+          <strong>📍 Dirección:</strong> ${c.direccion}</p>
+          ${telefonosHTML}`;
         document.getElementById('horario').textContent = c.horario_atencion;
         const reps = document.getElementById('reps');
         c.representantes.forEach(r=>{

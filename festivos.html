@@ -52,6 +52,34 @@
   </header>
 
   <main class="container">
+    <div class="card" id="calendario-interactivo">
+      <h2>📆 Calendario Interactivo 2026</h2>
+      <div style="margin-bottom:12px">
+        <label for="mesSelector"><strong>Selecciona mes:</strong></label>
+        <select id="mesSelector">
+          <option value="0">Enero</option>
+          <option value="1">Febrero</option>
+          <option value="2">Marzo</option>
+          <option value="3">Abril</option>
+          <option value="4">Mayo</option>
+          <option value="5">Junio</option>
+          <option value="6">Julio</option>
+          <option value="7">Agosto</option>
+          <option value="8">Septiembre</option>
+          <option value="9">Octubre</option>
+          <option value="10">Noviembre</option>
+          <option value="11">Diciembre</option>
+        </select>
+      </div>
+      <div id="calendarContainer"></div>
+      <div style="margin-top:10px;font-size:13px">
+        <strong>Leyenda:</strong>
+        <span style="color:#FF6B35;font-weight:bold">■</span> Festivo nacional
+        <span style="color:#4CAF50;font-weight:bold">■</span> Festivo local
+        <span style="color:#1976D2;font-weight:bold">■</span> Descanso turno
+        <span style="color:#FFA726;font-weight:bold">■</span> Otros descansos
+      </div>
+    </div>
     <div class="card">
       <h1>📅 Información Sindical y Calendario Laboral</h1>
       <p>En esta sección encontrarás información actualizada sobre festivos, calendarios laborales, días de descanso y documentación relevante para los trabajadores del sector de limpieza pública viaria en la Región de Murcia.</p>
@@ -303,5 +331,54 @@
       <a href="tramites.html" class="btn alt">Ver Trámites</a>
     </div>
   </main>
+  <script>
+    // Datos de ejemplo para el calendario interactivo (puedes ampliar con más días y tipos)
+    const festivos2026 = [
+      { dia: 1, mes: 0, tipo: 'nacional', nombre: 'Año Nuevo' },
+      { dia: 6, mes: 0, tipo: 'nacional', nombre: 'Epifanía del Señor' },
+      { dia: 19, mes: 2, tipo: 'nacional', nombre: 'San José' },
+      { dia: 2, mes: 3, tipo: 'nacional', nombre: 'Jueves Santo' },
+      { dia: 3, mes: 3, tipo: 'nacional', nombre: 'Viernes Santo' },
+      { dia: 1, mes: 4, tipo: 'local', nombre: 'Fiesta Local' },
+      { dia: 9, mes: 5, tipo: 'descanso', nombre: 'Descanso Turno' },
+      { dia: 15, mes: 7, tipo: 'descanso', nombre: 'Descanso Turno' },
+      { dia: 3, mes: 10, tipo: 'otros', nombre: 'San Martín de Porres' }
+    ];
+    const colores = {
+      nacional: '#FF6B35',
+      local: '#4CAF50',
+      descanso: '#1976D2',
+      otros: '#FFA726'
+    };
+    function renderCalendar(mes) {
+      const year = 2026;
+      const diasMes = new Date(year, mes + 1, 0).getDate();
+      const primerDia = new Date(year, mes, 1).getDay();
+      let html = '<table style="width:100%;text-align:center;font-size:15px"><thead><tr>';
+      const diasSemana = ['Lu','Ma','Mi','Ju','Vi','Sá','Do'];
+      diasSemana.forEach(d => html += `<th>${d}</th>`);
+      html += '</tr></thead><tbody><tr>';
+      let diaSemana = (primerDia + 6) % 7; // Ajuste para que lunes sea 0
+      for (let i = 0; i < diaSemana; i++) html += '<td></td>';
+      for (let dia = 1; dia <= diasMes; dia++) {
+        const festivo = festivos2026.find(f => f.dia === dia && f.mes === mes);
+        if (festivo) {
+          html += `<td title="${festivo.nombre}" style="background:${colores[festivo.tipo]};color:#fff;border-radius:6px;font-weight:bold">${dia}</td>`;
+        } else {
+          html += `<td>${dia}</td>`;
+        }
+        diaSemana++;
+        if (diaSemana === 7 && dia !== diasMes) {
+          html += '</tr><tr>';
+          diaSemana = 0;
+        }
+      }
+      while (diaSemana > 0 && diaSemana < 7) { html += '<td></td>'; diaSemana++; }
+      html += '</tr></tbody></table>';
+      document.getElementById('calendarContainer').innerHTML = html;
+    }
+    document.getElementById('mesSelector').addEventListener('change', e => renderCalendar(parseInt(e.target.value)));
+    renderCalendar(0);
+  </script>
 </body>
 </html>

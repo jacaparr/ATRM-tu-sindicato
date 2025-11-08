@@ -70,6 +70,7 @@
           <option value="10">Noviembre</option>
           <option value="11">Diciembre</option>
         </select>
+        <button class="btn alt" id="btnDescargarICS" style="margin-left:18px">Descargar calendario (.ics)</button>
       </div>
       <div id="calendarContainer"></div>
       <div style="margin-top:10px;font-size:13px">
@@ -332,6 +333,35 @@
     </div>
   </main>
   <script>
+  // Descargar calendario en formato .ics (Google/Outlook)
+  document.getElementById('btnDescargarICS').addEventListener('click', function() {
+    const festivos = [
+      { dia: 1, mes: 0, nombre: 'Año Nuevo' },
+      { dia: 6, mes: 0, nombre: 'Epifanía del Señor' },
+      { dia: 19, mes: 2, nombre: 'San José' },
+      { dia: 2, mes: 3, nombre: 'Jueves Santo' },
+      { dia: 3, mes: 3, nombre: 'Viernes Santo' },
+      { dia: 1, mes: 4, nombre: 'Fiesta Local' },
+      { dia: 9, mes: 5, nombre: 'Descanso Turno' },
+      { dia: 15, mes: 7, nombre: 'Descanso Turno' },
+      { dia: 3, mes: 10, nombre: 'San Martín de Porres' }
+    ];
+    let ics = 'BEGIN:VCALENDAR\nVERSION:2.0\nCALSCALE:GREGORIAN\n';
+    festivos.forEach(f => {
+      const d = new Date(2026, f.mes, f.dia);
+      const fecha = d.toISOString().slice(0,10).replace(/-/g, '');
+      ics += `BEGIN:VEVENT\nSUMMARY:${f.nombre}\nDTSTART;VALUE=DATE:${fecha}\nDTEND;VALUE=DATE:${fecha}\nEND:VEVENT\n`;
+    });
+    ics += 'END:VCALENDAR';
+    const blob = new Blob([ics.replace(/\n/g, '\r\n')], {type: 'text/calendar'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'calendario-atrm-2026.ics';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(()=>{document.body.removeChild(a);URL.revokeObjectURL(url);}, 500);
+  });
     // Datos de ejemplo para el calendario interactivo (puedes ampliar con más días y tipos)
     const festivos2026 = [
       { dia: 1, mes: 0, tipo: 'nacional', nombre: 'Año Nuevo' },

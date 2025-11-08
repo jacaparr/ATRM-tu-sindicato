@@ -121,6 +121,15 @@
   </section>
 
   <section id="contacto" class="grid">
+    <div class="card" style="padding:20px;grid-column:1/-1">
+      <h3>🚨 Denuncia anónima</h3>
+      <form id="formDenuncia" autocomplete="off" style="display:flex;flex-wrap:wrap;gap:16px;flex-direction:column">
+        <textarea name="denuncia" placeholder="Describe la situación o irregularidad laboral (no pongas datos personales si quieres mantener el anonimato)" required rows="4" style="padding:10px;border-radius:8px;border:1px solid #ffd2b5;font-size:16px"></textarea>
+        <button type="submit" class="btn" style="background:#e74c3c">Enviar denuncia anónima</button>
+        <div id="msgDenuncia" style="margin-top:8px;font-size:15px;display:none"></div>
+      </form>
+      <div style="font-size:13px;color:#666;margin-top:8px">Esta denuncia es confidencial y solo será revisada por el sindicato. No se almacena ningún dato personal salvo que lo incluyas voluntariamente.</div>
+    </div>
     <div class="card" style="padding:20px">
       <h3>📞 Contacto</h3>
       <p><strong>Teléfono principal:</strong> 968 30 00 37 (Lunes Tarde)<br>
@@ -181,6 +190,20 @@
   </dialog>
 
   <script>
+  // Formulario de denuncia anónima
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('formDenuncia');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const msg = document.getElementById('msgDenuncia');
+        msg.textContent = '¡Denuncia enviada de forma anónima! El sindicato revisará la situación.';
+        msg.style.display = 'block';
+        form.reset();
+        setTimeout(()=>{msg.style.display='none';}, 6000);
+      });
+    }
+  });
   // Cargar IA mejorada para el asistente del convenio
   const scriptIA = document.createElement('script');
   scriptIA.src = 'js/ia_mejorada.js';

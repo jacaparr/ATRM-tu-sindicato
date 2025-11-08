@@ -261,4 +261,80 @@
     function setActiveDot(){ const dots=[...document.querySelectorAll('.dot')]; dots.forEach((d,i)=>d.classList.toggle('active',i===idx)); }
   </script>
 </body>
+  <!-- Chat flotante estilo WhatsApp -->
+  <div id="chat-float-btn" style="position:fixed;bottom:28px;right:28px;z-index:9999;">
+    <button onclick="abrirChatATRM()" style="background:#25D366;color:#fff;border:none;border-radius:50%;width:60px;height:60px;box-shadow:0 4px 16px rgba(0,0,0,0.18);font-size:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+      💬
+    </button>
+  </div>
+  <div id="chat-atm-window" style="display:none;position:fixed;bottom:100px;right:32px;width:340px;max-width:95vw;background:#fff;border-radius:18px;box-shadow:0 8px 32px rgba(0,0,0,0.18);z-index:10000;overflow:hidden;flex-direction:column;">
+    <div style="background:#25D366;color:#fff;padding:14px 18px;font-weight:700;display:flex;align-items:center;justify-content:space-between;">
+      <span>ATRM Chat</span>
+      <button onclick="cerrarChatATRM()" style="background:none;border:none;color:#fff;font-size:22px;cursor:pointer;">×</button>
+    </div>
+    <div id="chat-messages" style="padding:14px;height:260px;overflow-y:auto;background:#f7f7f7;font-size:15px;display:flex;flex-direction:column;gap:8px;"></div>
+    <form id="chat-form" style="display:flex;border-top:1px solid #eee;background:#fff">
+      <input id="chat-input" type="text" placeholder="Escribe tu pregunta..." autocomplete="off" style="flex:1;padding:10px 12px;border:none;font-size:15px;border-radius:0 0 0 18px;outline:none">
+      <button type="submit" style="background:#25D366;color:#fff;border:none;padding:0 18px;font-size:18px;cursor:pointer;border-radius:0 0 18px 0;">➤</button>
+    </form>
+  </div>
+  <script>
+    function abrirChatATRM(){
+      document.getElementById('chat-atm-window').style.display = 'flex';
+      setTimeout(()=>{
+        const el = document.getElementById('chat-input');
+        if(el) el.focus();
+      }, 200);
+    }
+    function cerrarChatATRM(){
+      document.getElementById('chat-atm-window').style.display = 'none';
+    }
+    // Lógica de chat
+    document.getElementById('chat-form').addEventListener('submit', async function(e){
+      e.preventDefault();
+      const input = document.getElementById('chat-input');
+      const msg = input.value.trim();
+      if(!msg) return;
+      agregarMensajeChat(msg, 'user');
+      input.value = '';
+      agregarMensajeChat('...', 'bot');
+      // Esperar a que la IA esté cargada
+      if (!window.iaContextual) {
+        await new Promise(resolve => {
+          const check = setInterval(() => {
+            if (window.iaContextual) {
+              clearInterval(check);
+              resolve();
+            }
+          }, 100);
+        });
+      }
+      const respuesta = await window.iaContextual.procesarMultiConsulta(msg);
+      quitarUltimoMensajeBot();
+      agregarMensajeChat(respuesta, 'bot');
+    });
+    function agregarMensajeChat(texto, tipo){
+      const chat = document.getElementById('chat-messages');
+      const div = document.createElement('div');
+      div.style.maxWidth = '85%';
+      div.style.alignSelf = tipo==='user'?'flex-end':'flex-start';
+      div.style.background = tipo==='user'?'#e1ffc7':'#fff';
+      div.style.color = '#222';
+      div.style.padding = '8px 12px';
+      div.style.borderRadius = tipo==='user'?'16px 16px 4px 16px':'16px 16px 16px 4px';
+      div.style.boxShadow = '0 2px 8px rgba(0,0,0,0.04)';
+      div.innerHTML = texto;
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+    }
+    function quitarUltimoMensajeBot(){
+      const chat = document.getElementById('chat-messages');
+      for(let i=chat.children.length-1;i>=0;i--){
+        if(chat.children[i].style.alignSelf==='flex-start'){
+          chat.removeChild(chat.children[i]);
+          break;
+        }
+      }
+    }
+  </script>
 </html>

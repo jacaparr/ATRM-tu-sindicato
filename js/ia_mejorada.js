@@ -1,7 +1,7 @@
 // IA mejorada sin coste - ATRM Sindicato
 class IAContextual {
-  // Modo estricto: solo devuelve contenido literal del caso sin adornos ni sugerencias
-  modoEstrict = true;
+  // Modo estricto: solo contenido literal; por petición, lo desactivamos por defecto
+  modoEstrict = false;
   obtenerUltimaPreguntaFollowup() {
     if (!this.historial.length) return null;
     const ultima = this.historial[this.historial.length - 1];
@@ -314,7 +314,7 @@ class IAContextual {
       respuesta += `🔍 **Recordatorio:** ${contexto[0].tema_humano || 'Consultaste antes'} hace ${this.formatearTiempo(contexto[0].timestamp)}\n\n`;
     }
     
-    if (caso) {
+  if (caso) {
       tema = caso.id;
       if (this.modoEstrict) {
         // Literal: solo contenido bruto sin prefijos ni emojis
@@ -360,7 +360,9 @@ class IAContextual {
         }
       }
     } else {
-      respuesta = this.generarRespuestaFallback(pregunta);
+      // Intentar resolver con la API remota del convenio si no hay match local
+      const respuestaAPI = await this.consultarAPI(pregunta);
+      respuesta = respuestaAPI || this.generarRespuestaFallback(pregunta);
     }
     
     this.historial.push({
@@ -372,6 +374,22 @@ class IAContextual {
     this.guardarHistorial();
     
     return respuesta;
+  }
+
+  // Consulta API remota si existe (Vercel/Netlify). Si falla, retorna null.
+  async consultarAPI(pregunta) {
+    try {
+      const resp = await fetch('api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ pregunta })
+      });
+      if (!resp.ok) return null;
+      const data = await resp.json();
+      return data?.respuesta || null;
+    } catch (e) {
+      return null;
+    }
   }
 
   async procesarMultiConsulta(pregunta) {

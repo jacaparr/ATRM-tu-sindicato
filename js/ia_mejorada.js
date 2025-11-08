@@ -219,16 +219,46 @@ class IAContextual {
 
   encontrarCaso(pregunta) {
     if (!this.baseCasos || !this.baseCasos.casos) return null;
-    
-    const preguntaLower = pregunta.toLowerCase();
-    
+
+    const normalizar = (txt) => txt
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/\p{Diacritic}/gu, '')
+      .replace(/[^a-z0-9\s]/g, ' ')
+      .replace(/\s+/g, ' ') // espacios simples
+      .trim();
+
+    const consulta = normalizar(pregunta);
+    const partes = consulta.split(' ').filter(p => p.length > 2);
+    const resultados = [];
+
     for (const [id, caso] of Object.entries(this.baseCasos.casos)) {
-      if (caso.keywords.some(keyword => preguntaLower.includes(keyword.toLowerCase()))) {
-        return { id, ...caso };
+      let score = 0;
+      const kws = (caso.keywords || []).map(k => normalizar(k));
+      for (const kw of kws) {
+        if (consulta.includes(kw)) {
+          // Ponderar por longitud y coincidencia exacta
+          score += Math.min(kw.length, 20) / 4;
+        } else {
+          // Coincidencias parciales de palabras clave
+          const kwPartes = kw.split(' ').filter(p => p.length > 3);
+          const subCoincidencias = kwPartes.reduce((acc, p) => acc + (partes.includes(p) ? 1 : 0), 0);
+          if (subCoincidencias > 0) {
+            score += subCoincidencias * 0.75;
+          }
+        }
+      }
+      if (score > 0) {
+        resultados.push({ id, caso, score: Math.round(score * 100) / 100 });
       }
     }
-    
-    return null;
+
+    resultados.sort((a, b) => b.score - a.score);
+    if (resultados.length === 0) return null;
+    // Guardar top-3 en la instancia para sugerencias posteriores
+    this.ultimosResultados = resultados.slice(0, 3);
+    const mejor = resultados[0];
+    return { id: mejor.id, ...mejor.caso, _score: mejor.score };
   }
 
   async generarRespuesta(pregunta) {
@@ -297,6 +327,17 @@ class IAContextual {
       }
       
       respuesta += `📞 **Gestionar:** ${caso.contacto}`;
+
+      // Añadir sugerencias de otros temas si el score es bajo o hay más candidatos
+      if (this.ultimosResultados && this.ultimosResultados.length > 1) {
+        const principalScore = caso._score || this.ultimosResultados[0].score;
+        const alternativas = this.ultimosResultados.slice(1).map(r => `${r.caso.titulo || r.id} (${r.score.toFixed(2)})`);
+        if (alternativas.length && principalScore < 6) {
+          respuesta += `\n\n🔎 **También podrían interesarte:** ${alternativas.join(' · ')}`;
+        } else if (alternativas.length && principalScore >= 6) {
+          respuesta += `\n\n💡 Temas relacionados: ${alternativas.join(' · ')}`;
+        }
+      }
       
     } else {
       respuesta = this.generarRespuestaFallback(pregunta);

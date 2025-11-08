@@ -20,25 +20,43 @@ def cargar_base():
     return data
 
 
-def encontrar_caso(base, pregunta: str):
-    pregunta_lower = pregunta.lower()
-    # Scoring por nº de keywords encontradas, y desempate por longitud de keyword
-    mejor = None
-    mejor_puntuacion = 0
+def _normalize(s: str) -> str:
+    import unicodedata
+    s = s.lower()
+    s = unicodedata.normalize('NFD', s)
+    s = ''.join(ch for ch in s if unicodedata.category(ch) != 'Mn')
+    out = []
+    for ch in s:
+        out.append(ch if (ch.isalnum() or ch.isspace()) else ' ')
+    return ' '.join(''.join(out).split())
+
+
+def rank_casos(base, pregunta: str, topn: int = 3):
+    consulta = _normalize(pregunta)
+    partes = set([p for p in consulta.split() if len(p) > 2])
+    ranking = []
     for caso_id, caso in base['casos'].items():
-        score = 0
+        score = 0.0
         for kw in caso.get('keywords', []):
-            if kw.lower() in pregunta_lower:
-                score += max(1, min(len(kw), 20) // 4)  # ponderar un poco por longitud
-        if score > mejor_puntuacion:
-            mejor = (caso_id, caso)
-            mejor_puntuacion = score
-    return mejor, mejor_puntuacion
+            nkw = _normalize(kw)
+            if not nkw:
+                continue
+            if nkw in consulta:
+                score += min(len(nkw), 20) / 4.0
+            else:
+                sub = [p for p in nkw.split() if len(p) > 3]
+                match_sub = sum(1 for p in sub if p in partes)
+                if match_sub:
+                    score += match_sub * 0.75
+        if score > 0:
+            ranking.append((caso_id, caso, round(score, 2)))
+    ranking.sort(key=lambda t: t[2], reverse=True)
+    return ranking[:topn]
 
 
 def generar_respuesta(base, pregunta: str):
-    (caso_id, caso), score = encontrar_caso(base, pregunta) if base else (None, None)
-    if not caso:
+    ranking = rank_casos(base, pregunta) if base else []
+    if not ranking:
         return {
             'tema_id': 'consulta_general',
             'titulo': 'Consulta general',
@@ -48,6 +66,7 @@ def generar_respuesta(base, pregunta: str):
             'casos_reales': [],
             'comparativa_sectorial': None,
         }
+    caso_id, caso, score = ranking[0]
     partes = []
     partes.append(f"📋 {caso.get('titulo','')}")
     detalle = caso.get('detalle')
@@ -74,6 +93,16 @@ def generar_respuesta(base, pregunta: str):
     if caso.get('contacto'):
         partes.append("")
         partes.append(f"📞 Gestionar: {caso['contacto']}")
+
+    # Sugerencias top-3 si hay más candidatos
+    if len(ranking) > 1:
+        sugerencias = [f"{base['casos'][cid]['titulo']} ({sc})" for cid, _, sc in ranking[1:]]
+        if score < 6:
+            partes.append("")
+            partes.append("🔎 También podrían interesarte: " + ' · '.join(sugerencias))
+        else:
+            partes.append("")
+            partes.append("💡 Temas relacionados: " + ' · '.join(sugerencias))
 
     return {
         'tema_id': caso_id,

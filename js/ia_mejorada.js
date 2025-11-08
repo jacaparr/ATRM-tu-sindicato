@@ -1,5 +1,7 @@
 // IA mejorada sin coste - ATRM Sindicato
 class IAContextual {
+  // Modo estricto: solo devuelve contenido literal del caso sin adornos ni sugerencias
+  modoEstrict = true;
   obtenerUltimaPreguntaFollowup() {
     if (!this.historial.length) return null;
     const ultima = this.historial[this.historial.length - 1];
@@ -261,14 +263,11 @@ class IAContextual {
     return { id: mejor.id, ...mejor.caso, _score: mejor.score };
   }
 
-  // Devuelve sugerencias (exceptuando el resultado principal) para la UI
+  // Devuelve sugerencias (exceptuando el resultado principal) para la UI (desactivado en modo estricto)
   obtenerSugerencias() {
+    if (this.modoEstrict) return [];
     if (!this.ultimosResultados || this.ultimosResultados.length < 2) return [];
-    return this.ultimosResultados.slice(1).map(r => ({
-      id: r.id,
-      titulo: r.caso?.titulo || r.id,
-      score: r.score
-    }));
+    return this.ultimosResultados.slice(1).map(r => ({ id: r.id, titulo: r.caso?.titulo || r.id, score: r.score }));
   }
 
   async generarRespuesta(pregunta) {
@@ -317,38 +316,49 @@ class IAContextual {
     
     if (caso) {
       tema = caso.id;
-      respuesta += `📋 **${caso.titulo}**\n\n${caso.detalle}\n\n`;
-      
-      if (caso.casos_reales && caso.casos_reales.length > 0) {
-        respuesta += `💼 **Ejemplos reales:**\n${caso.casos_reales.map(c => `• ${c}`).join('\n')}\n\n`;
-      }
-      
-      if (caso.comparativa_sectorial) {
-        respuesta += `🗺️ **Comparativa:** ${caso.comparativa_sectorial}\n\n`;
-      }
-      
-      const jurisprudencia = this.baseCasos.jurisprudencia?.filter(j => j.tema === caso.id);
-      if (jurisprudencia && jurisprudencia.length > 0) {
-        respuesta += `⚖️ **Precedente:** ${jurisprudencia[0].resumen} (${jurisprudencia[0].referencia})\n\n`;
-      }
-      
-      if (caso.documentos) {
-        respuesta += `📄 **Documentos:** ${caso.documentos.join(', ')}\n\n`;
-      }
-      
-      respuesta += `📞 **Gestionar:** ${caso.contacto}`;
-
-      // Añadir sugerencias de otros temas si el score es bajo o hay más candidatos
-      if (this.ultimosResultados && this.ultimosResultados.length > 1) {
-        const principalScore = caso._score || this.ultimosResultados[0].score;
-        const alternativas = this.ultimosResultados.slice(1).map(r => `${r.caso.titulo || r.id} (${r.score.toFixed(2)})`);
-        if (alternativas.length && principalScore < 6) {
-          respuesta += `\n\n🔎 **También podrían interesarte:** ${alternativas.join(' · ')}`;
-        } else if (alternativas.length && principalScore >= 6) {
-          respuesta += `\n\n💡 Temas relacionados: ${alternativas.join(' · ')}`;
+      if (this.modoEstrict) {
+        // Literal: solo contenido bruto sin prefijos ni emojis
+        respuesta += `${caso.detalle}\n\n`;
+        if (caso.casos_reales?.length) {
+          respuesta += `${caso.casos_reales.map(c => `• ${c}`).join('\n')}\n\n`;
+        }
+        if (caso.comparativa_sectorial) {
+          respuesta += `${caso.comparativa_sectorial}\n\n`;
+        }
+        const jurisprudencia = this.baseCasos.jurisprudencia?.filter(j => j.tema === caso.id);
+        if (jurisprudencia?.length) {
+          respuesta += `${jurisprudencia[0].resumen} (${jurisprudencia[0].referencia})\n\n`;
+        }
+        if (caso.documentos?.length) {
+          respuesta += `${caso.documentos.join(', ')}\n\n`;
+        }
+        respuesta += `${caso.contacto}`;
+      } else {
+        respuesta += `📋 **${caso.titulo}**\n\n${caso.detalle}\n\n`;
+        if (caso.casos_reales && caso.casos_reales.length > 0) {
+          respuesta += `💼 **Ejemplos reales:**\n${caso.casos_reales.map(c => `• ${c}`).join('\n')}\n\n`;
+        }
+        if (caso.comparativa_sectorial) {
+          respuesta += `🗺️ **Comparativa:** ${caso.comparativa_sectorial}\n\n`;
+        }
+        const jurisprudencia = this.baseCasos.jurisprudencia?.filter(j => j.tema === caso.id);
+        if (jurisprudencia && jurisprudencia.length > 0) {
+          respuesta += `⚖️ **Precedente:** ${jurisprudencia[0].resumen} (${jurisprudencia[0].referencia})\n\n`;
+        }
+        if (caso.documentos) {
+          respuesta += `📄 **Documentos:** ${caso.documentos.join(', ')}\n\n`;
+        }
+        respuesta += `📞 **Gestionar:** ${caso.contacto}`;
+        if (this.ultimosResultados && this.ultimosResultados.length > 1) {
+          const principalScore = caso._score || this.ultimosResultados[0].score;
+          const alternativas = this.ultimosResultados.slice(1).map(r => `${r.caso.titulo || r.id} (${r.score.toFixed(2)})`);
+          if (alternativas.length && principalScore < 6) {
+            respuesta += `\n\n🔎 **También podrían interesarte:** ${alternativas.join(' · ')}`;
+          } else if (alternativas.length && principalScore >= 6) {
+            respuesta += `\n\n💡 Temas relacionados: ${alternativas.join(' · ')}`;
+          }
         }
       }
-      
     } else {
       respuesta = this.generarRespuestaFallback(pregunta);
     }

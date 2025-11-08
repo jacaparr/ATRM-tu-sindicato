@@ -2,6 +2,10 @@
 class IAContextual {
   // Modo estricto: solo contenido literal; por petición, lo desactivamos por defecto
   modoEstrict = false;
+  // Modo breve: respuestas concisas por defecto
+  modoBreve = true;
+  maxLineasBreve = 6;
+  maxCharsBreve = 600;
   obtenerUltimaPreguntaFollowup() {
     if (!this.historial.length) return null;
     const ultima = this.historial[this.historial.length - 1];
@@ -270,6 +274,30 @@ class IAContextual {
     return this.ultimosResultados.slice(1).map(r => ({ id: r.id, titulo: r.caso?.titulo || r.id, score: r.score }));
   }
 
+  // Formatea una versión breve del caso
+  formatearBreve(caso) {
+    let partes = [];
+    if (caso.resumen) partes.push(caso.resumen);
+    if (caso.detalle) {
+      const lineas = String(caso.detalle).split('\n')
+        .map(l => l.trim())
+        .filter(l => l);
+      // tomar hasta 3 bullets o frases clave
+      const bullets = lineas.filter(l => /^[-•\*]/.test(l) || /[:：]$/.test(l) === false).slice(0, 5);
+      if (!caso.resumen && bullets.length) partes.push(bullets.slice(0, 3).join('\n'));
+    }
+    // Añadir 1 ejemplo si existe
+    if (Array.isArray(caso.casos_reales) && caso.casos_reales.length) {
+      partes.push(`Ejemplo: ${caso.casos_reales[0]}`);
+    }
+    // Contacto mínimo
+    if (caso.contacto) partes.push(`Contacto: ${caso.contacto}`);
+    let texto = partes.filter(Boolean).join('\n\n');
+    if (texto.length > this.maxCharsBreve) texto = texto.slice(0, this.maxCharsBreve - 1) + '…';
+    const lineas = texto.split('\n').slice(0, this.maxLineasBreve);
+    return lineas.join('\n');
+  }
+
   async generarRespuesta(pregunta) {
     // Si la respuesta es "sí" o "no" y la última pregunta fue de seguimiento, actuar en consecuencia
     const respuestaCorta = pregunta.trim().toLowerCase();
@@ -314,9 +342,13 @@ class IAContextual {
       respuesta += `🔍 **Recordatorio:** ${contexto[0].tema_humano || 'Consultaste antes'} hace ${this.formatearTiempo(contexto[0].timestamp)}\n\n`;
     }
     
-  if (caso) {
+    if (caso) {
       tema = caso.id;
-      if (this.modoEstrict) {
+      if (this.modoBreve) {
+        // Respuesta concisa (con o sin estricto)
+        const encabezado = this.modoEstrict ? '' : `📋 **${caso.titulo}**\n\n`;
+        respuesta += encabezado + this.formatearBreve(caso);
+      } else if (this.modoEstrict) {
         // Literal: solo contenido bruto sin prefijos ni emojis
         respuesta += `${caso.detalle}\n\n`;
         if (caso.casos_reales?.length) {
@@ -362,7 +394,14 @@ class IAContextual {
     } else {
       // Intentar resolver con la API remota del convenio si no hay match local
       const respuestaAPI = await this.consultarAPI(pregunta);
-      respuesta = respuestaAPI || this.generarRespuestaFallback(pregunta);
+      let r = respuestaAPI || this.generarRespuestaFallback(pregunta);
+      if (this.modoBreve && r) {
+        // Recortar respuesta a pocas líneas/caracteres
+        const lineas = String(r).split('\n').filter(l => l.trim());
+        r = lineas.slice(0, this.maxLineasBreve).join('\n');
+        if (r.length > this.maxCharsBreve) r = r.slice(0, this.maxCharsBreve - 1) + '…';
+      }
+      respuesta = r;
     }
     
     this.historial.push({

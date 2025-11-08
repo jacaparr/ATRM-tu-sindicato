@@ -156,6 +156,13 @@ class IAContextual {
     this.baseCasos = null;
     this.ultimaCategoria = localStorage.getItem('atrm_categoria') || null;
     this.ultimoAnio = localStorage.getItem('atrm_anio') || '2025';
+    // cargar modo persistido
+    try {
+      const modo = localStorage.getItem('atrm_modo_respuesta');
+      if (modo === 'estricto') { this.modoEstrict = true; this.modoBreve = false; }
+      else if (modo === 'completo') { this.modoEstrict = false; this.modoBreve = false; }
+      else { this.modoEstrict = false; this.modoBreve = true; }
+    } catch {}
     this.cargarBaseCasos();
   }
 
@@ -540,6 +547,14 @@ class IAContextual {
   limpiarHistorial() {
     this.historial = [];
     localStorage.removeItem('atrm_historial');
+  }
+
+  setModoRespuesta(modo) {
+    if (modo === 'estricto') { this.modoEstrict = true; this.modoBreve = false; }
+    else if (modo === 'completo') { this.modoEstrict = false; this.modoBreve = false; }
+    else { this.modoEstrict = false; this.modoBreve = true; modo = 'breve'; }
+    try { localStorage.setItem('atrm_modo_respuesta', modo); } catch {}
+    return { modoActual: modo, estricto: this.modoEstrict, breve: this.modoBreve };
   }
 }
 

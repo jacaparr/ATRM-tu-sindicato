@@ -280,6 +280,83 @@
     </form>
   </div>
   <script>
+    // Mensaje de bienvenida humano
+    let chatBienvenidaMostrada = false;
+    function abrirChatATRM(){
+      document.getElementById('chat-atm-window').style.display = 'flex';
+      setTimeout(()=>{
+        const el = document.getElementById('chat-input');
+        if(el) el.focus();
+      }, 200);
+      if (!chatBienvenidaMostrada) {
+        agregarMensajeChat('👋 ¡Hola! Soy ATRM. ¿En qué puedo ayudarte sobre el convenio o tus derechos laborales?', 'bot');
+        chatBienvenidaMostrada = true;
+      }
+    }
+    function cerrarChatATRM(){
+      document.getElementById('chat-atm-window').style.display = 'none';
+    }
+    // Lógica de chat
+    document.getElementById('chat-form').addEventListener('submit', async function(e){
+      e.preventDefault();
+      const input = document.getElementById('chat-input');
+      const msg = input.value.trim();
+      if(!msg) return;
+      agregarMensajeChat(msg, 'user');
+      input.value = '';
+      // Frase de espera humana
+      const frasesEspera = [
+        'Un momento, estoy buscando la información... 🤔',
+        'Déjame revisar el convenio para darte la mejor respuesta...',
+        'Consultando la base de datos sindical...'
+      ];
+      const frase = frasesEspera[Math.floor(Math.random()*frasesEspera.length)];
+      agregarMensajeChat(frase, 'bot');
+      // Esperar a que la IA esté cargada
+      if (!window.iaContextual) {
+        await new Promise(resolve => {
+          const check = setInterval(() => {
+            if (window.iaContextual) {
+              clearInterval(check);
+              resolve();
+            }
+          }, 100);
+        });
+      }
+      const respuesta = await window.iaContextual.procesarMultiConsulta(msg);
+      quitarUltimoMensajeBot();
+      // Añadir saludo humano si la respuesta es genérica
+      let respuestaFinal = respuesta;
+      if(respuesta.startsWith('🤖')){
+        respuestaFinal = '😊 '+respuesta;
+      }
+      agregarMensajeChat(respuestaFinal, 'bot');
+    });
+    function agregarMensajeChat(texto, tipo){
+      const chat = document.getElementById('chat-messages');
+      const div = document.createElement('div');
+      div.style.maxWidth = '85%';
+      div.style.alignSelf = tipo==='user'?'flex-end':'flex-start';
+      div.style.background = tipo==='user'?'#e1ffc7':'#fff';
+      div.style.color = '#222';
+      div.style.padding = '8px 12px';
+      div.style.borderRadius = tipo==='user'?'16px 16px 4px 16px':'16px 16px 16px 4px';
+      div.style.boxShadow = '0 2px 8px rgba(0,0,0,0.04)';
+      div.innerHTML = texto;
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+    }
+    function quitarUltimoMensajeBot(){
+      const chat = document.getElementById('chat-messages');
+      for(let i=chat.children.length-1;i>=0;i--){
+        if(chat.children[i].style.alignSelf==='flex-start'){
+          chat.removeChild(chat.children[i]);
+          break;
+        }
+      }
+    }
+  </script>
+  <script>
     function abrirChatATRM(){
       document.getElementById('chat-atm-window').style.display = 'flex';
       setTimeout(()=>{

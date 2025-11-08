@@ -261,6 +261,16 @@ class IAContextual {
     return { id: mejor.id, ...mejor.caso, _score: mejor.score };
   }
 
+  // Devuelve sugerencias (exceptuando el resultado principal) para la UI
+  obtenerSugerencias() {
+    if (!this.ultimosResultados || this.ultimosResultados.length < 2) return [];
+    return this.ultimosResultados.slice(1).map(r => ({
+      id: r.id,
+      titulo: r.caso?.titulo || r.id,
+      score: r.score
+    }));
+  }
+
   async generarRespuesta(pregunta) {
     // Si la respuesta es "sí" o "no" y la última pregunta fue de seguimiento, actuar en consecuencia
     const respuestaCorta = pregunta.trim().toLowerCase();

@@ -15,7 +15,10 @@
         "quiero hablar con un experto",
         "necesito asesoramiento",
         "ayuda sindical",
-        "consejo laboral"
+        "consejo laboral",
+        "elecciones sindicales",
+        "representación sindical",
+        "representacion sindical"
       ],
       "titulo": "Experto sindical ATRM",
       "resumen": "Asesoramiento experto sobre derechos laborales, convenios y acción sindical",
@@ -552,6 +555,47 @@
       ],
       "comparativa_sectorial": "Valencia: igual. Madrid: igual. Cataluña: mayor vigilancia inspección.",
       "contacto": "ATRM 968 626 511"
+    },
+    "elecciones_sindicales": {
+      "keywords": [
+        "elecciones sindicales",
+        "elecciones",
+        "delegados de personal",
+        "comité de empresa",
+        "comite de empresa",
+        "mesa electoral",
+        "censo electoral",
+        "convocatoria elecciones",
+        "proceso electoral",
+        "impugnar elecciones",
+        "LOLS",
+        "representación sindical",
+        "representacion sindical",
+        "horas sindicales",
+        "crédito horario",
+        "liberado sindical"
+      ],
+      "titulo": "Elecciones sindicales y representación",
+      "resumen": "Convocatoria, calendario, mesa electoral, garantías y horas sindicales",
+      "detalle": "🗳️ **Elecciones sindicales (LOLS y RD 1844/1994):**\n\n**1) Convocatoria y preaviso**\n- Preaviso a la Oficina Pública de Elecciones Sindicales (OPE) con 1 mes de antelación (mín.).\n- Indicar centro, domicilio, plantilla y fecha prevista.\n\n**2) Censo y Mesa Electoral**\n- La empresa facilita el censo (personas con ≥1 mes de antigüedad pueden votar).\n- Elegibles: en general ≥6 meses en la empresa (salvo mejoras de convenio).\n- Constitución de Mesa: presidente y dos vocales (los de mayor/menor antigüedad).\n\n**3) Calendario orientativo**\n- Día 0: constitución Mesa y exposición del censo.\n- Días 1–3: reclamaciones al censo.\n- Días 4–9: presentación de candidaturas.\n- Día 10: proclamación provisional y, tras reclamaciones, definitiva.\n- Día 40–45 aprox.: votación, escrutinio y acta.\n\n**4) Número de representantes**\n- Según plantilla del centro: Delegados de Personal (≤49) o Comité de Empresa (≥50).\n\n**5) Garantías y horas sindicales**\n- Prioridad de permanencia en la empresa.\n- Expediente contradictorio previo a sanción/traslado.\n- Crédito horario mensual según plantilla y convenio (habitualmente 15–40 h/mes, acumulables).\n\n**6) Impugnaciones**\n- Posibles contra censo, candidaturas, mesa o escrutinio ante la OPE/Juzgado.\n\nATRM puede preparar el preaviso, los modelos de actas y acompañar todo el proceso electoral.",
+      "documentos": [
+        "Preaviso de elecciones (modelo)",
+        "Censo laboral firmado",
+        "Acta de constitución de Mesa",
+        "Acta de escrutinio",
+        "Papeletas y candidaturas"
+      ],
+      "casos_reales": [
+        "Centro de 46 personas: asistencia integral ATRM → proceso sin impugnaciones y alta participación",
+        "Planta de 82 personas: acumulación de crédito horario para liberar a 1 delegado en negociación"
+      ],
+      "comparativa_sectorial": "Normas estatales comunes. En limpieza viaria de Murcia se aplica la regulación general; ATRM dispone de modelos y acompañamiento.",
+      "contacto": "ATRM 968 626 511",
+      "preguntas_followup": [
+        "¿Quieres que preparemos el preaviso oficial?",
+        "¿Necesitas modelo de censo y actas?",
+        "¿Cuántas personas tiene el centro para calcular representantes y horas?"
+      ]
     }
   },
   "jurisprudencia": [
@@ -572,6 +616,6 @@
     }
   ],
   "gaps_detectados": [],
-  "version": "1.2",
+  "version": "1.3",
   "ultima_actualizacion": "2025-11-08"
 }

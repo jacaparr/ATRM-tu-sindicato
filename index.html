@@ -186,6 +186,7 @@
       <input id="preguntaIA" placeholder="Escribe tu pregunta" style="width:100%;padding:14px;border:1px solid #ffd2b5;border-radius:12px;font-size:16px" />
       <button id="btnPreguntar" class="btn" style="margin-top:12px" onclick="preguntarIA()">Preguntar</button>
       <div id="respuestaIA" style="margin-top:14px;display:none"></div>
+      <div id="sugerenciasIA" style="display:none;margin-top:10px"></div>
     </div>
   </dialog>
 
@@ -222,8 +223,10 @@
     }
     const btn = document.getElementById('btnPreguntar');
     const respuestaDiv = document.getElementById('respuestaIA');
+    const sugDiv = document.getElementById('sugerenciasIA');
     btn.disabled = true;
     respuestaDiv.style.display = 'none';
+    sugDiv.style.display = 'none';
     try {
       // Esperar a que la IA esté cargada
       if (!window.iaContextual) {
@@ -239,6 +242,43 @@
       const respuesta = await window.iaContextual.procesarMultiConsulta(pregunta);
       respuestaDiv.innerHTML = respuesta;
       respuestaDiv.style.display = 'block';
+      // Renderizar chips de sugerencias si hay
+      if (window.iaContextual && typeof window.iaContextual.obtenerSugerencias === 'function') {
+        const sugs = window.iaContextual.obtenerSugerencias();
+        if (sugs && sugs.length) {
+          const principalScore = (window.iaContextual.ultimosResultados && window.iaContextual.ultimosResultados[0]?.score) || 0;
+          const titulo = document.createElement('div');
+          titulo.textContent = principalScore < 6 ? 'También podrían interesarte:' : 'Temas relacionados:';
+          titulo.style.margin = '8px 0 6px';
+          titulo.style.fontWeight = '700';
+          const wrap = document.createElement('div');
+          wrap.style.display = 'flex';
+          wrap.style.flexWrap = 'wrap';
+          wrap.style.gap = '8px';
+          sugs.forEach(s => {
+            const b = document.createElement('button');
+            b.type = 'button';
+            b.textContent = s.titulo;
+            b.style.background = '#fff7f0';
+            b.style.border = '1px solid #ffd2b5';
+            b.style.color = '#2C3E50';
+            b.style.padding = '6px 10px';
+            b.style.borderRadius = '999px';
+            b.style.cursor = 'pointer';
+            b.style.fontSize = '13px';
+            b.onclick = () => {
+              const inp = document.getElementById('preguntaIA');
+              inp.value = s.titulo;
+              preguntarIA();
+            };
+            wrap.appendChild(b);
+          });
+          sugDiv.innerHTML = '';
+          sugDiv.appendChild(titulo);
+          sugDiv.appendChild(wrap);
+          sugDiv.style.display = 'block';
+        }
+      }
     } catch (error) {
       respuestaDiv.innerHTML = '<div style="color:#e74c3c">❌ Error procesando la pregunta. Intenta de nuevo o contacta ATRM: 968 30 00 37</div>';
       respuestaDiv.style.display = 'block';
@@ -354,6 +394,7 @@
         respuestaFinal = '😊 '+respuesta;
       }
       agregarMensajeChat(respuestaFinal, 'bot');
+      insertarSugerenciasChat();
     });
     function agregarMensajeChat(texto, tipo){
       const chat = document.getElementById('chat-messages');
@@ -377,6 +418,51 @@
           break;
         }
       }
+    }
+    function insertarSugerenciasChat(){
+      if (!window.iaContextual || typeof window.iaContextual.obtenerSugerencias !== 'function') return;
+      const sugs = window.iaContextual.obtenerSugerencias();
+      if (!sugs || !sugs.length) return;
+      const cont = document.createElement('div');
+      cont.style.maxWidth = '85%';
+      cont.style.alignSelf = 'flex-start';
+      cont.style.background = '#fff';
+      cont.style.color = '#222';
+      cont.style.padding = '8px 12px';
+      cont.style.borderRadius = '16px 16px 16px 4px';
+      cont.style.boxShadow = '0 2px 8px rgba(0,0,0,0.04)';
+      const principalScore = (window.iaContextual.ultimosResultados && window.iaContextual.ultimosResultados[0]?.score) || 0;
+      const label = document.createElement('div');
+      label.textContent = principalScore < 6 ? 'También podrían interesarte:' : 'Temas relacionados:';
+      label.style.fontWeight = '700';
+      label.style.margin = '0 0 6px 0';
+      const wrap = document.createElement('div');
+      wrap.style.display = 'flex';
+      wrap.style.flexWrap = 'wrap';
+      wrap.style.gap = '6px';
+      sugs.forEach(s => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = s.titulo;
+        b.style.background = '#eaf6ff';
+        b.style.border = '1px solid #bfe0ff';
+        b.style.color = '#1f3b57';
+        b.style.padding = '6px 10px';
+        b.style.borderRadius = '999px';
+        b.style.cursor = 'pointer';
+        b.style.fontSize = '13px';
+        b.onclick = () => {
+          const inp = document.getElementById('chat-input');
+          inp.value = s.titulo;
+          document.getElementById('chat-form').dispatchEvent(new Event('submit', { bubbles:true, cancelable:true }));
+        };
+        wrap.appendChild(b);
+      });
+      cont.appendChild(label);
+      cont.appendChild(wrap);
+      const chat = document.getElementById('chat-messages');
+      chat.appendChild(cont);
+      chat.scrollTop = chat.scrollHeight;
     }
   </script>
   <script>

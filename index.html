@@ -242,8 +242,8 @@
       const respuesta = await window.iaContextual.procesarMultiConsulta(pregunta);
       respuestaDiv.innerHTML = respuesta;
       respuestaDiv.style.display = 'block';
-      // Renderizar chips de sugerencias si hay
-      if (window.iaContextual && typeof window.iaContextual.obtenerSugerencias === 'function') {
+      // Renderizar chips de sugerencias si hay (omitido en modo estricto)
+      if (window.iaContextual && !window.iaContextual.modoEstrict && typeof window.iaContextual.obtenerSugerencias === 'function') {
         const sugs = window.iaContextual.obtenerSugerencias();
         if (sugs && sugs.length) {
           const principalScore = (window.iaContextual.ultimosResultados && window.iaContextual.ultimosResultados[0]?.score) || 0;
@@ -394,7 +394,7 @@
         respuestaFinal = '😊 '+respuesta;
       }
       agregarMensajeChat(respuestaFinal, 'bot');
-      insertarSugerenciasChat();
+  if (!window.iaContextual?.modoEstrict) insertarSugerenciasChat();
     });
     function agregarMensajeChat(texto, tipo){
       const chat = document.getElementById('chat-messages');
@@ -420,7 +420,7 @@
       }
     }
     function insertarSugerenciasChat(){
-      if (!window.iaContextual || typeof window.iaContextual.obtenerSugerencias !== 'function') return;
+      if (!window.iaContextual || window.iaContextual.modoEstrict || typeof window.iaContextual.obtenerSugerencias !== 'function') return;
       const sugs = window.iaContextual.obtenerSugerencias();
       if (!sugs || !sugs.length) return;
       const cont = document.createElement('div');

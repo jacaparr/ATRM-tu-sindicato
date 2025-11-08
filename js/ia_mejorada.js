@@ -1,5 +1,21 @@
 // IA mejorada sin coste - ATRM Sindicato
 class IAContextual {
+  obtenerUltimaPreguntaFollowup() {
+    if (!this.historial.length) return null;
+    const ultima = this.historial[this.historial.length - 1];
+    if (ultima.pregunta && ultima.tema && this.baseCasos?.casos?.[ultima.tema]) {
+      const caso = this.baseCasos.casos[ultima.tema];
+      if (caso.preguntas_followup && caso.preguntas_followup.length > 0) {
+        // Buscar si la última pregunta fue una pregunta de seguimiento
+        for (const pf of caso.preguntas_followup) {
+          if (ultima.pregunta.toLowerCase().includes(pf.toLowerCase().slice(0, 10))) {
+            return { caso, pregunta: pf };
+          }
+        }
+      }
+    }
+    return null;
+  }
   frasesHumanas = {
     saludos: [
       '¡Hola! ¿En qué puedo ayudarle hoy?',
@@ -216,6 +232,25 @@ class IAContextual {
   }
 
   async generarRespuesta(pregunta) {
+    // Si la respuesta es "sí" o "no" y la última pregunta fue de seguimiento, actuar en consecuencia
+    const respuestaCorta = pregunta.trim().toLowerCase();
+    if (["si", "sí", "no"].includes(respuestaCorta)) {
+      const ultima = this.historial.length ? this.historial[this.historial.length - 1] : null;
+      if (ultima && ultima.tema && this.baseCasos?.casos?.[ultima.tema]) {
+        const caso = this.baseCasos.casos[ultima.tema];
+        if (caso.preguntas_followup && caso.preguntas_followup.length > 0) {
+          // Ejemplo simple: si "sí" y la pregunta es "¿La hospitalización supera 15 días?", dar la ampliación
+          if (respuestaCorta.startsWith('s')) {
+            if (caso.id === 'hospitalizacion_familiar') {
+              return '✨ Si la hospitalización supera 15 días, el permiso puede ampliarse según el convenio. Contacta ATRM para tramitar la ampliación.';
+            }
+            // Aquí puedes añadir más lógica para otros casos y preguntas
+          } else if (respuestaCorta.startsWith('n')) {
+            return 'Perfecto, entonces se aplican los días de permiso estándar indicados en la respuesta anterior.';
+          }
+        }
+      }
+    }
     await this.esperarBaseCasos();
     
     const contexto = this.buscarContextoHistorial(pregunta);

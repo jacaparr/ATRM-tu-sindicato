@@ -1,5 +1,134 @@
 // IA mejorada sin coste - ATRM Sindicato
 class IAContextual {
+  frasesHumanas = {
+    saludos: [
+      '¡Hola! ¿En qué puedo ayudarle hoy?',
+      '¡Buenos días! ¿Cómo puedo orientarle?',
+      '¡Buenas tardes! ¿En qué le puedo ayudar?',
+      '¡Buenas noches! ¿Qué consulta tiene?',
+      '¡Saludos! ¿Sobre qué tema del convenio quiere información?',
+      '¡Hola! ¿Le ayudo con alguna duda del convenio?',
+      '¡Hola! ¿Quiere saber algo sobre permisos, nómina o derechos?',
+      '¡Bienvenido! ¿En qué puedo serle útil?',
+      '¡Hola! ¿Le explico algún punto del convenio?',
+      '¡Hola! ¿Qué desea consultar hoy?',
+      '¡Hola! ¿Le gustaría saber algo sobre sus derechos laborales?',
+      '¡Hola! ¿En qué tema le puedo asesorar?',
+      '¡Hola! ¿Le ayudo a resolver su consulta?',
+      '¡Hola! ¿Sobre qué tema necesita información?',
+      '¡Hola! ¿Le explico el convenio con mucho gusto?',
+      '¡Hola! ¿Quiere que le aclare algún derecho?',
+      '¡Hola! ¿Le ayudo con permisos o vacaciones?',
+      '¡Hola! ¿Desea información sobre pluses o nómina?',
+      '¡Hola! ¿Le interesa saber sobre permisos retribuidos?',
+      '¡Hola! ¿Le ayudo a entender su convenio?',
+      '¡Hola! ¿Quiere consultar sobre bajas o licencias?',
+      '¡Hola! ¿Le explico los días de descanso?',
+      '¡Hola! ¿Le ayudo con trámites sindicales?',
+      '¡Hola! ¿Le interesa información sobre festivos?',
+      '¡Hola! ¿Le ayudo con dudas sobre su salario?',
+      '¡Hola! ¿Quiere saber sobre permisos especiales?',
+      '¡Hola! ¿Le explico cómo solicitar un permiso?',
+      '¡Hola! ¿Le ayudo con la documentación necesaria?',
+      '¡Hola! ¿Le interesa saber sobre pluses nocturnos?',
+      '¡Hola! ¿Le ayudo con dudas sobre turnos?',
+      '¡Hola! ¿Le explico los derechos por antigüedad?',
+      '¡Hola! ¿Quiere saber sobre conciliación familiar?',
+      '¡Hola! ¿Le ayudo con dudas sobre bajas médicas?',
+      '¡Hola! ¿Le explico los pasos para una reclamación?',
+      '¡Hola! ¿Le ayudo con información sobre el sindicato?',
+      '¡Hola! ¿Le interesa saber sobre formación?',
+      '¡Hola! ¿Le ayudo con dudas sobre contratos?',
+      '¡Hola! ¿Le explico los derechos en caso de accidente?',
+      '¡Hola! ¿Le ayudo con información sobre jubilación?',
+      '¡Hola! ¿Le interesa saber sobre pluses de transporte?',
+      '¡Hola! ¿Le ayudo con dudas sobre pagas extra?',
+      '¡Hola! ¿Le explico los derechos en caso de despido?',
+      '¡Hola! ¿Le ayudo con información sobre ascensos?',
+      '¡Hola! ¿Le interesa saber sobre horas extra?',
+      '¡Hola! ¿Le ayudo con dudas sobre vacaciones?',
+      '¡Hola! ¿Le explico los derechos de maternidad/paternidad?',
+      '¡Hola! ¿Le ayudo con información sobre pluses de peligrosidad?',
+      '¡Hola! ¿Le interesa saber sobre dietas?',
+      '¡Hola! ¿Le ayudo con dudas sobre movilidad?',
+      '¡Hola! ¿Le explico los derechos en caso de traslado?',
+      '¡Hola! ¿Le ayudo con información sobre reducción de jornada?',
+      '¡Hola! ¿Le interesa saber sobre permisos sin sueldo?',
+      '¡Hola! ¿Le ayudo con dudas sobre teletrabajo?',
+      '¡Hola! ¿Le explico los derechos en caso de ERTE?',
+      '¡Hola! ¿Le ayudo con información sobre pluses de festivos?',
+      '¡Hola! ¿Le interesa saber sobre descansos semanales?',
+      '¡Hola! ¿Le ayudo con dudas sobre turnos rotativos?',
+      '¡Hola! ¿Le explico los derechos en caso de incapacidad?',
+      '¡Hola! ¿Le ayudo con información sobre indemnizaciones?',
+      '¡Hola! ¿Le interesa saber sobre permisos por estudios?',
+      '¡Hola! ¿Le ayudo con dudas sobre licencias especiales?',
+      '¡Hola! ¿Le explico los derechos en caso de fallecimiento?',
+      '¡Hola! ¿Le ayudo con información sobre pluses de antigüedad?',
+      '¡Hola! ¿Le interesa saber sobre permisos por matrimonio?',
+      '¡Hola! ¿Le ayudo con dudas sobre permisos por hospitalización?',
+      '¡Hola! ¿Le explico los derechos en caso de accidente laboral?',
+      '¡Hola! ¿Le ayudo con información sobre pluses de nocturnidad?',
+      '¡Hola! ¿Le interesa saber sobre permisos por mudanza?',
+      '¡Hola! ¿Le ayudo con dudas sobre permisos por nacimiento?',
+      '¡Hola! ¿Le explico los derechos en caso de adopción?',
+      '¡Hola! ¿Le ayudo con información sobre pluses de peligrosidad?',
+      '¡Hola! ¿Le interesa saber sobre permisos por lactancia?',
+      '¡Hola! ¿Le ayudo con dudas sobre permisos por exámenes?',
+      '¡Hola! ¿Le explico los derechos en caso de reducción de jornada?',
+      '¡Hola! ¿Le ayudo con información sobre pluses de transporte?',
+      '¡Hola! ¿Le interesa saber sobre permisos por deber inexcusable?',
+      '¡Hola! ¿Le ayudo con dudas sobre permisos por representación sindical?',
+      '¡Hola! ¿Le explico los derechos en caso de cambio de puesto?',
+      '¡Hola! ¿Le ayudo con información sobre pluses de disponibilidad?',
+      '¡Hola! ¿Le interesa saber sobre permisos por formación?',
+      '¡Hola! ¿Le ayudo con dudas sobre permisos por consulta médica?',
+      '¡Hola! ¿Le explico los derechos en caso de baja por accidente?',
+      '¡Hola! ¿Le ayudo con información sobre pluses de peligrosidad?',
+      '¡Hola! ¿Le interesa saber sobre permisos por hospitalización de familiar?',
+      '¡Hola! ¿Le ayudo con dudas sobre permisos por fallecimiento?',
+      '¡Hola! ¿Le explico los derechos en caso de traslado?',
+      '¡Hola! ¿Le ayudo con información sobre pluses de nocturnidad?',
+      '¡Hola! ¿Le interesa saber sobre permisos por matrimonio?',
+      '¡Hola! ¿Le ayudo con dudas sobre permisos por nacimiento?',
+      '¡Hola! ¿Le explico los derechos en caso de adopción?',
+      '¡Hola! ¿Le ayudo con información sobre pluses de peligrosidad?',
+      '¡Hola! ¿Le interesa saber sobre permisos por lactancia?',
+      '¡Hola! ¿Le ayudo con dudas sobre permisos por exámenes?',
+      '¡Hola! ¿Le explico los derechos en caso de reducción de jornada?',
+      '¡Hola! ¿Le ayudo con información sobre pluses de transporte?',
+      '¡Hola! ¿Le interesa saber sobre permisos por deber inexcusable?',
+      '¡Hola! ¿Le ayudo con dudas sobre permisos por representación sindical?',
+      '¡Hola! ¿Le explico los derechos en caso de cambio de puesto?',
+      '¡Hola! ¿Le ayudo con información sobre pluses de disponibilidad?',
+      '¡Hola! ¿Le interesa saber sobre permisos por formación?',
+      '¡Hola! ¿Le ayudo con dudas sobre permisos por consulta médica?'
+    ],
+    despedidas: [
+      '¡Hasta pronto! Si tiene más dudas, aquí estaré.',
+      '¡Que tenga un buen día! No dude en volver a consultar.',
+      '¡Gracias por su consulta! Si necesita más información, escríbame.',
+      '¡Un placer ayudarle! Hasta la próxima.',
+      '¡Cualquier otra duda, aquí estaré!',
+      '¡Hasta luego! Puede volver cuando quiera.',
+      '¡Le deseo lo mejor! Si necesita más ayuda, aquí estaré.',
+      '¡Gracias por confiar en el sindicato! Hasta pronto.',
+      '¡Cuídese! Si tiene más preguntas, no dude en escribir.',
+      '¡Hasta la próxima consulta!'
+    ],
+    ayuda: [
+      '¿En qué puedo ayudarle?',
+      '¿Le explico algún punto del convenio?',
+      '¿Quiere que le aclare alguna duda?',
+      '¿Le ayudo con permisos o vacaciones?',
+      '¿Desea información sobre pluses o nómina?',
+      '¿Le interesa saber sobre permisos retribuidos?',
+      '¿Le ayudo a entender su convenio?',
+      '¿Quiere consultar sobre bajas o licencias?',
+      '¿Le explico los días de descanso?',
+      '¿Le ayudo con trámites sindicales?'
+    ]
+  };
   constructor() {
     this.historial = this.cargarHistorial();
     this.baseCasos = null;
@@ -185,8 +314,42 @@ class IAContextual {
   }
 
   generarRespuestaFallback(pregunta) {
+    // Respuestas personalizadas para saludos y frases comunes
+    const saludos = [
+      'hola', 'buenos días', 'buenas tardes', 'buenas noches', 'saludos', 'hey', 'holi', 'qué tal', 'buenas', 'hello'
+    ];
+    const agradecimientos = [
+      'gracias', 'muchas gracias', 'te lo agradezco', 'gracias!', 'mil gracias', 'se agradece', 'thank you'
+    ];
+    const despedidas = [
+      'adiós', 'hasta luego', 'nos vemos', 'bye', 'chao', 'hasta pronto', 'me voy', 'hasta la próxima'
+    ];
+    const preguntaLower = pregunta.trim().toLowerCase();
+    if (saludos.some(s => preguntaLower.startsWith(s) || preguntaLower === s)) {
+      // Elegir saludo aleatorio
+      const frase = this.frasesHumanas.saludos[Math.floor(Math.random() * this.frasesHumanas.saludos.length)];
+      return '👋 ' + frase;
+    }
+    if (agradecimientos.some(s => preguntaLower.includes(s))) {
+      return '😊 ¡De nada! Si tiene más dudas sobre el convenio o sus derechos, aquí estaré.';
+    }
+    if (despedidas.some(s => preguntaLower.startsWith(s) || preguntaLower === s)) {
+      // Elegir despedida aleatoria
+      const frase = this.frasesHumanas.despedidas[Math.floor(Math.random() * this.frasesHumanas.despedidas.length)];
+      return '👋 ' + frase;
+    }
+    // Frase de disculpa y ayuda si no reconoce la consulta
+    const disculpas = [
+      'Lo siento, no tengo información sobre ese tema, pero puedo ayudarle con cualquier duda sobre el convenio, permisos, nómina o derechos laborales.',
+      'Disculpe, no sé la respuesta a esa consulta, pero si necesita información sobre el convenio, estaré encantado de ayudarle.',
+      'Perdón, no tengo datos sobre eso, pero puedo explicarle cualquier aspecto del convenio o sus derechos laborales.',
+      'Lo siento, esa información no está disponible, pero puedo asesorarle sobre el convenio colectivo, permisos o pluses.',
+      'Disculpe, no reconozco esa consulta, pero si tiene dudas sobre el convenio, permisos o nómina, aquí estoy para ayudarle.'
+    ];
+    const ayuda = this.frasesHumanas.ayuda[Math.floor(Math.random() * this.frasesHumanas.ayuda.length)];
+    const fraseDisculpa = disculpas[Math.floor(Math.random() * disculpas.length)];
     return window.generarRespuestaLocal ? window.generarRespuestaLocal(pregunta) : 
-      '🤖 **Consulta no reconocida.** Prueba con: "ingreso de madre", "días de lluvia", "nocturnidad", etc.';
+      `🤖 ${fraseDisculpa} ${ayuda}`;
   }
 
   async esperarBaseCasos() {

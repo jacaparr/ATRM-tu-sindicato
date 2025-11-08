@@ -239,17 +239,29 @@ class IAContextual {
       if (ultima && ultima.tema && this.baseCasos?.casos?.[ultima.tema]) {
         const caso = this.baseCasos.casos[ultima.tema];
         if (caso.preguntas_followup && caso.preguntas_followup.length > 0) {
-          // Ejemplo simple: si "sí" y la pregunta es "¿La hospitalización supera 15 días?", dar la ampliación
+          // Hospitalización ampliada
           if (respuestaCorta.startsWith('s')) {
             if (caso.id === 'hospitalizacion_familiar') {
               return '✨ Si la hospitalización supera 15 días, el permiso puede ampliarse según el convenio. Contacta ATRM para tramitar la ampliación.';
             }
-            // Aquí puedes añadir más lógica para otros casos y preguntas
+            // Derechos fundamentales
+            if (caso.id === 'derechos_fundamentales') {
+              return '⚖️ Si crees que se han vulnerado tus derechos fundamentales (igualdad, dignidad, integridad, etc.), contacta ATRM o acude a la Inspección de Trabajo. Teléfono ATRM: 968 626 511. Para denuncias urgentes: 901 50 20 50 (Inspección de Trabajo).';
+            }
           } else if (respuestaCorta.startsWith('n')) {
-            return 'Perfecto, entonces se aplican los días de permiso estándar indicados en la respuesta anterior.';
+            if (caso.id === 'hospitalizacion_familiar') {
+              return 'Perfecto, entonces se aplican los días de permiso estándar indicados en la respuesta anterior.';
+            }
+            if (caso.id === 'derechos_fundamentales') {
+              return 'Si no hay vulneración de derechos fundamentales, puedes consultar cualquier otra duda laboral o sindical.';
+            }
           }
         }
       }
+    }
+    // Si la pregunta es sobre administración pública
+    if (/administraci[oó]n p[úu]blica|funcionario|empleado p[úu]blico|ayuntamiento|sector p[úu]blico/i.test(pregunta)) {
+      return 'ℹ️ Para consultas sobre administración pública, funcionarios o empleados públicos, puedes contactar con el sindicato ATRM en el 968 626 511 o con el área de personal de tu ayuntamiento. También puedes consultar la web oficial del ayuntamiento o la sede electrónica.';
     }
     await this.esperarBaseCasos();
     

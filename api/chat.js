@@ -1,6 +1,11 @@
 // API Serverless para el asistente IA del convenio ATRM
 // Usar con Vercel, Netlify o similar
 
+// Proveedor y modelo configurables por variables de entorno
+// IA_PROVIDER: 'openrouter' (por defecto) | 'deepseek'
+// IA_MODEL: nombre del modelo (e.g. 'mistralai/mistral-7b-instruct:free' en OpenRouter o 'deepseek-chat' en DeepSeek)
+// OPENROUTER_API_KEY o DEEPSEEK_API_KEY según el proveedor
+
 export default async function handler(req, res) {
   // Configurar CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -89,44 +94,69 @@ Publicado: BORM nº 34 de 11 febrero 2025
 - Personal: Trabajadores fijos, fijos discontinuos, temporales (excluye alta dirección)
 `;
   
+  // Mensajes estándar para ambos proveedores
+  const systemPrompt = `Eres un asistente especializado en el Convenio Colectivo de Limpieza Pública Viaria de la Región de Murcia. Responde SOLO basándote en la información del convenio proporcionada. Si no tienes información específica, di que no la tienes y sugiere contactar con el sindicato ATRM.\n\nSi preguntan sobre "ingreso de madre", "madre ingresada", "hospitalización de madre" o similar, se refieren al permiso por hospitalización/ingreso de familiar (5 días retribuidos por ingreso hospitalario de familiares hasta 2º grado, ampliable si >15 días).\n\nResponde de forma clara y concisa. Usa emojis relevantes.`;
+
+  const provider = (process.env.IA_PROVIDER || 'openrouter').toLowerCase();
+  const model = process.env.IA_MODEL || (provider === 'deepseek' ? 'deepseek-chat' : 'mistralai/mistral-7b-instruct:free');
+
   try {
-    // Usar OpenRouter API (económico y eficiente)
-    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
-        'Content-Type': 'application/json',
-        'X-Title': 'Asistente ATRM Convenio'
-      },
-      body: JSON.stringify({
-        model: 'mistralai/mistral-7b-instruct:free', // Modelo gratuito
-        messages: [
-          {
-            role: 'system',
-            content: `Eres un asistente especializado en el Convenio Colectivo de Limpieza Pública Viaria de la Región de Murcia. Responde SOLO basándote en la información del convenio proporcionada. Si no tienes información específica, di que no la tienes y sugiere contactar con el sindicato ATRM.\n\nSi preguntan sobre "ingreso de madre", "madre ingresada", "hospitalización de madre" o similar, se refieren al permiso por hospitalización/ingreso de familiar (5 días retribuidos por ingreso hospitalario de familiares hasta 2º grado, ampliable si >15 días).\n\nResponde de forma clara y concisa. Usa emojis relevantes.`
-          },
-          {
-            role: 'user',
-            content: `Información del convenio:\n${convenioKB}\n\nPregunta del trabajador: ${pregunta}`
-          }
-        ],
-        temperature: 0.3,
-        max_tokens: 300
-      })
-    });
-    
-    if (!response.ok) {
-      throw new Error(`OpenRouter API error: ${response.status}`);
+    let respuesta;
+
+    if (provider === 'deepseek') {
+      // DeepSeek API nativa
+      const apiKey = process.env.DEEPSEEK_API_KEY;
+      if (!apiKey) throw new Error('Falta DEEPSEEK_API_KEY');
+      const dsResp = await fetch('https://api.deepseek.com/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          model,
+          messages: [
+            { role: 'system', content: systemPrompt },
+            { role: 'user', content: `Información del convenio:\n${convenioKB}\n\nPregunta del trabajador: ${pregunta}` }
+          ],
+          temperature: 0.3,
+          max_tokens: 300
+        })
+      });
+      if (!dsResp.ok) throw new Error(`DeepSeek API error: ${dsResp.status}`);
+      const data = await dsResp.json();
+      respuesta = data.choices?.[0]?.message?.content || '';
+    } else {
+      // OpenRouter (por defecto). Permite usar modelos gratuitos como 'mistralai/mistral-7b-instruct:free' o deepseek vía OpenRouter.
+      const apiKey = process.env.OPENROUTER_API_KEY;
+      if (!apiKey) throw new Error('Falta OPENROUTER_API_KEY');
+      const orResp = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+          'X-Title': 'Asistente ATRM Convenio'
+        },
+        body: JSON.stringify({
+          model,
+          messages: [
+            { role: 'system', content: systemPrompt },
+            { role: 'user', content: `Información del convenio:\n${convenioKB}\n\nPregunta del trabajador: ${pregunta}` }
+          ],
+          temperature: 0.3,
+          max_tokens: 300
+        })
+      });
+      if (!orResp.ok) throw new Error(`OpenRouter API error: ${orResp.status}`);
+      const data = await orResp.json();
+      respuesta = data.choices?.[0]?.message?.content || '';
     }
-    
-    const data = await response.json();
-    const respuesta = data.choices[0].message.content;
-    
-    res.status(200).json({ 
+
+    res.status(200).json({
       respuesta,
-      fuente: 'Convenio Colectivo ATRM 2024-2027 (BORM nº 34)' 
+      fuente: 'Convenio Colectivo ATRM 2024-2027 (BORM nº 34)'
     });
-    
+
   } catch (error) {
     console.error('Error en API:', error);
     

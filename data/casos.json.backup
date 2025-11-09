@@ -1,0 +1,236 @@
+{
+  "casos": {
+    "hospitalizacion_familiar": {
+      "keywords": ["operación", "intervención", "cirugía", "ingreso", "hospitalización", "hermano", "madre", "padre", "familiar", "hospital"],
+      "titulo": "Hospitalización/Intervención de familiar",
+      "resumen": "5 días retribuidos por ingreso hospitalario de familiares hasta 2º grado",
+      "detalle": "✅ Tienes derecho a **5 días retribuidos** por:\n- Ingreso hospitalario de familiares hasta 2º grado\n- Accidente o enfermedad grave\n- Intervención quirúrgica\n\n👥 **Familiares incluidos:** madre, padre, hijos, hermanos, abuelos, suegros, cónyuge\n\n✨ **Ampliación:** Si la hospitalización supera 15 días, el permiso se puede ampliar",
+      "documentos": ["Parte médico", "Justificante hospitalario", "Certificado de parentesco si es requerido"],
+      "casos_reales": [
+        "Trabajador peón recogida: hermano operado → 5 días concedidos + 2 días adicionales por hospitalización >15 días",
+        "Conductora limpieza: madre ingresada en UCI → 5 días + desplazamiento reconocido (otra provincia)"
+      ],
+      "comparativa_sectorial": "Valencia: 4 días. Madrid: 5 días sin ampliación. Cataluña: 6 días máximo.",
+      "contacto": "ATRM 968 626 511",
+      "preguntas_followup": ["¿La hospitalización supera 15 días?", "¿Requiere desplazamiento significativo?"]
+    },
+    "dias_lluvia": {
+      "keywords": ["lluvia", "tormenta", "llueve", "clima", "meteorología", "impermeable", "botas"],
+      "titulo": "Días de lluvia intensa",
+      "resumen": "Decisión de parada según entrega de prendas por la empresa",
+      "detalle": "🌧️ **Con lluvia intensa:**\n\n**Si la empresa facilitó impermeable y botas:**\n- La decisión de parar se toma conjuntamente entre empresa y representantes\n- Si no hay representantes, con los propios trabajadores\n\n**Si la empresa NO facilitó prendas:**\n- La decisión la toman los representantes de los trabajadores\n- Si no los hay, los propios trabajadores\n\n**Si se para por lluvia:**\n- Las personas trabajadoras permanecen en el centro durante la jornada",
+      "documentos": ["No se requiere documentación especial"],
+      "casos_reales": [
+        "Brigada recogida Murcia centro: parada por tormenta sin prendas → decisión trabajadores, permanencia en centro",
+        "Equipo limpieza viaria Cartagena: empresa entregó impermeables → decisión conjunta, trabajo mantenimiento interior"
+      ],
+      "comparativa_sectorial": "Valencia: criterio empresa. Madrid: comité seguridad decide. Cataluña: protocolo meteorológico específico.",
+      "contacto": "ATRM 968 626 511"
+    },
+    },
+    "matrimonio": {
+      "keywords": ["boda", "casarse", "matrimonio", "permiso", "me caso"],
+      "titulo": "Permiso por matrimonio",
+      "resumen": "15 días de permiso retribuido + gratificación",
+      "detalle": "💒 **Permiso por matrimonio:**\n\n✅ **15 días retribuidos**\n✅ **Gratificación económica** según tabla vigente\n✅ **Flexible:** puedes dividir los días (ej: 10+5) si lo necesitas\n\n📅 **Planificación:** solicitar con antelación mínima de 30 días",
+      "documentos": ["Certificado literal de matrimonio", "Solicitud formal con fechas deseadas"],
+      "casos_reales": [
+        "Encargado brigada: boda en julio → 15 días + gratificación 691,55€ (2025)",
+        "Peón limpieza: matrimonio civil → mismo derecho que religioso, sin diferencias"
+      ],
+      "comparativa_sectorial": "Valencia: 15 días sin gratificación. Madrid: 13 días + plus. Cataluña: 15 días + ayuda social.",
+      "contacto": "ATRM 968 626 511"
+    },
+    "fallecimiento": {
+      "keywords": ["fallecimiento", "muerte", "funeral", "entierro", "defunción", "ha muerto"],
+      "titulo": "Permiso por fallecimiento",
+      "resumen": "Días según grado de parentesco + desplazamiento",
+      "detalle": "⚫ **Permiso por fallecimiento:**\n\n**Cónyuge, hijos, padres:** hasta 5 días\n**Hermanos, abuelos, nietos:** hasta 3 días\n**Resto familiares 2º grado:** hasta 2 días\n\n**Con desplazamiento:** días adicionales según distancia y duración del viaje\n\n**Flexible:** se puede fraccionar si hay ceremonias en días diferentes",
+      "documentos": ["Certificado de defunción", "Certificado de parentesco si es requerido", "Justificante desplazamiento si aplica"],
+      "casos_reales": [
+        "Conductor limpieza: fallecimiento padre → 5 días + 1 día desplazamiento (funeral en Almería)",
+        "Peón recogida: fallecimiento abuelo → 3 días, fraccionado (2+1) por ceremonias separadas"
+      ],
+      "comparativa_sectorial": "Valencia: mismos días, sin desplazamiento. Madrid: +1 día general. Cataluña: hasta 6 días cónyuge/hijos.",
+      "contacto": "ATRM 968 626 511"
+    },
+    "nocturnidad": {
+      "keywords": ["nocturno", "noche", "22:00", "06:00", "turno", "plus"],
+      "titulo": "Plus de nocturnidad",
+      "resumen": "28% sobre salario base por trabajo nocturno (22:00-06:00h)",
+      "detalle": "🌙 **Plus de nocturnidad (desde enero 2025):**\n\n✅ **28% sobre salario base**\n📅 **Horario:** 22:00 a 06:00 horas\n💰 **Cálculo:** se aplica sobre las horas efectivamente trabajadas en franja nocturna\n\n**Ejemplo:** Si trabajas de 23:00 a 07:00, el plus se aplica de 23:00 a 06:00 (7 horas)",
+      "documentos": ["Control horario", "Parte de trabajo nocturno si es excepcional"],
+      "casos_reales": [
+        "Conductor recogida nocturna: salario base 1.394,30€ → plus nocturnidad 390,40€/mes (28%)",
+        "Peón limpieza nocturna ocasional: 3 noches/semana → plus proporcional por horas"
+      ],
+      "comparativa_sectorial": "Valencia: 25%. Madrid: 30%. Cataluña: 25% + plus especial sábados.",
+      "contacto": "ATRM 968 626 511"
+    },
+    "consultas_medicas": {
+    },
+    "permisos_retribuidos": {
+      "keywords": ["permiso retribuido", "mudanza", "nacimiento", "examenes", "exámenes", "permiso especial", "asuntos propios", "licencia retribuida"],
+      "titulo": "Permisos retribuidos",
+      "resumen": "Días de permiso pagados por mudanza, nacimiento, exámenes y otros casos.",
+      "detalle": "📄 **Permisos retribuidos:**\n\n- Mudanza: 1 día\n- Nacimiento de hijo/a: 2 días\n- Exámenes oficiales: el tiempo necesario\n- Asuntos propios: según convenio y acuerdo\n\nConsulta el convenio o contacta ATRM para casos especiales.",
+      "documentos": ["Justificante de mudanza", "Certificado de nacimiento", "Convocatoria de examen"],
+      "casos_reales": [
+        "Trabajador: mudanza de domicilio → 1 día retribuido.",
+        "Empleado: nacimiento de hijo → 2 días retribuidos.",
+        "Personal: examen oficial → permiso concedido con justificante."
+      ],
+      "comparativa_sectorial": "Valencia: 1 día mudanza. Madrid: 2 días nacimiento. Cataluña: 1 día mudanza, 2 días nacimiento.",
+      "contacto": "ATRM 968 626 511"
+    },
+    "finiquito_despido": {
+      "keywords": ["finiquito", "despido", "liquidación", "indemnización", "extinción contrato", "cese"],
+      "titulo": "Finiquito y despido",
+      "resumen": "Qué incluye el finiquito y derechos ante un despido.",
+      "detalle": "💼 **Finiquito:**\nIncluye salario pendiente, vacaciones no disfrutadas, pagas extra y otros conceptos.\n\n**Despido:**\n- Tienes derecho a indemnización según tipo de despido.\n- Plazo para reclamar: 20 días hábiles.\n- Solicita carta de despido y finiquito por escrito.\n\nContacta ATRM para asesoría jurídica.",
+      "documentos": ["Carta de despido", "Recibo de finiquito"],
+      "casos_reales": [
+        "Trabajador: despido improcedente → indemnización 33 días/año.",
+        "Empleado: finiquito sin pagar vacaciones → reclamación y abono posterior."
+      ],
+      "comparativa_sectorial": "Valencia: igual. Madrid: igual. Cataluña: igual.",
+      "contacto": "ATRM 968 626 511"
+    },
+    "reduccion_jornada": {
+      "keywords": ["reducción jornada", "cuidado hijos", "cuidado familiar", "reducir jornada", "conciliación"],
+      "titulo": "Reducción de jornada",
+      "resumen": "Derecho a reducir jornada por cuidado de hijos o familiares.",
+      "detalle": "👨‍👩‍👧‍👦 **Reducción de jornada:**\n\n- Por cuidado de hijos menores de 12 años o familiares dependientes.\n- Reducción entre 1/8 y 1/2 de la jornada.\n- Protección frente a despido.\n\nSolicítalo por escrito y contacta ATRM para asesoría.",
+      "documentos": ["Solicitud por escrito", "Libro de familia"],
+      "casos_reales": [
+        "Trabajadora: reducción por hijo menor → horario adaptado.",
+        "Empleado: reducción por familiar dependiente → reducción 1/4 jornada."
+      ],
+      "comparativa_sectorial": "Valencia: igual. Madrid: igual. Cataluña: igual.",
+      "contacto": "ATRM 968 626 511"
+    },
+    "excedencias": {
+      "keywords": ["excedencia", "excedencia voluntaria", "excedencia por cuidado", "excedencia especial", "dejar trabajo temporalmente"],
+      "titulo": "Excedencias",
+      "resumen": "Tipos de excedencia y cómo solicitarlas.",
+      "detalle": "📝 **Excedencias:**\n\n- Voluntaria: mínimo 4 meses, máximo 5 años.\n- Por cuidado de hijos: hasta 3 años.\n- Por cuidado de familiar: hasta 2 años.\n\nSolicítala por escrito y contacta ATRM para orientación.",
+      "documentos": ["Solicitud por escrito", "Libro de familia"],
+      "casos_reales": [
+        "Trabajadora: excedencia por hijo → reincorporación tras 2 años.",
+        "Empleado: excedencia voluntaria → regreso tras 1 año."
+      ],
+      "comparativa_sectorial": "Valencia: igual. Madrid: igual. Cataluña: igual.",
+      "contacto": "ATRM 968 626 511"
+    },
+    "reclamacion_nomina": {
+      "keywords": ["reclamar nómina", "nómina incorrecta", "no me pagan", "error nómina", "retraso pago"],
+      "titulo": "Reclamación de nómina",
+      "resumen": "Qué hacer si no te pagan o hay errores en la nómina.",
+      "detalle": "💸 **Reclamación de nómina:**\n\n- Reclama por escrito a la empresa.\n- Guarda copia de la reclamación.\n- Contacta ATRM si no hay respuesta.\n- Plazo para reclamar: 1 año.\n\nPuedes acudir a Inspección de Trabajo si persiste el problema.",
+      "documentos": ["Reclamación por escrito", "Nómina"],
+      "casos_reales": [
+        "Empleado: nómina impagada → reclamación y abono tras mediación.",
+        "Trabajador: error en plus → ajuste en nómina siguiente."
+      ],
+      "comparativa_sectorial": "Valencia: igual. Madrid: igual. Cataluña: igual.",
+      "contacto": "ATRM 968 626 511"
+    },
+    "acoso_laboral": {
+      "keywords": ["acoso laboral", "mobbing", "discriminación", "trato vejatorio", "acoso", "insultos trabajo"],
+      "titulo": "Acoso laboral y discriminación",
+      "resumen": "Qué hacer ante acoso laboral o discriminación.",
+      "detalle": "🚨 **Acoso laboral:**\n\n- Recoge pruebas (mensajes, testigos, partes médicos).\n- Comunícalo al delegado sindical o ATRM.\n- Puedes denunciar ante Inspección de Trabajo o juzgado.\n- Protección especial frente a represalias.\n\nContacta ATRM para apoyo y asesoría jurídica.",
+      "documentos": ["Pruebas de acoso", "Parte médico", "Testigos"],
+      "casos_reales": [
+        "Trabajadora: acoso por superior → denuncia y cambio de puesto.",
+        "Empleado: insultos reiterados → intervención sindical y cese del acoso."
+      ],
+      "comparativa_sectorial": "Valencia: igual. Madrid: igual. Cataluña: igual.",
+      "contacto": "ATRM 968 626 511"
+    },
+    "subrogacion": {
+      "keywords": ["subrogación", "cambio empresa", "subrogar", "cambio de contrata", "nueva empresa"],
+      "titulo": "Subrogación y cambio de empresa",
+      "resumen": "Derechos en caso de cambio de empresa o subrogación.",
+      "detalle": "🔄 **Subrogación:**\n\n- Conservas antigüedad y derechos.\n- La nueva empresa debe respetar condiciones previas.\n- Consulta ATRM si hay cambios o dudas.\n\nSolicita certificado de subrogación si lo necesitas.",
+      "documentos": ["Certificado de subrogación", "Contrato anterior"],
+      "casos_reales": [
+        "Trabajador: subrogación → mantiene antigüedad y salario.",
+        "Empleado: cambio de empresa → condiciones respetadas tras intervención sindical."
+      ],
+      "comparativa_sectorial": "Valencia: igual. Madrid: igual. Cataluña: igual.",
+      "contacto": "ATRM 968 626 511"
+    },
+    "certificados_jubilacion": {
+    },
+    "vacaciones": {
+      "keywords": ["vacaciones", "días de vacaciones", "disfrute vacaciones", "solicitar vacaciones", "periodo vacacional", "vacaciones anuales"],
+      "titulo": "Vacaciones anuales",
+      "resumen": "Días de vacaciones, cómo solicitarlas y derechos.",
+      "detalle": "🌴 **Vacaciones anuales:**\n\n- Mínimo legal: 30 días naturales por año trabajado (puede variar según convenio).\n- Deben fijarse de común acuerdo entre empresa y trabajador.\n- El calendario de vacaciones debe conocerse al menos 2 meses antes.\n- No pueden ser sustituidas por compensación económica salvo fin de contrato.\n\nConsulta ATRM si tienes problemas para disfrutarlas o dudas sobre el periodo.",
+      "documentos": ["Solicitud de vacaciones", "Calendario laboral"],
+      "casos_reales": [
+        "Trabajador: vacaciones denegadas → intervención sindical y disfrute garantizado.",
+        "Empleado: vacaciones no comunicadas → reclamación y fijación de fechas."
+      ],
+      "comparativa_sectorial": "Valencia: 30 días. Madrid: 30 días. Cataluña: 30 días.",
+      "contacto": "ATRM 968 626 511"
+    
+      "keywords": ["certificado empresa", "vida laboral", "jubilación", "jubilación anticipada", "certificado trabajo"],
+      "titulo": "Certificados y jubilación",
+      "resumen": "Cómo solicitar certificados y opciones de jubilación.",
+      "detalle": "📑 **Certificados:**\n\n- Solicita a la empresa por escrito.\n- Vida laboral: pide en la Seguridad Social.\n\n**Jubilación anticipada/parcial:**\n- Consulta requisitos y plazos.\n- Contacta ATRM para orientación personalizada.",
+      "documentos": ["Solicitud por escrito", "DNI"],
+      "casos_reales": [
+        "Trabajador: certificado de empresa para jubilación → entregado en 3 días.",
+        "Empleado: jubilación parcial → asesoría ATRM para trámites."
+      ],
+      "comparativa_sectorial": "Valencia: igual. Madrid: igual. Cataluña: igual.",
+      "contacto": "ATRM 968 626 511"
+    },
+      "casos_reales": [
+        "Encargado brigada: especialista en Murcia capital → 3h concedidas (consulta + desplazamiento desde pedanía)",
+        "Conductora limpieza: urgencia oftalmológica → permiso concedido, justificante aportado al día siguiente"
+      ],
+      "comparativa_sectorial": "Valencia: 4h máximo. Madrid: tiempo necesario sin límite. Cataluña: 2h + desplazamiento sin condición distancia.",
+      "contacto": "ATRM 968 626 511"
+    }
+  },
+  "jurisprudencia": [
+    {
+      "tema": "hospitalización_familiar",
+      "resumen": "STSJ Murcia 2019: ampliación >15 días es derecho, no concesión graciable",
+      "referencia": "STSJ Murcia 234/2019"
+    },
+    {
+      "tema": "dias_lluvia",
+      "resumen": "LAB Murcia 2022: empresa debe facilitar prendas o asumir criterio trabajadores",
+      "referencia": "Laudo Arbitral 15/2022"
+    },
+    {
+      {
+        "casos": {
+          "hospitalizacion_familiar": {"keywords": ["operación", "intervención", "cirugía", "ingreso", "hospitalización", "hermano", "madre", "padre", "familiar", "hospital"], "titulo": "Hospitalización/Intervención de familiar", "resumen": "5 días retribuidos por ingreso hospitalario de familiares hasta 2º grado", "detalle": "✅ Tienes derecho a **5 días retribuidos** por:\n- Ingreso hospitalario de familiares hasta 2º grado\n- Accidente o enfermedad grave\n- Intervención quirúrgica\n\n👥 **Familiares incluidos:** madre, padre, hijos, hermanos, abuelos, suegros, cónyuge\n\n✨ **Ampliación:** Si la hospitalización supera 15 días, el permiso se puede ampliar", "documentos": ["Parte médico", "Justificante hospitalario", "Certificado de parentesco si es requerido"], "casos_reales": ["Trabajador peón recogida: hermano operado → 5 días concedidos + 2 días adicionales por hospitalización >15 días", "Conductora limpieza: madre ingresada en UCI → 5 días + desplazamiento reconocido (otra provincia)"], "comparativa_sectorial": "Valencia: 4 días. Madrid: 5 días sin ampliación. Cataluña: 6 días máximo.", "contacto": "ATRM 968 626 511", "preguntas_followup": ["¿La hospitalización supera 15 días?", "¿Requiere desplazamiento significativo?"]},
+          "dias_lluvia": {"keywords": ["lluvia", "tormenta", "llueve", "clima", "meteorología", "impermeable", "botas"], "titulo": "Días de lluvia intensa", "resumen": "Decisión de parada según entrega de prendas por la empresa", "detalle": "🌧️ **Con lluvia intensa:**\n\n**Si la empresa facilitó impermeable y botas:**\n- La decisión de parar se toma conjuntamente entre empresa y representantes\n- Si no hay representantes, con los propios trabajadores\n\n**Si la empresa NO facilitó prendas:**\n- La decisión la toman los representantes de los trabajadores\n- Si no los hay, los propios trabajadores\n\n**Si se para por lluvia:**\n- Las personas trabajadoras permanecen en el centro durante la jornada", "documentos": ["No se requiere documentación especial"], "casos_reales": ["Brigada recogida Murcia centro: parada por tormenta sin prendas → decisión trabajadores, permanencia en centro", "Equipo limpieza viaria Cartagena: empresa entregó impermeables → decisión conjunta, trabajo mantenimiento interior"], "comparativa_sectorial": "Valencia: criterio empresa. Madrid: comité seguridad decide. Cataluña: protocolo meteorológico específico.", "contacto": "ATRM 968 626 511"},
+          "matrimonio": {"keywords": ["boda", "casarse", "matrimonio", "permiso", "me caso"], "titulo": "Permiso por matrimonio", "resumen": "15 días de permiso retribuido + gratificación", "detalle": "💒 **Permiso por matrimonio:**\n\n✅ **15 días retribuidos**\n✅ **Gratificación económica** según tabla vigente\n✅ **Flexible:** puedes dividir los días (ej: 10+5) si lo necesitas\n\n📅 **Planificación:** solicitar con antelación mínima de 30 días", "documentos": ["Certificado literal de matrimonio", "Solicitud formal con fechas deseadas"], "casos_reales": ["Encargado brigada: boda en julio → 15 días + gratificación 691,55€ (2025)", "Peón limpieza: matrimonio civil → mismo derecho que religioso, sin diferencias"], "comparativa_sectorial": "Valencia: 15 días sin gratificación. Madrid: 13 días + plus. Cataluña: 15 días + ayuda social.", "contacto": "ATRM 968 626 511"},
+          "fallecimiento": {"keywords": ["fallecimiento", "muerte", "funeral", "entierro", "defunción", "ha muerto"], "titulo": "Permiso por fallecimiento", "resumen": "Días según grado de parentesco + desplazamiento", "detalle": "⚫ **Permiso por fallecimiento:**\n\n**Cónyuge, hijos, padres:** hasta 5 días\n**Hermanos, abuelos, nietos:** hasta 3 días\n**Resto familiares 2º grado:** hasta 2 días\n\n**Con desplazamiento:** días adicionales según distancia y duración del viaje\n\n**Flexible:** se puede fraccionar si hay ceremonias en días diferentes", "documentos": ["Certificado de defunción", "Certificado de parentesco si es requerido", "Justificante desplazamiento si aplica"], "casos_reales": ["Conductor limpieza: fallecimiento padre → 5 días + 1 día desplazamiento (funeral en Almería)", "Peón recogida: fallecimiento abuelo → 3 días, fraccionado (2+1) por ceremonias separadas"], "comparativa_sectorial": "Valencia: mismos días, sin desplazamiento. Madrid: +1 día general. Cataluña: hasta 6 días cónyuge/hijos.", "contacto": "ATRM 968 626 511"},
+          "nocturnidad": {"keywords": ["nocturno", "noche", "22:00", "06:00", "turno", "plus"], "titulo": "Plus de nocturnidad", "resumen": "28% sobre salario base por trabajo nocturno (22:00-06:00h)", "detalle": "🌙 **Plus de nocturnidad (desde enero 2025):**\n\n✅ **28% sobre salario base**\n📅 **Horario:** 22:00 a 06:00 horas\n💰 **Cálculo:** se aplica sobre las horas efectivamente trabajadas en franja nocturna\n\n**Ejemplo:** Si trabajas de 23:00 a 07:00, el plus se aplica de 23:00 a 06:00 (7 horas)", "documentos": ["Control horario", "Parte de trabajo nocturno si es excepcional"], "casos_reales": ["Conductor recogida nocturna: salario base 1.394,30€ → plus nocturnidad 390,40€/mes (28%)", "Peón limpieza nocturna ocasional: 3 noches/semana → plus proporcional por horas"], "comparativa_sectorial": "Valencia: 25%. Madrid: 30%. Cataluña: 25% + plus especial sábados.", "contacto": "ATRM 968 626 511"},
+          "permisos_retribuidos": {"keywords": ["permiso retribuido", "mudanza", "nacimiento", "examenes", "exámenes", "permiso especial", "asuntos propios", "licencia retribuida"], "titulo": "Permisos retribuidos", "resumen": "Días de permiso pagados por mudanza, nacimiento, exámenes y otros casos.", "detalle": "📄 **Permisos retribuidos:**\n\n- Mudanza: 1 día\n- Nacimiento de hijo/a: 2 días\n- Exámenes oficiales: el tiempo necesario\n- Asuntos propios: según convenio y acuerdo\n\nConsulta el convenio o contacta ATRM para casos especiales.", "documentos": ["Justificante de mudanza", "Certificado de nacimiento", "Convocatoria de examen"], "casos_reales": ["Trabajador: mudanza de domicilio → 1 día retribuido.", "Empleado: nacimiento de hijo → 2 días retribuidos.", "Personal: examen oficial → permiso concedido con justificante."], "comparativa_sectorial": "Valencia: 1 día mudanza. Madrid: 2 días nacimiento. Cataluña: 1 día mudanza, 2 días nacimiento.", "contacto": "ATRM 968 626 511"},
+          "finiquito_despido": {"keywords": ["finiquito", "despido", "liquidación", "indemnización", "extinción contrato", "cese"], "titulo": "Finiquito y despido", "resumen": "Qué incluye el finiquito y derechos ante un despido.", "detalle": "💼 **Finiquito:**\nIncluye salario pendiente, vacaciones no disfrutadas, pagas extra y otros conceptos.\n\n**Despido:**\n- Tienes derecho a indemnización según tipo de despido.\n- Plazo para reclamar: 20 días hábiles.\n- Solicita carta de despido y finiquito por escrito.\n\nContacta ATRM para asesoría jurídica.", "documentos": ["Carta de despido", "Recibo de finiquito"], "casos_reales": ["Trabajador: despido improcedente → indemnización 33 días/año.", "Empleado: finiquito sin pagar vacaciones → reclamación y abono posterior."], "comparativa_sectorial": "Valencia: igual. Madrid: igual. Cataluña: igual.", "contacto": "ATRM 968 626 511"},
+          "reduccion_jornada": {"keywords": ["reducción jornada", "cuidado hijos", "cuidado familiar", "reducir jornada", "conciliación"], "titulo": "Reducción de jornada", "resumen": "Derecho a reducir jornada por cuidado de hijos o familiares.", "detalle": "👨‍👩‍👧‍👦 **Reducción de jornada:**\n\n- Por cuidado de hijos menores de 12 años o familiares dependientes.\n- Reducción entre 1/8 y 1/2 de la jornada.\n- Protección frente a despido.\n\nSolicítalo por escrito y contacta ATRM para asesoría.", "documentos": ["Solicitud por escrito", "Libro de familia"], "casos_reales": ["Trabajadora: reducción por hijo menor → horario adaptado.", "Empleado: reducción por familiar dependiente → reducción 1/4 jornada."], "comparativa_sectorial": "Valencia: igual. Madrid: igual. Cataluña: igual.", "contacto": "ATRM 968 626 511"},
+          "excedencias": {"keywords": ["excedencia", "excedencia voluntaria", "excedencia por cuidado", "excedencia especial", "dejar trabajo temporalmente"], "titulo": "Excedencias", "resumen": "Tipos de excedencia y cómo solicitarlas.", "detalle": "📝 **Excedencias:**\n\n- Voluntaria: mínimo 4 meses, máximo 5 años.\n- Por cuidado de hijos: hasta 3 años.\n- Por cuidado de familiar: hasta 2 años.\n\nSolicítala por escrito y contacta ATRM para orientación.", "documentos": ["Solicitud por escrito", "Libro de familia"], "casos_reales": ["Trabajadora: excedencia por hijo → reincorporación tras 2 años.", "Empleado: excedencia voluntaria → regreso tras 1 año."], "comparativa_sectorial": "Valencia: igual. Madrid: igual. Cataluña: igual.", "contacto": "ATRM 968 626 511"},
+          "reclamacion_nomina": {"keywords": ["reclamar nómina", "nómina incorrecta", "no me pagan", "error nómina", "retraso pago"], "titulo": "Reclamación de nómina", "resumen": "Qué hacer si no te pagan o hay errores en la nómina.", "detalle": "💸 **Reclamación de nómina:**\n\n- Reclama por escrito a la empresa.\n- Guarda copia de la reclamación.\n- Contacta ATRM si no hay respuesta.\n- Plazo para reclamar: 1 año.\n\nPuedes acudir a Inspección de Trabajo si persiste el problema.", "documentos": ["Reclamación por escrito", "Nómina"], "casos_reales": ["Empleado: nómina impagada → reclamación y abono tras mediación.", "Trabajador: error en plus → ajuste en nómina siguiente."], "comparativa_sectorial": "Valencia: igual. Madrid: igual. Cataluña: igual.", "contacto": "ATRM 968 626 511"},
+          "acoso_laboral": {"keywords": ["acoso laboral", "mobbing", "discriminación", "trato vejatorio", "acoso", "insultos trabajo"], "titulo": "Acoso laboral y discriminación", "resumen": "Qué hacer ante acoso laboral o discriminación.", "detalle": "🚨 **Acoso laboral:**\n\n- Recoge pruebas (mensajes, testigos, partes médicos).\n- Comunícalo al delegado sindical o ATRM.\n- Puedes denunciar ante Inspección de Trabajo o juzgado.\n- Protección especial frente a represalias.\n\nContacta ATRM para apoyo y asesoría jurídica.", "documentos": ["Pruebas de acoso", "Parte médico", "Testigos"], "casos_reales": ["Trabajadora: acoso por superior → denuncia y cambio de puesto.", "Empleado: insultos reiterados → intervención sindical y cese del acoso."], "comparativa_sectorial": "Valencia: igual. Madrid: igual. Cataluña: igual.", "contacto": "ATRM 968 626 511"},
+          "subrogacion": {"keywords": ["subrogación", "cambio empresa", "subrogar", "cambio de contrata", "nueva empresa"], "titulo": "Subrogación y cambio de empresa", "resumen": "Derechos en caso de cambio de empresa o subrogación.", "detalle": "🔄 **Subrogación:**\n\n- Conservas antigüedad y derechos.\n- La nueva empresa debe respetar condiciones previas.\n- Consulta ATRM si hay cambios o dudas.\n\nSolicita certificado de subrogación si lo necesitas.", "documentos": ["Certificado de subrogación", "Contrato anterior"], "casos_reales": ["Trabajador: subrogación → mantiene antigüedad y salario.", "Empleado: cambio de empresa → condiciones respetadas tras intervención sindical."], "comparativa_sectorial": "Valencia: igual. Madrid: igual. Cataluña: igual.", "contacto": "ATRM 968 626 511"},
+          "certificados_jubilacion": {"keywords": ["certificado empresa", "vida laboral", "jubilación", "jubilación anticipada", "certificado trabajo"], "titulo": "Certificados y jubilación", "resumen": "Cómo solicitar certificados y opciones de jubilación.", "detalle": "📑 **Certificados:**\n\n- Solicita a la empresa por escrito.\n- Vida laboral: pide en la Seguridad Social.\n\n**Jubilación anticipada/parcial:**\n- Consulta requisitos y plazos.\n- Contacta ATRM para orientación personalizada.", "documentos": ["Solicitud por escrito", "DNI"], "casos_reales": ["Trabajador: certificado de empresa para jubilación → entregado en 3 días.", "Empleado: jubilación parcial → asesoría ATRM para trámites."], "comparativa_sectorial": "Valencia: igual. Madrid: igual. Cataluña: igual.", "contacto": "ATRM 968 626 511"},
+          "vacaciones": {"keywords": ["vacaciones", "días de vacaciones", "disfrute vacaciones", "solicitar vacaciones", "periodo vacacional", "vacaciones anuales"], "titulo": "Vacaciones anuales", "resumen": "Días de vacaciones, cómo solicitarlas y derechos.", "detalle": "🌴 **Vacaciones anuales:**\n\n- Mínimo legal: 30 días naturales por año trabajado (puede variar según convenio).\n- Deben fijarse de común acuerdo entre empresa y trabajador.\n- El calendario de vacaciones debe conocerse al menos 2 meses antes.\n- No pueden ser sustituidas por compensación económica salvo fin de contrato.\n\nConsulta ATRM si tienes problemas para disfrutarlas o dudas sobre el periodo.", "documentos": ["Solicitud de vacaciones", "Calendario laboral"], "casos_reales": ["Trabajador: vacaciones denegadas → intervención sindical y disfrute garantizado.", "Empleado: vacaciones no comunicadas → reclamación y fijación de fechas."], "comparativa_sectorial": "Valencia: 30 días. Madrid: 30 días. Cataluña: 30 días.", "contacto": "ATRM 968 626 511"}
+        },
+        "jurisprudencia": [
+          {"tema": "hospitalización_familiar", "resumen": "STSJ Murcia 2019: ampliación >15 días es derecho, no concesión graciable", "referencia": "STSJ Murcia 234/2019"},
+          {"tema": "dias_lluvia", "resumen": "LAB Murcia 2022: empresa debe facilitar prendas o asumir criterio trabajadores", "referencia": "Laudo Arbitral 15/2022"},
+          {"tema": "nocturnidad", "resumen": "STSJ Valencia 2024: plus nocturno se calcula sobre horas efectivas, no sobre jornada completa", "referencia": "STSJ Valencia 156/2024"}
+        ],
+        "gaps_detectados": [],
+        "version": "1.0",
+        "ultima_actualizacion": "2025-11-03"
+      }

@@ -1,0 +1,24 @@
+﻿{
+  "casos": {
+    "experto_sindical": {
+      "keywords": ["experto sindical", "asesor sindical", "consultor sindical", "especialista sindical", "experiencia sindical", "consejo sindical", "orientación sindical", "consultar experto", "pregunta sindical", "duda sindical", "quiero hablar con un experto", "necesito asesoramiento", "ayuda sindical", "consejo laboral"],
+      "titulo": "Experto sindical ATRM",
+      "resumen": "Asesoramiento experto sobre derechos laborales, convenios y acción sindical",
+      "detalle": " **Como experto sindical de ATRM, puedo ayudarte con:**\n\n **Derechos laborales:**\n- Interpretación del convenio colectivo\n- Permisos, vacaciones y licencias\n- Salarios, pluses y complementos\n- Jornada y horarios\n\n **Conflictos laborales:**\n- Despidos y sanciones\n- Reclamaciones de nómina\n- Acoso laboral\n- Modificaciones de condiciones\n\n **Negociación colectiva:**\n- Análisis de propuestas empresariales\n- Estrategias de negociación\n- Elaboración de demandas\n- Comparativas sectoriales\n\n **Representación sindical:**\n- Elecciones sindicales\n- Funciones de delegados\n- Garantías sindicales\n- Acción sindical\n\n **Subrogaciones y cambios:**\n- Derechos en cambios de empresa\n- Antigüedad y condiciones\n- EREs y despidos colectivos\n\n¿En qué tema necesitas asesoramiento? Cuéntame tu situación y te orientaré con la información más precisa, ejemplos reales y referencias legales.",
+      "documentos": ["Convenio colectivo sectorial", "Estatuto de los Trabajadores", "Normativa laboral específica", "Jurisprudencia aplicable"],
+      "casos_reales": [
+        "Delegado sindical: asesoramiento sobre negociación de plus de nocturnidad, mejora del 25% al 28% para toda la plantilla",
+        "Afiliado: consulta sobre despido colectivo, intervención sindical y mejora de indemnizaciones en un 15%",
+        "Trabajadora: duda sobre reducción de jornada, orientación completa y solicitud exitosa",
+        "Peón recogida: reclamación de plus no pagado, recuperación de 1200 euros en atrasos"
+      ],
+      "comparativa_sectorial": "ATRM ofrece asesoría sindical especializada y personalizada, con experiencia de más de 20 años en el sector de limpieza pública viaria y servicios municipales de Murcia.",
+      "contacto": "ATRM 968 626 511",
+      "preguntas_followup": ["¿Qué tema sindical te preocupa?", "¿Necesitas asesoramiento jurídico?", "¿Tienes un conflicto laboral?"]
+    }
+  },
+  "jurisprudencia": [],
+  "gaps_detectados": [],
+  "version": "1.1",
+  "ultima_actualizacion": "2025-11-08"
+}

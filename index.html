@@ -228,6 +228,20 @@
     }
   }
 
+  // Convertir Markdown simple a HTML
+  function limpiarMarkdown(texto) {
+    if (!texto) return '';
+    return texto
+      .replace(/~~(.*?)~~/g, '<s>$1</s>') // tachado ~~texto~~ → <s>texto</s>
+      .replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>') // ***texto*** → negrita+cursiva
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>') // **texto** → negrita
+      .replace(/\*(.+?)\*/g, '<em>$1</em>') // *texto* → cursiva
+      .replace(/^### (.+)$/gm, '<h3>$1</h3>') // ### título
+      .replace(/^## (.+)$/gm, '<h2>$1</h2>') // ## título
+      .replace(/^# (.+)$/gm, '<h1>$1</h1>') // # título
+      .replace(/\n/g, '<br>'); // saltos de línea
+  }
+
   async function preguntarIA() {
     const pregunta = document.getElementById('preguntaIA').value.trim();
     if (!pregunta) {
@@ -253,7 +267,7 @@
         });
       }
       const respuesta = await window.iaContextual.procesarMultiConsulta(pregunta);
-      respuestaDiv.innerHTML = respuesta;
+      respuestaDiv.innerHTML = limpiarMarkdown(respuesta);
       respuestaDiv.style.display = 'block';
       // Renderizar chips de sugerencias si hay (omitido en modo estricto)
       if (window.iaContextual && !window.iaContextual.modoEstrict && typeof window.iaContextual.obtenerSugerencias === 'function') {
@@ -430,7 +444,7 @@
       div.style.padding = '8px 12px';
       div.style.borderRadius = tipo==='user'?'16px 16px 4px 16px':'16px 16px 16px 4px';
       div.style.boxShadow = '0 2px 8px rgba(0,0,0,0.04)';
-      div.innerHTML = texto;
+      div.innerHTML = tipo === 'bot' ? limpiarMarkdown(texto) : texto;
       chat.appendChild(div);
       chat.scrollTop = chat.scrollHeight;
     }
@@ -540,7 +554,7 @@
       div.style.padding = '8px 12px';
       div.style.borderRadius = tipo==='user'?'16px 16px 4px 16px':'16px 16px 16px 4px';
       div.style.boxShadow = '0 2px 8px rgba(0,0,0,0.04)';
-      div.innerHTML = texto;
+      div.innerHTML = tipo === 'bot' ? limpiarMarkdown(texto) : texto;
       chat.appendChild(div);
       chat.scrollTop = chat.scrollHeight;
     }

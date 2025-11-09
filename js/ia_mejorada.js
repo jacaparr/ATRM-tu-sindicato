@@ -308,7 +308,9 @@ class IAContextual {
   async generarRespuesta(pregunta) {
     // Si la respuesta es "sí" o "no" y la última pregunta fue de seguimiento, actuar en consecuencia
     const respuestaCorta = pregunta.trim().toLowerCase();
-    if (["si", "sí", "no"].includes(respuestaCorta)) {
+    const esRespuestaCorta = ["si", "sí", "no"].includes(respuestaCorta);
+
+    if (esRespuestaCorta) {
       const ultima = this.historial.length ? this.historial[this.historial.length - 1] : null;
       if (ultima && ultima.tema && this.baseCasos?.casos?.[ultima.tema]) {
         const caso = this.baseCasos.casos[ultima.tema];

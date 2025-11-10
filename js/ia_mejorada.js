@@ -306,8 +306,27 @@ class IAContextual {
   }
 
   async generarRespuesta(pregunta) {
+    // Detectar preguntas de ayuda/ejemplos ANTES de buscar casos
+    const preguntaLower = pregunta.trim().toLowerCase();
+    const patronesAyuda = [
+      /^(que|qué) puedo preguntar/i,
+      /^(que|qué) puedo pedir/i,
+      /^(que|qué) puedes hacer/i,
+      /^(que|qué) puedes responder/i,
+      /^(sobre )?que temas/i,
+      /^(que|qué) temas/i,
+      /^(dame|muéstrame|dime) ejemplos/i,
+      /^ejemplos/i,
+      /^ayuda/i,
+      /^help/i
+    ];
+    
+    if (patronesAyuda.some(p => p.test(preguntaLower))) {
+      return `💡 **Puedes preguntarme sobre:**\n\n✅ **Permisos y licencias:** bajas médicas, hospitalización familiar, matrimonio, fallecimiento, consultas médicas\n\n✅ **Salario y nómina:** plus de nocturnidad, incrementos salariales, pagas extra, reclamación de nómina\n\n✅ **Vacaciones y jornada:** días de vacaciones, jornada laboral, horas extra, días de lluvia\n\n✅ **Derechos laborales:** despidos, finiquitos, subrogación, acoso laboral, igualdad, contratos\n\n✅ **Trámites:** reducción de jornada, excedencias, certificados, jubilación, elecciones sindicales\n\n**Ejemplos:**\n• "Háblame de bajas médicas"\n• "¿Cuántos días tengo por hospitalización de mi madre?"\n• "¿Cuánto es el plus de nocturnidad?"\n• "¿Cómo reclamo una nómina incorrecta?"\n\n¡Prueba con cualquiera! 😊`;
+    }
+
     // Si la respuesta es "sí" o "no" y la última pregunta fue de seguimiento, actuar en consecuencia
-    const respuestaCorta = pregunta.trim().toLowerCase();
+    const respuestaCorta = preguntaLower;
     const esRespuestaCorta = ["si", "sí", "no"].includes(respuestaCorta);
 
     if (esRespuestaCorta) {
@@ -427,15 +446,23 @@ class IAContextual {
   // Consulta API remota si existe (Vercel/Netlify). Si falla, retorna null.
   async consultarAPI(pregunta) {
     try {
-      const resp = await fetch('api/chat', {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 15000); // 15s timeout
+      
+      const resp = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ pregunta })
+        body: JSON.stringify({ pregunta }),
+        signal: controller.signal
       });
+      
+      clearTimeout(timeoutId);
+      
       if (!resp.ok) return null;
       const data = await resp.json();
       return data?.respuesta || null;
     } catch (e) {
+      console.warn('Error consultando API externa:', e);
       return null;
     }
   }
@@ -499,6 +526,19 @@ class IAContextual {
       'adiós', 'hasta luego', 'nos vemos', 'bye', 'chao', 'hasta pronto', 'me voy', 'hasta la próxima'
     ];
     const preguntaLower = pregunta.trim().toLowerCase();
+    // Manejar consultas de ayuda rápidas que preguntan qué pueden preguntar
+    const patronesAyuda = [
+      /^(que|qué) puedo preguntar/i,
+      /^(que|qué) puedo pedir/i,
+      /^(que|qué) puedes hacer/i,
+      /^(que|qué) puedes responder/i,
+      /^(sobre )?que temas/i,
+      /^(dame|muéstrame) ejemplos/i
+    ];
+    if (patronesAyuda.some(p => p.test(preguntaLower))) {
+      return `Aquí tienes ejemplos rápidos: \n
+- "Háblame de bajas médicas"\n+- "¿Qué permisos por hospitalización tengo?"\n+- "¿Cuánto es el plus de nocturnidad?"\n+- "¿Cómo reclamar una nómina equivocada?"\n+- "¿Qué es la subrogación?"\n\nTambién puedes preguntar por: vacaciones, jornada, pagas extra, matrimonio, excedencias, elecciones sindicales. Si quieres, pruébalo con uno de los ejemplos.`;
+    }
     if (saludos.some(s => preguntaLower.startsWith(s) || preguntaLower === s)) {
       // Elegir saludo aleatorio
       const frase = this.frasesHumanas.saludos[Math.floor(Math.random() * this.frasesHumanas.saludos.length)];

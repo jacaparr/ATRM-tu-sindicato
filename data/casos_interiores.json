@@ -1,0 +1,49 @@
+{
+  "casos": {
+    "vacaciones": {
+      "keywords": ["vacaciones", "días de vacaciones", "solicitar vacaciones", "periodo vacacional"],
+      "titulo": "Vacaciones anuales",
+      "resumen": "30 días naturales de vacaciones al año.",
+      "detalle": "Tienes derecho a 30 días naturales de vacaciones por año trabajado. El periodo se fija de común acuerdo entre empresa y trabajador. No pueden ser sustituidas por compensación económica salvo fin de contrato.",
+      "contacto": "ATRM 968 626 511"
+    },
+    "jornada": {
+      "keywords": ["jornada", "horas", "horario", "turno", "horas semanales"],
+      "titulo": "Jornada laboral",
+      "resumen": "Jornada máxima anual: 1.792 horas.",
+      "detalle": "La jornada máxima anual es de 1.792 horas. La distribución puede ser regular o irregular según acuerdo. Descanso mínimo semanal de día y medio ininterrumpido.",
+      "contacto": "ATRM 968 626 511"
+    },
+    "permisos": {
+      "keywords": ["permiso", "licencia", "permiso retribuido", "licencia retribuida", "asuntos propios"],
+      "titulo": "Permisos y licencias",
+      "resumen": "Permisos retribuidos por matrimonio, nacimiento, fallecimiento, mudanza, exámenes, etc.",
+      "detalle": "El convenio recoge permisos retribuidos por matrimonio (15 días), nacimiento de hijo/a (2 días), fallecimiento de familiar (2-4 días), mudanza (1 día), exámenes (el tiempo necesario), entre otros.",
+      "contacto": "ATRM 968 626 511"
+    },
+    "salario": {
+      "keywords": ["salario", "nómina", "sueldo", "pagas extra", "tabla salarial"],
+      "titulo": "Salario y pagas extra",
+      "resumen": "Salario base según categoría y 3 pagas extra al año.",
+      "detalle": "El salario base depende de la categoría profesional. Se abonan 3 pagas extra: junio, diciembre y marzo. Consulta la tabla salarial vigente para tu puesto.",
+      "contacto": "ATRM 968 626 511"
+    },
+    "baja_medica": {
+      "keywords": ["baja médica", "incapacidad temporal", "enfermedad", "lesión", "IT", "parte de baja"],
+      "titulo": "Baja médica e incapacidad temporal",
+      "resumen": "Complemento de prestación según convenio.",
+      "detalle": "Durante la baja médica, la empresa complementa la prestación de la Seguridad Social hasta el 100% del salario desde el primer día en caso de accidente laboral y a partir del día 16 en caso de enfermedad común.",
+      "contacto": "ATRM 968 626 511"
+    },
+    "subrogacion": {
+      "keywords": ["subrogación", "cambio empresa", "subrogar", "cambio de contrata", "nueva empresa"],
+      "titulo": "Subrogación y cambio de empresa",
+      "resumen": "Derechos en caso de cambio de empresa.",
+      "detalle": "Si cambia la empresa adjudicataria, se mantiene la antigüedad, salario y condiciones laborales. La nueva empresa debe respetar el convenio y no puede despedir por subrogación.",
+      "contacto": "ATRM 968 626 511"
+    }
+  },
+  "jurisprudencia": [],
+  "version": "1.0",
+  "ultima_actualizacion": "2025-11-12"
+}

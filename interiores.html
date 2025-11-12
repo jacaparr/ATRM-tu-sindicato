@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Convenio Interiores · ATRM</title>
+  <link rel="stylesheet" href="assets/estilos.css">
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="logo">ATRM · Tu Sindicato</div>
+      <nav class="menu">
+        <a href="index.html">Inicio</a>
+        <a href="#convenio">Viaria</a>
+        <a href="interiores.html" class="active">Interiores</a>
+        <a href="salaries.html">Salarios</a>
+        <a href="tramites.html">Trámites</a>
+        <a href="festivos.html">Información</a>
+        <a href="#noticias">Noticias</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+  <main class="hero">
+    <section class="left card">
+      <span class="badge">Limpieza de Interiores · Región de Murcia</span>
+      <h1>Convenio Colectivo de Limpieza de Interiores</h1>
+      <p>Consulta aquí el convenio, descarga el PDF oficial y pregunta a la IA sobre tus derechos y condiciones.</p>
+      <a class="btn" href="assets/convenio_interiores.pdf" download>Descargar Convenio PDF</a>
+      <button class="btn alt" onclick="abrirIAInteriores()">Pregúntale a la IA de Interiores</button>
+    </section>
+    <aside class="card news" id="noticias">
+      <h3>Últimas noticias</h3>
+      <div id="newsList"></div>
+    </aside>
+  </main>
+  <!-- Modal IA Interiores (se implementará) -->
+  <dialog id="iaModalInteriores">
+    <form method="dialog">
+      <h2>IA Convenio Interiores</h2>
+      <input id="preguntaIAInteriores" type="text" placeholder="Escribe tu pregunta..." style="width:90%" />
+      <button type="button" onclick="preguntarIAInteriores()">Preguntar</button>
+      <div id="respuestaIAInteriores" style="margin-top:1em"></div>
+      <button type="submit">Cerrar</button>
+    </form>
+  </dialog>
+  <script src="js/ia_interiores.js"></script>
+  <script>
+    function abrirIAInteriores(){
+      document.getElementById('iaModalInteriores').showModal();
+    }
+    async function preguntarIAInteriores(){
+      const pregunta = document.getElementById('preguntaIAInteriores').value.trim();
+      if (!pregunta) return;
+      const respuestaDiv = document.getElementById('respuestaIAInteriores');
+      respuestaDiv.textContent = 'Pensando...';
+      if (!window.iaInteriores) {
+        await new Promise(resolve => {
+          const check = setInterval(() => {
+            if (window.iaInteriores) { clearInterval(check); resolve(); }
+          }, 100);
+        });
+      }
+      const respuesta = await window.iaInteriores.procesarMultiConsulta(pregunta);
+      respuestaDiv.textContent = respuesta;
+    }
+  </script>
+</body>
+</html>

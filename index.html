@@ -53,8 +53,8 @@
         <a href="interiores.html">Interiores</a>
         <a href="salaries.html">Salarios</a>
         <a href="tramites.html">Trámites</a>
-        <a href="festivos.html">Información</a>
-        <a href="#noticias">Noticias</a>
+        <a href="festivos.html">Festivos</a>
+        <a href="noticias.html">Noticias</a>
         <a href="#contacto">Contacto</a>
       </nav>
     </div>
@@ -244,30 +244,26 @@
   }
 
   async function preguntarIA() {
-    const pregunta = document.getElementById('preguntaIA').value.trim();
-    if (!pregunta) {
-      alert('Por favor, escribe tu pregunta');
-      return;
-    }
-    const btn = document.getElementById('btnPreguntar');
+    const input = document.getElementById('preguntaIA');
+    const pregunta = input.value;
+    const btn = document.querySelector('.hero-cta-box button');
     const respuestaDiv = document.getElementById('respuestaIA');
     const sugDiv = document.getElementById('sugerenciasIA');
+
+    if (!pregunta.trim()) {
+      respuestaDiv.innerHTML = '<div style="color:#e67e22">Por favor, escribe una pregunta.</div>';
+      respuestaDiv.style.display = 'block';
+      return;
+    }
+
     btn.disabled = true;
-    respuestaDiv.style.display = 'none';
+    respuestaDiv.style.display = 'block';
+    respuestaDiv.innerHTML = '<div class="escribiendo" style="padding:10px;display:flex;align-items:center;gap:10px;color:#555;">✍️ Escribiendo...</div>';
     sugDiv.style.display = 'none';
+
     try {
-      // Esperar a que la IA esté cargada
-      if (!window.iaContextual) {
-        await new Promise(resolve => {
-          const check = setInterval(() => {
-            if (window.iaContextual) {
-              clearInterval(check);
-              resolve();
-            }
-          }, 100);
-        });
-      }
-      const respuesta = await window.iaContextual.procesarMultiConsulta(pregunta);
+      const caso = await window.iaContextual.generarRespuesta(pregunta);
+      let respuesta = caso?.respuesta || 'Lo siento, no tengo una respuesta para eso.';
       respuestaDiv.innerHTML = limpiarMarkdown(respuesta);
       respuestaDiv.style.display = 'block';
       // Renderizar chips de sugerencias si hay (omitido en modo estricto)
@@ -358,6 +354,8 @@
     function initDots(){ const dots=document.getElementById('dots'); for(let i=0;i<3;i++){ const b=document.createElement('div'); b.className='dot'+(i===0?' active':''); b.onclick=()=>{ idx=i; nextSlide(); }; dots.appendChild(b);} }
     function setActiveDot(){ const dots=[...document.querySelectorAll('.dot')]; dots.forEach((d,i)=>d.classList.toggle('active',i===idx)); }
   </script>
+  <script src="js/noticias.js"></script>
+  <script src="js/modo_oscuro.js"></script>
 </body>
   <!-- Chat flotante estilo WhatsApp -->
   <div id="chat-float-btn" style="position:fixed;bottom:28px;right:28px;z-index:9999;">
@@ -521,55 +519,138 @@
     function cerrarChatATRM(){
       document.getElementById('chat-atm-window').style.display = 'none';
     }
-    // Lógica de chat
-    document.getElementById('chat-form').addEventListener('submit', async function(e){
+
+    function agregarMensajeChat(mensaje, remitente, guardar = true) {
+      const chatMessages = document.getElementById('chat-messages');
+      const msgDiv = document.createElement('div');
+      msgDiv.style.maxWidth = '85%';
+      msgDiv.style.alignSelf = remitente === 'user' ? 'flex-end' : 'flex-start';
+      msgDiv.style.background = remitente === 'user' ? '#e1ffc7' : '#fff';
+      msgDiv.style.color = '#222';
+      msgDiv.style.padding = '8px 12px';
+      msgDiv.style.borderRadius = remitente === 'user' ? '16px 16px 4px 16px' : '16px 16px 16px 4px';
+      msgDiv.style.boxShadow = '0 2px 8px rgba(0,0,0,0.04)';
+      msgDiv.innerHTML = remitente === 'bot' ? limpiarMarkdown(mensaje) : mensaje;
+      
+      // Añadir botones de feedback solo para mensajes del bot (no escribiendo...)
+      if (remitente === 'bot' && !mensaje.includes('✍️ Escribiendo')) {
+        const feedbackDiv = document.createElement('div');
+        feedbackDiv.style.marginTop = '6px';
+        feedbackDiv.style.display = 'flex';
+        feedbackDiv.style.gap = '8px';
+        feedbackDiv.style.fontSize = '18px';
+        
+        const btnLike = document.createElement('button');
+        btnLike.innerHTML = '👍';
+        btnLike.style.border = 'none';
+        btnLike.style.background = 'transparent';
+        btnLike.style.cursor = 'pointer';
+        btnLike.style.fontSize = '18px';
+        btnLike.style.padding = '4px 8px';
+        btnLike.style.opacity = '0.6';
+        btnLike.onclick = () => registrarFeedback('like', feedbackDiv);
+        
+        const btnDislike = document.createElement('button');
+        btnDislike.innerHTML = '👎';
+        btnDislike.style.border = 'none';
+        btnDislike.style.background = 'transparent';
+        btnDislike.style.cursor = 'pointer';
+        btnDislike.style.fontSize = '18px';
+        btnDislike.style.padding = '4px 8px';
+        btnDislike.style.opacity = '0.6';
+        btnDislike.onclick = () => registrarFeedback('dislike', feedbackDiv);
+        
+        feedbackDiv.appendChild(btnLike);
+        feedbackDiv.appendChild(btnDislike);
+        msgDiv.appendChild(feedbackDiv);
+      }
+      
+      chatMessages.appendChild(msgDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      if (guardar) {
+        guardarHistorialChat();
+      }
+      return msgDiv;
+    }
+    
+    function registrarFeedback(tipo, feedbackDiv) {
+      feedbackDiv.innerHTML = '<span style="font-size:13px;color:#666;">✓ Gracias por tu feedback</span>';
+      // Aquí se puede añadir lógica para enviar el feedback a un servidor
+    }
+
+    async function enviarPreguntaChat(pregunta) {
+      if (!pregunta.trim()) return;
+
+      agregarMensajeChat(pregunta, 'user');
+      const thinkingMsg = agregarMensajeChat('✍️ Escribiendo...', 'bot', false); // No guardar el mensaje "Escribiendo"
+      thinkingMsg.id = 'escribiendo-msg';
+
+      try {
+        const respuesta = await window.iaContextual.generarRespuesta(pregunta);
+        let textoRespuesta = '🤔 No he encontrado una respuesta. Por favor, intenta con otra pregunta.';
+        if (respuesta) {
+          if (window.iaContextual.modoRespuesta === 'breve') {
+            textoRespuesta = respuesta.resumen || respuesta.detalle;
+          } else {
+            textoRespuesta = respuesta.detalle;
+          }
+        }
+        thinkingMsg.innerHTML = limpiarMarkdown(textoRespuesta);
+        thinkingMsg.id = '';
+        guardarHistorialChat(); // Guardar la respuesta final
+      } catch (e) {
+        thinkingMsg.innerHTML = '❌ Error al obtener respuesta.';
+        thinkingMsg.id = '';
+        guardarHistorialChat(); // Guardar el mensaje de error
+      }
+    }
+
+    function guardarHistorialChat() {
+      const chatMessages = document.getElementById('chat-messages');
+      const historial = [];
+      chatMessages.childNodes.forEach(msgDiv => {
+        // No guardar el mensaje de "Escribiendo..." si aún existe
+        if (msgDiv.id === 'escribiendo-msg') return;
+        
+        historial.push({
+          remitente: msgDiv.style.alignSelf === 'flex-end' ? 'user' : 'bot',
+          mensaje: msgDiv.style.alignSelf === 'flex-end' ? msgDiv.textContent : msgDiv.innerHTML
+        });
+      });
+      localStorage.setItem('historialChatViaria', JSON.stringify(historial));
+    }
+
+    function cargarHistorialChat() {
+      const historial = JSON.parse(localStorage.getItem('historialChatViaria'));
+      if (historial && historial.length) {
+        historial.forEach(item => {
+          agregarMensajeChat(item.mensaje, item.remitente, false);
+        });
+        return true;
+      }
+      return false;
+    }
+
+    document.getElementById('chat-form').addEventListener('submit', (e) => {
       e.preventDefault();
       const input = document.getElementById('chat-input');
-      const msg = input.value.trim();
-      if(!msg) return;
-      agregarMensajeChat(msg, 'user');
+      const pregunta = input.value.trim();
+      if (!pregunta) return;
+
+      enviarPreguntaChat(pregunta);
       input.value = '';
-      agregarMensajeChat('...', 'bot');
-      // Esperar a que la IA esté cargada
-      if (!window.iaContextual) {
-        await new Promise(resolve => {
-          const check = setInterval(() => {
-            if (window.iaContextual) {
-              clearInterval(check);
-              resolve();
-            }
-          }, 100);
-        });
-      }
-      const respuesta = await window.iaContextual.procesarMultiConsulta(msg);
-      quitarUltimoMensajeBot();
-      agregarMensajeChat(respuesta, 'bot');
     });
-    function agregarMensajeChat(texto, tipo){
-      const chat = document.getElementById('chat-messages');
-      const div = document.createElement('div');
-      div.style.maxWidth = '85%';
-      div.style.alignSelf = tipo==='user'?'flex-end':'flex-start';
-      div.style.background = tipo==='user'?'#e1ffc7':'#fff';
-      div.style.color = '#222';
-      div.style.padding = '8px 12px';
-      div.style.borderRadius = tipo==='user'?'16px 16px 4px 16px':'16px 16px 16px 4px';
-      div.style.boxShadow = '0 2px 8px rgba(0,0,0,0.04)';
-      div.innerHTML = tipo === 'bot' ? limpiarMarkdown(texto) : texto;
-      chat.appendChild(div);
-      chat.scrollTop = chat.scrollHeight;
-    }
-    function quitarUltimoMensajeBot(){
-      const chat = document.getElementById('chat-messages');
-      for(let i=chat.children.length-1;i>=0;i--){
-        if(chat.children[i].style.alignSelf==='flex-start'){
-          chat.removeChild(chat.children[i]);
-          break;
-        }
-      }
-    }
-    // Cambio de modo desde chat
+
+    // Carga el historial al iniciar
     document.addEventListener('DOMContentLoaded', ()=>{
+      if (!cargarHistorialChat()) {
+        // Si no hay historial, mostrar bienvenida
+        setTimeout(() => {
+          agregarMensajeChat('👋 ¡Hola! Soy ATRM. ¿En qué puedo ayudarte sobre el convenio o tus derechos laborales?', 'bot');
+        }, 500);
+      }
+
       const sel = document.getElementById('modoIAChat');
       if (sel){ sel.addEventListener('change', ()=>{ if(window.iaContextual){ window.iaContextual.setModoRespuesta(sel.value); } }); }
     });

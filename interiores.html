@@ -51,8 +51,8 @@
         <a href="interiores.html" class="active">Interiores</a>
         <a href="salaries.html">Salarios</a>
         <a href="tramites.html">Trámites</a>
-        <a href="festivos.html">Información</a>
-        <a href="index.html#noticias">Noticias</a>
+        <a href="festivos.html">Festivos</a>
+        <a href="noticias.html">Noticias</a>
         <a href="index.html#contacto">Contacto</a>
       </nav>
     </div>
@@ -152,7 +152,124 @@
       document.getElementById('chat-atm-window').style.display = 'none';
     }
 
-    document.getElementById('chat-form').addEventListener('submit', async function(e){
+    function agregarMensajeChat(mensaje, remitente, guardar = true) {
+      const chatMessages = document.getElementById('chat-messages');
+      const msgDiv = document.createElement('div');
+      msgDiv.style.maxWidth = '85%';
+      msgDiv.style.alignSelf = remitente==='user'?'flex-end':'flex-start';
+      msgDiv.style.background = remitente==='user'?'#e1ffc7':'#fff';
+      msgDiv.style.color = '#222';
+      msgDiv.style.padding = '8px 12px';
+      msgDiv.style.borderRadius = remitente==='user'?'16px 16px 4px 16px':'16px 16px 16px 4px';
+      msgDiv.style.boxShadow = '0 2px 8px rgba(0,0,0,0.04)';
+      msgDiv.style.wordBreak = 'break-word';
+
+      if (remitente === 'bot') {
+        msgDiv.style.alignSelf = 'flex-start';
+        msgDiv.innerHTML = limpiarMarkdown(mensaje);
+      } else {
+        msgDiv.style.alignSelf = 'flex-end';
+        msgDiv.textContent = mensaje;
+      }
+      
+      // Añadir botones de feedback solo para mensajes del bot
+      if (remitente === 'bot' && !mensaje.includes('✍️ Escribiendo')) {
+        const feedbackDiv = document.createElement('div');
+        feedbackDiv.style.marginTop = '6px';
+        feedbackDiv.style.display = 'flex';
+        feedbackDiv.style.gap = '8px';
+        feedbackDiv.style.fontSize = '18px';
+        
+        const btnLike = document.createElement('button');
+        btnLike.innerHTML = '👍';
+        btnLike.style.border = 'none';
+        btnLike.style.background = 'transparent';
+        btnLike.style.cursor = 'pointer';
+        btnLike.style.fontSize = '18px';
+        btnLike.style.padding = '4px 8px';
+        btnLike.style.opacity = '0.6';
+        btnLike.onclick = () => registrarFeedback('like', feedbackDiv);
+        
+        const btnDislike = document.createElement('button');
+        btnDislike.innerHTML = '👎';
+        btnDislike.style.border = 'none';
+        btnDislike.style.background = 'transparent';
+        btnDislike.style.cursor = 'pointer';
+        btnDislike.style.fontSize = '18px';
+        btnDislike.style.padding = '4px 8px';
+        btnDislike.style.opacity = '0.6';
+        btnDislike.onclick = () => registrarFeedback('dislike', feedbackDiv);
+        
+        feedbackDiv.appendChild(btnLike);
+        feedbackDiv.appendChild(btnDislike);
+        msgDiv.appendChild(feedbackDiv);
+      }
+      
+      chatMessages.appendChild(msgDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+      
+      if (guardar) {
+        guardarHistorialChat();
+      }
+      return msgDiv;
+    }
+    
+    function registrarFeedback(tipo, feedbackDiv) {
+      feedbackDiv.innerHTML = '<span style="font-size:13px;color:#666;">✓ Gracias por tu feedback</span>';
+    }
+
+    async function enviarPreguntaChat(pregunta) {
+      if (!pregunta.trim()) return;
+
+      agregarMensajeChat(pregunta, 'user');
+      const thinkingMsg = agregarMensajeChat('✍️ Escribiendo...', 'bot', false);
+      thinkingMsg.id = 'escribiendo-msg';
+
+      try {
+        const respuesta = await window.iaInteriores.generarRespuesta(pregunta);
+        let textoRespuesta = '🤔 No he encontrado una respuesta. Por favor, intenta con otra pregunta.';
+        if (respuesta) {
+          if (window.iaInteriores.modoRespuesta === 'breve') {
+            textoRespuesta = respuesta.resumen || respuesta.detalle;
+          } else {
+            textoRespuesta = respuesta.detalle;
+          }
+        }
+        thinkingMsg.innerHTML = limpiarMarkdown(textoRespuesta);
+        thinkingMsg.id = '';
+        guardarHistorialChat();
+      } catch (e) {
+        thinkingMsg.innerHTML = '❌ Error al obtener respuesta.';
+        thinkingMsg.id = '';
+        guardarHistorialChat();
+      }
+    }
+
+    function guardarHistorialChat() {
+      const chatMessages = document.getElementById('chat-messages');
+      const historial = [];
+      chatMessages.childNodes.forEach(msgDiv => {
+        if (msgDiv.id === 'escribiendo-msg') return;
+        historial.push({
+          remitente: msgDiv.style.alignSelf === 'flex-end' ? 'user' : 'bot',
+          mensaje: msgDiv.style.alignSelf === 'flex-end' ? msgDiv.textContent : msgDiv.innerHTML
+        });
+      });
+      localStorage.setItem('historialChatInteriores', JSON.stringify(historial));
+    }
+
+    function cargarHistorialChat() {
+      const historial = JSON.parse(localStorage.getItem('historialChatInteriores'));
+      if (historial && historial.length) {
+        historial.forEach(item => {
+          agregarMensajeChat(item.mensaje, item.remitente, false);
+        });
+        return true;
+      }
+      return false;
+    }
+
+    document.getElementById('chat-form').addEventListener('submit', (e) => {
       e.preventDefault();
       const input = document.getElementById('chat-input');
       const msg = input.value.trim();
@@ -161,51 +278,27 @@
       input.value = '';
       agregarMensajeChat('...', 'bot');
       if (!window.iaInteriores) {
-        await new Promise(resolve => {
-          const check = setInterval(() => {
-            if (window.iaInteriores) {
-              clearInterval(check);
-              resolve();
-            }
-          }, 100);
-        });
+        enviarPreguntaChat(msg);
+      } else {
+        setTimeout(() => {
+          const respuesta = window.iaInteriores.procesarMultiConsulta(msg);
+          agregarMensajeChat(respuesta, 'bot');
+        }, 500);
       }
-      const respuesta = await window.iaInteriores.procesarMultiConsulta(msg);
-      quitarUltimoMensajeBot();
-      agregarMensajeChat(respuesta, 'bot');
+    });
+    
+    document.getElementById('modoIAChat').addEventListener('change', (e)=>{
+      if(window.iaInteriores) window.iaInteriores.setModoRespuesta(e.target.value);
     });
 
-    function agregarMensajeChat(texto, tipo){
-      const chat = document.getElementById('chat-messages');
-      const div = document.createElement('div');
-      div.style.maxWidth = '85%';
-      div.style.alignSelf = tipo==='user'?'flex-end':'flex-start';
-      div.style.background = tipo==='user'?'#e1ffc7':'#fff';
-      div.style.color = '#222';
-      div.style.padding = '8px 12px';
-      div.style.borderRadius = tipo==='user'?'16px 16px 4px 16px':'16px 16px 16px 4px';
-      div.style.boxShadow = '0 2px 8px rgba(0,0,0,0.04)';
-      div.innerHTML = tipo === 'bot' ? limpiarMarkdown(texto) : texto;
-      chat.appendChild(div);
-      chat.scrollTop = chat.scrollHeight;
-    }
-
-    function quitarUltimoMensajeBot(){
-      const chat = document.getElementById('chat-messages');
-      for(let i=chat.children.length-1;i>=0;i--){
-        if(chat.children[i].style.alignSelf==='flex-start'){
-          chat.removeChild(chat.children[i]);
-          break;
-        }
-      }
-    }
-
-    document.getElementById('modoIAChat').addEventListener('change', function(e){
-      if(window.iaInteriores){
-        const estado = window.iaInteriores.setModoRespuesta(e.target.value);
-        console.log('Modo cambiado a:', estado);
+    document.addEventListener('DOMContentLoaded', ()=>{
+      if (!cargarHistorialChat()) {
+        setTimeout(() => {
+          agregarMensajeChat('👋 ¡Hola! Soy la IA de ATRM para el Convenio de Interiores. ¿Qué necesitas saber?', 'bot');
+        }, 500);
       }
     });
   </script>
+  <script src="js/modo_oscuro.js"></script>
 </body>
 </html>

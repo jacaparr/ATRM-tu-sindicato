@@ -1,0 +1,76 @@
+{
+  "noticias": [
+    {
+      "id": 1,
+      "fecha": "2025-11-10",
+      "titulo": "Aprobado el nuevo convenio colectivo 2024-2027",
+      "resumen": "El convenio del sector de limpieza pública viaria entra en vigor con mejoras salariales y nuevos derechos para los trabajadores.",
+      "contenido": "El nuevo convenio colectivo del sector de limpieza pública viaria de la Región de Murcia ha sido aprobado oficialmente. Este acuerdo, válido desde 2024 hasta 2027, incluye incrementos salariales progresivos, mejoras en las condiciones de trabajo y un refuerzo de los derechos laborales. ATRM ha participado activamente en las negociaciones para garantizar las mejores condiciones para los trabajadores del sector.",
+      "categoria": "convenio",
+      "url": "#convenio"
+    },
+    {
+      "id": 2,
+      "fecha": "2025-11-05",
+      "titulo": "Calendario laboral 2026 ya disponible",
+      "resumen": "Consulta los festivos nacionales, regionales y locales para planificar tu año laboral.",
+      "contenido": "Ya está disponible el calendario laboral oficial de 2026 para la Región de Murcia. Incluye 12 festivos nacionales y regionales, más 3 días inhábiles en la localidad de Murcia (Bando de la Huerta, Romería de Fuensanta y San Martín de Porres). Los trabajadores del sector pueden consultar el calendario completo en nuestra web.",
+      "categoria": "informacion",
+      "url": "festivos.html"
+    },
+    {
+      "id": 3,
+      "fecha": "2025-10-28",
+      "titulo": "Nuevas mejoras en el convenio de interiores",
+      "resumen": "El convenio de limpieza de interiores incorpora mejoras en jornada, vacaciones y permisos retribuidos.",
+      "contenido": "El convenio colectivo de limpieza de edificios y locales de la Región de Murcia ha sido actualizado con importantes mejoras. Destaca la jornada de 1.792 horas anuales, 30 días naturales de vacaciones, 3 pagas extraordinarias y un amplio catálogo de permisos retribuidos. ATRM ofrece asesoramiento gratuito sobre estos derechos.",
+      "categoria": "convenio",
+      "url": "interiores.html"
+    },
+    {
+      "id": 4,
+      "fecha": "2025-10-15",
+      "titulo": "Guía actualizada de trámites sindicales",
+      "resumen": "ATRM actualiza su sección de trámites con guías paso a paso para afiliación, bajas, permisos y más.",
+      "contenido": "Hemos actualizado nuestra sección de trámites con guías detalladas y fáciles de seguir. Ahora puedes consultar cómo tramitar bajas médicas, solicitar permisos retribuidos, afiliarte al sindicato, presentar reclamaciones salariales y mucho más. Todas las guías incluyen los formularios necesarios y los plazos aplicables.",
+      "categoria": "tramites",
+      "url": "tramites.html"
+    },
+    {
+      "id": 5,
+      "fecha": "2025-10-01",
+      "titulo": "Subida salarial: Nuevas tablas para 2025-2026",
+      "resumen": "Consulta las nuevas tablas salariales con los incrementos acordados en el convenio colectivo.",
+      "contenido": "Las nuevas tablas salariales para el período 2025-2026 ya están disponibles. El convenio establece incrementos progresivos que garantizan la mejora del poder adquisitivo de los trabajadores del sector. Puedes consultar tu categoría profesional y salario correspondiente en la sección de salarios de nuestra web.",
+      "categoria": "salarios",
+      "url": "salaries.html"
+    },
+    {
+      "id": 6,
+      "fecha": "2025-09-20",
+      "titulo": "ATRM firma acuerdo de subrogación para trabajadores",
+      "resumen": "Nuevo protocolo garantiza la continuidad laboral en cambios de empresa adjudicataria.",
+      "contenido": "ATRM ha participado en la firma de un protocolo de subrogación que protege los derechos de los trabajadores cuando se produce un cambio de empresa adjudicataria en los servicios de limpieza. Este acuerdo garantiza el mantenimiento de las condiciones laborales, la antigüedad y los derechos adquiridos durante el proceso de subrogación.",
+      "categoria": "derechos",
+      "url": "#convenio"
+    },
+    {
+      "id": 7,
+      "fecha": "2025-09-10",
+      "titulo": "Consulta a la IA sobre tus derechos laborales",
+      "resumen": "Nuestra nueva IA puede responder tus dudas sobre el convenio, permisos, salarios y más.",
+      "contenido": "ATRM ha incorporado una inteligencia artificial avanzada que puede responder a todas tus consultas sobre el convenio colectivo, permisos retribuidos, vacaciones, salarios, bajas médicas y mucho más. Está disponible 24/7 tanto en la página principal como en la sección de interiores. Pregúntale lo que necesites saber sobre tus derechos laborales.",
+      "categoria": "tecnologia",
+      "url": "#"
+    },
+    {
+      "id": 8,
+      "fecha": "2025-08-30",
+      "titulo": "Refuerzo del complemento por IT en el sector",
+      "resumen": "Los trabajadores en situación de incapacidad temporal recibirán complemento hasta el 100% del salario.",
+      "contenido": "El convenio establece que los trabajadores que se encuentren en situación de incapacidad temporal por accidente de trabajo o enfermedad profesional recibirán un complemento por parte de la empresa hasta alcanzar el 100% de su salario base. Este derecho es aplicable desde el primer día de la baja y está garantizado por el convenio colectivo.",
+      "categoria": "derechos",
+      "url": "#convenio"
+    }
+  ]
+}

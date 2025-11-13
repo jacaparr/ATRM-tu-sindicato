@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noticias · ATRM - Tu Sindicato</title>
+  <style>
+    :root{ --primary:#FF6B35; --secondary:#FF8C42; --accent:#FFA726; --dark:#2C3E50; --light:#FFFFFF; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial;color:var(--dark);background:linear-gradient(180deg, #fff 0%, #fff7f0 100%);line-height:1.6}
+    header{position:sticky;top:0;z-index:10;background:linear-gradient(90deg,var(--primary),var(--secondary));color:#fff;box-shadow:0 2px 12px rgba(255,107,53,.15)}
+    .nav{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
+    .logo{font-weight:800;font-size:20px;letter-spacing:.3px}
+    .menu{display:flex;gap:4px}
+    .menu a{color:#fff;text-decoration:none;padding:8px 12px;border-radius:10px;transition:.2s;font-size:15px}
+    .menu a:hover, .menu a.active{background:rgba(255,255,255,.15)}
+    .container{max-width:1100px;margin:28px auto;padding:24px 20px}
+    .card{background:#fff;border:1px solid #ffe2cf;border-radius:18px;box-shadow:0 10px 24px rgba(255,119,51,.08);padding:24px;margin-bottom:24px}
+    .btn{background:linear-gradient(90deg,var(--primary),var(--secondary));border:none;color:#fff;padding:10px 18px;border-radius:12px;cursor:pointer;font-weight:700;text-decoration:none;display:inline-block;transition:.2s;font-size:15px}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(255,107,53,.3)}
+    .btn.alt{background:#fff;color:var(--primary);border:2px solid var(--primary)}
+    .btn.alt:hover{background:var(--primary);color:#fff}
+    .badge{padding:6px 12px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase}
+    h1{color:var(--primary);margin-bottom:16px;font-size:32px}
+    h2{color:var(--primary);margin-bottom:12px;font-size:24px}
+    .noticia-destacada{border-left:4px solid var(--primary);padding-left:20px;margin-bottom:32px}
+    .filtros{display:flex;gap:12px;margin:20px 0;flex-wrap:wrap}
+    .filtro-btn{padding:8px 16px;border:2px solid var(--accent);background:#fff;color:var(--dark);border-radius:20px;cursor:pointer;font-size:14px;font-weight:600;transition:.2s}
+    .filtro-btn:hover, .filtro-btn.active{background:var(--accent);color:#4e2b00}
+    @media(max-width:768px){
+      .menu{flex-direction:column;gap:0}
+      .logo{font-size:18px}
+      h1{font-size:26px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="logo">ATRM · Tu Sindicato</div>
+      <nav class="menu">
+        <a href="index.html">Inicio</a>
+        <a href="index.html#convenio">Viaria</a>
+        <a href="interiores.html">Interiores</a>
+        <a href="salaries.html">Salarios</a>
+        <a href="tramites.html">Trámites</a>
+        <a href="festivos.html">Festivos</a>
+        <a href="noticias.html" class="active">Noticias</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="card">
+      <h1>📰 Últimas Noticias del Sector</h1>
+      <p style="font-size:16px;color:#666;margin-bottom:20px">
+        Mantente informado sobre las novedades del convenio colectivo, cambios normativos, derechos laborales y todas las actualizaciones relevantes para los trabajadores del sector de limpieza en la Región de Murcia.
+      </p>
+      
+      <div class="filtros">
+        <button class="filtro-btn active" onclick="filtrarNoticias('todas')">Todas</button>
+        <button class="filtro-btn" onclick="filtrarNoticias('convenio')">Convenio</button>
+        <button class="filtro-btn" onclick="filtrarNoticias('salarios')">Salarios</button>
+        <button class="filtro-btn" onclick="filtrarNoticias('derechos')">Derechos</button>
+        <button class="filtro-btn" onclick="filtrarNoticias('tramites')">Trámites</button>
+        <button class="filtro-btn" onclick="filtrarNoticias('informacion')">Información</button>
+      </div>
+    </div>
+
+    <div id="noticiasCompletas">
+      <!-- Las noticias se cargarán aquí dinámicamente -->
+    </div>
+
+    <div class="card" style="text-align:center">
+      <h3>¿Tienes dudas sobre tus derechos?</h3>
+      <p style="margin:12px 0">Contacta con ATRM o utiliza nuestra IA para resolver tus consultas.</p>
+      <a href="index.html#contacto" class="btn">Contactar ATRM</a>
+      <a href="index.html" class="btn alt">Consultar IA</a>
+    </div>
+  </main>
+
+  <footer style="background:var(--dark);color:#fff;padding:32px 20px;text-align:center;margin-top:40px">
+    <div style="max-width:1100px;margin:0 auto">
+      <div style="font-weight:700;font-size:18px;margin-bottom:12px">ATRM · Tu Sindicato</div>
+      <p style="margin:8px 0;color:#ccc">Asociación de Trabajadores de la Región de Murcia</p>
+      <p style="margin:8px 0;color:#ccc">📞 968 30 00 37 | 📧 info@atrm-sindicato.es</p>
+      <div style="margin-top:16px;font-size:13px;color:#999">
+        © 2025 ATRM. Todos los derechos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/noticias.js"></script>
+  <script src="js/modo_oscuro.js"></script>
+  <script>
+    let todasLasNoticias = [];
+    
+    async function cargarTodasLasNoticias() {
+      try {
+        const response = await fetch('data/noticias.json');
+        const data = await response.json();
+        todasLasNoticias = data.noticias;
+        todasLasNoticias.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+        mostrarNoticias(todasLasNoticias);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
+    
+    function mostrarNoticias(noticias) {
+      const container = document.getElementById('noticiasCompletas');
+      if (!noticias || noticias.length === 0) {
+        container.innerHTML = '<div class="card"><p style="text-align:center;color:#999">No hay noticias disponibles.</p></div>';
+        return;
+      }
+      
+      container.innerHTML = noticias.map(noticia => `
+        <article class="card" style="padding:24px;margin-bottom:20px">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px;flex-wrap:wrap;gap:12px">
+            <div>
+              <div style="font-size:12px;color:#999;margin-bottom:6px">${formatearFecha(noticia.fecha)}</div>
+              <h2 style="margin:0;color:var(--primary)">${noticia.titulo}</h2>
+            </div>
+            <span class="badge" style="background:var(--accent);color:#4e2b00">${noticia.categoria}</span>
+          </div>
+          <p style="font-size:16px;line-height:1.6;margin:12px 0">${noticia.contenido}</p>
+          ${noticia.url !== '#' ? `<a href="${noticia.url}" class="btn alt" style="margin-top:12px">Leer más →</a>` : ''}
+        </article>
+      `).join('');
+    }
+    
+    function filtrarNoticias(categoria) {
+      // Actualizar botones activos
+      document.querySelectorAll('.filtro-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      
+      // Filtrar y mostrar
+      if (categoria === 'todas') {
+        mostrarNoticias(todasLasNoticias);
+      } else {
+        const filtradas = todasLasNoticias.filter(n => n.categoria === categoria);
+        mostrarNoticias(filtradas);
+      }
+    }
+    
+    function formatearFecha(fechaISO) {
+      const fecha = new Date(fechaISO);
+      const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
+      return fecha.toLocaleDateString('es-ES', opciones);
+    }
+    
+    document.addEventListener('DOMContentLoaded', cargarTodasLasNoticias);
+  </script>
+</body>
+</html>

@@ -356,6 +356,7 @@
   </script>
   <script src="js/noticias.js"></script>
   <script src="js/modo_oscuro.js"></script>
+  <script src="js/calculadora_vacaciones.js"></script>
 </body>
   <!-- Chat flotante estilo WhatsApp -->
   <div id="chat-float-btn" style="position:fixed;bottom:28px;right:28px;z-index:9999;">
@@ -655,4 +656,19 @@
       if (sel){ sel.addEventListener('change', ()=>{ if(window.iaContextual){ window.iaContextual.setModoRespuesta(sel.value); } }); }
     });
   </script>
+
+  <div class="card" style="padding:24px">
+      <h3>🗓️ Calculadora de vacaciones y descansos</h3>
+      <form id="formVacaciones" autocomplete="off" style="display:flex;flex-direction:column;gap:12px">
+        <label><strong>Jornada anual (horas):</strong>
+          <input type="number" id="jornadaInput" min="1000" max="2200" value="1792" required style="padding:8px;border-radius:8px;border:1px solid #ffd2b5;font-size:16px;width:100%">
+        </label>
+        <label><strong>Días trabajados al año:</strong>
+          <input type="number" id="diasInput" min="1" max="365" value="225" required style="padding:8px;border-radius:8px;border:1px solid #ffd2b5;font-size:16px;width:100%">
+        </label>
+        <button type="submit" class="btn">Calcular</button>
+      </form>
+      <div id="resultadoVacaciones" style="margin-top:14px;font-size:16px;color:#1976D2"></div>
+      <div style="font-size:13px;color:#666;margin-top:8px">Según convenio: 30 días naturales de vacaciones y descansos proporcionales a la jornada.</div>
+    </div>
 </html>

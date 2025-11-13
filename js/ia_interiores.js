@@ -9,6 +9,45 @@ class IAInteriores extends IAContextual {
       console.warn('Error cargando casos interiores:', error);
       this.baseCasos = { casos: {}, jurisprudencia: [] };
     }
+    // Cargar FAQs y artículos del convenio
+    try {
+      const faqsResp = await fetch('data/faq_interiores.json');
+      this.faqs = (await faqsResp.json()).faqs;
+    } catch (e) { this.faqs = []; }
+    try {
+      const artResp = await fetch('data/convenio_interiores_articulos.json');
+      this.articulos = (await artResp.json()).articulos;
+    } catch (e) { this.articulos = []; }
+  }
+
+  // Busca primero en FAQs, luego en artículos, luego API
+  async generarRespuesta(pregunta) {
+    pregunta = pregunta.trim().toLowerCase();
+    // 1. Buscar en FAQs
+    if (this.faqs && this.faqs.length) {
+      const faq = this.faqs.find(f => pregunta.includes(f.pregunta.toLowerCase().split(' ')[1]) || pregunta.includes(f.pregunta.toLowerCase().split(' ')[0]));
+      if (faq) {
+        return {
+          resumen: faq.respuesta + ` <br><span style='color:#888;font-size:13px'>(Referencia: ${faq.referencia})</span>`
+        };
+      }
+    }
+    // 2. Buscar en artículos del convenio (búsqueda simple por palabra clave)
+    if (this.articulos && this.articulos.length) {
+      for (const art of this.articulos) {
+        if (pregunta.includes(art.titulo.toLowerCase().split(' ')[0]) || pregunta.includes(art.titulo.toLowerCase().split(' ')[1])) {
+          return {
+            resumen: `<strong>${art.titulo}</strong>: ${art.texto} <br><span style='color:#888;font-size:13px'>(Referencia: ${art.referencia})</span>`
+          };
+        }
+      }
+    }
+    // 3. Fallback a API externa
+    const apiResp = await this.consultarAPI(pregunta);
+    if (apiResp) {
+      return { resumen: apiResp };
+    }
+    return { resumen: 'No he encontrado una respuesta directa en el convenio. Por favor, consulta el PDF oficial o contacta con ATRM.' };
   }
 
   // Fallback a API externa con contexto de interiores

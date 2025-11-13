@@ -1,0 +1,40 @@
+{
+  "articulos": [
+    {
+      "id": 1,
+      "titulo": "Ámbito de aplicación",
+      "texto": "El presente convenio colectivo será de aplicación a todas las empresas y trabajadores dedicados a la limpieza de edificios y locales en la Región de Murcia...",
+      "referencia": "Art. 1"
+    },
+    {
+      "id": 2,
+      "titulo": "Jornada laboral",
+      "texto": "La jornada máxima anual será de 1.792 horas efectivas de trabajo, distribuidas según lo pactado en cada empresa...",
+      "referencia": "Art. 8"
+    },
+    {
+      "id": 3,
+      "titulo": "Vacaciones",
+      "texto": "El personal afectado por este convenio disfrutará de 30 días naturales de vacaciones retribuidas por año completo trabajado...",
+      "referencia": "Art. 14"
+    },
+    {
+      "id": 4,
+      "titulo": "Permisos retribuidos",
+      "texto": "El trabajador, previo aviso y justificación, podrá ausentarse del trabajo con derecho a remuneración por los motivos y tiempos siguientes: matrimonio, nacimiento de hijo, fallecimiento de familiar, etc...",
+      "referencia": "Art. 16"
+    },
+    {
+      "id": 5,
+      "titulo": "Salario y pagas extra",
+      "texto": "El salario base y los complementos se recogen en las tablas anexas. Se abonarán tres pagas extraordinarias: junio, diciembre y marzo...",
+      "referencia": "Art. 20"
+    },
+    {
+      "id": 6,
+      "titulo": "Subrogación",
+      "texto": "En los supuestos de cambio de empresa adjudicataria, se garantizará la subrogación de los trabajadores en los términos previstos en el convenio...",
+      "referencia": "Art. 23"
+    }
+  ]
+}

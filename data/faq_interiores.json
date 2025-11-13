@@ -1,0 +1,39 @@
+{
+  "faqs": [
+    {
+      "pregunta": "¿Cuántos días de vacaciones me corresponden al año?",
+      "respuesta": "Según el convenio de limpieza de interiores de la Región de Murcia, te corresponden 30 días naturales de vacaciones por año completo trabajado.",
+      "referencia": "Art. 14"
+    },
+    {
+      "pregunta": "¿Existen días de asuntos propios en el convenio?",
+      "respuesta": "El convenio de limpieza de interiores de la Región de Murcia no contempla días de asuntos propios como tal. Los permisos retribuidos están regulados en el artículo 16 y cubren situaciones como matrimonio, nacimiento de hijo, fallecimiento de familiar, mudanza, exámenes, etc.",
+      "referencia": "Art. 16"
+    },
+    {
+      "pregunta": "¿Cuál es la jornada máxima anual?",
+      "respuesta": "La jornada máxima anual es de 1.792 horas efectivas de trabajo.",
+      "referencia": "Art. 8"
+    },
+    {
+      "pregunta": "¿Cuántas pagas extra tengo al año?",
+      "respuesta": "El convenio establece 3 pagas extraordinarias: en junio, diciembre y marzo.",
+      "referencia": "Art. 20"
+    },
+    {
+      "pregunta": "¿Qué permisos retribuidos existen?",
+      "respuesta": "Tienes derecho a permisos retribuidos por matrimonio, nacimiento de hijo, fallecimiento de familiar, mudanza, exámenes, etc. Consulta el artículo 16 para ver todos los casos.",
+      "referencia": "Art. 16"
+    },
+    {
+      "pregunta": "¿Qué ocurre si cambia la empresa adjudicataria?",
+      "respuesta": "En caso de cambio de empresa adjudicataria, se garantiza la subrogación de los trabajadores en los términos previstos en el convenio.",
+      "referencia": "Art. 23"
+    },
+    {
+      "pregunta": "¿Dónde puedo consultar el texto completo del convenio?",
+      "respuesta": "Puedes descargar el PDF oficial del convenio de limpieza de interiores desde la web de ATRM o consultarlo en el BORM.",
+      "referencia": "Art. 1"
+    }
+  ]
+}

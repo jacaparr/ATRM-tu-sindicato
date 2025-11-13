@@ -22,32 +22,48 @@ class IAInteriores extends IAContextual {
 
   // Busca primero en FAQs, luego en artículos, luego API
   async generarRespuesta(pregunta) {
+    const preguntaOriginal = pregunta;
     pregunta = pregunta.trim().toLowerCase();
+    let respuestaObj = null;
+    
     // 1. Buscar en FAQs
     if (this.faqs && this.faqs.length) {
       const faq = this.faqs.find(f => pregunta.includes(f.pregunta.toLowerCase().split(' ')[1]) || pregunta.includes(f.pregunta.toLowerCase().split(' ')[0]));
       if (faq) {
-        return {
+        respuestaObj = {
           resumen: faq.respuesta + ` <br><span style='color:#888;font-size:13px'>(Referencia: ${faq.referencia})</span>`
         };
       }
     }
+    
     // 2. Buscar en artículos del convenio (búsqueda simple por palabra clave)
-    if (this.articulos && this.articulos.length) {
+    if (!respuestaObj && this.articulos && this.articulos.length) {
       for (const art of this.articulos) {
         if (pregunta.includes(art.titulo.toLowerCase().split(' ')[0]) || pregunta.includes(art.titulo.toLowerCase().split(' ')[1])) {
-          return {
+          respuestaObj = {
             resumen: `<strong>${art.titulo}</strong>: ${art.texto} <br><span style='color:#888;font-size:13px'>(Referencia: ${art.referencia})</span>`
           };
+          break;
         }
       }
     }
+    
     // 3. Fallback a API externa
-    const apiResp = await this.consultarAPI(pregunta);
-    if (apiResp) {
-      return { resumen: apiResp };
+    if (!respuestaObj) {
+      const apiResp = await this.consultarAPI(pregunta);
+      if (apiResp) {
+        respuestaObj = { resumen: apiResp };
+      } else {
+        respuestaObj = { resumen: 'No he encontrado una respuesta directa en el convenio. Por favor, consulta el PDF oficial o contacta con ATRM.' };
+      }
     }
-    return { resumen: 'No he encontrado una respuesta directa en el convenio. Por favor, consulta el PDF oficial o contacta con ATRM.' };
+    
+    // Registrar en estadísticas si está disponible
+    if (window.sistemaStats && respuestaObj) {
+      window.sistemaStats.registrarConsulta(preguntaOriginal, respuestaObj.resumen, 'interiores');
+    }
+    
+    return respuestaObj;
   }
 
   // Fallback a API externa con contexto de interiores

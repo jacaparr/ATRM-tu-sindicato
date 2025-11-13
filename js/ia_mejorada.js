@@ -440,6 +440,11 @@ class IAContextual {
     });
     this.guardarHistorial();
     
+    // Registrar en estadísticas si está disponible
+    if (window.sistemaStats) {
+      window.sistemaStats.registrarConsulta(pregunta, respuesta, tema || 'general');
+    }
+    
     return respuesta;
   }
 

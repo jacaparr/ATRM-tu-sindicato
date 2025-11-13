@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vídeos Explicativos - ATRM</title>
+  <link rel="stylesheet" href="css/videos.css">
+</head>
+<body>
+  <header>
+    <h1>🎥 Vídeos Explicativos</h1>
+    <p>Aprende sobre tus derechos, trámites y convenios con nuestros tutoriales</p>
+  </header>
+
+  <main>
+    <div class="buscador-videos">
+      <input type="text" id="buscarVideo" placeholder="🔍 Buscar vídeos..." onkeyup="buscarVideos()">
+      <div class="filtros-categorias">
+        <button class="filtro-btn active" onclick="filtrarPorCategoria('todas')">Todas</button>
+        <button class="filtro-btn" onclick="filtrarPorCategoria('tramites')">🏛️ Trámites</button>
+        <button class="filtro-btn" onclick="filtrarPorCategoria('derechos')">⚖️ Derechos</button>
+        <button class="filtro-btn" onclick="filtrarPorCategoria('convenios')">📋 Convenios</button>
+        <button class="filtro-btn" onclick="filtrarPorCategoria('salarios')">💰 Salarios</button>
+      </div>
+    </div>
+
+    <div class="videos-grid" id="videosGrid">
+      <!-- Los vídeos se cargarán dinámicamente -->
+    </div>
+
+    <div class="sin-resultados" id="sinResultados" style="display: none;">
+      <p>😔 No se encontraron vídeos con esa búsqueda</p>
+    </div>
+  </main>
+
+  <div id="modalVideo" class="modal-video" style="display: none;" onclick="cerrarModalVideo(event)">
+    <div class="modal-video-contenido" onclick="event.stopPropagation()">
+      <button class="btn-cerrar-modal" onclick="cerrarModalVideo()">✕</button>
+      <div class="video-player" id="videoPlayer"></div>
+      <div class="video-info">
+        <h2 id="videoTitulo"></h2>
+        <p id="videoDescripcion"></p>
+        <div class="video-tags" id="videoTags"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>💡 ¿Necesitas un vídeo sobre un tema específico? <a href="mailto:info@atrm.es">Sugíerelo aquí</a></p>
+    <a href="index.html" class="btn-home">🏠 Volver al inicio</a>
+  </footer>
+
+  <script src="js/videos.js"></script>
+</body>
+</html>

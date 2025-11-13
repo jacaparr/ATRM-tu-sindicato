@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generador de Documentos - ATRM</title>
+  <link rel="stylesheet" href="css/generador.css">
+</head>
+<body>
+  <header>
+    <h1>📝 Generador de Documentos</h1>
+    <p>Crea escritos y solicitudes oficiales de forma rápida y sencilla</p>
+  </header>
+
+  <main>
+    <div class="selector-plantillas">
+      <h2>Selecciona el tipo de documento</h2>
+      <div class="plantillas-grid">
+        <button class="plantilla-btn" onclick="seleccionarPlantilla('vacaciones')">
+          <span class="plantilla-icon">🏖️</span>
+          <span class="plantilla-nombre">Solicitud de Vacaciones</span>
+        </button>
+        
+        <button class="plantilla-btn" onclick="seleccionarPlantilla('permiso')">
+          <span class="plantilla-icon">📅</span>
+          <span class="plantilla-nombre">Solicitud de Permiso</span>
+        </button>
+        
+        <button class="plantilla-btn" onclick="seleccionarPlantilla('reclamacion')">
+          <span class="plantilla-icon">⚠️</span>
+          <span class="plantilla-nombre">Reclamación Laboral</span>
+        </button>
+        
+        <button class="plantilla-btn" onclick="seleccionarPlantilla('baja')">
+          <span class="plantilla-icon">🏥</span>
+          <span class="plantilla-nombre">Comunicación de Baja</span>
+        </button>
+        
+        <button class="plantilla-btn" onclick="seleccionarPlantilla('certificado')">
+          <span class="plantilla-icon">📄</span>
+          <span class="plantilla-nombre">Solicitud de Certificado</span>
+        </button>
+        
+        <button class="plantilla-btn" onclick="seleccionarPlantilla('excedencia')">
+          <span class="plantilla-icon">⏸️</span>
+          <span class="plantilla-nombre">Solicitud de Excedencia</span>
+        </button>
+      </div>
+    </div>
+
+    <div id="formularioDocumento" style="display: none;">
+      <div class="formulario-header">
+        <h2 id="tituloFormulario"></h2>
+        <button class="btn-volver" onclick="volverSelector()">← Volver</button>
+      </div>
+      
+      <form id="formGenerador">
+        <div id="camposFormulario"></div>
+        
+        <div class="form-actions">
+          <button type="button" class="btn-preview" onclick="previsualizarDocumento()">
+            👁️ Previsualizar
+          </button>
+          <button type="button" class="btn-generar" onclick="generarDocumento()">
+            📥 Descargar Documento
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div id="vistaPrevia" style="display: none;">
+      <div class="preview-header">
+        <h2>👁️ Previsualización del documento</h2>
+        <button class="btn-cerrar-preview" onclick="cerrarPreview()">✕</button>
+      </div>
+      <div id="contenidoPreview" class="preview-content"></div>
+    </div>
+  </main>
+
+  <footer>
+    <p>💡 Todos los documentos generados son plantillas orientativas. Revísalos antes de presentarlos.</p>
+    <a href="index.html" class="btn-home">🏠 Volver al inicio</a>
+  </footer>
+
+  <script src="js/generador_documentos.js"></script>
+</body>
+</html>

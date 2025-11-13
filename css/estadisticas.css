@@ -1,0 +1,367 @@
+/* Estilos para estadísticas y encuestas */
+
+.btn-estadisticas {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 0.95em;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(240, 147, 251, 0.4);
+  transition: all 0.3s ease;
+  margin: 10px;
+}
+
+.btn-estadisticas:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(240, 147, 251, 0.6);
+}
+
+.modal-estadisticas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-estadisticas.visible {
+  opacity: 1;
+}
+
+.modal-contenido-stats {
+  background: white;
+  border-radius: 20px;
+  max-width: 900px;
+  width: 90%;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideDown 0.3s ease;
+}
+
+.modal-header-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  border-bottom: 2px solid #f0f0f0;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  border-radius: 20px 20px 0 0;
+}
+
+.modal-header-stats h3 {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.btn-cerrar-stats {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-size: 1.5em;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-cerrar-stats:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(90deg);
+}
+
+.stats-contenido {
+  overflow-y: auto;
+  padding: 25px;
+  flex: 1;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+.stat-icon {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.stat-value {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.stat-label {
+  font-size: 0.9em;
+  opacity: 0.9;
+}
+
+.temas-populares,
+.encuesta-satisfaccion,
+.consultas-recientes {
+  background: #f8f9fa;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.temas-populares h4,
+.encuesta-satisfaccion h4,
+.consultas-recientes h4 {
+  margin: 0 0 15px 0;
+  color: #2c3e50;
+  font-size: 1.2em;
+}
+
+.temas-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.tema-item {
+  display: grid;
+  grid-template-columns: 150px 1fr 50px;
+  align-items: center;
+  gap: 15px;
+}
+
+.tema-nombre {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.tema-barra {
+  background: #e0e0e0;
+  height: 8px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.tema-progreso {
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.5s ease;
+}
+
+.tema-count {
+  text-align: right;
+  font-weight: bold;
+  color: #667eea;
+}
+
+.estrellas-rating {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  font-size: 2em;
+  margin: 20px 0;
+}
+
+.estrella {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0.3;
+}
+
+.estrella:hover {
+  transform: scale(1.2);
+  opacity: 1;
+}
+
+#comentarioEncuesta {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 0.95em;
+  resize: vertical;
+  margin: 15px 0;
+  transition: border-color 0.3s ease;
+}
+
+#comentarioEncuesta:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.btn-enviar-encuesta {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.btn-enviar-encuesta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.encuesta-gracias {
+  text-align: center;
+  padding: 30px;
+}
+
+.encuesta-gracias h4 {
+  color: #2ed573;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.encuesta-gracias p {
+  color: #7f8c8d;
+}
+
+.consultas-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.consulta-item {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  border-left: 4px solid #667eea;
+  transition: all 0.3s ease;
+}
+
+.consulta-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.consulta-pregunta {
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 8px;
+}
+
+.consulta-tema {
+  display: inline-block;
+  background: #e0e7ff;
+  color: #667eea;
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 0.85em;
+  margin-bottom: 5px;
+}
+
+.consulta-fecha {
+  font-size: 0.85em;
+  color: #7f8c8d;
+  font-style: italic;
+}
+
+.no-datos {
+  text-align: center;
+  color: #7f8c8d;
+  font-style: italic;
+  padding: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .modal-contenido-stats {
+    width: 95%;
+    max-height: 90vh;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tema-item {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .tema-count {
+    text-align: left;
+  }
+
+  .estrellas-rating {
+    font-size: 1.5em;
+  }
+}
+
+/* Dark mode */
+body.dark-mode .modal-contenido-stats {
+  background: #1e1e1e;
+  color: #e0e0e0;
+}
+
+body.dark-mode .temas-populares,
+body.dark-mode .encuesta-satisfaccion,
+body.dark-mode .consultas-recientes {
+  background: #2d2d2d;
+}
+
+body.dark-mode .temas-populares h4,
+body.dark-mode .encuesta-satisfaccion h4,
+body.dark-mode .consultas-recientes h4 {
+  color: #e0e0e0;
+}
+
+body.dark-mode .tema-nombre,
+body.dark-mode .consulta-pregunta {
+  color: #e0e0e0;
+}
+
+body.dark-mode .tema-barra {
+  background: #3d3d3d;
+}
+
+body.dark-mode .consulta-item {
+  background: #3d3d3d;
+}
+
+body.dark-mode #comentarioEncuesta {
+  background: #3d3d3d;
+  color: #e0e0e0;
+  border-color: #4d4d4d;
+}
+
+body.dark-mode .consulta-tema {
+  background: #3d4d6d;
+  color: #9fb3ff;
+}

@@ -2,75 +2,48 @@
   "noticias": [
     {
       "id": 1,
-      "fecha": "2025-11-10",
-      "titulo": "Aprobado el nuevo convenio colectivo 2024-2027",
-      "resumen": "El convenio del sector de limpieza pública viaria entra en vigor con mejoras salariales y nuevos derechos para los trabajadores.",
-      "contenido": "El nuevo convenio colectivo del sector de limpieza pública viaria de la Región de Murcia ha sido aprobado oficialmente. Este acuerdo, válido desde 2024 hasta 2027, incluye incrementos salariales progresivos, mejoras en las condiciones de trabajo y un refuerzo de los derechos laborales. ATRM ha participado activamente en las negociaciones para garantizar las mejores condiciones para los trabajadores del sector.",
-      "categoria": "convenio",
-      "url": "#convenio"
+      "fecha": "2025-11-13",
+      "titulo": "El CES destaca el valor de la inmigración y pide frenar el odio",
+      "resumen": "CCOO, UGT, CEOE y CEPYME respaldan un informe que reivindica la aportación de la migración y reclama un pacto de Estado por la convivencia.",
+      "contenido": "El Consejo Económico y Social ha aprobado un informe sobre migraciones que subraya el impacto positivo de la población migrante en el desarrollo económico, social y cultural de España. El documento, respaldado por todas las organizaciones presentes en el órgano, urge a reforzar los recursos públicos, actualizar los instrumentos de gestión de flujos y combatir los discursos de odio con un pacto de Estado por la convivencia.",
+  "categoria": "informacion",
+      "url": "https://www.ccoo.es/noticia:741791--El_CES_destaca_el_papel_positivo_de_la_inmigracion_en_el_desarrollo_socioeconomico_y_cultural_de_Espana_y_alerta_del_riesgo_de_los_discursos_de_odio"
     },
     {
       "id": 2,
-      "fecha": "2025-11-05",
-      "titulo": "Calendario laboral 2026 ya disponible",
-      "resumen": "Consulta los festivos nacionales, regionales y locales para planificar tu año laboral.",
-      "contenido": "Ya está disponible el calendario laboral oficial de 2026 para la Región de Murcia. Incluye 12 festivos nacionales y regionales, más 3 días inhábiles en la localidad de Murcia (Bando de la Huerta, Romería de Fuensanta y San Martín de Porres). Los trabajadores del sector pueden consultar el calendario completo en nuestra web.",
-      "categoria": "informacion",
-      "url": "festivos.html"
+      "fecha": "2025-11-12",
+      "titulo": "Fairwork 2025 suspende a las plataformas en salarios y prevención",
+      "resumen": "CCOO presenta un informe que evidencia las carencias de las plataformas digitales en derechos laborales, transparencia y seguridad.",
+      "contenido": "Durante la jornada ‘Plataformización del trabajo: nuevas formas, viejas dinámicas’, CCOO y la Fundación 1º de Mayo han presentado el informe Fairwork España 2025. El estudio concluye que la mayoría de las plataformas analizadas no garantizan salarios dignos ni políticas eficaces de prevención de riesgos. El sindicato reclama transparencia algorítmica, negociación colectiva y la transposición ambiciosa de la Directiva europea sobre trabajo en plataformas.",
+  "categoria": "derechos",
+      "url": "https://www.ccoo.es/noticia:741696--La_mayoria_de_las_plataformas_digitales_suspenden_en_salarios_justos_y_prevencion_de_riesgos_laborales"
     },
     {
       "id": 3,
-      "fecha": "2025-10-28",
-      "titulo": "Nuevas mejoras en el convenio de interiores",
-      "resumen": "El convenio de limpieza de interiores incorpora mejoras en jornada, vacaciones y permisos retribuidos.",
-      "contenido": "El convenio colectivo de limpieza de edificios y locales de la Región de Murcia ha sido actualizado con importantes mejoras. Destaca la jornada de 1.792 horas anuales, 30 días naturales de vacaciones, 3 pagas extraordinarias y un amplio catálogo de permisos retribuidos. ATRM ofrece asesoramiento gratuito sobre estos derechos.",
-      "categoria": "convenio",
-      "url": "interiores.html"
+      "fecha": "2025-11-12",
+      "titulo": "Fondo del amianto: CCOO y UGT exigen reformar el reglamento",
+      "resumen": "Las víctimas siguen sin acceder a las indemnizaciones por las restricciones que impone el Real Decreto 483/2025.",
+      "contenido": "CCOO, UGT y la federación de víctimas del amianto (FEDAVICA) denuncian que el reglamento del fondo de compensación sólo permite tramitar casos con incapacidad profesional reconocida, dejando fuera a la mayoría de personas afectadas y a sus familias. Las organizaciones han solicitado una reunión urgente con el Ministerio de Inclusión para ampliar el acceso, agilizar los trámites y revisar al alza las cuantías previstas.",
+  "categoria": "derechos",
+      "url": "https://www.ccoo.es/noticia:741652--El_Gobierno_fracasa_con_la_entrada_en_vigor_del_fondo_del_amianto_que_impide_a_la_mayoria_de_las_victimas_ejercer_su_derecho_a_una_indemnizacion"
     },
     {
       "id": 4,
-      "fecha": "2025-10-15",
-      "titulo": "Guía actualizada de trámites sindicales",
-      "resumen": "ATRM actualiza su sección de trámites con guías paso a paso para afiliación, bajas, permisos y más.",
-      "contenido": "Hemos actualizado nuestra sección de trámites con guías detalladas y fáciles de seguir. Ahora puedes consultar cómo tramitar bajas médicas, solicitar permisos retribuidos, afiliarte al sindicato, presentar reclamaciones salariales y mucho más. Todas las guías incluyen los formularios necesarios y los plazos aplicables.",
-      "categoria": "tramites",
-      "url": "tramites.html"
+      "fecha": "2025-11-05",
+      "titulo": "El Estatuto del Becario avanza contra la precariedad juvenil",
+      "resumen": "CCOO llama al Parlamento a tramitar sin dilaciones un marco que garantice derechos a quienes realizan prácticas.",
+      "contenido": "Tras la aprobación del anteproyecto en el Consejo de Ministros, la Secretaría de Juventud de CCOO ha presentado una hoja de ruta de movilizaciones para asegurar que el Estatuto del Becario entre en vigor. El sindicato reivindica que las personas becarias cuenten con prevención de riesgos, representación sindical y remuneraciones dignas, y exige a los grupos parlamentarios que no bloqueen la norma.",
+  "categoria": "derechos",
+      "url": "https://www.ccoo.es/noticia:741019--El_Estatuto_del_Becario_marca_un_antes_y_un_despues_en_la_lucha_contra_la_precariedad_juvenil"
     },
     {
       "id": 5,
-      "fecha": "2025-10-01",
-      "titulo": "Subida salarial: Nuevas tablas para 2025-2026",
-      "resumen": "Consulta las nuevas tablas salariales con los incrementos acordados en el convenio colectivo.",
-      "contenido": "Las nuevas tablas salariales para el período 2025-2026 ya están disponibles. El convenio establece incrementos progresivos que garantizan la mejora del poder adquisitivo de los trabajadores del sector. Puedes consultar tu categoría profesional y salario correspondiente en la sección de salarios de nuestra web.",
-      "categoria": "salarios",
-      "url": "salaries.html"
-    },
-    {
-      "id": 6,
-      "fecha": "2025-09-20",
-      "titulo": "ATRM firma acuerdo de subrogación para trabajadores",
-      "resumen": "Nuevo protocolo garantiza la continuidad laboral en cambios de empresa adjudicataria.",
-      "contenido": "ATRM ha participado en la firma de un protocolo de subrogación que protege los derechos de los trabajadores cuando se produce un cambio de empresa adjudicataria en los servicios de limpieza. Este acuerdo garantiza el mantenimiento de las condiciones laborales, la antigüedad y los derechos adquiridos durante el proceso de subrogación.",
-      "categoria": "derechos",
-      "url": "#convenio"
-    },
-    {
-      "id": 7,
-      "fecha": "2025-09-10",
-      "titulo": "Consulta a la IA sobre tus derechos laborales",
-      "resumen": "Nuestra nueva IA puede responder tus dudas sobre el convenio, permisos, salarios y más.",
-      "contenido": "ATRM ha incorporado una inteligencia artificial avanzada que puede responder a todas tus consultas sobre el convenio colectivo, permisos retribuidos, vacaciones, salarios, bajas médicas y mucho más. Está disponible 24/7 tanto en la página principal como en la sección de interiores. Pregúntale lo que necesites saber sobre tus derechos laborales.",
-      "categoria": "tecnologia",
-      "url": "#"
-    },
-    {
-      "id": 8,
-      "fecha": "2025-08-30",
-      "titulo": "Refuerzo del complemento por IT en el sector",
-      "resumen": "Los trabajadores en situación de incapacidad temporal recibirán complemento hasta el 100% del salario.",
-      "contenido": "El convenio establece que los trabajadores que se encuentren en situación de incapacidad temporal por accidente de trabajo o enfermedad profesional recibirán un complemento por parte de la empresa hasta alcanzar el 100% de su salario base. Este derecho es aplicable desde el primer día de la baja y está garantizado por el convenio colectivo.",
-      "categoria": "derechos",
-      "url": "#convenio"
+      "fecha": "2025-11-04",
+      "titulo": "Campaña sindical para visibilizar los riesgos laborales ocultos",
+      "resumen": "CCOO y la Fundación 1º de Mayo lanzan ‘Protege la vida, visibiliza el riesgo’ para reforzar la cultura preventiva.",
+      "contenido": "Con motivo del 30º aniversario de la Ley de Prevención de Riesgos Laborales, CCOO impulsa una campaña que pone el foco en el cáncer laboral, las caídas en altura, los trastornos musculoesqueléticos y la salud mental. El sindicato reclama más recursos públicos, compromiso empresarial y un diálogo social que desbloquee medidas frente a la siniestralidad, tras registrar 489 fallecimientos laborales en lo que va de 2025.",
+  "categoria": "informacion",
+      "url": "https://www.ccoo.es/noticia:740915--CCOO_intensifica_la_sensibilizacion_sobre_la_prevencion_de_riesgos_laborales"
     }
   ]
 }

@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ATRM - Tu Sindicato</title>
+  <link rel="stylesheet" href="css/preloader.css">
   <style>
     :root{ --primary:#FF6B35; --secondary:#FF8C42; --accent:#FFA726; --dark:#2C3E50; --light:#FFFFFF; }
     *{box-sizing:border-box}
@@ -44,6 +45,16 @@
   </style>
 </head>
 <body>
+  <!-- Preloader / Splash Screen -->
+  <div id="preloader">
+    <div class="preloader-content">
+      <div class="preloader-logo">ATRM</div>
+      <div class="preloader-subtitle">Tu Sindicato</div>
+      <div class="preloader-spinner"></div>
+      <div class="preloader-loading">Cargando...</div>
+    </div>
+  </div>
+  
   <header>
     <div class="nav">
       <div class="logo">ATRM · Tu Sindicato</div>
@@ -673,6 +684,9 @@
       <div style="font-size:13px;color:#666;margin-top:8px">Según convenio: 30 días naturales de vacaciones y descansos proporcionales a la jornada.</div>
     </div>
 
+  <!-- Preloader Script (must load early) -->
+  <script src="js/preloader.js"></script>
+  
   <!-- Scripts para nuevas funcionalidades -->
   <link rel="stylesheet" href="css/notificaciones.css">
   <link rel="stylesheet" href="css/telegram_widget.css">

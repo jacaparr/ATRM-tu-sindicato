@@ -1,9 +1,9 @@
 // Widget de Telegram para consultas y alertas
 class TelegramWidget {
   constructor() {
-    // Configura aquí tu bot o canal de Telegram
-    this.botUsername = 'atrm_sindicato_bot'; // Cambiar por el nombre real del bot
-    this.channelUrl = 'https://t.me/atrm_sindicato'; // Cambiar por el canal real
+    // Bot y canal oficiales de ATRM
+    this.botUsername = 'atrm_sindicato_bot';
+    this.channelUrl = 'https://t.me/atrm_sindicato';
     this.initWidget();
   }
 

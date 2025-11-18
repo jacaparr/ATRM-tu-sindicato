@@ -4,7 +4,9 @@
  * Responde consultas laborales usando la IA del sitio
  */
 
+require('dotenv').config();
 const TelegramBot = require('node-telegram-bot-api');
+const axios = require('axios');
 
 // Cargar token desde variable de entorno
 const token = process.env.TELEGRAM_BOT_TOKEN;
@@ -161,16 +163,82 @@ bot.on('message', async (msg) => {
   }
 });
 
-// Función para obtener respuesta de la IA (placeholder)
+// Función para obtener respuesta de la IA
 async function obtenerRespuestaIA(pregunta) {
-  // TODO: Integrar con api/chat.js o llamar directamente a OpenRouter/DeepSeek
-  // Por ahora, respuesta genérica
-  return `📝 Recibí tu pregunta: "${pregunta}"\n\n` +
-         `🔄 Estoy en proceso de integración con la IA del sitio web.\n\n` +
-         `💡 Mientras tanto, puedes:\n` +
-         `• Usar el chat en la web: https://atrm-tu-sindicato.vercel.app\n` +
-         `• Llamar al 968 30 00 37\n` +
-         `• Escribir a info@atrm-sindicato.es`;
+  try {
+    // Intentar usar la API local primero (si está desplegada)
+    const siteUrl = process.env.SITE_URL || 'https://atrm-tu-sindicato.vercel.app';
+    
+    try {
+      const response = await axios.post(`${siteUrl}/api/chat`, {
+        prompt: pregunta
+      }, {
+        timeout: 15000
+      });
+      
+      if (response.data && response.data.respuesta) {
+        return `🤖 ${response.data.respuesta}\n\n` +
+               `💡 Para más detalles visita: ${siteUrl}`;
+      }
+    } catch (apiError) {
+      console.log('API no disponible, usando respuesta básica');
+    }
+    
+    // Respuesta básica con información útil
+    const preguntaLower = pregunta.toLowerCase();
+    
+    // Respuestas contextuales según palabras clave
+    if (preguntaLower.includes('vacaciones')) {
+      return `🏖️ *Vacaciones según convenio:*\n\n` +
+             `• 30 días naturales al año\n` +
+             `• Se disfrutan preferentemente entre junio y septiembre\n` +
+             `• Deben ser notificadas con al menos 2 meses de antelación\n\n` +
+             `📖 Consulta el artículo completo en la web: ${siteUrl}`;
+    }
+    
+    if (preguntaLower.includes('salario') || preguntaLower.includes('sueldo')) {
+      return `💰 *Información salarial:*\n\n` +
+             `El convenio 2024-2027 incluye:\n` +
+             `• 2024: Incremento de 400€ lineales\n` +
+             `• 2025-2027: IPC real nacional\n\n` +
+             `� Consulta las tablas salariales completas:\n${siteUrl}/salaries.html`;
+    }
+    
+    if (preguntaLower.includes('permiso') || preguntaLower.includes('permisos')) {
+      return `📋 *Permisos retribuidos:*\n\n` +
+             `El convenio contempla permisos por:\n` +
+             `• Matrimonio, nacimiento, fallecimiento\n` +
+             `• Traslado de domicilio\n` +
+             `• Deberes inexcusables\n` +
+             `• Exámenes oficiales\n` +
+             `• Y más...\n\n` +
+             `� Lista completa en: ${siteUrl}/tramites.html`;
+    }
+    
+    if (preguntaLower.includes('baja') || preguntaLower.includes('incapacidad')) {
+      return `🏥 *Bajas médicas e IT:*\n\n` +
+             `Por accidente laboral o enfermedad profesional:\n` +
+             `• Complemento hasta el 100% del salario\n` +
+             `• Desde el primer día de la baja\n\n` +
+             `📝 Guía de trámites: ${siteUrl}/tramites.html`;
+    }
+    
+    // Respuesta genérica para otras preguntas
+    return `📝 Tu pregunta: "${pregunta}"\n\n` +
+           `🤖 Puedo ayudarte mejor a través del chat web con IA completa.\n\n` +
+           `💡 Opciones:\n` +
+           `• Chat web 24/7: ${siteUrl}\n` +
+           `• Teléfono: 968 30 00 37\n` +
+           `• Email: info@atrm-sindicato.es\n\n` +
+           `O usa los comandos:\n` +
+           `/convenio /contacto /ayuda`;
+    
+  } catch (error) {
+    console.error('Error al obtener respuesta:', error);
+    return `❌ Error temporal. Contacta directamente:\n` +
+           `📞 968 30 00 37\n` +
+           `📧 info@atrm-sindicato.es`;
+  }
 }
 
 // Manejo de errores

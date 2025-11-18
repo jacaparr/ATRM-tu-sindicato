@@ -1,0 +1,29 @@
+{
+  "name": "atrm-sindicato",
+  "version": "1.0.0",
+  "description": "Sitio web y bot de Telegram para ATRM - Tu Sindicato",
+  "main": "index.html",
+  "scripts": {
+    "bot": "node bot/telegram-bot.js",
+    "bot:dev": "nodemon bot/telegram-bot.js",
+    "start": "npx http-server -p 8000"
+  },
+  "keywords": [
+    "sindicato",
+    "atrm",
+    "telegram",
+    "bot",
+    "convenio",
+    "laboral"
+  ],
+  "author": "ATRM - Asociación de Trabajadores de la Región de Murcia",
+  "license": "MIT",
+  "dependencies": {
+    "node-telegram-bot-api": "^0.66.0",
+    "dotenv": "^16.4.5",
+    "axios": "^1.7.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}

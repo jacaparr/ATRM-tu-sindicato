@@ -1,0 +1,49 @@
+# Node modules
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Git
+.git/
+.gitignore
+
+# Environment (se configurará en Railway)
+.env
+.env.local
+
+# Documentación
+*.md
+README.md
+CHANGELOG.md
+
+# Archivos de desarrollo
+.vscode/
+.idea/
+
+# Tests
+test/
+tests/
+*.test.js
+*.spec.js
+
+# Archivos temporales
+*.tmp
+*.log
+.DS_Store
+Thumbs.db
+
+# Build files
+dist/
+build/
+
+# Scripts de desarrollo
+scripts/actualizar_noticias.py
+scripts/generar-video-did.js
+
+# Assets innecesarios para el bot
+assets/
+css/
+js/
+site/
+*.html
+videos/

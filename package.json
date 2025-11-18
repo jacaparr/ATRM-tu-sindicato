@@ -2,11 +2,16 @@
   "name": "atrm-sindicato",
   "version": "1.0.0",
   "description": "Sitio web y bot de Telegram para ATRM - Tu Sindicato",
-  "main": "index.html",
+  "main": "bot/telegram-bot.js",
   "scripts": {
+    "start": "node bot/telegram-bot.js",
     "bot": "node bot/telegram-bot.js",
     "bot:dev": "nodemon bot/telegram-bot.js",
-    "start": "npx http-server -p 8000"
+    "web": "npx http-server -p 8000"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
   },
   "keywords": [
     "sindicato",

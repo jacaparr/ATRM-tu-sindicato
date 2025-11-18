@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desplegar Bot en Railway - Guía Interactiva</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .steps {
+            padding: 40px;
+        }
+        
+        .step {
+            background: #f8f9fa;
+            border-left: 5px solid #FF6B35;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .step.completed {
+            border-left-color: #28a745;
+            background: #d4edda;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: #FF6B35;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .step.completed .step-number {
+            background: #28a745;
+        }
+        
+        .step h2 {
+            margin-top: 10px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .step p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .action-button {
+            display: inline-block;
+            background: #FF6B35;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px 10px 10px 0;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        
+        .action-button:hover {
+            background: #e55a2b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,107,53,0.3);
+        }
+        
+        .action-button.secondary {
+            background: #6c757d;
+        }
+        
+        .action-button.secondary:hover {
+            background: #5a6268;
+        }
+        
+        .code-box {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            position: relative;
+            overflow-x: auto;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #FF6B35;
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+        
+        .copy-btn:hover {
+            background: #e55a2b;
+        }
+        
+        .alert {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .alert-success {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+        
+        .progress-bar {
+            background: #e9ecef;
+            height: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #FF6B35, #F7931E);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .checklist {
+            margin: 20px 0;
+        }
+        
+        .checklist-item {
+            padding: 15px;
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .checklist-item:hover {
+            border-color: #FF6B35;
+        }
+        
+        .checklist-item input[type="checkbox"] {
+            width: 25px;
+            height: 25px;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+        
+        .checklist-item.checked {
+            background: #d4edda;
+            border-color: #28a745;
+        }
+        
+        .video-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .video-placeholder {
+            background: #f8f9fa;
+            padding: 60px;
+            border-radius: 10px;
+            border: 3px dashed #dee2e6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Desplegar Bot en Railway</h1>
+            <p>Guía interactiva paso a paso - Solo 5 minutos</p>
+        </div>
+        
+        <div class="steps">
+            <div class="alert">
+                <strong>⚠️ Importante:</strong> No necesitas saber programación. Solo sigue los pasos y haz clic en los botones.
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressBar">0%</div>
+            </div>
+            
+            <!-- PASO 1 -->
+            <div class="step" id="step1">
+                <div class="step-number">1</div>
+                <h2>🌐 Abrir Railway</h2>
+                <p>Haz clic en el botón de abajo para abrir Railway en una nueva pestaña.</p>
+                <a href="https://railway.app/new" target="_blank" class="action-button" onclick="completeStep(1)">
+                    Abrir Railway →
+                </a>
+                <div class="alert" style="margin-top: 20px;">
+                    <strong>💡 Tip:</strong> Deja esta página abierta para seguir los siguientes pasos.
+                </div>
+            </div>
+            
+            <!-- PASO 2 -->
+            <div class="step" id="step2">
+                <div class="step-number">2</div>
+                <h2>🔐 Iniciar Sesión con GitHub</h2>
+                <p>En Railway, busca el botón morado que dice "Login with GitHub" y haz clic.</p>
+                <p>Luego autoriza a Railway para acceder a tus repositorios.</p>
+                <button class="action-button" onclick="completeStep(2)">
+                    ✓ Ya inicié sesión
+                </button>
+            </div>
+            
+            <!-- PASO 3 -->
+            <div class="step" id="step3">
+                <div class="step-number">3</div>
+                <h2>📦 Seleccionar Repositorio</h2>
+                <p>En Railway:</p>
+                <div class="checklist">
+                    <label class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <span>Haz clic en "Deploy from GitHub repo"</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <span>Busca "ATRM-tu-sindicato"</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <span>Haz clic en el repositorio para seleccionarlo</span>
+                    </label>
+                </div>
+                <button class="action-button" onclick="completeStep(3)">
+                    ✓ Repositorio seleccionado
+                </button>
+            </div>
+            
+            <!-- PASO 4 -->
+            <div class="step" id="step4">
+                <div class="step-number">4</div>
+                <h2>⚙️ Configurar Token del Bot</h2>
+                <p>En Railway, busca la pestaña "Variables" y añade esta variable:</p>
+                
+                <div style="margin: 20px 0;">
+                    <strong>Nombre de la variable:</strong>
+                    <div class="code-box">
+                        <button class="copy-btn" onclick="copyToClipboard('TELEGRAM_BOT_TOKEN')">Copiar</button>
+                        TELEGRAM_BOT_TOKEN
+                    </div>
+                </div>
+                
+                <div style="margin: 20px 0;">
+                    <strong>Valor de la variable:</strong>
+                    <div class="code-box">
+                        <button class="copy-btn" onclick="copyToClipboard('8351654307:AAGvevlffmdOvVPU3aaeRn2jxPc3dOQMlR4')">Copiar</button>
+                        8351654307:AAGvevlffmdOvVPU3aaeRn2jxPc3dOQMlR4
+                    </div>
+                </div>
+                
+                <div class="alert">
+                    <strong>📝 Cómo hacerlo:</strong>
+                    <ol style="margin-left: 20px; margin-top: 10px;">
+                        <li>Haz clic en "Variables" (arriba)</li>
+                        <li>Haz clic en "+ New Variable"</li>
+                        <li>Copia el nombre (botón "Copiar" arriba)</li>
+                        <li>Pégalo en "Variable Name"</li>
+                        <li>Copia el valor (botón "Copiar" arriba)</li>
+                        <li>Pégalo en "Variable Value"</li>
+                        <li>Haz clic en "Add"</li>
+                    </ol>
+                </div>
+                
+                <button class="action-button" onclick="completeStep(4)">
+                    ✓ Variable añadida
+                </button>
+            </div>
+            
+            <!-- PASO 5 -->
+            <div class="step" id="step5">
+                <div class="step-number">5</div>
+                <h2>⏳ Esperar el Despliegue</h2>
+                <p>Railway construirá el bot automáticamente. Verás:</p>
+                <div class="code-box">
+                    🔨 Building...<br>
+                    ⬆️  Deploying...<br>
+                    ✅ Deployed successfully
+                </div>
+                <div class="alert">
+                    <strong>⏱️ Esto tarda 2-3 minutos.</strong> No cierres la página de Railway.
+                </div>
+                <button class="action-button" onclick="completeStep(5)">
+                    ✓ Despliegue completado
+                </button>
+            </div>
+            
+            <!-- PASO 6 -->
+            <div class="step" id="step6">
+                <div class="step-number">6</div>
+                <h2>🎉 Probar el Bot</h2>
+                <p>Abre Telegram y prueba el bot:</p>
+                <div class="checklist">
+                    <label class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <span>Busca: @atrm_sindicato_bot</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <span>Envía el comando: /start</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <span>El bot responde con el mensaje de bienvenida</span>
+                    </label>
+                </div>
+                
+                <a href="https://t.me/atrm_sindicato_bot" target="_blank" class="action-button">
+                    Abrir Bot en Telegram →
+                </a>
+                
+                <button class="action-button secondary" onclick="completeStep(6); showSuccess()">
+                    ✓ ¡El bot funciona!
+                </button>
+            </div>
+            
+            <!-- SUCCESS MESSAGE -->
+            <div id="successMessage" style="display: none;">
+                <div class="alert alert-success">
+                    <h2 style="color: #28a745; margin-bottom: 15px;">🎉 ¡Felicidades!</h2>
+                    <p style="font-size: 1.1em; color: #155724;">
+                        Tu bot está funcionando 24/7 en Railway. Ya puedes cerrarlo y el bot seguirá activo.
+                    </p>
+                    <hr style="margin: 20px 0; border: none; border-top: 1px solid #c3e6cb;">
+                    <h3 style="color: #155724; margin-bottom: 10px;">📊 Próximos pasos:</h3>
+                    <ul style="margin-left: 20px; color: #155724;">
+                        <li style="margin: 10px 0;">Comparte el bot: https://t.me/atrm_sindicato_bot</li>
+                        <li style="margin: 10px 0;">Monitorea el uso en Railway → pestaña "Metrics"</li>
+                        <li style="margin: 10px 0;">Revisa los logs en Railway → pestaña "Deployments"</li>
+                        <li style="margin: 10px 0;">El bot se actualiza automáticamente con cada git push</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let completedSteps = 0;
+        const totalSteps = 6;
+        
+        function completeStep(stepNumber) {
+            const step = document.getElementById('step' + stepNumber);
+            if (!step.classList.contains('completed')) {
+                step.classList.add('completed');
+                completedSteps++;
+                updateProgress();
+            }
+        }
+        
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('.checklist-item input[type="checkbox"]');
+            const checkedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
+            
+            checkboxes.forEach(cb => {
+                if (cb.checked) {
+                    cb.parentElement.classList.add('checked');
+                } else {
+                    cb.parentElement.classList.remove('checked');
+                }
+            });
+            
+            const percentage = Math.round((completedSteps / totalSteps) * 100);
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = percentage + '%';
+            progressBar.textContent = percentage + '%';
+        }
+        
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('✓ Copiado al portapapeles');
+            });
+        }
+        
+        function showSuccess() {
+            document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

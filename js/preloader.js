@@ -66,13 +66,72 @@
   /**
    * Initialize preloader behavior
    */
+  // --- PARTICLE ANIMATION ---
+  function randomBetween(a, b) { return a + Math.random() * (b - a); }
+  function createParticles(ctx, w, h, count) {
+    const colors = ['#fff', '#FFD580', '#FF8C42', '#FF6B35', '#FFA726'];
+    let arr = [];
+    for (let i = 0; i < count; i++) {
+      arr.push({
+        x: randomBetween(0, w),
+        y: randomBetween(0, h),
+        r: randomBetween(1.5, 4.5),
+        dx: randomBetween(-0.5, 0.5),
+        dy: randomBetween(-0.3, 0.3),
+        color: colors[Math.floor(Math.random() * colors.length)],
+        alpha: randomBetween(0.5, 1)
+      });
+    }
+    return arr;
+  }
+
+  function animateParticles(canvas, ctx, particles) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let p of particles) {
+      ctx.save();
+      ctx.globalAlpha = p.alpha;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
+      ctx.fillStyle = p.color;
+      ctx.shadowColor = p.color;
+      ctx.shadowBlur = 16;
+      ctx.fill();
+      ctx.restore();
+      p.x += p.dx;
+      p.y += p.dy;
+      if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+      p.alpha += randomBetween(-0.01, 0.01);
+      if (p.alpha < 0.3) p.alpha = 0.3;
+      if (p.alpha > 1) p.alpha = 1;
+    }
+    requestAnimationFrame(() => animateParticles(canvas, ctx, particles));
+  }
+
+  function setupParticles() {
+    const canvas = document.getElementById('preloader-particles');
+    if (!canvas) return;
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+    const ctx = canvas.getContext('2d');
+    const particles = createParticles(ctx, canvas.width, canvas.height, 48);
+    animateParticles(canvas, ctx, particles);
+  }
+
   function init() {
     // Prevent body scroll while preloader is active
     document.body.classList.add('preloader-active');
-    
+
     // Set up safety timeout
     setSafetyTimeout();
-    
+
+    // Setup particles
+    setupParticles();
+
     // Listen for page load
     if (document.readyState === 'complete') {
       // Page already loaded
@@ -81,7 +140,7 @@
       // Wait for page to load
       window.addEventListener('load', onPageLoad);
     }
-    
+
     // Also listen for DOMContentLoaded as a fallback
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', () => {
@@ -94,7 +153,7 @@
       });
     }
   }
-  
+
   // Initialize when script loads
   init();
 })();

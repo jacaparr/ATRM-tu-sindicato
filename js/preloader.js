@@ -69,17 +69,17 @@
   // --- PARTICLE ANIMATION ---
   function randomBetween(a, b) { return a + Math.random() * (b - a); }
   function createParticles(ctx, w, h, count) {
-    const colors = ['#fff', '#FFD580', '#FF8C42', '#FF6B35', '#FFA726'];
+    const colors = ['#fff', '#f0f8ff', '#FFD700', '#fffacd', '#c41e3a', '#ff6b6b'];
     let arr = [];
     for (let i = 0; i < count; i++) {
       arr.push({
         x: randomBetween(0, w),
         y: randomBetween(0, h),
-        r: randomBetween(1.5, 4.5),
-        dx: randomBetween(-0.5, 0.5),
-        dy: randomBetween(-0.3, 0.3),
+        r: randomBetween(2, 5),
+        dx: randomBetween(-0.3, 0.3),
+        dy: randomBetween(0.5, 1.5), // Caen más que se mueven lateral (como nieve)
         color: colors[Math.floor(Math.random() * colors.length)],
-        alpha: randomBetween(0.5, 1)
+        alpha: randomBetween(0.6, 1)
       });
     }
     return arr;
@@ -99,10 +99,15 @@
       ctx.restore();
       p.x += p.dx;
       p.y += p.dy;
-      if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
-      if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+      // Hacer que la nieve reaparezca arriba cuando cae fuera de la pantalla
+      if (p.y > canvas.height) {
+        p.y = 0;
+        p.x = randomBetween(0, canvas.width);
+      }
+      if (p.x < 0) p.x = canvas.width;
+      if (p.x > canvas.width) p.x = 0;
       p.alpha += randomBetween(-0.01, 0.01);
-      if (p.alpha < 0.3) p.alpha = 0.3;
+      if (p.alpha < 0.5) p.alpha = 0.5;
       if (p.alpha > 1) p.alpha = 1;
     }
     requestAnimationFrame(() => animateParticles(canvas, ctx, particles));

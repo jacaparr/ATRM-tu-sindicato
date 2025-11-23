@@ -9,8 +9,8 @@
   // Configuration
   const CONFIG = {
     FADE_OUT_DURATION: 800, // milliseconds (matches CSS transition)
-    MAX_DISPLAY_TIME: 5000, // 5 seconds safety timeout
-    MIN_DISPLAY_TIME: 500   // Minimum time to show preloader (for better UX)
+    MAX_DISPLAY_TIME: 8000, // 8 seconds para disfrutar la animación navideña
+    MIN_DISPLAY_TIME: 2000   // 2 segundos mínimo para ver la nieve y el gorro
   };
 
   let startTime = Date.now();

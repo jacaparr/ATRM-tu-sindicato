@@ -226,10 +226,15 @@
       });
     }
   });
-  // Cargar IA mejorada para el asistente del convenio
+  // Cargar IA mejorada para el asistente del convenio (Viaria)
   const scriptIA = document.createElement('script');
   scriptIA.src = 'js/ia_mejorada.js';
   document.head.appendChild(scriptIA);
+  
+  // Cargar IA para convenio de Interiores
+  const scriptIAInteriores = document.createElement('script');
+  scriptIAInteriores.src = 'js/ia_interiores.js';
+  document.head.appendChild(scriptIAInteriores);
 
   function abrirIA(){
     document.getElementById('iaModal').showModal();
@@ -380,11 +385,17 @@
   <div id="chat-atm-window" style="display:none;position:fixed;bottom:100px;right:32px;width:340px;max-width:95vw;background:#fff;border-radius:18px;box-shadow:0 8px 32px rgba(0,0,0,0.18);z-index:10000;overflow:hidden;flex-direction:column;">
     <div style="background:#25D366;color:#fff;padding:14px 18px;font-weight:700;display:flex;align-items:center;justify-content:space-between;gap:8px">
       <span>ATRM Chat</span>
-      <select id="modoIAChat" style="background:#fff;color:#222;font-size:12px;padding:4px 6px;border:none;border-radius:6px">
-        <option value="breve">Breve</option>
-        <option value="completo">Completo</option>
-        <option value="estricto">Estricto</option>
-      </select>
+      <div style="display:flex;gap:6px;align-items:center">
+        <select id="tipoConvenioChat" onchange="cambiarConvenioChat()" style="background:#fff;color:#222;font-size:12px;padding:4px 8px;border:none;border-radius:6px;font-weight:600">
+          <option value="viaria">🚛 Viaria</option>
+          <option value="interiores">🏢 Interiores</option>
+        </select>
+        <select id="modoIAChat" style="background:#fff;color:#222;font-size:12px;padding:4px 6px;border:none;border-radius:6px">
+          <option value="breve">Breve</option>
+          <option value="completo">Completo</option>
+          <option value="estricto">Estricto</option>
+        </select>
+      </div>
       <button onclick="cerrarChatATRM()" style="background:none;border:none;color:#fff;font-size:22px;cursor:pointer;">×</button>
     </div>
     <div id="chat-messages" style="padding:14px;height:260px;overflow-y:auto;background:#f7f7f7;font-size:15px;display:flex;flex-direction:column;gap:8px;"></div>
@@ -396,6 +407,8 @@
   <script>
     // Mensaje de bienvenida humano
     let chatBienvenidaMostrada = false;
+    let convenioActual = 'viaria'; // Por defecto Viaria
+    
     function abrirChatATRM(){
       document.getElementById('chat-atm-window').style.display = 'flex';
       setTimeout(()=>{
@@ -403,12 +416,27 @@
         if(el) el.focus();
       }, 200);
       if (!chatBienvenidaMostrada) {
-        agregarMensajeChat('👋 ¡Hola! Soy ATRM. ¿En qué puedo ayudarte sobre el convenio o tus derechos laborales?', 'bot');
+        const tipoConvenio = document.getElementById('tipoConvenioChat').value;
+        const nombreConvenio = tipoConvenio === 'viaria' ? 'Limpieza Pública Viaria' : 'Limpieza de Edificios y Locales';
+        agregarMensajeChat(`👋 ¡Hola! Soy ATRM. Estoy configurado para el convenio de ${nombreConvenio}. ¿En qué puedo ayudarte?`, 'bot');
         chatBienvenidaMostrada = true;
       }
     }
+    
     function cerrarChatATRM(){
       document.getElementById('chat-atm-window').style.display = 'none';
+    }
+    
+    function cambiarConvenioChat(){
+      const tipoConvenio = document.getElementById('tipoConvenioChat').value;
+      convenioActual = tipoConvenio;
+      const nombreConvenio = tipoConvenio === 'viaria' ? 'Limpieza Pública Viaria' : 'Limpieza de Edificios y Locales';
+      
+      // Limpiar mensajes y mostrar cambio
+      const chat = document.getElementById('chat-messages');
+      chat.innerHTML = '';
+      agregarMensajeChat(`✅ Cambiado a convenio de ${nombreConvenio}. ¿En qué puedo ayudarte?`, 'bot');
+      chatBienvenidaMostrada = true;
     }
     // Lógica de chat
     document.getElementById('chat-form').addEventListener('submit', async function(e){
@@ -426,18 +454,24 @@
       ];
       const frase = frasesEspera[Math.floor(Math.random()*frasesEspera.length)];
       agregarMensajeChat(frase, 'bot');
-      // Esperar a que la IA esté cargada
-      if (!window.iaContextual) {
+      // Esperar a que la IA esté cargada y usar la correcta según el convenio
+      const tipoConvenio = document.getElementById('tipoConvenioChat').value;
+      const iaActual = tipoConvenio === 'interiores' ? window.iaInteriores : window.iaContextual;
+      
+      if (!iaActual) {
         await new Promise(resolve => {
           const check = setInterval(() => {
-            if (window.iaContextual) {
+            const ia = tipoConvenio === 'interiores' ? window.iaInteriores : window.iaContextual;
+            if (ia) {
               clearInterval(check);
               resolve();
             }
           }, 100);
         });
       }
-      const respuesta = await window.iaContextual.procesarMultiConsulta(msg);
+      
+      const iaFinal = tipoConvenio === 'interiores' ? window.iaInteriores : window.iaContextual;
+      const respuesta = await iaFinal.procesarMultiConsulta(msg);
       quitarUltimoMensajeBot();
       // Añadir saludo humano si la respuesta es genérica
       let respuestaFinal = respuesta;
@@ -445,7 +479,11 @@
         respuestaFinal = '😊 '+respuesta;
       }
       agregarMensajeChat(respuestaFinal, 'bot');
-  if (!window.iaContextual?.modoEstrict) insertarSugerenciasChat();
+      
+      // Insertar sugerencias de la IA correcta
+      const tipoConvenioSugerencias = document.getElementById('tipoConvenioChat').value;
+      const iaSugerencias = tipoConvenioSugerencias === 'interiores' ? window.iaInteriores : window.iaContextual;
+      if (iaSugerencias && !iaSugerencias.modoEstrict) insertarSugerenciasChat();
     });
     function agregarMensajeChat(texto, tipo){
       const chat = document.getElementById('chat-messages');
@@ -471,8 +509,11 @@
       }
     }
     function insertarSugerenciasChat(){
-      if (!window.iaContextual || window.iaContextual.modoEstrict || typeof window.iaContextual.obtenerSugerencias !== 'function') return;
-      const sugs = window.iaContextual.obtenerSugerencias();
+      const tipoConvenio = document.getElementById('tipoConvenioChat').value;
+      const iaActual = tipoConvenio === 'interiores' ? window.iaInteriores : window.iaContextual;
+      
+      if (!iaActual || iaActual.modoEstrict || typeof iaActual.obtenerSugerencias !== 'function') return;
+      const sugs = iaActual.obtenerSugerencias();
       if (!sugs || !sugs.length) return;
       const cont = document.createElement('div');
       cont.style.maxWidth = '85%';
@@ -482,7 +523,7 @@
       cont.style.padding = '8px 12px';
       cont.style.borderRadius = '16px 16px 16px 4px';
       cont.style.boxShadow = '0 2px 8px rgba(0,0,0,0.04)';
-      const principalScore = (window.iaContextual.ultimosResultados && window.iaContextual.ultimosResultados[0]?.score) || 0;
+      const principalScore = (iaActual.ultimosResultados && iaActual.ultimosResultados[0]?.score) || 0;
       const label = document.createElement('div');
       label.textContent = principalScore < 6 ? 'También podrían interesarte:' : 'Temas relacionados:';
       label.style.fontWeight = '700';

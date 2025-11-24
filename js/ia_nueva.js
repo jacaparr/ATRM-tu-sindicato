@@ -313,4 +313,4 @@ class IAConvenioATRM {
 }
 
 // Exportar instancia global
-const iaContextual = new IAConvenioATRM();
+window.iaContextual = new IAConvenioATRM();

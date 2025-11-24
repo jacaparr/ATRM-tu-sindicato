@@ -230,7 +230,7 @@
   });
   // Cargar IA mejorada para el asistente del convenio (Viaria)
   const scriptIA = document.createElement('script');
-  scriptIA.src = 'js/ia_mejorada.js';
+  scriptIA.src = 'js/ia_nueva.js';
   document.head.appendChild(scriptIA);
   
   // Cargar IA para convenio de Interiores
@@ -241,12 +241,6 @@
   function abrirIA(){
     document.getElementById('iaModal').showModal();
     document.getElementById('preguntaIA').focus();
-    const sel = document.getElementById('modoIA');
-    if (sel && window.iaContextual){
-      if (window.iaContextual.modoEstrict) sel.value='estricto';
-      else if (window.iaContextual.modoBreve) sel.value='breve';
-      else sel.value='completo';
-    }
   }
 
   // Convertir Markdown simple a HTML
@@ -282,17 +276,15 @@
     sugDiv.style.display = 'none';
 
     try {
-      const caso = await window.iaContextual.generarRespuesta(pregunta);
-      let respuesta = caso?.respuesta || 'Lo siento, no tengo una respuesta para eso.';
+      const respuesta = await window.iaContextual.responder(pregunta);
       respuestaDiv.innerHTML = limpiarMarkdown(respuesta);
       respuestaDiv.style.display = 'block';
-      // Renderizar chips de sugerencias si hay (omitido en modo estricto)
-      if (window.iaContextual && !window.iaContextual.modoEstrict && typeof window.iaContextual.obtenerSugerencias === 'function') {
+      // Renderizar chips de sugerencias si hay
+      if (window.iaContextual && typeof window.iaContextual.obtenerSugerencias === 'function') {
         const sugs = window.iaContextual.obtenerSugerencias();
         if (sugs && sugs.length) {
-          const principalScore = (window.iaContextual.ultimosResultados && window.iaContextual.ultimosResultados[0]?.score) || 0;
           const titulo = document.createElement('div');
-          titulo.textContent = principalScore < 6 ? 'También podrían interesarte:' : 'Temas relacionados:';
+          titulo.textContent = '💬 Preguntas relacionadas:';
           titulo.style.margin = '8px 0 6px';
           titulo.style.fontWeight = '700';
           const wrap = document.createElement('div');
@@ -302,7 +294,7 @@
           sugs.forEach(s => {
             const b = document.createElement('button');
             b.type = 'button';
-            b.textContent = s.titulo;
+            b.textContent = typeof s === 'string' ? s : (s.titulo || s);
             b.style.background = '#fff7f0';
             b.style.border = '1px solid #ffd2b5';
             b.style.color = '#2C3E50';
@@ -312,7 +304,7 @@
             b.style.fontSize = '13px';
             b.onclick = () => {
               const inp = document.getElementById('preguntaIA');
-              inp.value = s.titulo;
+              inp.value = typeof s === 'string' ? s : (s.titulo || s);
               preguntarIA();
             };
             wrap.appendChild(b);
@@ -341,7 +333,7 @@
     const modoSel = document.getElementById('modoIA');
     if (modoSel) {
       modoSel.addEventListener('change', ()=>{
-        if (window.iaContextual){ window.iaContextual.setModoRespuesta(modoSel.value); }
+        // Modo removido en nueva versión
       });
     }
   });
@@ -473,19 +465,14 @@
       }
       
       const iaFinal = tipoConvenio === 'interiores' ? window.iaInteriores : window.iaContextual;
-      const respuesta = await iaFinal.procesarMultiConsulta(msg);
+      const respuesta = await iaFinal.responder(msg);
       quitarUltimoMensajeBot();
-      // Añadir saludo humano si la respuesta es genérica
-      let respuestaFinal = respuesta;
-      if(respuesta.startsWith('🤖')){
-        respuestaFinal = '😊 '+respuesta;
-      }
-      agregarMensajeChat(respuestaFinal, 'bot');
+      agregarMensajeChat(respuesta, 'bot');
       
       // Insertar sugerencias de la IA correcta
       const tipoConvenioSugerencias = document.getElementById('tipoConvenioChat').value;
       const iaSugerencias = tipoConvenioSugerencias === 'interiores' ? window.iaInteriores : window.iaContextual;
-      if (iaSugerencias && !iaSugerencias.modoEstrict) insertarSugerenciasChat();
+      if (iaSugerencias) insertarSugerenciasChat();
     });
     function agregarMensajeChat(texto, tipo){
       const chat = document.getElementById('chat-messages');
@@ -514,7 +501,7 @@
       const tipoConvenio = document.getElementById('tipoConvenioChat').value;
       const iaActual = tipoConvenio === 'interiores' ? window.iaInteriores : window.iaContextual;
       
-      if (!iaActual || iaActual.modoEstrict || typeof iaActual.obtenerSugerencias !== 'function') return;
+      if (!iaActual || typeof iaActual.obtenerSugerencias !== 'function') return;
       const sugs = iaActual.obtenerSugerencias();
       if (!sugs || !sugs.length) return;
       const cont = document.createElement('div');
@@ -566,12 +553,6 @@
         const el = document.getElementById('chat-input');
         if(el) el.focus();
       }, 200);
-      const sel = document.getElementById('modoIAChat');
-      if (sel && window.iaContextual){
-        if (window.iaContextual.modoEstrict) sel.value='estricto';
-        else if (window.iaContextual.modoBreve) sel.value='breve';
-        else sel.value='completo';
-      }
     }
     function cerrarChatATRM(){
       document.getElementById('chat-atm-window').style.display = 'none';
@@ -708,8 +689,7 @@
         }, 500);
       }
 
-      const sel = document.getElementById('modoIAChat');
-      if (sel){ sel.addEventListener('change', ()=>{ if(window.iaContextual){ window.iaContextual.setModoRespuesta(sel.value); } }); }
+      // Selector de modos removido en nueva versión de IA
     });
   </script>
 

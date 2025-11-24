@@ -625,15 +625,7 @@
       thinkingMsg.id = 'escribiendo-msg';
 
       try {
-        const respuesta = await window.iaContextual.generarRespuesta(pregunta);
-        let textoRespuesta = '🤔 No he encontrado una respuesta. Por favor, intenta con otra pregunta.';
-        if (respuesta) {
-          if (window.iaContextual.modoRespuesta === 'breve') {
-            textoRespuesta = respuesta.resumen || respuesta.detalle;
-          } else {
-            textoRespuesta = respuesta.detalle;
-          }
-        }
+        const textoRespuesta = await window.iaContextual.responder(pregunta);
         thinkingMsg.innerHTML = limpiarMarkdown(textoRespuesta);
         thinkingMsg.id = '';
         guardarHistorialChat(); // Guardar la respuesta final

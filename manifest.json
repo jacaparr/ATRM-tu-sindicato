@@ -1,0 +1,18 @@
+{
+  "name": "ATRM - Tu Sindicato",
+  "short_name": "ATRM",
+  "description": "Sindicato de referencia para los trabajadores de limpieza viaria y servicios municipales en la Región de Murcia.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#FF6B35",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "assets/pwa/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

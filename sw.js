@@ -57,6 +57,11 @@ self.addEventListener('activate', (event) => {
 // Fetch event: Network first, then cache (or Stale-While-Revalidate)
 // For this use case, we'll use Stale-While-Revalidate for non-mutating requests
 self.addEventListener('fetch', (event) => {
+  // Ignorar requests que no sean http/https (extensiones de Chrome, etc.)
+  if (!event.request.url.startsWith('http')) {
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request)
       .then((response) => {

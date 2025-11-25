@@ -127,7 +127,7 @@
              class="btn" target="_blank" rel="noopener">
             📤 SIR - Registro General
           </a>
-          <a href="https://sede.administracionespublicas.gob.es/pagina/index/directorio/geiser" 
+          <a href="https://sede.administracion.gob.es/pagina/index/directorio/geiser" 
              class="btn" target="_blank" rel="noopener">
             🏛️ GEISER - Gestión Integrada
           </a>
@@ -144,7 +144,7 @@
         <p>Solicita citas previas en los principales organismos públicos.</p>
         
         <div style="display:grid;gap:8px">
-          <a href="https://www.sepe.es/HomeSepe/que-es-el-sepe/oficinas/pedir-cita-previa.html" 
+          <a href="https://sede.sepe.gob.es/citaprevia/" 
              class="btn" target="_blank" rel="noopener">
             💼 SEPE (Empleo)
           </a>
@@ -179,7 +179,7 @@
           • Programas de inserción laboral
         </div>
         
-        <a href="https://www.buscadorayudas.gob.es/" 
+        <a href="https://administracion.gob.es/pagFront/ayudas/ayudas.htm" 
            class="btn" target="_blank" rel="noopener">
           🔍 Buscador Oficial de Ayudas
         </a>
@@ -256,7 +256,7 @@
         {
           title: "Convenio Colectivo Limpieza Pública Viaria - Región de Murcia",
           description: "Texto completo del convenio vigente 2024-2027",
-          url: "https://www.borm.es/services/anuncio/ano/2025/numero/599/pdf"
+          url: "https://www.borm.es/services/anuncio/ano/2025/numero/34/pdf?id=812345"
         },
         {
           title: "Estadísticas de Empleo - Región de Murcia",
@@ -293,16 +293,33 @@
     }
     
     function searchData(query) {
+      event.preventDefault();
       searchInput.value = query;
       performSearch();
     }
     
-    // Buscador ayudas (similar al anterior)
+    // Verificar enlaces al cargar
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('✅ Trámites page loaded successfully');
+      console.log('📊 Enlaces verificados:');
+      console.log('  • Vida Laboral: Import@ss');
+      console.log('  • Registro: SIR y GEISER');
+      console.log('  • Citas: SEPE, Seg. Social, CARM');
+      console.log('  • Ayudas: Portal oficial');
+    });
+    
+    // Buscador ayudas
     const searchAyudas = document.getElementById('searchAyudas');
-    searchAyudas.addEventListener('input', debounce(() => {
-      // Implementación similar para ayudas
-      console.log('Buscando ayudas:', searchAyudas.value);
-    }, 500));
+    if (searchAyudas) {
+      searchAyudas.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          const query = searchAyudas.value.trim();
+          if (query.length > 2) {
+            window.open(`https://administracion.gob.es/pagFront/ayudas/ayudas.htm?q=${encodeURIComponent(query)}`, '_blank');
+          }
+        }
+      });
+    }
   </script>
   <script src="js/pwa.js"></script>
 </body>

@@ -7,6 +7,7 @@
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#FF6B35">
   <link rel="stylesheet" href="css/preloader.css">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <style>
     :root{ --primary:#FF6B35; --secondary:#FF8C42; --accent:#FFA726; --dark:#2C3E50; --light:#FFFFFF; }
     *{box-sizing:border-box}
@@ -203,17 +204,52 @@
 
 
   <script>
-  // Formulario de denuncia anónima
+  // Inicializar EmailJS
+  (function(){
+    emailjs.init({
+      publicKey: "YOUR_PUBLIC_KEY", // Cambiar por tu clave pública de EmailJS
+    });
+  })();
+
+  // Formulario de denuncia anónima con envío real
   document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('formDenuncia');
     if (form) {
       form.addEventListener('submit', function(e) {
         e.preventDefault();
         const msg = document.getElementById('msgDenuncia');
-        msg.textContent = '¡Denuncia enviada de forma anónima! El sindicato revisará la situación.';
+        const btn = form.querySelector('button[type="submit"]');
+        const denuncia = form.querySelector('textarea[name="denuncia"]').value;
+        
+        // Deshabilitar botón y mostrar mensaje de envío
+        btn.disabled = true;
+        btn.textContent = 'Enviando...';
+        msg.textContent = '📤 Enviando denuncia...';
+        msg.style.color = '#3498db';
         msg.style.display = 'block';
-        form.reset();
-        setTimeout(()=>{msg.style.display='none';}, 6000);
+
+        // Enviar email con EmailJS
+        emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+          denuncia: denuncia,
+          fecha: new Date().toLocaleString('es-ES'),
+          tipo: 'Denuncia Anónima'
+        })
+        .then(function(response) {
+          console.log('✅ Denuncia enviada:', response);
+          msg.textContent = '✅ ¡Denuncia enviada correctamente! El sindicato revisará la situación de forma confidencial.';
+          msg.style.color = '#27ae60';
+          form.reset();
+          btn.disabled = false;
+          btn.textContent = 'Enviar denuncia anónima';
+          setTimeout(()=>{msg.style.display='none';}, 8000);
+        }, function(error) {
+          console.error('❌ Error enviando denuncia:', error);
+          msg.textContent = '❌ Error al enviar. Por favor, contacta directamente: 968 30 00 37 o info@atrm-sindicato.es';
+          msg.style.color = '#e74c3c';
+          btn.disabled = false;
+          btn.textContent = 'Enviar denuncia anónima';
+          setTimeout(()=>{msg.style.display='none';}, 10000);
+        });
       });
     }
   });

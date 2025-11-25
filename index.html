@@ -199,14 +199,7 @@
   <dialog id="iaModal" style="max-width:820px;width:96%;border:none;border-radius:16px;padding:0;overflow:auto;max-height:85vh">
     <div style="padding:16px">
       <p>Asistente IA del convenio</p>
-      <label style="display:block;margin-bottom:6px;font-size:13px;color:#555">Modo respuesta:
-        <select id="modoIA" style="margin-left:6px;padding:6px 8px;border:1px solid #ffd2b5;border-radius:8px;font-size:13px">
-          <option value="breve">Breve</option>
-          <option value="completo">Completo</option>
-          <option value="estricto">Estricto</option>
-        </select>
-      </label>
-      <input id="preguntaIA" placeholder="Escribe tu pregunta" style="width:100%;padding:14px;border:1px solid #ffd2b5;border-radius:12px;font-size:16px" />
+      <input id="preguntaIA" placeholder="Escribe tu pregunta" style="width:100%;padding:14px;border:1px solid #ffd2b5;border-radius:12px;font-size:16px;margin-top:8px" />
       <button id="btnPreguntar" class="btn" style="margin-top:12px" onclick="preguntarIA()">Preguntar</button>
       <div id="respuestaIA" style="margin-top:14px;display:none"></div>
       <div id="sugerenciasIA" style="display:none;margin-top:10px"></div>
@@ -276,8 +269,13 @@
     sugDiv.style.display = 'none';
 
     try {
+      console.log('🔍 Pregunta IA Modal:', pregunta);
       const respuesta = await window.iaContextual.responder(pregunta);
-      respuestaDiv.innerHTML = limpiarMarkdown(respuesta);
+      console.log('✅ Respuesta recibida:', respuesta);
+      console.log('📝 Tipo de respuesta:', typeof respuesta);
+      const htmlLimpio = limpiarMarkdown(respuesta);
+      console.log('🎨 HTML generado:', htmlLimpio);
+      respuestaDiv.innerHTML = htmlLimpio;
       respuestaDiv.style.display = 'block';
       // Renderizar chips de sugerencias si hay
       if (window.iaContextual && typeof window.iaContextual.obtenerSugerencias === 'function') {
@@ -316,6 +314,8 @@
         }
       }
     } catch (error) {
+      console.error('❌ Error en preguntarIA:', error);
+      console.error('Stack:', error.stack);
       respuestaDiv.innerHTML = '<div style="color:#e74c3c">❌ Error procesando la pregunta. Intenta de nuevo o contacta ATRM: 968 30 00 37</div>';
       respuestaDiv.style.display = 'block';
     } finally {
@@ -383,11 +383,6 @@
         <select id="tipoConvenioChat" onchange="cambiarConvenioChat()" style="background:#fff;color:#222;font-size:12px;padding:4px 8px;border:none;border-radius:6px;font-weight:600">
           <option value="viaria">🚛 Viaria</option>
           <option value="interiores">🏢 Interiores</option>
-        </select>
-        <select id="modoIAChat" style="background:#fff;color:#222;font-size:12px;padding:4px 6px;border:none;border-radius:6px">
-          <option value="breve">Breve</option>
-          <option value="completo">Completo</option>
-          <option value="estricto">Estricto</option>
         </select>
       </div>
       <button onclick="cerrarChatATRM()" style="background:none;border:none;color:#fff;font-size:22px;cursor:pointer;">×</button>
@@ -625,11 +620,14 @@
       thinkingMsg.id = 'escribiendo-msg';
 
       try {
+        console.log('🔍 Pregunta Chat:', pregunta);
         const textoRespuesta = await window.iaContextual.responder(pregunta);
+        console.log('✅ Respuesta Chat recibida:', textoRespuesta);
         thinkingMsg.innerHTML = limpiarMarkdown(textoRespuesta);
         thinkingMsg.id = '';
         guardarHistorialChat(); // Guardar la respuesta final
       } catch (e) {
+        console.error('❌ Error en chat:', e);
         thinkingMsg.innerHTML = '❌ Error al obtener respuesta.';
         thinkingMsg.id = '';
         guardarHistorialChat(); // Guardar el mensaje de error

@@ -258,7 +258,10 @@ class IAConvenioATRM {
    * Método principal: procesa pregunta y genera respuesta
    */
   async responder(pregunta) {
+    console.log('🤖 IA.responder() llamada con:', pregunta);
+    
     if (!pregunta || pregunta.trim().length === 0) {
+      console.log('⚠️ Pregunta vacía, devolviendo saludo');
       return this.generarSaludo();
     }
 
@@ -270,8 +273,11 @@ class IAConvenioATRM {
     }
 
     if (!this.casosData) {
+      console.error('❌ casosData no se cargó después de esperar');
       return '❌ Error: No se pudieron cargar los datos del convenio. Por favor, recarga la página.';
     }
+    
+    console.log('✅ Datos disponibles, procesando pregunta...');
 
     // Detectar tipo de consulta
     if (this.esSaludo(pregunta)) {
@@ -284,8 +290,10 @@ class IAConvenioATRM {
 
     // Buscar tema relevante
     const match = this.detectarTema(pregunta);
+    console.log('🔍 Match detectado:', match ? match.id : 'ninguno');
     
     if (!match) {
+      console.log('❓ No se encontró match, generando respuesta genérica');
       return this.generarNoEncontrado(pregunta);
     }
 
@@ -298,7 +306,9 @@ class IAConvenioATRM {
     });
 
     // Generar y devolver respuesta formateada
-    return this.formatearRespuesta(match);
+    const respuesta = this.formatearRespuesta(match);
+    console.log('📤 Respuesta generada:', respuesta.substring(0, 100) + '...');
+    return respuesta;
   }
 
   /**

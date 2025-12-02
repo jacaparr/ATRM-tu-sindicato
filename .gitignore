@@ -18,6 +18,10 @@ Thumbs.db
 # Editor
 .vscode/
 .idea/
+
+# Archivos de texto extraídos de convenios
+convenio_*_texto.txt
+extraer_convenios.py
 *.swp
 *.swo
 *~

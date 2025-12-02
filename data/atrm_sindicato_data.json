@@ -30,9 +30,12 @@
     "nombre": "Convenio Colectivo Sectorial de Limpieza Pública Viaria de la Región de Murcia",
     "codigo": "30000925011981",
     "vigencia": "1 de enero de 2024 a 31 de diciembre de 2027",
-    "jornada": "37,5 horas semanales / 1.680 horas anuales",
+    "jornada": "37 horas y 30 minutos semanales / 1.680 horas anuales",
+    "vacaciones": "28 días laborales consecutivos o sistema de meses naturales completos",
     "incrementos_salariales": {"2024": "400€ lineal para todas las categorías","2025": "IPC real nacional de 2024","2026": "IPC real nacional de 2025","2027": "IPC real nacional de 2026"},
-    "ambito_aplicacion": "Empresas de limpieza pública viaria, recogida de residuos sólidos urbanos, limpieza y conservación de alcantarillado en la Región de Murcia"
+    "ambito_aplicacion": "Empresas de limpieza pública viaria, recogida de residuos sólidos urbanos, limpieza y conservación de alcantarillado, plantas de tratamiento y limpieza de playas en la Región de Murcia",
+    "borm": "Número 599 del 11 de febrero de 2025",
+    "pdf_descarga": "assets/convenio_viaria.pdf"
   },
   "noticias": [
     {"fecha": "11 de febrero de 2025","titulo": "Publicado el nuevo Convenio Colectivo de Limpieza Pública Viaria 2024-2027","contenido": "Se ha publicado en el BORM el Convenio colectivo sectorial de Limpieza pública viaria de la Región de Murcia para los años 2024 a 2027. El convenio incluye incrementos salariales de 400€ para 2024 y actualizaciones según el IPC para los años siguientes.","fuente": "BORM nº 599"},

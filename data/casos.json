@@ -57,8 +57,8 @@
         "hospital"
       ],
       "titulo": "Hospitalización/Intervención de familiar",
-      "resumen": "5 días retribuidos por ingreso hospitalario de familiares hasta 2º grado",
-      "detalle": "✅ Tienes derecho a **5 días retribuidos** por:\n- Ingreso hospitalario de familiares hasta 2º grado\n- Accidente o enfermedad grave\n- Intervención quirúrgica\n\n👥 **Familiares incluidos:** madre, padre, hijos, hermanos, abuelos, suegros, cónyuge\n\n✨ **Ampliación:** Si la hospitalización supera 15 días, el permiso se puede ampliar",
+      "resumen": "5 días retribuidos por hospitalización o intervención quirúrgica de familiares",
+      "detalle": "✅ **Según Art. 14.A del Convenio de Limpieza Viaria:**\n\n**Derecho: 5 días retribuidos** por:\n- Accidente o enfermedad graves\n- Hospitalización\n- Intervención quirúrgica sin hospitalización que precise reposo domiciliario\n\n👥 **Familiares incluidos (hasta 2º grado):**\n- Cónyuge o pareja de hecho\n- Padres, hijos, hermanos\n- Abuelos, nietos\n- Suegros, yernos/nueras, cuñados\n- Familiar consanguíneo de la pareja de hecho\n- Cualquier persona que conviva en el mismo domicilio y requiera cuidado efectivo\n\n📋 **Requisitos:**\n- Avisar con la posible antelación\n- Justificarlo documentalmente\n- Acreditación médica del motivo\n\n⏰ **Cómputo:** Los días son naturales desde el conocimiento del hecho",
       "documentos": [
         "Parte médico",
         "Justificante hospitalario",
@@ -451,6 +451,43 @@
       ],
       "comparativa_sectorial": "Valencia: compensación 75%. Madrid: 80%. Cataluña: descanso preferente.",
       "contacto": "ATRM 968 626 511"
+    },
+    "salarios": {
+      "keywords": [
+        "salarios",
+        "tabla salarial",
+        "cuánto cobro",
+        "sueldo",
+        "nómina",
+        "categoría profesional",
+        "salario base",
+        "retribución",
+        "cuanto gano",
+        "peon recogida",
+        "conductor",
+        "encargado"
+      ],
+      "titulo": "Salarios y Tabla Salarial 2024",
+      "resumen": "Salarios base por categoría según convenio BORM nº 599",
+      "detalle": "💰 **Tabla Salarial 2024 - Convenio Limpieza Viaria:**\n\n📊 **Salarios anuales brutos por categoría:**\n\n**Personal de Recogida y Limpieza:**\n- **Peón Recogida**: 31.248,67 €/año\n- **Peón Limpieza, Guarda y Controlador**: 29.240,29 €/año\n- **Peón Especialista y Lavacoches**: 29.284,92 €/año\n\n**Conductores:**\n- **Conductor Recogida Mecánico y Eléctrico**: 34.556,57 €/año\n- **Conductor Limpieza y Ayudante Mecánico**: 32.229,50 €/año\n\n**Encargados:**\n- **Encargado Brigada de Recogida**: 35.810,53 €/año\n- **Encargado Brigada de Limpieza**: 29.194,53 €/año\n\n**Personal Administrativo:**\n- **Oficial Administración 1ª**: 34.999,30 €/año\n- **Oficial Administración 2ª y Almacenero**: (ver tabla completa)\n\n📈 **Incrementos (Art. 31):**\n- **2024**: +400€ lineal (Bolsa San Antón, pagada enero 2025)\n- **2025**: IPC real nacional 2024\n- **2026**: IPC real nacional 2025\n- **2027**: IPC real nacional 2026\n\n💼 **Plus de Antigüedad (Art. 22):**\n- Primeros 3 bienios: 5% sobre salario base\n- Quinquenios posteriores: 7% sobre salario base\n\n🎁 **Pagas Extra:**\n- **Paga Septiembre**: 30 días salario base + antigüedad + pluses\n- **Bolsa San Antón**: Importe según tabla (17 enero)\n\n📋 **Otros pluses:**\n- Plus de nocturnidad (22:00-6:00h)\n- Plus de festividad\n- Plus de planta (plantas tratamiento)\n- Plus de colector (limpieza alcantarillado)\n- Plus de recogida doble y limpieza\n- Plus de transporte-distancia\n\n📄 Descarga el convenio completo con la tabla detallada en la web de ATRM.\n\nContacta ATRM 968 30 00 37 para dudas sobre tu salario o categoría.",
+      "documentos": [
+        "Convenio Colectivo BORM 599",
+        "Tabla Salarial Anexo I",
+        "Nómina mensual",
+        "Recibo de salarios"
+      ],
+      "casos_reales": [
+        "Peón recogida: salario inferior al convenio → reclamación y regularización con atrasos",
+        "Conductor: plus de nocturnidad no pagado → intervención sindical y abono retroactivo",
+        "Trabajador: antigüedad no aplicada correctamente → recálculo y compensación de 6 meses"
+      ],
+      "comparativa_sectorial": "Murcia: entre los convenios mejor retribuidos del sector en España. Madrid y Cataluña: similares. Valencia: 5-8% inferior.",
+      "contacto": "ATRM 968 30 00 37",
+      "preguntas_followup": [
+        "¿Qué categoría profesional tienes?",
+        "¿Te están pagando todos los pluses?",
+        "¿Tienes dudas sobre tu nómina?"
+      ]
     },
     "baja_medica": {
       "keywords": [

@@ -84,22 +84,28 @@ class IAInteriores {
     pregunta = pregunta.trim().toLowerCase();
     let respuestaObj = null;
 
+    console.log('🔍 Pregunta:', preguntaOriginal);
+
     // 0. Casos interiores por palabras clave
     const temaId = this.detectarTema(pregunta);
     if (temaId) {
+      console.log('✅ Caso detectado:', temaId);
       const caso = this.baseCasos.casos[temaId];
       respuestaObj = {
         resumen: `<strong>${caso.titulo}</strong><br>${caso.detalle}`,
       };
+      return respuestaObj; // RETORNAR INMEDIATAMENTE
     }
     
-    // 1. Buscar en FAQs
-    if (this.faqs && this.faqs.length) {
+    // 1. Buscar en FAQs (solo si NO encontró en casos)
+    if (!respuestaObj && this.faqs && this.faqs.length) {
       const faq = this.faqs.find(f => pregunta.includes(f.pregunta.toLowerCase().split(' ')[1]) || pregunta.includes(f.pregunta.toLowerCase().split(' ')[0]));
       if (faq) {
+        console.log('📚 FAQ encontrada');
         respuestaObj = {
           resumen: faq.respuesta + ` <br><span style='color:#888;font-size:13px'>(Referencia: ${faq.referencia})</span>`
         };
+        return respuestaObj; // RETORNAR INMEDIATAMENTE
       }
     }
     
@@ -107,16 +113,18 @@ class IAInteriores {
     if (!respuestaObj && this.articulos && this.articulos.length) {
       for (const art of this.articulos) {
         if (pregunta.includes(art.titulo.toLowerCase().split(' ')[0]) || pregunta.includes(art.titulo.toLowerCase().split(' ')[1])) {
+          console.log('📄 Artículo encontrado');
           respuestaObj = {
             resumen: `<strong>${art.titulo}</strong>: ${art.texto} <br><span style='color:#888;font-size:13px'>(Referencia: ${art.referencia})</span>`
           };
-          break;
+          return respuestaObj; // RETORNAR INMEDIATAMENTE
         }
       }
     }
     
     // 3. Fallback a API externa
     if (!respuestaObj) {
+      console.log('🌐 Fallback a API');
       const apiResp = await this.consultarAPI(pregunta);
       if (apiResp) {
         respuestaObj = { resumen: apiResp };

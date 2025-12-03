@@ -35,20 +35,47 @@ class IAInteriores {
   // Detección por puntuación de keywords en casos_interiores.json
   detectarTema(pregunta) {
     if (!this.baseCasos || !this.baseCasos.casos) return null;
-    const texto = (pregunta || '').toLowerCase();
+    const texto = (pregunta || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const palabras = texto.split(/\s+/);
     const resultados = [];
+    
     for (const [id, caso] of Object.entries(this.baseCasos.casos)) {
-      const kws = (caso.keywords || []).map(k => k.toLowerCase());
+      const kws = (caso.keywords || []).map(k => k.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''));
       let score = 0;
+      
       for (const kw of kws) {
-        if (texto.includes(kw)) score += kw.length >= 7 ? 2 : 1;
+        // Match exacto de keyword completo
+        if (texto.includes(kw)) {
+          score += kw.length * 3;
+        }
+        
+        // Match de palabras individuales
+        const keyPalabras = kw.split(/\s+/);
+        for (const keyPalabra of keyPalabras) {
+          if (keyPalabra.length >= 3 && palabras.includes(keyPalabra)) {
+            score += 2;
+          }
+        }
       }
+      
       // bonus por coincidencia en título
-      if (caso.titulo && texto.includes(caso.titulo.toLowerCase().split(' ')[0])) score += 1;
+      if (caso.titulo) {
+        const tituloNorm = caso.titulo.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        if (texto.includes(tituloNorm)) score += 5;
+        const tituloPalabras = tituloNorm.split(/\s+/);
+        for (const palabra of tituloPalabras) {
+          if (palabra.length >= 4 && palabras.includes(palabra)) {
+            score += 1;
+          }
+        }
+      }
+      
       if (score > 0) resultados.push({ id, score });
     }
+    
     resultados.sort((a, b) => b.score - a.score);
-    return resultados.length ? resultados[0].id : null;
+    console.log('🎯 Scoring resultados:', resultados);
+    return resultados.length && resultados[0].score >= 3 ? resultados[0].id : null;
   }
 
   // Busca primero en Casos (scoring), luego en FAQs, luego en artículos, luego API

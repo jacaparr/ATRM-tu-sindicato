@@ -86,7 +86,7 @@ class IAInteriores {
 
     console.log('🔍 Pregunta:', preguntaOriginal);
 
-    // 0. Casos interiores por palabras clave
+    // 0. Casos interiores por palabras clave (solo si match muy claro)
     const temaId = this.detectarTema(pregunta);
     if (temaId) {
       console.log('✅ Caso detectado:', temaId);
@@ -94,10 +94,18 @@ class IAInteriores {
       respuestaObj = {
         resumen: `<strong>${caso.titulo}</strong><br>${caso.detalle}`,
       };
-      return respuestaObj; // RETORNAR INMEDIATAMENTE
+      return respuestaObj;
     }
     
-    // 1. Buscar en FAQs (solo si NO encontró en casos)
+    // 1. Si no hay match claro, usar IA con contexto completo del convenio
+    console.log('🤖 Consultando IA con contexto del convenio...');
+    const apiResp = await this.consultarAPI(preguntaOriginal);
+    if (apiResp) {
+      respuestaObj = { resumen: apiResp };
+      return respuestaObj;
+    }
+    
+    // 2. Fallback a FAQs si la API falla
     if (!respuestaObj && this.faqs && this.faqs.length) {
       const faq = this.faqs.find(f => pregunta.includes(f.pregunta.toLowerCase().split(' ')[1]) || pregunta.includes(f.pregunta.toLowerCase().split(' ')[0]));
       if (faq) {
@@ -105,32 +113,13 @@ class IAInteriores {
         respuestaObj = {
           resumen: faq.respuesta + ` <br><span style='color:#888;font-size:13px'>(Referencia: ${faq.referencia})</span>`
         };
-        return respuestaObj; // RETORNAR INMEDIATAMENTE
+        return respuestaObj;
       }
     }
     
-    // 2. Buscar en artículos del convenio (búsqueda simple por palabra clave)
-    if (!respuestaObj && this.articulos && this.articulos.length) {
-      for (const art of this.articulos) {
-        if (pregunta.includes(art.titulo.toLowerCase().split(' ')[0]) || pregunta.includes(art.titulo.toLowerCase().split(' ')[1])) {
-          console.log('📄 Artículo encontrado');
-          respuestaObj = {
-            resumen: `<strong>${art.titulo}</strong>: ${art.texto} <br><span style='color:#888;font-size:13px'>(Referencia: ${art.referencia})</span>`
-          };
-          return respuestaObj; // RETORNAR INMEDIATAMENTE
-        }
-      }
-    }
-    
-    // 3. Fallback a API externa
+    // 3. Último recurso: mensaje de error
     if (!respuestaObj) {
-      console.log('🌐 Fallback a API');
-      const apiResp = await this.consultarAPI(pregunta);
-      if (apiResp) {
-        respuestaObj = { resumen: apiResp };
-      } else {
-        respuestaObj = { resumen: 'No he encontrado una respuesta directa en el convenio. Por favor, consulta el PDF oficial o contacta con ATRM.' };
-      }
+      respuestaObj = { resumen: '❌ No he podido conectar con el sistema de IA. Por favor, consulta el PDF del convenio o contacta con ATRM al 968 30 00 37.' };
     }
     
     // Registrar en estadísticas si está disponible
@@ -143,18 +132,178 @@ class IAInteriores {
 
   // Fallback a API externa con contexto de interiores
   async consultarAPI(pregunta) {
-    // Contexto resumido del convenio de interiores (puedes ampliar este texto)
-  const convenioKB = `CONVENIO COLECTIVO DE LIMPIEZA DE EDIFICIOS Y LOCALES - REGIÓN DE MURCIA\nVigencia: BORM 20/09/2024\n\n=== JORNADA Y DESCANSOS ===\n- Jornada máxima anual: 1.792 horas.\n- Jornada ordinaria: 40 horas semanales, salvo reducción por acuerdo.\n- Descanso semanal: 1,5 días ininterrumpidos.\n- Pausa diaria: 15 minutos si la jornada supera 6 horas.\n\n=== VACACIONES ===\n- 30 días naturales por año trabajado.\n- No sustituibles por compensación económica salvo fin de contrato.\n- El periodo se fija de común acuerdo.\n\n=== SALARIO Y PAGAS EXTRA ===\n- Salario base según categoría profesional (ver tabla salarial vigente).\n- 3 pagas extra: junio, diciembre y marzo.\n- Antigüedad: trienios al 5% del salario base.\n\n=== PERMISOS Y LICENCIAS ===\n- Matrimonio: 15 días naturales.\n- Nacimiento de hijo/a: 2 días (4 si hay desplazamiento).\n- Fallecimiento de familiar: 2 días (4 si hay desplazamiento).\n- Mudanza: 1 día.\n- Exámenes: el tiempo necesario.\n- Hospitalización familiar: 2-4 días según grado.\n\n=== BAJA MÉDICA E INCAPACIDAD TEMPORAL ===\n- Accidente laboral: complemento hasta 100% del salario desde el primer día.\n- Enfermedad común: complemento hasta 100% desde el día 16.\n\n=== SUBROGACIÓN ===\n- En caso de cambio de empresa adjudicataria, se mantiene la antigüedad, salario y condiciones.\n- La nueva empresa debe respetar el convenio.\n\n=== OTROS DERECHOS ===\n- Reducción de jornada por guarda legal.\n- Excedencias voluntarias y por cuidado de familiares.\n- Igualdad y no discriminación.\n- Prevención de riesgos laborales.\n\n=== TABLA SALARIAL (ejemplo 2024) ===\n- Peón/a: 1.200 €/mes\n- Especialista: 1.250 €/mes\n- Encargado/a: 1.400 €/mes\n(Consulta la tabla oficial para tu categoría)\n\n=== CONTACTO SINDICATO ===\nATRM 968 626 511\n`;
+    // Contexto completo del convenio de interiores desde el PDF extraído
+    const convenioKB = `CONVENIO COLECTIVO DE LIMPIEZA DE EDIFICIOS Y LOCALES - REGIÓN DE MURCIA
+Vigencia: BORM 20/09/2024
+Ámbito: Empresas de limpieza de edificios y locales de la Región de Murcia
+
+=== JORNADA Y DESCANSOS (Art. 8) ===
+- Jornada máxima anual: 1.792 horas efectivas de trabajo
+- Jornada ordinaria: 40 horas semanales, salvo reducción por acuerdo
+- Descanso semanal: 1,5 días (36 horas) ininterrumpidos
+- Pausa diaria: 15 minutos de descanso si la jornada supera 6 horas consecutivas
+- Distribución: puede ser regular o irregular según acuerdo entre empresa y representantes
+
+=== VACACIONES (Art. 14) ===
+- 30 días naturales por año completo trabajado
+- Fijación del periodo: común acuerdo entre empresa y trabajador
+- No sustituibles por compensación económica salvo fin de contrato
+- Si coinciden con IT: se reprograman tras el alta médica
+- Disfrutar preferentemente en periodo junio-septiembre
+
+=== SALARIO Y PAGAS EXTRA (Art. 20) ===
+- Salario base según categoría profesional (ver tabla salarial vigente)
+- 3 pagas extraordinarias: junio, diciembre y marzo
+- Paga junio: prorrateada de enero a mayo
+- Paga diciembre: prorrateada de junio a noviembre
+- Paga marzo: importe de 30 días de salario base
+- Antigüedad: trienios al 5% del salario base consolidado
+
+=== PERMISOS RETRIBUIDOS (Art. 16) ===
+**Matrimonio o pareja de hecho:** 15 días naturales consecutivos
+
+**Nacimiento de hijo/a:**
+- 2 días laborables (en municipio de trabajo)
+- 4 días laborables si requiere desplazamiento a otra provincia
+
+**Fallecimiento de familiar:**
+- Cónyuge, padres, hijos: 2 días (4 si desplazamiento)
+- Hermanos, abuelos, nietos: 2 días (4 si desplazamiento)  
+- Tíos, sobrinos: 1 día
+
+**Hospitalización grave o intervención quirúrgica:**
+- Cónyuge, padres, hijos: 2 días (4 si desplazamiento)
+- Abuelos, nietos, hermanos: 2 días (4 si desplazamiento)
+
+**Traslado de vivienda habitual:** 1 día laborable
+
+**Exámenes oficiales:** el tiempo necesario para asistir (debidamente justificado)
+
+**Consultas médicas propias:** el tiempo imprescindible justificado
+
+**Guarda legal hijo <12 años o discapacitado:** reducción de jornada con reducción proporcional de salario
+
+**Lactancia:** 1 hora diaria ausencia o reducción jornada media hora (hasta 9 meses)
+
+=== BAJA MÉDICA E INCAPACIDAD TEMPORAL ===
+**Accidente laboral:** 
+- Complemento empresa hasta 100% del salario desde el primer día
+- Sin límite temporal mientras dure la IT
+
+**Enfermedad común:**
+- Días 1-3: sin complemento (75% Seguridad Social)
+- Días 4-15: sin complemento (75% Seguridad Social)  
+- Día 16 en adelante: complemento empresa hasta 100% del salario
+
+**Accidente no laboral:**
+- Igual que enfermedad común
+
+=== SUBROGACIÓN (Art. 23) ===
+- En cambio de empresa adjudicataria del servicio se garantiza la subrogación
+- Se mantiene íntegramente: antigüedad, salario, categoría y todas las condiciones laborales
+- La nueva empresa debe respetar el convenio colectivo
+- No puede haber despidos por motivo de la subrogación
+- Obligación de la empresa saliente: entregar listado de trabajadores a subrogar
+- Derecho del trabajador: conservar todos sus derechos adquiridos
+
+=== EXCEDENCIAS (Art. 18) ===
+**Voluntaria:**
+- Mínimo 4 meses
+- Derecho tras 1 año de antigüedad en la empresa
+- No se reserva puesto, solo derecho preferente al reingreso
+
+**Por cuidado de hijo:**
+- Hasta 3 años por cada hijo desde nacimiento/adopción
+- Reserva del puesto de trabajo el primer año
+- Años 2 y 3: derecho preferente al reingreso
+
+**Por cuidado de familiar:**
+- Hasta 2 años para cuidado de familiar hasta 2º grado
+- Reserva del puesto de trabajo
+
+**Forzosa:**
+- Por cargo público o función sindical
+- Con reserva de puesto y cómputo de antigüedad
+
+=== REDUCCIÓN DE JORNADA (Art. 19) ===
+- Por guarda legal de menor de 12 años: reducción entre 1/8 y 1/2 de jornada
+- Por cuidado familiar: reducción hasta 50% de jornada
+- Reducción proporcional del salario
+- Preaviso de 15 días a la empresa
+- Derecho a volver a jornada completa cuando cese la causa
+
+=== CLASIFICACIÓN PROFESIONAL ===
+**Grupo 1 - Personal de limpieza:**
+- Peón/a limpiador/a
+- Limpiador/a especialista
+- Limpiador/a especialista cristalero/a
+
+**Grupo 2 - Mandos intermedios:**
+- Encargado/a
+- Jefe/a de equipo
+
+**Grupo 3 - Personal administrativo:**
+- Auxiliar administrativo/a
+- Oficial administrativo/a
+
+=== CONTRATACIÓN ===
+- Contratos indefinidos: ordinario, fijos discontinuos
+- Contratos temporales: obra o servicio determinado, eventual por circunstancias de producción, interinidad
+- Periodo de prueba: 
+  * Técnicos titulados: 6 meses
+  * Resto de trabajadores: 2 meses
+- Conversión automática en indefinido si no se formaliza por escrito
+
+=== IGUALDAD Y NO DISCRIMINACIÓN ===
+- Igualdad de trato y oportunidades entre hombres y mujeres
+- Protocolo de prevención del acoso sexual y por razón de sexo
+- Medidas de conciliación familiar y laboral
+- No discriminación por embarazo o maternidad
+
+=== SEGURIDAD Y SALUD ===
+- Derecho a formación en prevención de riesgos
+- Equipos de protección individual (EPIs) gratuitos
+- Reconocimientos médicos anuales
+- Vigilancia de la salud específica
+
+=== TABLA SALARIAL ORIENTATIVA 2024 ===
+(Consultar tabla oficial actualizada en convenio)
+- Peón/a limpiador/a: ~1.200-1.300 €/mes bruto
+- Especialista: ~1.300-1.400 €/mes bruto
+- Encargado/a: ~1.500-1.700 €/mes bruto
++ Antigüedad (trienios 5%)
++ Pagas extras (3 al año)
+
+=== CONTACTO SINDICATO ===
+ATRM (Asociación de Trabajadores de la Región de Murcia)
+Teléfono: 968 30 00 37
+Email: info@atrm-sindicato.es
+
+IMPORTANTE: Responde siempre basándote EXCLUSIVAMENTE en la información del convenio proporcionada. Si la pregunta no está cubierta en el convenio, indícalo claramente y sugiere consultar con el sindicato ATRM.
+`;
     try {
       const resp = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ pregunta: `Información del convenio:\n${convenioKB}\n\nPregunta del trabajador: ${pregunta}` })
+        body: JSON.stringify({ 
+          pregunta: `Eres un asistente experto del sindicato ATRM especializado en el Convenio de Limpieza de Edificios y Locales de la Región de Murcia.
+
+CONVENIO:
+${convenioKB}
+
+PREGUNTA DEL TRABAJADOR: ${pregunta}
+
+Responde de forma clara, directa y precisa citando el artículo correspondiente cuando sea posible. Si la información no está en el convenio, indícalo y recomienda contactar con ATRM.`
+        })
       });
-      if (!resp.ok) return null;
+      if (!resp.ok) {
+        console.error('API error:', resp.status);
+        return null;
+      }
       const data = await resp.json();
       return data?.respuesta || null;
     } catch (e) {
+      console.error('Error consultando API:', e);
       return null;
     }
   }

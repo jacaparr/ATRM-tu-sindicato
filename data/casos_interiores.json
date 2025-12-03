@@ -1,49 +1,49 @@
 {
   "casos": {
     "vacaciones": {
-      "keywords": ["vacaciones", "días", "verano", "navidad"],
+      "keywords": ["vacaciones", "días", "verano", "navidad", "descanso anual", "periodo vacacional", "cuántas vacaciones", "cuántos días"],
       "titulo": "Vacaciones anuales",
       "resumen": "30 días naturales por año trabajado (interiores)",
       "detalle": "📅 Vacaciones: 30 días naturales anuales. Se fijan de común acuerdo entre empresa y trabajador. No sustituibles por compensación económica salvo fin de contrato. Si coinciden con IT, se reprograman.",
       "contacto": "ATRM 968 30 00 37"
     },
     "jornada": {
-      "keywords": ["jornada", "horas", "semanales", "anuales"],
+      "keywords": ["jornada", "horas", "semanales", "anuales", "horario", "turno", "descanso", "cuántas horas", "jornada máxima"],
       "titulo": "Jornada y descansos",
       "resumen": "Máximo anual 1.792 h; ordinaria 40 h/semana",
       "detalle": "⏱ Jornada: máxima anual 1.792 horas. Ordinaria: 40 horas semanales salvo reducción por acuerdo. Descanso semanal: 1,5 días ininterrumpidos. Pausa diaria: 15 minutos si la jornada supera 6 horas.",
       "contacto": "ATRM 968 30 00 37"
     },
     "permisos_retribuidos": {
-      "keywords": ["permisos", "licencias", "matrimonio", "fallecimiento", "mudanza", "nacimiento"],
+      "keywords": ["permisos", "licencias", "matrimonio", "fallecimiento", "mudanza", "nacimiento", "boda", "muerte", "funeral", "hijo", "traslado", "examenes", "hospitalización"],
       "titulo": "Permisos retribuidos",
       "resumen": "Matrimonio 15 días, fallecimiento 2-4, nacimiento 2-4, mudanza 1",
       "detalle": "📄 Permisos: Matrimonio 15 días naturales. Nacimiento de hijo/a: 2 días (4 si desplazamiento). Fallecimiento: 2 días (4 si desplazamiento). Mudanza: 1 día. Exámenes: tiempo necesario. Hospitalización familiar: 2-4 días según grado.",
       "contacto": "ATRM 968 30 00 37"
     },
     "salarios": {
-      "keywords": ["salario", "nómina", "sueldo", "pagas extra", "tabla salarial"],
+      "keywords": ["salario", "nómina", "sueldo", "pagas extra", "tabla salarial", "cuánto cobro", "cuánto gano", "antigüedad", "trienios", "paga"],
       "titulo": "Salarios y pagas extra",
       "resumen": "Tabla salarial por categoría; 3 pagas extra (junio, dic., marzo)",
       "detalle": "💶 Salarios: base según categoría profesional. Pagas extra: junio, diciembre y marzo. Antigüedad: trienios al 5% del salario base. Consulta la tabla oficial vigente para tu categoría.",
       "contacto": "ATRM 968 30 00 37"
     },
     "excedencias": {
-      "keywords": ["excedencia", "voluntaria", "cuidado", "familiar"],
+      "keywords": ["excedencia", "voluntaria", "cuidado", "familiar", "dejar trabajo", "permiso sin sueldo", "cuidado hijos", "excedencia forzosa"],
       "titulo": "Excedencias",
       "resumen": "Voluntaria, por cuidado de hijos y familiares; condiciones ET",
       "detalle": "📝 Excedencias: Voluntaria (mín. 4 meses). Por cuidado de hijos hasta 3 años, reserva de puesto primer año. Por cuidado de familiar hasta 2 años (hasta 2º grado). Forzosa por cargo público/sindical.",
       "contacto": "ATRM 968 30 00 37"
     },
     "baja_medica": {
-      "keywords": ["baja médica", "incapacidad temporal", "enfermedad", "lesión", "IT", "parte de baja"],
+      "keywords": ["baja médica", "incapacidad temporal", "enfermedad", "lesión", "IT", "parte de baja", "estoy enfermo", "accidente laboral", "complemento"],
       "titulo": "Baja médica e incapacidad temporal",
       "resumen": "Complemento de prestación según convenio.",
       "detalle": "Durante la baja médica, la empresa complementa la prestación de la Seguridad Social hasta el 100% del salario desde el primer día en caso de accidente laboral y a partir del día 16 en caso de enfermedad común.",
       "contacto": "ATRM 968 30 00 37"
     },
     "subrogacion": {
-      "keywords": ["subrogación", "cambio empresa", "subrogar", "cambio de contrata", "nueva empresa"],
+      "keywords": ["subrogación", "cambio empresa", "subrogar", "cambio de contrata", "nueva empresa", "nueva adjudicataria", "cambio de adjudicación", "pierdo antigüedad"],
       "titulo": "Subrogación y cambio de empresa",
       "resumen": "Se mantiene antigüedad, salario y condiciones",
       "detalle": "🔄 Subrogación: En cambio de empresa adjudicataria, se mantiene antigüedad, salario y condiciones. La nueva empresa debe respetar el convenio y subrogar a toda la plantilla del servicio.",

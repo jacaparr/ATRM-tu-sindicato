@@ -32,7 +32,7 @@
     /* Chat flotante */
     #chat-atm-btn{position:fixed;bottom:20px;right:20px;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#27ae60,#2ecc71);color:#fff;border:none;font-size:28px;cursor:pointer;box-shadow:0 4px 12px rgba(39,174,96,.4);z-index:1000}
     #chat-atm-btn:hover{transform:scale(1.05)}
-    #chat-atm-window{display:none;position:fixed;bottom:90px;right:20px;width=360px;max-width:90vw;height:500px;max-height:70vh;background:#fff;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.15);flex-direction:column;z-index:1001}
+    #chat-atm-window{display:none;position:fixed;bottom:90px;right:20px;width:360px;max-width:90vw;height:500px;max-height:70vh;background:#fff;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.15);flex-direction:column;z-index:1001}
     #chat-header{background:linear-gradient(90deg,#27ae60,#2ecc71);color:#fff;padding:14px;border-radius:16px 16px 0 0;display:flex;justify-content:space-between;align-items:center}
     #chat-close{background:none;border:none;color:#fff;font-size:24px;cursor:pointer}
     #chat-messages{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px}
@@ -66,9 +66,14 @@
       <span class="badge">Limpieza de Edificios y Locales · Región de Murcia</span>
       <h1>Convenio Colectivo de Limpieza de Interiores</h1>
       <p>Consulta aquí el convenio de limpieza de edificios y locales, descarga el PDF oficial y pregunta a la IA sobre tus derechos y condiciones laborales.</p>
-      <div class="cta">
+      <div style="margin-top:20px">
+        <p style="font-weight:600;margin-bottom:8px">💬 Asistente IA del convenio:</p>
+        <input id="preguntaIAInline" placeholder="Escribe tu pregunta (ej: vacaciones, jornada, permisos...)" style="width:100%;padding:12px;border:1px solid #ffd2b5;border-radius:10px;font-size:15px;margin-bottom:10px" />
+        <button class="btn" onclick="preguntarIAInline()">Preguntar</button>
+      </div>
+      <div id="vistaRespuesta" style="display:none;margin-top:16px;padding:16px;background:#fff7f0;border-radius:10px;border:1px solid #ffd2b5"></div>
+      <div class="cta" style="margin-top:16px">
         <a class="btn" href="assets/convenio_interiores.pdf" download>📄 Descargar Convenio PDF</a>
-        <button class="btn alt" onclick="abrirChatInteriores()">💬 Pregunta a la IA</button>
       </div>
     </section>
     <aside class="card news">
@@ -308,11 +313,52 @@
       if(window.iaInteriores) window.iaInteriores.setModoRespuesta(e.target.value);
     });
 
+    // Sistema inline de respuestas (como en viaria)
+    async function preguntarIAInline() {
+      const input = document.getElementById('preguntaIAInline');
+      const pregunta = input.value.trim();
+      const vistaDiv = document.getElementById('vistaRespuesta');
+
+      if (!pregunta) {
+        vistaDiv.innerHTML = '<div style="color:#e67e22">⚠️ Por favor, escribe una pregunta.</div>';
+        vistaDiv.style.display = 'block';
+        return;
+      }
+
+      vistaDiv.style.display = 'block';
+      vistaDiv.innerHTML = '<div style="padding:10px;display:flex;align-items:center;gap:10px;color:#555;">✍️ Escribiendo...</div>';
+
+      try {
+        console.log('🔍 Pregunta IA Interiores Inline:', pregunta);
+        const respuesta = await window.iaInteriores.generarRespuesta(pregunta);
+        console.log('✅ Respuesta recibida:', respuesta);
+        
+        let textoRespuesta = '🤔 No he encontrado una respuesta. Intenta con otra pregunta.';
+        if (respuesta && respuesta.resumen) {
+          textoRespuesta = respuesta.resumen;
+        }
+        
+        const htmlLimpio = limpiarMarkdown(textoRespuesta);
+        vistaDiv.innerHTML = htmlLimpio;
+      } catch (error) {
+        console.error('❌ Error:', error);
+        vistaDiv.innerHTML = '<div style="color:#e74c3c">❌ Error procesando la pregunta. Intenta de nuevo.</div>';
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', ()=>{
       if (!cargarHistorialChat()) {
         setTimeout(() => {
           agregarMensajeChat('👋 ¡Hola! Soy la IA de ATRM para el Convenio de Interiores. ¿Qué necesitas saber?', 'bot');
         }, 500);
+      }
+      
+      // Listener para Enter en input inline
+      const inputInline = document.getElementById('preguntaIAInline');
+      if (inputInline) {
+        inputInline.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') preguntarIAInline();
+        });
       }
     });
 

@@ -1,6 +1,18 @@
-// IA para convenio de interiores (estructura igual a ia_mejorada.js, pero carga data/casos_interiores.json)
+// IA para convenio de interiores (estructura independiente)
 
-class IAInteriores extends IAContextual {
+class IAInteriores {
+  constructor() {
+    this.baseCasos = null;
+    this.faqs = [];
+    this.articulos = [];
+    this.modoRespuesta = 'completo';
+    this.cargarBaseCasos();
+  }
+
+  setModoRespuesta(modo) {
+    this.modoRespuesta = modo;
+  }
+
   async cargarBaseCasos() {
     try {
       const response = await fetch('data/casos_interiores.json');

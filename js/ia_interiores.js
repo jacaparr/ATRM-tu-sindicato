@@ -20,11 +20,39 @@ class IAInteriores extends IAContextual {
     } catch (e) { this.articulos = []; }
   }
 
-  // Busca primero en FAQs, luego en artículos, luego API
+  // Detección por puntuación de keywords en casos_interiores.json
+  detectarTema(pregunta) {
+    if (!this.baseCasos || !this.baseCasos.casos) return null;
+    const texto = (pregunta || '').toLowerCase();
+    const resultados = [];
+    for (const [id, caso] of Object.entries(this.baseCasos.casos)) {
+      const kws = (caso.keywords || []).map(k => k.toLowerCase());
+      let score = 0;
+      for (const kw of kws) {
+        if (texto.includes(kw)) score += kw.length >= 7 ? 2 : 1;
+      }
+      // bonus por coincidencia en título
+      if (caso.titulo && texto.includes(caso.titulo.toLowerCase().split(' ')[0])) score += 1;
+      if (score > 0) resultados.push({ id, score });
+    }
+    resultados.sort((a, b) => b.score - a.score);
+    return resultados.length ? resultados[0].id : null;
+  }
+
+  // Busca primero en Casos (scoring), luego en FAQs, luego en artículos, luego API
   async generarRespuesta(pregunta) {
     const preguntaOriginal = pregunta;
     pregunta = pregunta.trim().toLowerCase();
     let respuestaObj = null;
+
+    // 0. Casos interiores por palabras clave
+    const temaId = this.detectarTema(pregunta);
+    if (temaId) {
+      const caso = this.baseCasos.casos[temaId];
+      respuestaObj = {
+        resumen: `<strong>${caso.titulo}</strong><br>${caso.detalle}`,
+      };
+    }
     
     // 1. Buscar en FAQs
     if (this.faqs && this.faqs.length) {

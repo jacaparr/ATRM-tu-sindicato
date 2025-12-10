@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel interno - Denuncias ATRM</title>
+  <style>
+    :root {
+      --primary: #ff6b35;
+      --bg: #f6f6f9;
+      --card: #ffffff;
+      --border: #e2e2ee;
+      --text: #1f2430;
+      --muted: #6a6f7c;
+    }
+    * { box-sizing: border-box; font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; }
+    body { margin: 0; background: var(--bg); color: var(--text); padding: 24px; }
+    h1 { margin-top: 0; font-size: 26px; }
+    .panel { max-width: 1100px; margin: 0 auto; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(16,20,31,0.05); }
+    label { display: block; font-weight: 600; margin-bottom: 6px; }
+    input, select { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid var(--border); font-size: 15px; }
+    button { background: var(--primary); color: #fff; border: none; padding: 12px 16px; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; }
+    button:disabled { opacity: 0.6; cursor: not-allowed; }
+    .controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; align-items: end; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border); font-size: 14px; vertical-align: top; }
+    th { font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+    .badge { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+    .badge.pendiente { background: rgba(255,107,53,0.15); color: #b84312; }
+    .badge.resuelta { background: rgba(46,204,113,0.15); color: #1e7e46; }
+    .status { display: flex; gap: 10px; align-items: center; }
+    .empty { text-align: center; padding: 32px; color: var(--muted); }
+    @media (max-width: 700px) {
+      table, thead, tbody, th, td, tr { display: block; }
+      th { display: none; }
+      td { border: none; border-bottom: 1px solid var(--border); position: relative; padding-left: 40%; }
+      td::before { position: absolute; left: 12px; width: 30%; color: var(--muted); font-weight: 600; content: attr(data-label); }
+    }
+  </style>
+</head>
+<body>
+  <main class="panel">
+    <h1>Panel de denuncias ATRM</h1>
+
+    <section class="card">
+      <div class="controls">
+        <div>
+          <label for="adminToken">Token administrativo</label>
+          <input id="adminToken" type="password" placeholder="Pega el token proporcionado" autocomplete="off" />
+        </div>
+        <div>
+          <label for="estado">Estado</label>
+          <select id="estado">
+            <option value="">Todas</option>
+            <option value="pendiente">Pendiente</option>
+            <option value="resuelta">Resuelta</option>
+          </select>
+        </div>
+        <div>
+          <button id="btnCargar">Actualizar listado</button>
+        </div>
+      </div>
+      <small id="helper" style="color: var(--muted); display: block; margin-top: 10px;">
+        El token se guarda cifrado en este navegador mediante localStorage.
+      </small>
+    </section>
+
+    <section class="card">
+      <div id="estadoPanel" style="margin-bottom: 12px; color: var(--muted);"></div>
+      <div id="tablaWrapper"></div>
+    </section>
+  </main>
+
+  <script>
+    const API_URL = '/api/denuncias-list';
+    const tokenInput = document.getElementById('adminToken');
+    const estadoSelect = document.getElementById('estado');
+    const boton = document.getElementById('btnCargar');
+    const tablaWrapper = document.getElementById('tablaWrapper');
+    const panelEstado = document.getElementById('estadoPanel');
+
+    function hydrateToken() {
+      const saved = localStorage.getItem('atrm_admin_token');
+      if (saved) {
+        tokenInput.value = saved;
+      }
+    }
+
+    function setLoading(isLoading) {
+      boton.disabled = isLoading;
+      boton.textContent = isLoading ? 'Cargando...' : 'Actualizar listado';
+      panelEstado.textContent = isLoading ? 'Consultando denuncias...' : '';
+    }
+
+    function renderTabla(items) {
+      if (!items.length) {
+        tablaWrapper.innerHTML = '<div class="empty">Sin denuncias registradas con el filtro actual.</div>';
+        return;
+      }
+
+      const headers = ['Fecha', 'Estado', 'Texto', 'IP'];
+      const rows = items.map((item) => {
+        const fecha = new Date(item.created_at || item.fecha || Date.now());
+        const badgeClass = item.estado === 'resuelta' ? 'resuelta' : 'pendiente';
+        const texto = (item.texto || '').replace(/\n/g, '<br>');
+        return `
+          <tr>
+            <td data-label="Fecha">${fecha.toLocaleString('es-ES')}</td>
+            <td data-label="Estado"><span class="badge ${badgeClass}">${item.estado || 'pendiente'}</span></td>
+            <td data-label="Texto">${texto}</td>
+            <td data-label="IP">${item.ip || 'No disponible'}</td>
+          </tr>
+        `;
+      }).join('');
+
+      tablaWrapper.innerHTML = `
+        <table>
+          <thead>
+            <tr>${headers.map((h) => `<th>${h}</th>`).join('')}</tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      `;
+    }
+
+    async function cargarDenuncias() {
+      const token = tokenInput.value.trim();
+      if (!token) {
+        panelEstado.textContent = 'Introduce un token valido.';
+        return;
+      }
+      localStorage.setItem('atrm_admin_token', token);
+
+      setLoading(true);
+      try {
+        const params = new URLSearchParams();
+        if (estadoSelect.value) {
+          params.set('estado', estadoSelect.value);
+        }
+        const response = await fetch(`${API_URL}?${params.toString()}`, {
+          headers: {
+            'x-admin-token': token,
+          },
+        });
+        const data = await response.json();
+        if (!response.ok) {
+          throw new Error(data?.error || 'No autorizado');
+        }
+        renderTabla(data.items || []);
+        panelEstado.textContent = `Total: ${(data.items || []).length} denuncias`;
+      } catch (error) {
+        console.error(error);
+        panelEstado.textContent = error.message || 'No se pudo cargar el listado';
+        tablaWrapper.innerHTML = '';
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    boton.addEventListener('click', cargarDenuncias);
+    estadoSelect.addEventListener('change', cargarDenuncias);
+    hydrateToken();
+    if (tokenInput.value) {
+      cargarDenuncias();
+    }
+  </script>
+</body>
+</html>

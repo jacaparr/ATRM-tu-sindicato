@@ -1,94 +1,49 @@
-# 📧 Configuración de EmailJS para Denuncias Anónimas
+# 📧 Configuración del correo de denuncias (Resend)
 
-El formulario de denuncias ahora envía emails reales usando **EmailJS** (servicio gratuito).
+El formulario de denuncias anónimas se apoya en la función serverless `api/denuncia.js`, que envía los mensajes mediante la API de **Resend**. Así mantienes las claves privadas fuera del navegador y usas dominios verificados.
 
-## 🚀 Pasos para configurar:
+## 🚀 Pasos para dejarlo operativo
 
-### 1. Crear cuenta en EmailJS
-1. Ve a [https://www.emailjs.com/](https://www.emailjs.com/)
-2. Crea una cuenta gratuita (permite 200 emails/mes gratis)
-3. Verifica tu email
+### 1. Crear cuenta y verificar dominio
+1. Entra a [https://resend.com](https://resend.com) y crea tu cuenta.
+2. En el panel, ve a **Domains** y añade tu dominio (ej. `atrm-sindicato.es`).
+3. Sigue las instrucciones DNS de Resend hasta que el dominio aparezca como `Verified`.
+4. Opcional: crea una dirección específica como `denuncias@atrm-sindicato.es` para este flujo.
 
-### 2. Configurar servicio de email
-1. En el dashboard, ve a **Email Services**
-2. Haz clic en **Add New Service**
-3. Selecciona tu proveedor (Gmail, Outlook, etc.)
-4. Conecta tu cuenta de email donde quieres recibir las denuncias (ej: `info@atrm-sindicato.es`)
-5. Copia el **Service ID** que te da (algo como `service_abc123`)
+### 2. Generar la API Key
+1. Dirígete a **API Keys** → **Create API Key**.
+2. Asigna un nombre (ej. `denuncias-prod`) y copia el valor mostrado (solo aparece una vez).
 
-### 3. Crear plantilla de email
-1. Ve a **Email Templates**
-2. Haz clic en **Create New Template**
-3. En el editor, usa esta plantilla:
+### 3. Variables de entorno necesarias
+En Vercel (o el proveedor que uses), crea las siguientes variables:
 
-```
-Asunto: 🚨 Nueva Denuncia Anónima - ATRM
+| Variable             | Descripción |
+|----------------------|-------------|
+| `RESEND_API_KEY`     | Clave privada creada en el paso anterior. |
+| `RESEND_FROM`        | Email verificado que actuará como remitente, ej. `denuncias@atrm-sindicato.es`. |
+| `RESEND_TO`          | Lista de destinatarios separada por comas (`info@atrm.es,secretaria@atrm.es`). |
+| `RESEND_FROM_NAME`   | *(Opcional)* Nombre a mostrar: por defecto "ATRM Denuncias". |
+| `RESEND_SUBJECT`     | *(Opcional)* Asunto personalizado. |
+| `RESEND_REPLY_TO`    | *(Opcional)* Email que recibirá las respuestas. |
 
-Nueva denuncia anónima recibida desde la web:
+> Consejo: ejecuta `vercel env pull` para traerlas a `.env.local` y usarlas con `vercel dev`.
 
-📝 CONTENIDO:
-{{denuncia}}
+### 4. Probar el flujo
+1. Inicia `vercel dev` (o `netlify dev`).
+2. Abre la web en `http://localhost:3000` (o el puerto indicado) y envía una denuncia de prueba.
+3. Comprueba que el endpoint responde `{ success: true }` y que el correo llegue a la bandeja indicada en `RESEND_TO`.
 
-📅 FECHA: {{fecha}}
-🏷️ TIPO: {{tipo}}
+## 🔐 Qué hace el backend
+- Valida que la denuncia no llegue vacía y limite a 5000 caracteres.
+- Añade metadatos útiles (fecha/hora UTC e IP aproximada) al cuerpo del correo.
+- Genera HTML y texto plano saneados para evitar inyecciones.
+- Si Resend devuelve error, se registra en logs y el frontend informa al usuario para que contacte por teléfono/email.
 
----
-Este mensaje fue enviado automáticamente desde https://atrm-tu-sindicato.vercel.app/
-```
-
-4. Guarda y copia el **Template ID** (algo como `template_xyz789`)
-
-### 4. Obtener clave pública
-1. Ve a **Account** → **General**
-2. Copia tu **Public Key** (algo como `abc123def456`)
-
-### 5. Actualizar el código
-Abre `index.html` y busca estas líneas (alrededor de la línea 209):
-
-```javascript
-emailjs.init({
-  publicKey: "YOUR_PUBLIC_KEY", // ⬅️ Reemplazar con tu Public Key
-});
-```
-
-```javascript
-emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
-  // ⬆️ Reemplazar con tu Service ID y Template ID
-```
-
-Reemplaza:
-- `YOUR_PUBLIC_KEY` → Tu Public Key de EmailJS
-- `YOUR_SERVICE_ID` → Tu Service ID
-- `YOUR_TEMPLATE_ID` → Tu Template ID
-
-### 6. Probar
-1. Guarda los cambios
-2. Haz commit y push:
-```bash
-git add index.html
-git commit -m "Configurar EmailJS para denuncias"
-git push origin main
-```
-3. Ve a la web y prueba enviar una denuncia de prueba
-4. Deberías recibir el email en la cuenta configurada
-
-## 📊 Límites del plan gratuito:
-- ✅ 200 emails por mes
-- ✅ Sin tarjeta de crédito requerida
-- ✅ Servicio confiable y rápido
-
-## 🔐 Seguridad:
-- Las claves públicas son seguras para usar en el frontend
-- Las denuncias se envían directamente a tu email sin almacenar en base de datos
-- El sistema es totalmente anónimo (no registra IPs ni datos del usuario)
-
-## 💡 Alternativa: Formspree
-Si prefieres otro servicio, puedes usar [Formspree](https://formspree.io/) que es aún más simple:
-1. Regístrate en formspree.io
-2. Crea un formulario
-3. Te dan un endpoint
-4. Cambia el `emailjs.send()` por un fetch a ese endpoint
+## 🛠️ Personalización
+- Ajusta el contenido del correo editando `buildHtmlBody` o `buildTextBody` en `api/denuncia.js`.
+- Añade más destinatarios simplemente ampliando `RESEND_TO` con comas.
+- Antes del `fetch` a Resend puedes persistir la denuncia en una base de datos o disparar otra automatización.
 
 ---
 
-**¿Necesitas ayuda?** Contáctame y te ayudo a configurarlo paso a paso.
+¿Dudas? Escríbeme y lo dejamos listo juntos.

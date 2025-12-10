@@ -1,10 +1,10 @@
 {
   "casos": {
     "vacaciones": {
-      "keywords": ["vacaciones", "días", "verano", "navidad", "descanso anual", "periodo vacacional", "cuántas vacaciones", "cuántos días"],
-      "titulo": "Vacaciones anuales",
-      "resumen": "30 días naturales por año trabajado (interiores)",
-      "detalle": "📅 Vacaciones: 30 días naturales anuales. Se fijan de común acuerdo entre empresa y trabajador. No sustituibles por compensación económica salvo fin de contrato. Si coinciden con IT, se reprograman.",
+      "keywords": ["vacaciones", "dias", "verano", "navidad", "descanso anual", "periodo vacacional", "cuantas vacaciones", "cuantos dias"],
+      "titulo": "Vacaciones anuales (Art. 6)",
+      "resumen": "27 dias laborables (lunes a sabado), al menos 19 seguidos y pagadas con salario base + pluses.",
+      "detalle": "📅 **Vacaciones Art. 6 Interiores**\n- 27 dias laborables de lunes a sabado\n- Minimo 19 dias consecutivos, preferentemente en verano\n- Se programan en el primer trimestre entre empresa y comite/delegados\n- Retribuidas con salario base, antiguedad consolidada, plus de permanencia, plus de asistencia y cualquier plus habitual\n- La empresa debe abonar el importe el dia anterior al inicio (o entregar anticipo equivalente)\n- Si el trabajador percibe habitualmente otro plus salarial tambien se cobra en vacaciones",
       "contacto": "ATRM 968 30 00 37"
     },
     "jornada": {

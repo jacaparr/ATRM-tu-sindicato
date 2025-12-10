@@ -3,38 +3,44 @@
     {
       "id": 1,
       "titulo": "Ámbito de aplicación",
-      "texto": "El presente convenio colectivo será de aplicación a todas las empresas y trabajadores dedicados a la limpieza de edificios y locales en la Región de Murcia...",
-      "referencia": "Art. 1"
+      "texto": "El presente convenio colectivo regula las condiciones laborales de todas las empresas y personas trabajadoras dedicadas a la limpieza de edificios y locales en la Región de Murcia, cualquiera que sea la titularidad del centro (público o privado) y con independencia de que los trabajos se presten de forma fija o eventual.",
+      "referencia": "Art. 1",
+      "keywords": ["ambito", "aplicacion", "limpieza", "edificios", "locales", "region"]
     },
     {
-      "id": 2,
-      "titulo": "Jornada laboral",
-      "texto": "La jornada máxima anual será de 1.792 horas efectivas de trabajo, distribuidas según lo pactado en cada empresa...",
-      "referencia": "Art. 8"
-    },
-    {
-      "id": 3,
-      "titulo": "Vacaciones",
-      "texto": "El personal afectado por este convenio disfrutará de 30 días naturales de vacaciones retribuidas por año completo trabajado...",
-      "referencia": "Art. 14"
-    },
-    {
-      "id": 4,
-      "titulo": "Permisos retribuidos",
-      "texto": "El trabajador, previo aviso y justificación, podrá ausentarse del trabajo con derecho a remuneración por los motivos y tiempos siguientes: matrimonio, nacimiento de hijo, fallecimiento de familiar, etc...",
-      "referencia": "Art. 16"
-    },
-    {
-      "id": 5,
-      "titulo": "Salario y pagas extra",
-      "texto": "El salario base y los complementos se recogen en las tablas anexas. Se abonarán tres pagas extraordinarias: junio, diciembre y marzo...",
-      "referencia": "Art. 20"
+      "id": 8,
+      "titulo": "Jornada y descansos",
+      "texto": "La jornada máxima será de 1.792 horas efectivas al año. La jornada ordinaria se fija en 40 horas semanales salvo que, por acuerdo, se pacte una distribución distinta. El descanso semanal mínimo es de 36 horas ininterrumpidas (un día y medio). Las personas con una jornada diaria superior a 6 horas tienen derecho a una pausa retribuida de 15 minutos. Se permite la distribución irregular de la jornada respetando los límites anuales y la compensación en los cuatro meses siguientes.",
+      "referencia": "Art. 8",
+      "keywords": ["jornada", "1792", "descanso", "pausa", "horas", "turno", "articulo 8"]
     },
     {
       "id": 6,
+      "titulo": "Vacaciones anuales",
+      "texto": "Artículo 6. Vacaciones. Todas las personas trabajadoras afectadas por el presente Convenio disfrutarán de unas vacaciones anuales retribuidas al salario base, antigüedad consolidada, plus de permanencia y plus de asistencia, así como cualquier otro plus que se perciba de forma habitual. Los turnos se programarán entre la dirección y el comité o delegados dentro del primer trimestre del año. La duración será de 27 días laborables de lunes a sábado; al menos 19 deberán ser ininterrumpidos y se disfrutarán preferentemente en verano. La empresa abonará la retribución de las vacaciones el día anterior al inicio; si no puede, entregará un anticipo equivalente a los días a disfrutar.",
+      "referencia": "Art. 6",
+      "keywords": ["vacaciones", "27", "articulo 6", "turno", "verano", "pagadas"]
+    },
+    {
+      "id": 16,
+      "titulo": "Permisos retribuidos",
+      "texto": "El artículo 16 recoge los permisos retribuidos con derecho a salario íntegro: matrimonio o pareja de hecho, 15 días naturales; nacimiento de hijo/a, 2 días laborables (4 si se requiere desplazamiento); fallecimiento de cónyuge, padres, hijos o familiares hasta segundo grado, 2 días (4 con desplazamiento); fallecimiento de tíos o sobrinos, 1 día; hospitalización o intervención quirúrgica grave de familiares hasta segundo grado, 2 días (4 con desplazamiento); traslado de domicilio habitual, 1 día; realización de exámenes oficiales, el tiempo indispensable; guarda legal de hijas/os menores de 12 años o personas con discapacidad, reducción de jornada con reducción proporcional del salario. Todos los permisos requieren aviso y justificación.",
+      "referencia": "Art. 16",
+      "keywords": ["permiso", "matrimonio", "fallecimiento", "nacimiento", "mudanza", "hospitalizacion"]
+    },
+    {
+      "id": 20,
+      "titulo": "Salario y pagas extraordinarias",
+      "texto": "El salario base y los complementos se establecen en las tablas anexas del convenio. Además del salario mensual, se abonan tres pagas extraordinarias: junio (prorrateada de enero a mayo), diciembre (prorrateada de junio a noviembre) y marzo, equivalente a 30 días de salario base. La antigüedad se reconoce mediante trienios al 5% del salario base consolidado. Todos los pluses habituales (asistencia, permanencia, nocturnidad, etc.) deben abonarse según lo pactado.",
+      "referencia": "Art. 20",
+      "keywords": ["salario", "pagas", "extra", "junio", "diciembre", "marzo", "antiguedad"]
+    },
+    {
+      "id": 23,
       "titulo": "Subrogación",
-      "texto": "En los supuestos de cambio de empresa adjudicataria, se garantizará la subrogación de los trabajadores en los términos previstos en el convenio...",
-      "referencia": "Art. 23"
+      "texto": "Cuando se produce un cambio de empresa adjudicataria en un servicio de limpieza, la nueva empresa está obligada a subrogar al personal adscrito. Se conservan antigüedad, categoría, salario y demás condiciones. La empresa saliente debe entregar la relación de trabajadores y la entrante debe respetar íntegramente el convenio. Ninguna persona puede ser despedida por el mero hecho de la subrogación.",
+      "referencia": "Art. 23",
+      "keywords": ["subrogacion", "cambio", "empresa", "antiguedad", "nueva adjudicataria"]
     }
   ]
 }

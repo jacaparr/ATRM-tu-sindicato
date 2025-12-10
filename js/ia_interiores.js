@@ -32,6 +32,48 @@ class IAInteriores {
     } catch (e) { this.articulos = []; }
   }
 
+  normalizarTexto(texto) {
+    return (texto || '')
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+  }
+
+  buscarArticulo(pregunta) {
+    if (!this.articulos || !this.articulos.length) return null;
+    const consulta = this.normalizarTexto(pregunta);
+    let mejor = null;
+
+    for (const articulo of this.articulos) {
+      let score = 0;
+      const keywords = articulo.keywords || [];
+      for (const kw of keywords) {
+        const kwNorm = this.normalizarTexto(kw);
+        if (!kwNorm) continue;
+        if (consulta.includes(kwNorm)) {
+          score += Math.min(kwNorm.split(' ').length + 2, 6);
+        }
+      }
+
+      const tituloNorm = this.normalizarTexto(articulo.titulo);
+      if (tituloNorm && consulta.includes(tituloNorm)) score += 4;
+      tituloNorm.split(/\s+/).forEach((palabra) => {
+        if (palabra.length >= 5 && consulta.includes(palabra)) score += 1;
+      });
+
+      if (score > 0 && (!mejor || score > mejor.score)) {
+        mejor = { articulo, score };
+      }
+    }
+
+    return mejor && mejor.score >= 4 ? mejor.articulo : null;
+  }
+
+  formatearArticulo(articulo) {
+    const referencia = articulo.referencia ? ` <span style="color:#888;font-size:13px">(${articulo.referencia})</span>` : '';
+    return `<strong>${articulo.titulo}</strong><br>${articulo.texto}${referencia}`;
+  }
+
   // Detección por puntuación de keywords en casos_interiores.json
   detectarTema(pregunta) {
     if (!this.baseCasos || !this.baseCasos.casos) return null;
@@ -81,48 +123,59 @@ class IAInteriores {
   // Busca primero en Casos (scoring), luego en FAQs, luego en artículos, luego API
   async generarRespuesta(pregunta) {
     const preguntaOriginal = pregunta;
-    pregunta = pregunta.trim().toLowerCase();
+    const preguntaNormalizada = pregunta.trim().toLowerCase();
     let respuestaObj = null;
 
     console.log('🔍 Pregunta:', preguntaOriginal);
 
     // 0. Casos interiores por palabras clave (solo si match muy claro)
-    const temaId = this.detectarTema(pregunta);
+    const temaId = this.detectarTema(preguntaNormalizada);
     if (temaId) {
       console.log('✅ Caso detectado:', temaId);
       const caso = this.baseCasos.casos[temaId];
       respuestaObj = {
         resumen: `<strong>${caso.titulo}</strong><br>${caso.detalle}`,
       };
-      return respuestaObj;
     }
-    
-    // 1. Si no hay match claro, usar IA con contexto completo del convenio
-    console.log('🤖 Consultando IA con contexto del convenio...');
-    const apiResp = await this.consultarAPI(preguntaOriginal);
-    if (apiResp) {
-      respuestaObj = { resumen: apiResp };
-      return respuestaObj;
-    }
-    
-    // 2. Fallback a FAQs si la API falla
-    if (!respuestaObj && this.faqs && this.faqs.length) {
-      const faq = this.faqs.find(f => pregunta.includes(f.pregunta.toLowerCase().split(' ')[1]) || pregunta.includes(f.pregunta.toLowerCase().split(' ')[0]));
-      if (faq) {
-        console.log('📚 FAQ encontrada');
-        respuestaObj = {
-          resumen: faq.respuesta + ` <br><span style='color:#888;font-size:13px'>(Referencia: ${faq.referencia})</span>`
-        };
-        return respuestaObj;
+
+    // 1. Buscar artículo específico del convenio
+    if (!respuestaObj) {
+      const articulo = this.buscarArticulo(preguntaOriginal);
+      if (articulo) {
+        console.log('📑 Artículo seleccionado:', articulo.referencia);
+        respuestaObj = { resumen: this.formatearArticulo(articulo) };
       }
     }
     
-    // 3. Último recurso: mensaje de error
+    // 2. IA con contexto completo del convenio
+    if (!respuestaObj) {
+      console.log('🤖 Consultando IA con contexto del convenio...');
+      const apiResp = await this.consultarAPI(preguntaOriginal);
+      if (apiResp) {
+        respuestaObj = { resumen: apiResp };
+      }
+    }
+    
+    // 3. Fallback a FAQs si la API falla
+    if (!respuestaObj && this.faqs && this.faqs.length) {
+      const faq = this.faqs.find((f) => {
+        const p = f.pregunta.toLowerCase();
+        const tokens = p.split(' ');
+        return tokens.some((token) => token.length > 3 && preguntaNormalizada.includes(token));
+      });
+      if (faq) {
+        console.log('📚 FAQ encontrada');
+        respuestaObj = {
+          resumen: `${faq.respuesta} <br><span style='color:#888;font-size:13px'>(Referencia: ${faq.referencia})</span>`
+        };
+      }
+    }
+    
+    // 4. Último recurso: mensaje de error
     if (!respuestaObj) {
       respuestaObj = { resumen: '❌ No he podido conectar con el sistema de IA. Por favor, consulta el PDF del convenio o contacta con ATRM al 968 30 00 37.' };
     }
     
-    // Registrar en estadísticas si está disponible
     if (window.sistemaStats && respuestaObj) {
       window.sistemaStats.registrarConsulta(preguntaOriginal, respuestaObj.resumen, 'interiores');
     }
@@ -144,12 +197,12 @@ Vigencia: BORM 20/09/2024
 - Pausa diaria: 15 minutos de descanso si la jornada supera 6 horas consecutivas
 - Distribución: puede ser regular o irregular según acuerdo entre empresa y representantes
 
-=== VACACIONES (Art. 14) ===
-- 30 días naturales por año completo trabajado
-- Fijación del periodo: común acuerdo entre empresa y trabajador
-- No sustituibles por compensación económica salvo fin de contrato
-- Si coinciden con IT: se reprograman tras el alta médica
-- Disfrutar preferentemente en periodo junio-septiembre
+=== VACACIONES (Art. 6) ===
+- 27 días laborables (lunes a sábado) por año completo
+- Al menos 19 días deben disfrutarse de forma ininterrumpida y preferentemente en verano
+- Se programan entre la empresa y el comité/delegados en el primer trimestre del año natural
+- Retribución: salario base + antigüedad consolidada + plus de permanencia + plus de asistencia + cualquier otro plus salarial que se cobre habitualmente
+- La empresa abona el importe el día anterior al inicio del disfrute; si no es posible, debe anticipar la cantidad equivalente a los días a disfrutar
 
 === SALARIO Y PAGAS EXTRA (Art. 20) ===
 - Salario base según categoría profesional (ver tabla salarial vigente)

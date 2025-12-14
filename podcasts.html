@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Podcasts ATRM - NotebookLM</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#FF6B35">
+  <style>
+    :root{ --primary:#FF6B35; --secondary:#FF8C42; --accent:#FFA726; --dark:#2C3E50; }
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial;color:var(--dark);background:linear-gradient(180deg,#fff,#fff7f0)}
+    .top-header{position:sticky;top:0;z-index:100;background:linear-gradient(90deg,var(--primary),var(--secondary));color:#fff}
+    .nav{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
+    .logo{font-weight:800;letter-spacing:.3px}
+    .menu a{color:#fff;text-decoration:none;margin:0 10px;padding:8px 12px;border-radius:10px;transition:.2s}
+    .menu a:hover{background:rgba(255,255,255,.15)}
+  </style>
+  <link rel="stylesheet" href="css/podcasts.css">
+</head>
+<body>
+  <div class="top-header">
+    <div class="nav">
+      <div class="logo">ATRM · Tu Sindicato</div>
+      <nav class="menu">
+        <a href="index.html">Inicio</a>
+        <a href="index.html#convenio">Convenio</a>
+        <a href="salaries.html">Salarios</a>
+        <a href="tramites.html">Trámites</a>
+        <a href="festivos.html">Festivos</a>
+        <a href="podcasts.html" style="background:rgba(255,255,255,.15)">🎙️ Podcasts</a>
+      </nav>
+    </div>
+  </div>
+  
+  <header>
+    <h1>🎙️ Podcasts ATRM con NotebookLM</h1>
+    <p>Escucha conversaciones generadas por IA sobre tus derechos, trámites y convenios</p>
+    <div class="ai-badge">
+      <span>✨ Generado con NotebookLM de Google</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="buscador-podcasts">
+      <input type="text" id="buscarPodcast" placeholder="🔍 Buscar podcasts..." onkeyup="buscarPodcasts()">
+      <div class="filtros-categorias">
+        <button class="filtro-btn active" onclick="filtrarPorCategoria('todas')">Todas</button>
+        <button class="filtro-btn" onclick="filtrarPorCategoria('tramites')">🏛️ Trámites</button>
+        <button class="filtro-btn" onclick="filtrarPorCategoria('derechos')">⚖️ Derechos</button>
+        <button class="filtro-btn" onclick="filtrarPorCategoria('convenios')">📋 Convenios</button>
+        <button class="filtro-btn" onclick="filtrarPorCategoria('salarios')">💰 Salarios</button>
+      </div>
+    </div>
+
+    <div class="podcasts-grid" id="podcastsGrid">
+      <!-- Los podcasts se cargarán dinámicamente -->
+    </div>
+
+    <div class="sin-resultados" id="sinResultados" style="display: none;">
+      <p>😔 No se encontraron podcasts con esa búsqueda</p>
+    </div>
+  </main>
+
+  <div id="modalPodcast" class="modal-podcast" style="display: none;" onclick="cerrarModalPodcast(event)">
+    <div class="modal-podcast-contenido" onclick="event.stopPropagation()">
+      <button class="btn-cerrar-modal" onclick="cerrarModalPodcast()">✕</button>
+      <div class="podcast-player" id="podcastPlayer"></div>
+      <div class="podcast-info">
+        <h2 id="podcastTitulo"></h2>
+        <p id="podcastDescripcion"></p>
+        <div class="podcast-tags" id="podcastTags"></div>
+        <div class="notebooklm-info">
+          <span class="ai-icon">🤖</span>
+          <p>Este podcast fue generado automáticamente por <strong>NotebookLM</strong> a partir de documentos oficiales del convenio y normativa laboral.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>💡 ¿Quieres un podcast sobre un tema específico? <a href="mailto:info@atrm.es">Sugíerelo aquí</a></p>
+    <a href="index.html" class="btn-home">🏠 Volver al inicio</a>
+  </footer>
+
+  <script src="js/podcasts.js"></script>
+  <script src="js/pwa.js"></script>
+</body>
+</html>

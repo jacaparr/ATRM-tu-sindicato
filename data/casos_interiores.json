@@ -22,10 +22,10 @@
       "contacto": "ATRM 968 30 00 37"
     },
     "salarios": {
-      "keywords": ["salario", "nómina", "sueldo", "pagas extra", "tabla salarial", "cuánto cobro", "cuánto gano", "antigüedad", "trienios", "paga"],
+      "keywords": ["salario", "nómina", "sueldo", "pagas extra", "tabla salarial", "cuánto cobro", "cuánto gano", "antigüedad", "trienios", "paga", "cuanto cobra", "cuanto gana", "nomina", "retribucion", "categoria"],
       "titulo": "Salarios y pagas extra",
       "resumen": "Tabla salarial por categoría; 3 pagas extra (junio, dic., marzo)",
-      "detalle": "💶 Salarios: base según categoría profesional. Pagas extra: junio, diciembre y marzo. Antigüedad: trienios al 5% del salario base. Consulta la tabla oficial vigente para tu categoría.",
+      "detalle": "💶 **Salarios por categoría profesional (2024):**<br><br>**Personal de Limpieza:**<br>• Peón/a Limpiador/a: 1.050 €/mes<br>• Limpiador/a Especialista: 1.100 €/mes<br>• Especialista Cristalero/a: 1.150 €/mes<br><br>**Mandos Intermedios:**<br>• Jefe/a de Equipo: 1.250 €/mes<br>• Encargado/a: 1.400 €/mes<br><br>**Personal Administrativo:**<br>• Auxiliar Administrativo/a: 1.100 €/mes<br>• Oficial Administrativo/a: 1.300 €/mes<br><br>**Pagas extra:** 3 al año (junio, diciembre y marzo) - 30 días de salario base cada una<br>**Antigüedad:** trienios al 5% del salario base consolidado<br>**Pluses:** asistencia, permanencia, nocturnidad según convenio<br><br>📋 Consulta la tabla completa en la sección de Interiores de la web.",
       "contacto": "ATRM 968 30 00 37"
     },
     "excedencias": {

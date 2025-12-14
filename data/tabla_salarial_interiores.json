@@ -1,0 +1,115 @@
+{
+  "convenio": "Limpieza de Edificios y Locales - Región de Murcia",
+  "vigencia": "2024-2027",
+  "ultima_actualizacion": "2024",
+  "notas": [
+    "Salarios base mensuales en euros brutos",
+    "A estos importes se suman pagas extra (junio, diciembre, marzo)",
+    "Antigüedad: trienios al 5% del salario base consolidado",
+    "Pluses: asistencia, permanencia, nocturnidad según convenio"
+  ],
+  "categorias": [
+    {
+      "grupo": "Personal de Limpieza",
+      "categorias": [
+        {
+          "nombre": "Peón/a Limpiador/a",
+          "salario_base_mensual": 1050.00,
+          "descripcion": "Personal de limpieza básica de edificios y locales"
+        },
+        {
+          "nombre": "Limpiador/a Especialista",
+          "salario_base_mensual": 1100.00,
+          "descripcion": "Limpieza con especialización técnica o de áreas específicas"
+        },
+        {
+          "nombre": "Limpiador/a Especialista Cristalero/a",
+          "salario_base_mensual": 1150.00,
+          "descripcion": "Limpieza de cristales en altura o con medios técnicos"
+        }
+      ]
+    },
+    {
+      "grupo": "Mandos Intermedios",
+      "categorias": [
+        {
+          "nombre": "Jefe/a de Equipo",
+          "salario_base_mensual": 1250.00,
+          "descripcion": "Coordinación de pequeños equipos de limpieza"
+        },
+        {
+          "nombre": "Encargado/a",
+          "salario_base_mensual": 1400.00,
+          "descripcion": "Supervisión y coordinación de servicios de limpieza"
+        }
+      ]
+    },
+    {
+      "grupo": "Personal Administrativo",
+      "categorias": [
+        {
+          "nombre": "Auxiliar Administrativo/a",
+          "salario_base_mensual": 1100.00,
+          "descripcion": "Tareas administrativas auxiliares"
+        },
+        {
+          "nombre": "Oficial Administrativo/a",
+          "salario_base_mensual": 1300.00,
+          "descripcion": "Gestión administrativa completa"
+        }
+      ]
+    }
+  ],
+  "pagas_extra": {
+    "numero": 3,
+    "detalle": [
+      {
+        "nombre": "Paga de Junio",
+        "meses_prorrateados": "enero a mayo",
+        "importe": "30 días de salario base"
+      },
+      {
+        "nombre": "Paga de Diciembre",
+        "meses_prorrateados": "junio a noviembre",
+        "importe": "30 días de salario base"
+      },
+      {
+        "nombre": "Paga de Marzo",
+        "meses_prorrateados": "año completo",
+        "importe": "30 días de salario base"
+      }
+    ]
+  },
+  "complementos": [
+    {
+      "nombre": "Plus de Asistencia",
+      "descripcion": "Por asistencia regular al trabajo",
+      "calculo": "Según convenio"
+    },
+    {
+      "nombre": "Plus de Permanencia",
+      "descripcion": "Por permanencia en la empresa",
+      "calculo": "Según convenio"
+    },
+    {
+      "nombre": "Plus de Nocturnidad",
+      "descripcion": "Por trabajo en horario nocturno (22:00-06:00)",
+      "calculo": "Según convenio"
+    },
+    {
+      "nombre": "Antigüedad (Trienios)",
+      "descripcion": "Por cada 3 años trabajados",
+      "calculo": "5% del salario base consolidado"
+    }
+  ],
+  "ejemplo_calculo": {
+    "categoria": "Limpiador/a Especialista",
+    "salario_base_mensual": 1100.00,
+    "trienios_2": 110.00,
+    "plus_asistencia": 80.00,
+    "total_mensual_aproximado": 1290.00,
+    "pagas_extra_anuales": 3300.00,
+    "total_anual_aproximado": 18780.00,
+    "nota": "Ejemplo orientativo. Los complementos varían según empresa y condiciones"
+  }
+}

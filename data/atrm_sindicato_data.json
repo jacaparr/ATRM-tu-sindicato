@@ -21,9 +21,24 @@
     "direccion": "C/ Carril La Torre, 27 Bajo, 30006 Puente Tocinos (MURCIA)",
     "horario_atencion": "Lunes a Viernes: 09:00 - 14:00 y Lunes (Tarde): 16:00 - 20:00",
     "representantes": [
-      {"cargo": "Secretario General","nombre": "Por determinar","telefono": "968 30 00 37","email": "secretario@atrm-sindicato.es"},
-      {"cargo": "Responsable de Limpieza Viaria","nombre": "Por determinar","telefono": "628 304 954","email": "limpieza@atrm-sindicato.es"},
-      {"cargo": "Asesor Legal","nombre": "Por determinar","telefono": "658 876 771","email": "legal@atrm-sindicato.es"}
+      {
+        "cargo": "Secretario General",
+        "nombre": "Por determinar",
+        "telefono": "968 30 00 37",
+        "email": "secretario@atrm-sindicato.es"
+      },
+      {
+        "cargo": "Responsable de Limpieza Viaria",
+        "nombre": "Por determinar",
+        "telefono": "628 304 954",
+        "email": "limpieza@atrm-sindicato.es"
+      },
+      {
+        "cargo": "Asesor Legal",
+        "nombre": "Por determinar",
+        "telefono": "658 876 771",
+        "email": "legal@atrm-sindicato.es"
+      }
     ]
   },
   "convenio": {
@@ -32,15 +47,64 @@
     "vigencia": "1 de enero de 2024 a 31 de diciembre de 2027",
     "jornada": "37 horas y 30 minutos semanales / 1.680 horas anuales",
     "vacaciones": "28 días laborales consecutivos o sistema de meses naturales completos",
-    "incrementos_salariales": {"2024": "400€ lineal para todas las categorías","2025": "IPC real nacional de 2024","2026": "IPC real nacional de 2025","2027": "IPC real nacional de 2026"},
+    "incrementos_salariales": {
+      "2024": "400€ lineal para todas las categorías",
+      "2025": "IPC real nacional de 2024",
+      "2026": "IPC real nacional de 2025",
+      "2027": "IPC real nacional de 2026"
+    },
     "ambito_aplicacion": "Empresas de limpieza pública viaria, recogida de residuos sólidos urbanos, limpieza y conservación de alcantarillado, plantas de tratamiento y limpieza de playas en la Región de Murcia",
     "borm": "Número 599 del 11 de febrero de 2025",
     "pdf_descarga": "assets/convenio_viaria.pdf"
   },
   "noticias": [
-    {"fecha": "11 de febrero de 2025","titulo": "Publicado el nuevo Convenio Colectivo de Limpieza Pública Viaria 2024-2027","contenido": "Se ha publicado en el BORM el Convenio colectivo sectorial de Limpieza pública viaria de la Región de Murcia para los años 2024 a 2027. El convenio incluye incrementos salariales de 400€ para 2024 y actualizaciones según el IPC para los años siguientes.","fuente": "BORM nº 599"},
-    {"fecha": "21 de noviembre de 2024","titulo": "Firmado el Convenio Colectivo tras 302 días de negociación","contenido": "Tras diversas reuniones en la Oficina de Mediación y Arbitraje Laboral, las organizaciones sindicales UGT y CCOO junto a la empresarial ASELIPMUR han firmado el nuevo convenio sectorial.","fuente": "Fundación RLM"},
-    {"fecha": "23 de julio de 2024","titulo": "CCOO denuncia situación precaria de trabajadores del tranvía","contenido": "CCOO exige que los 6 trabajadores de limpieza del tranvía de Murcia cambien al Convenio Sectorial que les corresponde, ya que actualmente se les aplica un convenio incorrecto con perjuicio económico.","fuente": "CCOO Región de Murcia"},
-    {"fecha": "20 de octubre de 2023","titulo": "Elecciones sindicales en Actúa Servicios y Medio Ambiente","contenido": "En las elecciones celebradas en la empresa de limpieza viaria de Alcantarilla, ATRM consiguió 2 delegados de personal de los 3 que se elegían, mientras USO obtuvo 1.","fuente": "USO Murcia"}
+    {
+      "fecha": "10 de diciembre de 2025",
+      "titulo": "Día de los Derechos Humanos: 1 de cada 5 trabajadores, explotados o sin protección - Sindicato USO",
+      "contenido": "Día de los Derechos Humanos: 1 de cada 5 trabajadores, explotados o sin protección  Sindicato USO (Enlace: https://news.google.com/rss/articles/CBMiygFBVV95cUxObG9QOTNUVjVBdnNDdEU3djJreW04VVlXSnVsb2dqQmtGaTAtejhVZmNEOUprUG9YZ2FENkxiM3BKQnRpOFprMll2RG9hdlJiSW9RV0IxMlIxNXBHU1JYUnRVSk5FdlF3UlVIZVJjazlXcnZPVzlxcGx3cG9lNWZ0bTR1ZVhLY01hbDZ0RlRqTUdBekozN1dkUGhBUmFJQ1JsU1RVU3dubWwtX3JEXzk3ZEFzcW9zejBnRlNILU0yQVJTc3oydTBFc213?oc=5)",
+      "fuente": "Sindicato USO"
+    },
+    {
+      "fecha": "12 de diciembre de 2025",
+      "titulo": "El vago de Adorni fundó un sindicato de repartidores y ahora no los considera trabajadores - Izquierda diario.es",
+      "contenido": "El vago de Adorni fundó un sindicato de repartidores y ahora no los considera trabajadores  Izquierda diario.es (Enlace: https://news.google.com/rss/articles/CBMivgFBVV95cUxQdlNRMTJRYmM0RGtuYlNvNnI3ajIxRXk5RldBbDg0YzhSTzhCekcyZ2M4OV9CaGNudGYxeG1nZjJJd1Ffa1BtZHdCRlh0Z1Q2MThWT29VaGZvNkM0WUp1T2RGZ0NoM1JXeFo5cFczTkhXYUNXTWNEMUdkcnBuYTZNY3hiZUdtTHdjX1QzS3ZmZXlzSzBYejU1bENpbXBVMDVWSXI1b1V3RDU1cE5FRlZnWUk5NlVsbG85SXdyNGR3?oc=5)",
+      "fuente": "Izquierda diario.es"
+    },
+    {
+      "fecha": "12 de diciembre de 2025",
+      "titulo": "El sindicato está legitimado procesalmente, aunque su pretensión sea contraria a los intereses de los trabajadores - ga-p.com",
+      "contenido": "El sindicato está legitimado procesalmente, aunque su pretensión sea contraria a los intereses de los trabajadores  ga-p.com (Enlace: https://news.google.com/rss/articles/CBMi3gFBVV95cUxQUi1hemoxTlBvZllfbGZydHVDUV9vYnhOUWJkU1VXeTRGaHROb0dobjloVi04N3NnWHZjajlFNnhncTNkc0FiMWVUQm5wd2tEdGt4RXdaVVZuclZNU3ZGaFRyV3RMWlczNnJDZF9SRXAzbDFGbHNxamdDRWEzZ3RaaHZtSFJSemNpWm84T0lMQktTYi1yRGNEVllZcjc2SjdfZWI0Y25nN3R5bkdrMGhxb2dicm5XUC05eUNQZTFPN3VhSHBRekRqNkI0cFo2OG1yVGNCOElPWVpDWVkxdWc?oc=5)",
+      "fuente": "ga-p.com"
+    },
+    {
+      "fecha": "12 de diciembre de 2025",
+      "titulo": "CC OO denuncia que el gerente de la Jiménez Díaz, del grupo Quirón, ha vinculado sus protestas laborales con sabotajes - EL PAÍS",
+      "contenido": "CC OO denuncia que el gerente de la Jiménez Díaz, del grupo Quirón, ha vinculado sus protestas laborales con sabotajes  EL PAÍS (Enlace: https://news.google.com/rss/articles/CBMi-AFBVV95cUxQdlNGRUg3djIxOU5qM2NvOUlTLXNxR1FnYy1TY296WkYxUVlNN3h3NnpNRGhOMjIwUlNwNUljZDJtNTFjQk1pYW9NdTRaSnVyY2ZkS0pQV1oxSDRYZ3hhd2FjSnpkaFJLS1RKbS11LXFFc1VjSXNSZW9SaEtmRUVJV3pseWQyaU1mX2RDVFU5dnMxSU5oQnk3QWJ4MXdSLVMxUDVBek9HLWRYNFh2Z1RWZWxLRDBWQVoxRjRWNmJpdklKbWprYmgwUnpNUXNRMEhVZkZyUGNmVXJ1bXpaYzZQM2JzdVFsUlJxaE9DZkFnbjFLcWJOQzJkT9IBjAJBVV95cUxON3luUlF2Z1VxbmtZMzZTeGFsS1pZcVV6bE5Vakp4dE0zc2ZCZHltOVdXTDUza1RVVHlFTm51UFVFZE5yYzhSdmdzVHZwVkRheVE4X3UteEFZRHRicUF0cTNLc2xXZ2pKaEVpRWJIamVyY2FFNUh0LUx5Sm0xa2NWUzdvRzNweVFxWHJFLUhtbHlDVE1NMnZyWW1BLW94NE0zazBaWE5RLWdnVF85ZS1HVDlyekh2alFQSjNJT3N3MVBJdUFaTFUyaTZkOUVxS25WZGlsZGpUMGh0Z3B4UUdDVEIwYkNCSXFyRmVjeGlOVTFJaXpsdDJlRm1NRk1zUTZ3Q2R2d1NkX0p6NUxq?oc=5)",
+      "fuente": "EL PAÍS"
+    },
+    {
+      "fecha": "11 de febrero de 2025",
+      "titulo": "Publicado el nuevo Convenio Colectivo de Limpieza Pública Viaria 2024-2027",
+      "contenido": "Se ha publicado en el BORM el Convenio colectivo sectorial de Limpieza pública viaria de la Región de Murcia para los años 2024 a 2027. El convenio incluye incrementos salariales de 400€ para 2024 y actualizaciones según el IPC para los años siguientes.",
+      "fuente": "BORM nº 599"
+    },
+    {
+      "fecha": "21 de noviembre de 2024",
+      "titulo": "Firmado el Convenio Colectivo tras 302 días de negociación",
+      "contenido": "Tras diversas reuniones en la Oficina de Mediación y Arbitraje Laboral, las organizaciones sindicales UGT y CCOO junto a la empresarial ASELIPMUR han firmado el nuevo convenio sectorial.",
+      "fuente": "Fundación RLM"
+    },
+    {
+      "fecha": "23 de julio de 2024",
+      "titulo": "CCOO denuncia situación precaria de trabajadores del tranvía",
+      "contenido": "CCOO exige que los 6 trabajadores de limpieza del tranvía de Murcia cambien al Convenio Sectorial que les corresponde, ya que actualmente se les aplica un convenio incorrecto con perjuicio económico.",
+      "fuente": "CCOO Región de Murcia"
+    },
+    {
+      "fecha": "20 de octubre de 2023",
+      "titulo": "Elecciones sindicales en Actúa Servicios y Medio Ambiente",
+      "contenido": "En las elecciones celebradas en la empresa de limpieza viaria de Alcantarilla, ATRM consiguió 2 delegados de personal de los 3 que se elegían, mientras USO obtuvo 1.",
+      "fuente": "USO Murcia"
+    }
   ]
 }

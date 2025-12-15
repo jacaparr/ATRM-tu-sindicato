@@ -10,7 +10,7 @@ class SistemaVideos {
         categoria: 'tramites',
         duracion: '5:30',
         thumbnail: 'https://via.placeholder.com/400x225/667eea/ffffff?text=Vida+Laboral',
-        videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', // Reemplazar con URL real
+        videoUrl: 'https://drive.google.com/file/d/1vKvMbBiL4XqLhAOqJfJC5mVnRpHsN8Yw/preview',
         tags: ['vida laboral', 'seguridad social', 'trámites', 'documentación']
       },
       {

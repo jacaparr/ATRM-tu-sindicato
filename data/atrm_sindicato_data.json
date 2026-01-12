@@ -59,6 +59,30 @@
   },
   "noticias": [
     {
+      "fecha": "7 de enero de 2026",
+      "titulo": "Calendario Laboral 2026 - cesm-cv.org",
+      "contenido": "Calendario Laboral 2026  cesm-cv.org (Enlace: https://news.google.com/rss/articles/CBMiXEFVX3lxTFB1ZjdWaTFhWGtyWGxPazVNTFpVUFN2QmtrN2NUYkFvRzN5UDh0YzI3UmFDMjEtRk9oSVY0UHVZZjFQS29PNDdFTDhNeHNFdW9XcDdndEpHWEJ6ODlo?oc=5)",
+      "fuente": "cesm-cv.org"
+    },
+    {
+      "fecha": "10 de enero de 2026",
+      "titulo": "Trabajadores de GTA VI atacan a Rockstar con sindicato británico - El Chapuzas Informático",
+      "contenido": "Trabajadores de GTA VI atacan a Rockstar con sindicato británico  El Chapuzas Informático (Enlace: https://news.google.com/rss/articles/CBMikAFBVV95cUxPVGZCaUxaRFlDZWdLZW4zMDJVblQzY1lXcDFRSGl0NDE4bEJvRG1EV2M4a2gwbk1hWnh1NzlwdmExa1dnVjNpcGIwNmtjUlJPLVN4cU5JMjhkVm5lOUZSOUdFeDAtdGtJMnRKYWZ4ejNPTE0wNlN3UDBTekZFV1BXa09KZk5uV1lwUW9Nd1lVZGk?oc=5)",
+      "fuente": "El Chapuzas Informático"
+    },
+    {
+      "fecha": "22 de diciembre de 2025",
+      "titulo": "Solidaridad denuncia a Clece Seguridad por incumplir la jornada laboral y manipular los cuadrantes en Castellón - Sindicato Solidaridad",
+      "contenido": "Solidaridad denuncia a Clece Seguridad por incumplir la jornada laboral y manipular los cuadrantes en Castellón  Sindicato Solidaridad (Enlace: https://news.google.com/rss/articles/CBMi3AFBVV95cUxNSkI1Nl8yTjhwbmM0RTBaS0F6WHRQMmlIcmliOTBYSDloUkl0ZW9uSmtBQldxQnVqclFTOVV1dFlWUlBEZldHYUhwSkxRblBsbjU2S0JMWlhaODRlS1RibnQtME16SklZRGtBVTFnM1lRelVHVUhXT2ZFTzF0ZlhRcDgzYWdJa0lQYU96R3dNcVpDWUlHQW5PYXVSVkk0M2Q4RjBaNzg5cHlmUGZNeFEtMUhmcGV1NUhxb010V3pxVV9FS2F4ZjRZbG1XTldGR0dxUFNXVDBDbFZGN01T?oc=5)",
+      "fuente": "Sindicato Solidaridad"
+    },
+    {
+      "fecha": "7 de enero de 2026",
+      "titulo": "UGT denuncia falta de personal y sobrecarga laboral en dos centros residenciales de Palencia - Palencia en la Red",
+      "contenido": "UGT denuncia falta de personal y sobrecarga laboral en dos centros residenciales de Palencia  Palencia en la Red (Enlace: https://news.google.com/rss/articles/CBMiwgFBVV95cUxPT1dRcXM4czU1THdZanNxcU1GTEphMDRSQjY4eVFNM0FvM24tNHBYREJxUkk1ekp6NXE2bFFZd2lIS3BCUzR5YXFTdzB2eTFfMWJvWDBnVTNTLTJ6YVpCS2RtbVJqZk03dDZ1eVhoU2x6THhwY09KczZFRjRKS0FaSDlHZFZyOE41cFJzcHNNWmJDbWZPaGxoTW9MUl9OQXctODdqSVRXbER0RjVFNkY5WnY5eU9HZjhvdkczN2Q3U3l1Zw?oc=5)",
+      "fuente": "Palencia en la Red"
+    },
+    {
       "fecha": "4 de enero de 2026",
       "titulo": "Una vez más, sobre la legitimación de las secciones sindicales para accionar en sede judicial. Impugnación de resoluciones administrativas en materia laboral. A propósito de las sentencias del TSJ (social) de Cataluña de 3 de noviembre y 2 de diciembre d - eduardorojotorrecilla.es",
       "contenido": "Una vez más, sobre la legitimación de las secciones sindicales para accionar en sede judicial. Impugnación de resoluciones administrativas en materia laboral. A propósito de las sentencias del TSJ (social) de Cataluña de 3 de noviembre y 2 de diciembre d  eduardorojotorrecilla.es (Enlace: https://news.google.com/rss/articles/CBMijgFBVV95cUxPSWs5MzVYOC1GOW9YVk1nekdaTzd2UURGUmVIcFdjUUEtaDF4RVZ1bkZLRXl4d0M4a2dZaHZXWWRzRGdqLVJsTWVzcjBLWnJfWU52YktlU2I1WlJnSmEtdkx5UERadzJoQlVWbXBFVkVQQ015Q3d1dmdNbDFqMnNwbTZKUGw5Ml8wQndla29R?oc=5)",
@@ -93,30 +117,6 @@
       "titulo": "El sindicato CSTA consigue retirar las sanciones a dos camareras de piso en hoteles de Granada - Granada Hoy",
       "contenido": "El sindicato CSTA consigue retirar las sanciones a dos camareras de piso en hoteles de Granada  Granada Hoy (Enlace: https://news.google.com/rss/articles/CBMitwFBVV95cUxOR3RMaVpubTFyaHlTZDJHdks3SGRVUDhmYlA1eE9FbzMzcU0yMUt2ekFaY1BQNElTUHhyT3RTZHktelFVazFTWHM1M2ZaanphVkJuWEdvTW1CWVlENGMzbHA5U3NVYjRQQ0RlelRCNDdqMVFlanlvdC1oR3A5NllEeGhNUmFaQm1ZNmFJaXE3TUk1Z2pCV01nZnVzbzB3VFJ3V1JiU3QweUhubmxjX1RBR2NzM1k1d3PSAbwBQVVfeXFMUGZMeGx6dFRCcnFoOEM4UmpBc293MFQ0aC03dlYzMGFZcVpDMk9YN1dtMHFVeHpFVV90UERPaVFmcUxNRXZJNkdzS3c0SThEdlYtQm5CZUxXd0RZa3FZUVlqVHVaZnFheUE5blZ4UFZ0MXBzZ3dkb0NoYk5rcURHQkJXWjJaLWpJeVZUWlFjOUxvWC1TN1B4eTh0aV9lVlEySHZMNk5SYjZ4a2JPaEFtMGEzSFM3Y192RlM3TzQ?oc=5)",
       "fuente": "Granada Hoy"
-    },
-    {
-      "fecha": "26 de diciembre de 2025",
-      "titulo": "Un empleado con 24 años de antigüedad es despedido por bajo rendimiento: es nulo porque fue una represalia por haber denunciado sobrecarga laboral - Noticiastrabajo",
-      "contenido": "Un empleado con 24 años de antigüedad es despedido por bajo rendimiento: es nulo porque fue una represalia por haber denunciado sobrecarga laboral  Noticiastrabajo (Enlace: https://news.google.com/rss/articles/CBMiuwJBVV95cUxNMmZidUFjVXdGQ00tRjJISGxVOEw3SHV1NWZDWTJPdXp2M05hU1RHRlN2aFJLclRhbmtZSWYwNndzdzRSNDA0YWJTNHVRTF9NOWdMaW1nUGp1TzZaNktTT01lMHl5UHItMGszNllUZDk1OE9aTXhGX0N3Nk9WVy1PakJWc095b0N6d2FnVy1ubm4yRUk5aE9fOGtqZlhFM01SWFh3LWV3RU5sTHZ2M1V4WnctbENEWkRjR2JFQmJKLXlaaS15Zk15N0VMOERvV0ktWWlqOURTVHZ3M01yRkczOENpSERiQW1sZEEtNjQ0RGl0Z1ZFVkxmZk8ycW5SLWpieXdQd3VnaEN2RXI0Rjc4WEliZGdYdmFYQTlUMmI4OUxCV1o4aFlseHBmVFk2RVBTbTdHNm1zcDYwbGPSAcACQVVfeXFMTXhPc19KOGd1WjExcHlTR2hnOEl3ZDhzYVp0MWdTTWI5dmVvcTB5b0dETmU0MXZqbmp0MFNIMU5yaXdOc0ctNFF6c2VQbkNUVkpFSHZaVFZVZHUzZ2d4ZEhyZG84ak8xd0hadFl4VUV5UWhONWtPemNkcnpWbTFaU2FJenBFUWI0SEhfeXZFcktoUm0xQkxwd3pucGREUktmZXc4eDRBTHoxTjJWdXFSaS1icVlzcTRYXy1XZUVyRU4yenZ2N3B2d3ZLMTd5MXV6VXFFdjhWRTdiY09XTVhWUHFpdkg4cWNUVXo2QXF4SFZIZWN1Tko2QmZQWDB0eF9fR2hOOEFHT1ZfNXRmZXRzYUJ6X2ViZHhQSXVMSlBnNzBkRDFWYTBvVHVMMzJOcFh2NFBQcGg3dW94V3RDZ2lJQlk?oc=5)",
-      "fuente": "Noticiastrabajo"
-    },
-    {
-      "fecha": "27 de diciembre de 2025",
-      "titulo": "CSIF niega que exista un acuerdo con los trabajadores sobre la productividad variable en Ingesa - Ceuta al Día",
-      "contenido": "CSIF niega que exista un acuerdo con los trabajadores sobre la productividad variable en Ingesa  Ceuta al Día (Enlace: https://news.google.com/rss/articles/CBMi4gFBVV95cUxQVVp2UlBocVQ2R3ZaWWRfcHhYeDI1X2xOTl9kbTJkbEhjUXlHMy1tbl9oRFNRQmhWT0doeU1sdENvcnJ0ZWRGdmQ0bG14LV9SNUNJdmt1akJwOFRYbnBnazBORlVkWklLR2dZaU1HRkVRMWQxOHMtVEZHV25zMk12clR4R2dyYkZQUE40emFqTE5McVk0ZGVCRUg5TFh1U3N0S0xpODBsWDBWYUh4b0EzRGNPNFpVUkZhV19FMDZsVFRJSmhqZTYyLS1XRWxzVEl2NERYR0FkdDc5U0lOZF91aUJ30gHnAUFVX3lxTE84eHNZTXBMVTdER21GOHJPTmZIU1lIX2VoRUVjNTF4NFhfWmNMcUx0UEZ0ZGtWeHZKNFpTU2NFQzYtcmFOa09ERTYtNjJGekg0VEtYa05tdElWalpab0dLM182R3dIcGlkUUdzeVdJRlQ5YVYyMEpxZ2FweWEwZVljUDZlUDRqcWdMcTBiSW5VVjFTS1dYSTZ4WWRGc0tUX1ROcEZsdGpJM3FlTVNGeVhqZjZuRnZYWVBrYTRmQy1OX1JrMmRVUHBpLVpkbE5ZOGxuQVMzTzlmWElVTXpxVTczbmlmeEYyVQ?oc=5)",
-      "fuente": "Ceuta al Día"
-    },
-    {
-      "fecha": "17 de diciembre de 2025",
-      "titulo": "Lucha sindical, salud laboral - El Salto",
-      "contenido": "Lucha sindical, salud laboral  El Salto (Enlace: https://news.google.com/rss/articles/CBMidEFVX3lxTE5VeWNkcXV4ZnM5X1ZTY1ZveHJvc1hHR3hOXzlXRnE4aXNuLUVyRlRLNU8yd0FJQ2pfM2dIQ3RHMFZ0UGp4YS1YRUFoQmRabG1NUWVyQnB6cDhiSmVETTZvcHZCS2RVOWpJVTJEaVdLektacmhz?oc=5)",
-      "fuente": "El Salto"
-    },
-    {
-      "fecha": "19 de diciembre de 2025",
-      "titulo": "El sindicato CCOO Bierzo denuncia el cierre de la oficina de empleo de la Junta en Fabero - elDiario.es",
-      "contenido": "El sindicato CCOO Bierzo denuncia el cierre de la oficina de empleo de la Junta en Fabero  elDiario.es (Enlace: https://news.google.com/rss/articles/CBMiugFBVV95cUxOR0VoZVB2eGZURWpObjNJV19vOEh3MWp5NmI2NEdETWJoREFYOUlEb2F0czZwOEdLMkIxV2NiZVFMUHhZM3pVRGFQbWh0ZTZwdkk3cW9rM0cwUTkxNzhvTDFKb0xNYWVtdTZRS1VBbnk0eE9pdTV0QXVXMFZQWGVDVGtvaW5NNGNSVWxYVEktMmVLMHFaZmE3S0pBMzNQdllRbTNJVDZMbGx6NmYwOXFYRmw3MVo2WVhZM2fSAb8BQVVfeXFMT2pEQlJqNEZwcTBmUEVKVlpNRl83MXdpd1A4eXlYeTRFRXNZcGJUWXhWamRkYUQ5d3Z0SG54ZXRPYkgybERMU0xVZEN3QUxjUkhuYUhMS1llZ0xueFk5Mlk3Ym9ROUowemZPd2JfQnRrLWVQSFVHaVV4ZEttSlNFSERnM3NiTDNTUEpzX1NQYTFuLXdrZDRwM0dEN2hoTWFxcmw3Zk9zNS1KT0pHZEJwMjZXMFpDTm1jQ3V3QW5sUUE?oc=5)",
-      "fuente": "elDiario.es"
     }
   ]
 }

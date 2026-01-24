@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagnóstico IA - ATRM</title>
+  <style>
+    body { font-family: system-ui; max-width: 1000px; margin: 20px auto; padding: 20px; }
+    .test { background: #f5f5f5; padding: 15px; border-radius: 8px; margin: 15px 0; }
+    .pregunta { font-weight: bold; color: #0066cc; margin-bottom: 10px; }
+    .resultado { background: white; padding: 10px; margin-top: 10px; border-left: 4px solid #ddd; }
+    .debug { font-family: monospace; font-size: 11px; color: #666; margin-top: 5px; background: #f9f9f9; padding: 5px; }
+    button { background: #FF6B35; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>🔍 Diagnóstico IA - ATRM</h1>
+  <button onclick="diagnosticar()">Ejecutar Diagnóstico</button>
+  <div id="resultados"></div>
+
+  <script src="js/ia_mejorada.js"></script>
+  <script>
+    async function diagnosticar() {
+      const ia = new IAContextual();
+      const resultados = document.getElementById('resultados');
+      resultados.innerHTML = '<p>⏳ Cargando base de casos...</p>';
+      
+      // Esperar a que cargue la base de casos
+      const cargado = await ia.esperarCasos();
+      
+      if (!cargado) {
+        resultados.innerHTML = '<div style="color:red; padding:20px;">❌ ERROR: No se pudo cargar la base de casos después de 3 segundos</div>';
+        return;
+      }
+      
+      resultados.innerHTML = '<p>✅ Base cargada. Ejecutando diagnóstico...</p>';
+      
+      const preguntas = [
+        'días por fallecimiento de suegra',
+        'ha muerto mi padre',
+        'plus de nocturnidad',
+        'cuántos días de vacaciones tengo',
+        'mi madre está ingresada'
+      ];
+      
+      let html = '';
+      
+      for (const pregunta of preguntas) {
+        html += `<div class="test">`;
+        html += `<div class="pregunta">Pregunta: "${pregunta}"</div>`;
+        
+        // Buscar caso directamente
+        const caso = ia.encontrarCaso(pregunta);
+        
+        if (!caso) {
+          html += `<div class="resultado" style="border-color:#f44336">❌ NO SE ENCONTRÓ CASO</div>`;
+          html += `<div class="debug">Base de casos cargada: ${ia.baseCasos ? 'SÍ' : 'NO'}</div>`;
+          html += `<div class="debug">Número de casos: ${ia.baseCasos?.casos ? Object.keys(ia.baseCasos.casos).length : 0}</div>`;
+        } else {
+          html += `<div class="resultado" style="border-color:#4CAF50">✅ Caso encontrado: ${caso.titulo}</div>`;
+          html += `<div class="debug">ID: ${caso.id || 'N/A'} | Score: ${caso._score || 'N/A'}</div>`;
+          html += `<div class="debug">Keywords del caso: ${(caso.keywords || []).slice(0, 10).join(', ')}${caso.keywords?.length > 10 ? '...' : ''}</div>`;
+        }
+        
+        // Probar respuesta completa
+        const respuesta = await ia.generarRespuesta(pregunta);
+        html += `<div class="debug">Respuesta (primeros 200 chars): ${respuesta.substring(0, 200)}...</div>`;
+        
+        html += `</div>`;
+        
+        await new Promise(resolve => setTimeout(resolve, 300));
+      }
+      
+      // Info adicional
+      html += `<div class="test">`;
+      html += `<h3>📊 Información del Sistema</h3>`;
+      html += `<div class="debug">Base de casos cargada: ${ia.baseCasos ? 'SÍ' : 'NO'}</div>`;
+      if (ia.baseCasos?.casos) {
+        html += `<div class="debug">Casos disponibles: ${Object.keys(ia.baseCasos.casos).length}</div>`;
+        html += `<div class="debug">Lista de IDs: ${Object.keys(ia.baseCasos.casos).join(', ')}</div>`;
+      }
+      html += `</div>`;
+      
+      resultados.innerHTML = html;
+    }
+    
+    // Diagnóstico automático al cargar
+    window.addEventListener('load', () => {
+      setTimeout(diagnosticar, 1000);
+    });
+  </script>
+</body>
+</html>

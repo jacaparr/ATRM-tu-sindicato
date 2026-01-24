@@ -1,4 +1,4 @@
-const CACHE_NAME = 'atrm-cache-v1';
+const CACHE_NAME = 'atrm-cache-v2';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -37,6 +37,7 @@ self.addEventListener('install', (event) => {
         return cache.addAll(ASSETS_TO_CACHE);
       })
   );
+  self.skipWaiting();
 });
 
 // Activate event: Clean up old caches
@@ -52,6 +53,7 @@ self.addEventListener('activate', (event) => {
       );
     })
   );
+  self.clients.claim();
 });
 
 // Fetch event: Network first, then cache (or Stale-While-Revalidate)

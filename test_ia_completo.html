@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Completo IA - ATRM</title>
+  <style>
+    body { font-family: system-ui; max-width: 1200px; margin: 20px auto; padding: 20px; background: #f8f9fa; }
+    h1 { color: #FF6B35; }
+    .test { background: white; padding: 15px; border-radius: 8px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .pregunta { color: #0066cc; font-weight: bold; margin-bottom: 8px; font-size: 14px; }
+    .respuesta { background: #f5f5f5; padding: 12px; border-left: 4px solid #ddd; margin-top: 8px; font-size: 13px; max-height: 200px; overflow-y: auto; }
+    .correcto { border-left-color: #4CAF50; background: #e8f5e9; }
+    .incorrecto { border-left-color: #f44336; background: #ffebee; }
+    .warning { border-left-color: #ff9800; background: #fff3e0; }
+    button { background: #FF6B35; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+    button:hover { background: #FF8C42; }
+    .loading { color: #666; font-style: italic; }
+    .stats { background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; }
+    .stat-box { text-align: center; padding: 15px; background: #f5f5f5; border-radius: 8px; }
+    .stat-num { font-size: 32px; font-weight: bold; color: #FF6B35; }
+    .stat-label { font-size: 12px; color: #666; margin-top: 5px; }
+    .categoria { background: #FF6B35; color: white; padding: 15px; border-radius: 8px; margin: 20px 0 10px; }
+    .btn-all { background: #4CAF50; margin-bottom: 20px; padding: 12px 24px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <h1>🧪 Test Completo de IA - ATRM Sindicato</h1>
+  
+  <div class="stats" id="stats">
+    <h3>📊 Estadísticas de Pruebas</h3>
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-num" id="total">0</div>
+        <div class="stat-label">Total</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" style="color:#4CAF50" id="correctas">0</div>
+        <div class="stat-label">Correctas ✅</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" style="color:#f44336" id="incorrectas">0</div>
+        <div class="stat-label">Incorrectas ❌</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" id="porcentaje">0%</div>
+        <div class="stat-label">Precisión</div>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn-all" onclick="ejecutarTodosLosTests()">▶️ Ejecutar Todos los Tests</button>
+
+  <div id="tests-container"></div>
+
+  <script src="js/ia_mejorada.js"></script>
+  <script>
+    const ia = new IAContextual();
+    let stats = { total: 0, correctas: 0, incorrectas: 0 };
+
+    const TESTS = {
+      'Permisos por fallecimiento': [
+        { pregunta: 'días por fallecimiento de suegra', esperado: ['fallecimiento', '3 días', '2º grado'], noEsperado: ['excedencia'] },
+        { pregunta: 'ha muerto mi padre cuantos dias tengo', esperado: ['fallecimiento', '3 días', '1er grado'], noEsperado: [] },
+        { pregunta: 'fallecimiento abuelo', esperado: ['fallecimiento', '2º grado'], noEsperado: [] },
+        { pregunta: 'mi hermano ha fallecido', esperado: ['fallecimiento', '2º grado'], noEsperado: [] },
+        { pregunta: 'muerte de mi hijo', esperado: ['fallecimiento', '1er grado'], noEsperado: [] },
+        { pregunta: 'ha muerto mi tío', esperado: ['fallecimiento', '3er grado', '1 día'], noEsperado: [] },
+      ],
+      'Hospitalización familiar': [
+        { pregunta: 'mi madre está ingresada en el hospital', esperado: ['hospitalización', '5 días'], noEsperado: [] },
+        { pregunta: 'operación de mi suegra', esperado: ['hospitalización', '5 días', '2º grado'], noEsperado: [] },
+        { pregunta: 'intervención quirúrgica hermano', esperado: ['hospitalización', '5 días'], noEsperado: [] },
+        { pregunta: 'padre en el hospital', esperado: ['hospitalización', '5 días'], noEsperado: [] },
+      ],
+      'Salarios y nómina': [
+        { pregunta: 'plus de nocturnidad', esperado: ['28%', 'salario base', '22:00', '06:00'], noEsperado: [] },
+        { pregunta: 'incremento salarial 2026', esperado: ['IPC', '2025'], noEsperado: [] },
+        { pregunta: 'cuánto cobro como peón', esperado: ['salario', 'peón'], noEsperado: [] },
+        { pregunta: 'plus de toxicidad', esperado: ['30%', 'salario base'], noEsperado: [] },
+      ],
+      'Vacaciones y jornada': [
+        { pregunta: 'cuántos días de vacaciones tengo', esperado: ['28 días', 'laborales'], noEsperado: [] },
+        { pregunta: 'jornada laboral', esperado: ['37 horas', '30 minutos'], noEsperado: [] },
+        { pregunta: 'horas extra', esperado: ['80%'], noEsperado: [] },
+      ],
+      'Permisos varios': [
+        { pregunta: 'permiso por matrimonio', esperado: ['15 días', 'naturales'], noEsperado: [] },
+        { pregunta: 'nacimiento de hijo', esperado: ['paterni'], noEsperado: [] },
+        { pregunta: 'traslado de vivienda', esperado: ['2 días'], noEsperado: [] },
+        { pregunta: 'consulta médica', esperado: ['3 horas'], noEsperado: [] },
+      ],
+      'Despidos y finiquitos': [
+        { pregunta: 'me han despedido', esperado: ['despido', 'inden'], noEsperado: [] },
+        { pregunta: 'finiquito', esperado: ['finiquito'], noEsperado: [] },
+        { pregunta: 'despido improcedente', esperado: ['indemni', '33 días'], noEsperado: [] },
+      ],
+      'Casos complejos': [
+        { pregunta: 'qué puedo preguntar', esperado: ['puedes preguntarme'], noEsperado: ['excedencia'] },
+        { pregunta: 'ayuda', esperado: ['puedes preguntarme', 'ejemplos'], noEsperado: [] },
+        { pregunta: 'hola', esperado: ['hola', 'ayud'], noEsperado: [] },
+      ]
+    };
+
+    function actualizarStats() {
+      document.getElementById('total').textContent = stats.total;
+      document.getElementById('correctas').textContent = stats.correctas;
+      document.getElementById('incorrectas').textContent = stats.incorrectas;
+      const pct = stats.total > 0 ? Math.round((stats.correctas / stats.total) * 100) : 0;
+      document.getElementById('porcentaje').textContent = pct + '%';
+    }
+
+    function verificarRespuesta(respuesta, esperado, noEsperado) {
+      const respuestaLower = respuesta.toLowerCase();
+      
+      const cumpleEsperado = esperado.every(palabra => 
+        respuestaLower.includes(palabra.toLowerCase())
+      );
+      
+      const cumpleNoEsperado = noEsperado.every(palabra => 
+        !respuestaLower.includes(palabra.toLowerCase())
+      );
+      
+      return cumpleEsperado && cumpleNoEsperado;
+    }
+
+    async function ejecutarTest(test, containerId) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = '<div class="loading">⏳ Consultando IA...</div>';
+      
+      await new Promise(resolve => setTimeout(resolve, 300));
+      const respuesta = await ia.generarRespuesta(test.pregunta);
+      
+      const esCorrecta = verificarRespuesta(respuesta, test.esperado, test.noEsperado);
+      
+      stats.total++;
+      if (esCorrecta) stats.correctas++;
+      else stats.incorrectas++;
+      actualizarStats();
+      
+      const clase = esCorrecta ? 'correcto' : 'incorrecto';
+      const icono = esCorrecta ? '✅' : '❌';
+      
+      let detalles = '';
+      if (!esCorrecta) {
+        const faltantes = test.esperado.filter(e => !respuesta.toLowerCase().includes(e.toLowerCase()));
+        const presentes = test.noEsperado.filter(e => respuesta.toLowerCase().includes(e.toLowerCase()));
+        if (faltantes.length) detalles += `<br><small>❌ Falta: ${faltantes.join(', ')}</small>`;
+        if (presentes.length) detalles += `<br><small>⚠️ No debería incluir: ${presentes.join(', ')}</small>`;
+      }
+      
+      container.innerHTML = `
+        <div class="respuesta ${clase}">
+          ${icono} <strong>${esCorrecta ? 'CORRECTO' : 'INCORRECTO'}</strong>${detalles}<br><br>
+          <small style="color:#666;">${respuesta.substring(0, 300)}${respuesta.length > 300 ? '...' : ''}</small>
+        </div>
+      `;
+    }
+
+    function generarHTML() {
+      const container = document.getElementById('tests-container');
+      let html = '';
+      
+      for (const [categoria, tests] of Object.entries(TESTS)) {
+        html += `<div class="categoria"><h3>${categoria}</h3></div>`;
+        
+        tests.forEach((test, idx) => {
+          const testId = `test-${categoria.replace(/\s/g, '-')}-${idx}`;
+          html += `
+            <div class="test">
+              <div class="pregunta">"${test.pregunta}"</div>
+              <button onclick="ejecutarTest(TESTS['${categoria}'][${idx}], '${testId}')">Probar</button>
+              <div id="${testId}"></div>
+            </div>
+          `;
+        });
+      }
+      
+      container.innerHTML = html;
+    }
+
+    async function ejecutarTodosLosTests() {
+      stats = { total: 0, correctas: 0, incorrectas: 0 };
+      actualizarStats();
+      
+      for (const [categoria, tests] of Object.entries(TESTS)) {
+        for (let idx = 0; idx < tests.length; idx++) {
+          const testId = `test-${categoria.replace(/\s/g, '-')}-${idx}`;
+          await ejecutarTest(tests[idx], testId);
+          await new Promise(resolve => setTimeout(resolve, 400));
+        }
+      }
+      
+      console.log('✅ Tests completados');
+      console.log(`📊 Resultado: ${stats.correctas}/${stats.total} correctas (${Math.round((stats.correctas/stats.total)*100)}%)`);
+    }
+
+    window.addEventListener('load', () => {
+      generarHTML();
+      console.log('🧪 Test suite cargado. Pulsa "Ejecutar Todos los Tests" para comenzar.');
+    });
+  </script>
+</body>
+</html>

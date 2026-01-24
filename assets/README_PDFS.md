@@ -7,13 +7,10 @@
 **Buscar**: "Convenio colectivo de limpieza de edificios y locales de la Región de Murcia"
 
 ## Calendarios Laborales
-**Archivo**: `calendario_2025_murcia.pdf`
-**Estado**: Pendiente de subir
-**Fuente**: CARM - Consejería de Empresa, Empleo, Universidades y Portavocía
-
 **Archivo**: `calendario_2026_murcia.pdf`
-**Estado**: Pendiente de subir
+**Estado**: Se genera automáticamente desde `festivos.html` (botón "Descargar PDF 2026" usando jsPDF)
 **Fuente**: CARM - Consejería de Empresa, Empleo, Universidades y Portavocía
+**Nota**: Si se dispone del PDF oficial, puede subirse a `assets/calendarios/` y actualizar el botón para apuntar al archivo estático.
 
 ## Instrucciones
 Para subir los archivos PDF reales:

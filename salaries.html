@@ -30,7 +30,8 @@
       <a class="btn" href="./index.html">← Volver</a>
       <label>Año:
         <select id="anio">
-          <option value="2025" selected>2025 (IPC 2024)</option>
+          <option value="2026" selected>2026 (IPC 2025)</option>
+          <option value="2025">2025 (IPC 2024)</option>
           <option value="2024">2024 (+400€ lineales)</option>
         </select>
       </label>
@@ -114,7 +115,18 @@
   ];
 
   // Para 2024 se puede mostrar una nota de +400€ lineales, sin tabla desglosada oficial en esta vista
-  function renderTabla(anio){
+  async function getIPC2025(){
+    try{
+      const r = await fetch('data/ipc.json');
+      if(!r.ok) throw new Error('ipc.json no disponible');
+      const j = await r.json();
+      return typeof j.ipc_2025 === 'number' ? j.ipc_2025 : null;
+    }catch(e){ return null; }
+  }
+
+  function formatEUR(n){ return `${n.toFixed(2)} €`; }
+
+  async function renderTabla(anio){
     if(anio==='2024'){
       document.getElementById('tabla').innerHTML = `
         <div class="note">En 2024 se aplicó un incremento lineal de <strong>400€</strong> a todas las categorías. Selecciona 2025 para ver importes oficiales por concepto.</div>
@@ -122,19 +134,35 @@
       return;
     }
 
+    // Base: 2025
+    let factor = 1;
+    let aviso = '';
+    if(anio==='2026'){
+      const ipc = await getIPC2025();
+      if(ipc === null){
+        aviso = `<div class='note'>Falta el dato oficial del IPC 2025. Cuando esté disponible, actualiza <b>data/ipc.json</b> con { "ipc_2025": <em>valor_decimal</em> } (p. ej. 0.031). Ahora se muestran importes 2025 sin incremento.</div>`;
+      }else{
+        factor = 1 + ipc;
+        aviso = `<div class='note'>Aplicado IPC 2025 oficial: <strong>${(ipc*100).toFixed(2)}%</strong>. Los importes 2026 se calculan como 2025 × (1 + IPC 2025).</div>`;
+      }
+    } else {
+      aviso = `<div class='note'>Importes oficiales 2025 (base de cálculo para 2026).</div>`;
+    }
+
     const rows = datos2025.map(r=>`
       <tr>
         <td>${r.categoria}</td>
-        <td>${r.salario_base.toFixed(2)} €</td>
-        <td>${r.toxico.toFixed(2)} €</td>
-        <td>${r.extra.toFixed(2)} €</td>
-        <td>${r.enero.toFixed(2)} €</td>
-        <td>${r.prd.toFixed(2)} €</td>
-        <td>${r.transporte.toFixed(2)} €</td>
-        <td><strong>${r.total_anual.toFixed(2)} €</strong></td>
+        <td>${formatEUR(r.salario_base * (anio==='2026'?factor:1))}</td>
+        <td>${formatEUR(r.toxico * (anio==='2026'?factor:1))}</td>
+        <td>${formatEUR(r.extra * (anio==='2026'?factor:1))}</td>
+        <td>${formatEUR(r.enero * (anio==='2026'?factor:1))}</td>
+        <td>${formatEUR(r.prd * (anio==='2026'?factor:1))}</td>
+        <td>${formatEUR(r.transporte * (anio==='2026'?factor:1))}</td>
+        <td><strong>${formatEUR(r.total_anual * (anio==='2026'?factor:1))}</strong></td>
       </tr>`).join('');
 
     document.getElementById('tabla').innerHTML = `
+      ${aviso}
       <table>
         <thead>
           <tr>
@@ -153,7 +181,7 @@
   }
 
   document.getElementById('anio').addEventListener('change', (e)=>renderTabla(e.target.value));
-  renderTabla('2025');
+  renderTabla('2026');
   </script>
   <script src="js/pwa.js"></script>
 </body>

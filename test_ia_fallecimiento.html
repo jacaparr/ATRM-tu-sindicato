@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test IA - Fallecimiento Suegra</title>
+  <style>
+    body { font-family: system-ui; max-width: 800px; margin: 40px auto; padding: 20px; }
+    .test { background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0; }
+    .pregunta { color: #0066cc; font-weight: bold; margin-bottom: 10px; }
+    .respuesta { background: white; padding: 15px; border-left: 4px solid #FF6B35; margin-top: 10px; }
+    .correcto { border-left-color: #4CAF50; }
+    .incorrecto { border-left-color: #f44336; }
+    button { background: #FF6B35; color: white; border: none; padding: 12px 24px; 
+             border-radius: 8px; cursor: pointer; font-size: 16px; }
+    button:hover { background: #FF8C42; }
+    .loading { color: #666; font-style: italic; }
+  </style>
+</head>
+<body>
+  <h1>🧪 Test de IA Mejorada - Fallecimiento</h1>
+  <p>Este test verifica que la IA responda correctamente sobre permisos por fallecimiento de familiares.</p>
+
+  <div class="test">
+    <div class="pregunta">Consulta 1: "días por fallecimiento de suegra"</div>
+    <button onclick="testConsulta1()">Probar consulta</button>
+    <div id="resultado1"></div>
+  </div>
+
+  <div class="test">
+    <div class="pregunta">Consulta 2: "ha muerto mi padre cuantos dias tengo"</div>
+    <button onclick="testConsulta2()">Probar consulta</button>
+    <div id="resultado2"></div>
+  </div>
+
+  <div class="test">
+    <div class="pregunta">Consulta 3: "fallecimiento abuelo"</div>
+    <button onclick="testConsulta3()">Probar consulta</button>
+    <div id="resultado3"></div>
+  </div>
+
+  <script src="js/ia_mejorada.js"></script>
+  <script>
+    const ia = new IAContextual();
+
+    async function mostrarResultado(containerId, respuesta, esCorrecta) {
+      const container = document.getElementById(containerId);
+      const clase = esCorrecta ? 'correcto' : 'incorrecto';
+      const icono = esCorrecta ? '✅' : '❌';
+      container.innerHTML = `
+        <div class="respuesta ${clase}">
+          ${icono} <strong>${esCorrecta ? 'CORRECTO' : 'INCORRECTO'}</strong><br><br>
+          ${respuesta.replace(/\n/g, '<br>')}
+        </div>
+      `;
+    }
+
+    async function testConsulta1() {
+      const container = document.getElementById('resultado1');
+      container.innerHTML = '<div class="loading">⏳ Consultando IA...</div>';
+      
+      await new Promise(resolve => setTimeout(resolve, 500));
+      const respuesta = await ia.generarRespuesta('días por fallecimiento de suegra');
+      
+      const esCorrecta = respuesta.includes('fallecimiento') && 
+                         (respuesta.includes('3 días') || respuesta.includes('5 días')) &&
+                         !respuesta.includes('excedencia');
+      
+      mostrarResultado('resultado1', respuesta, esCorrecta);
+    }
+
+    async function testConsulta2() {
+      const container = document.getElementById('resultado2');
+      container.innerHTML = '<div class="loading">⏳ Consultando IA...</div>';
+      
+      await new Promise(resolve => setTimeout(resolve, 500));
+      const respuesta = await ia.generarRespuesta('ha muerto mi padre cuantos dias tengo');
+      
+      const esCorrecta = respuesta.includes('fallecimiento') && 
+                         (respuesta.includes('3 días') || respuesta.includes('5 días')) &&
+                         respuesta.includes('1er grado');
+      
+      mostrarResultado('resultado2', respuesta, esCorrecta);
+    }
+
+    async function testConsulta3() {
+      const container = document.getElementById('resultado3');
+      container.innerHTML = '<div class="loading">⏳ Consultando IA...</div>';
+      
+      await new Promise(resolve => setTimeout(resolve, 500));
+      const respuesta = await ia.generarRespuesta('fallecimiento abuelo');
+      
+      const esCorrecta = respuesta.includes('fallecimiento') && 
+                         (respuesta.includes('3 días') || respuesta.includes('5 días')) &&
+                         respuesta.includes('2º grado');
+      
+      mostrarResultado('resultado3', respuesta, esCorrecta);
+    }
+
+    // Test automático al cargar
+    window.addEventListener('load', async () => {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      console.log('🧪 Ejecutando tests automáticos...');
+      await testConsulta1();
+      await new Promise(resolve => setTimeout(resolve, 800));
+      await testConsulta2();
+      await new Promise(resolve => setTimeout(resolve, 800));
+      await testConsulta3();
+      console.log('✅ Tests completados');
+    });
+  </script>
+</body>
+</html>

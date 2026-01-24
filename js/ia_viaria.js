@@ -1,6 +1,6 @@
-// IA para convenio de interiores (estructura independiente)
+// IA para convenio de viaria (Limpieza pública viaria - estructura independiente)
 
-class IAInteriores {
+class IAViaria {
   constructor() {
     this.baseCasos = null;
     this.faqs = [];
@@ -20,27 +20,41 @@ class IAInteriores {
       await new Promise(resolve => setTimeout(resolve, 100));
     }
     if (!this.casosListos) {
-      console.warn('⚠️ Timeout esperando casos de interiores');
+      console.warn('⚠️ Timeout esperando casos de viaria');
     }
   }
 
   async cargarBaseCasos() {
     try {
-      const response = await fetch('data/casos_interiores.json');
+      // Intentar cargar datos específicos de viaria
+      const response = await fetch('data/casos_viaria.json').catch(() => 
+        fetch('data/casos.json') // Fallback a casos generales
+      );
       this.baseCasos = await response.json();
     } catch (error) {
-      console.warn('Error cargando casos interiores:', error);
+      console.warn('Error cargando casos viaria:', error);
       this.baseCasos = { casos: {}, jurisprudencia: [] };
     }
+    
     // Cargar FAQs y artículos del convenio
     try {
-      const faqsResp = await fetch('data/faq_interiores.json');
-      this.faqs = (await faqsResp.json()).faqs;
-    } catch (e) { this.faqs = []; }
+      const faqsResp = await fetch('data/faq_viaria.json').catch(() => null);
+      if (faqsResp) {
+        this.faqs = (await faqsResp.json()).faqs || [];
+      }
+    } catch (e) { 
+      this.faqs = []; 
+    }
+    
     try {
-      const artResp = await fetch('data/convenio_interiores_articulos.json');
-      this.articulos = (await artResp.json()).articulos;
-    } catch (e) { this.articulos = []; }
+      const artResp = await fetch('data/convenio_viaria_articulos.json').catch(() => null);
+      if (artResp) {
+        this.articulos = (await artResp.json()).articulos || [];
+      }
+    } catch (e) { 
+      this.articulos = []; 
+    }
+    
     this.casosListos = true;
   }
 
@@ -86,7 +100,7 @@ class IAInteriores {
     return `<strong>${articulo.titulo}</strong><br>${articulo.texto}${referencia}`;
   }
 
-  // Detección por puntuación de keywords en casos_interiores.json
+  // Detección por puntuación de keywords en casos_viaria.json
   detectarTema(pregunta) {
     if (!this.baseCasos || !this.baseCasos.casos) return null;
     const texto = (pregunta || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
@@ -128,11 +142,11 @@ class IAInteriores {
     }
     
     resultados.sort((a, b) => b.score - a.score);
-    console.log('🎯 Scoring resultados:', resultados);
+    console.log('🎯 Scoring resultados viaria:', resultados);
     return resultados.length && resultados[0].score >= 3 ? resultados[0].id : null;
   }
 
-  // Busca primero en Casos (scoring), luego en FAQs, luego en artículos, luego API
+  // Busca primero en Casos (scoring), luego en FAQs, luego en artículos, luego API Gemini
   async generarRespuesta(pregunta) {
     // Esperar a que los casos estén listos
     await this.esperarCasos();
@@ -141,9 +155,9 @@ class IAInteriores {
     const preguntaNormalizada = pregunta.trim().toLowerCase();
     let respuestaObj = null;
 
-    console.log('🔍 Pregunta:', preguntaOriginal);
+    console.log('🔍 Pregunta viaria:', preguntaOriginal);
 
-    // 0. Casos interiores por palabras clave (solo si match muy claro)
+    // 0. Casos viaria por palabras clave (solo si match muy claro)
     const temaId = this.detectarTema(preguntaNormalizada);
     if (temaId) {
       console.log('✅ Caso detectado:', temaId);
@@ -162,9 +176,9 @@ class IAInteriores {
       }
     }
     
-    // 2. IA con contexto completo del convenio
+    // 2. IA Gemini con contexto completo del convenio
     if (!respuestaObj) {
-      console.log('🤖 Consultando IA con contexto del convenio...');
+      console.log('🤖 Consultando IA Gemini con contexto del convenio...');
       const apiResp = await this.consultarAPI(preguntaOriginal);
       if (apiResp) {
         respuestaObj = { resumen: apiResp };
@@ -192,13 +206,13 @@ class IAInteriores {
     }
     
     if (window.sistemaStats && respuestaObj) {
-      window.sistemaStats.registrarConsulta(preguntaOriginal, respuestaObj.resumen, 'interiores');
+      window.sistemaStats.registrarConsulta(preguntaOriginal, respuestaObj.resumen, 'viaria');
     }
     
     return respuestaObj;
   }
 
-  // Fallback a API Gemini con contexto de interiores
+  // Fallback a API Gemini con contexto de viaria
   async consultarAPI(pregunta) {
     try {
       const resp = await fetch('/api/chat-gemini', {
@@ -206,7 +220,7 @@ class IAInteriores {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
           pregunta,
-          tipo_convenio: 'interiores'
+          tipo_convenio: 'viaria'
         })
       });
       if (!resp.ok) {
@@ -221,6 +235,7 @@ class IAInteriores {
     }
   }
 }
+
 if (typeof window !== 'undefined') {
-  window.iaInteriores = new IAInteriores();
+  window.iaViaria = new IAViaria();
 }

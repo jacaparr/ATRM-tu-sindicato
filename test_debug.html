@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Debug Tests IA</title>
+  <style>
+    body { font-family: monospace; padding: 20px; background: #1e1e1e; color: #d4d4d4; }
+    .test { margin: 20px 0; padding: 15px; background: #2d2d30; border-left: 4px solid #007acc; }
+    .pass { border-left-color: #4CAF50; }
+    .fail { border-left-color: #f44336; }
+    .pregunta { color: #569cd6; font-weight: bold; }
+    .esperado { color: #4ec9b0; margin: 5px 0; }
+    .respuesta { color: #ce9178; margin: 10px 0; font-size: 12px; }
+    .caso-encontrado { color: #dcdcaa; }
+    .score { color: #b5cea8; }
+  </style>
+</head>
+<body>
+  <h2>🔍 Debug de Tests IA</h2>
+  <button onclick="ejecutarDebug()" style="padding:10px 20px; font-size:16px; cursor:pointer;">▶️ Ejecutar Debug</button>
+  <div id="output"></div>
+
+  <script src="js/ia_mejorada.js"></script>
+  <script>
+    const ia = new IAContextual();
+
+    const TESTS_DEBUG = [
+      { pregunta: 'días por fallecimiento de suegra', esperado: ['fallecimiento', '3 días', '2º grado'], noEsperado: ['excedencia'] },
+      { pregunta: 'plus de nocturnidad', esperado: ['28%', 'salario base', '22:00', '06:00'], noEsperado: [] },
+      { pregunta: 'cuántos días de vacaciones tengo', esperado: ['28 días', 'laborales'], noEsperado: [] },
+      { pregunta: 'horas extra', esperado: ['80%'], noEsperado: [] },
+      { pregunta: 'permiso por matrimonio', esperado: ['15 días', 'naturales'], noEsperado: [] },
+      { pregunta: 'mi madre está ingresada en el hospital', esperado: ['hospitalización', '5 días'], noEsperado: [] },
+      { pregunta: 'incremento salarial 2026', esperado: ['IPC', '2025'], noEsperado: [] },
+      { pregunta: 'qué puedo preguntar', esperado: ['puedes preguntarme'], noEsperado: ['excedencia'] },
+    ];
+
+    async function ejecutarDebug() {
+      const output = document.getElementById('output');
+      output.innerHTML = '<p>⏳ Ejecutando tests...</p>';
+      
+      await ia.esperarCasos();
+      
+      let html = '';
+      let correctas = 0;
+      
+      for (const test of TESTS_DEBUG) {
+        await new Promise(resolve => setTimeout(resolve, 300));
+        
+        const respuesta = await ia.generarRespuesta(test.pregunta);
+        const casoEncontrado = ia.ultimoCasoEncontrado || 'ninguno';
+        const score = ia.ultimoScore || 0;
+        
+        const respuestaLower = respuesta.toLowerCase();
+        const cumpleEsperado = test.esperado.every(p => respuestaLower.includes(p.toLowerCase()));
+        const cumpleNoEsperado = test.noEsperado.every(p => !respuestaLower.includes(p.toLowerCase()));
+        const pasa = cumpleEsperado && cumpleNoEsperado;
+        
+        if (pasa) correctas++;
+        
+        const faltantes = test.esperado.filter(e => !respuestaLower.includes(e.toLowerCase()));
+        const presentes = test.noEsperado.filter(e => respuestaLower.includes(e.toLowerCase()));
+        
+        html += `
+          <div class="test ${pasa ? 'pass' : 'fail'}">
+            <div class="pregunta">${pasa ? '✅' : '❌'} "${test.pregunta}"</div>
+            <div class="caso-encontrado">Caso: ${casoEncontrado} (score: ${score})</div>
+            <div class="esperado">Esperado: ${test.esperado.join(', ')}</div>
+            ${faltantes.length ? `<div style="color:#f44336">❌ Falta: ${faltantes.join(', ')}</div>` : ''}
+            ${presentes.length ? `<div style="color:#ff9800">⚠️ Presente (no debería): ${presentes.join(', ')}</div>` : ''}
+            ${test.noEsperado.length ? `<div class="esperado">No debe incluir: ${test.noEsperado.join(', ')}</div>` : ''}
+            <div class="respuesta">Respuesta: ${respuesta.substring(0, 200)}...</div>
+          </div>
+        `;
+      }
+      
+      html = `<h3>Resultado: ${correctas}/${TESTS_DEBUG.length} (${Math.round(correctas/TESTS_DEBUG.length*100)}%)</h3>` + html;
+      output.innerHTML = html;
+    }
+
+    window.addEventListener('load', async () => {
+      await ia.esperarCasos();
+      console.log('✅ IA lista. Casos cargados:', Object.keys(ia.baseCasos.casos || {}).length);
+    });
+  </script>
+</body>
+</html>

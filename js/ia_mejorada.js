@@ -153,7 +153,8 @@ class IAContextual {
   };
   constructor() {
     this.historial = this.cargarHistorial();
-    this.baseCasos = null;
+    this.baseCasos = { casos: {}, jurisprudencia: [] }; // Inicializar con estructura vacía
+    this.casosListos = false;
     this.ultimaCategoria = localStorage.getItem('atrm_categoria') || null;
     this.ultimoAnio = localStorage.getItem('atrm_anio') || '2025';
     // cargar modo persistido
@@ -169,11 +170,27 @@ class IAContextual {
   async cargarBaseCasos() {
     try {
       const response = await fetch('data/casos.json');
-      this.baseCasos = await response.json();
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      this.baseCasos = data;
+      this.casosListos = true;
+      console.log(`✅ Base de casos cargada: ${Object.keys(this.baseCasos?.casos || {}).length} casos`);
     } catch (error) {
-      console.warn('Error cargando casos:', error);
+      console.error('❌ Error cargando casos:', error);
       this.baseCasos = { casos: {}, jurisprudencia: [] };
+      this.casosListos = false;
     }
+  }
+
+  async esperarCasos() {
+    // Esperar hasta 3 segundos a que se carguen los casos
+    for (let i = 0; i < 30; i++) {
+      if (this.casosListos) return true;
+      await new Promise(resolve => setTimeout(resolve, 100));
+    }
+    return false;
   }
 
   cargarHistorial() {
@@ -242,25 +259,45 @@ class IAContextual {
       .trim();
 
     const consulta = normalizar(pregunta);
-    const partes = consulta.split(' ').filter(p => p.length > 2);
+    const palabrasPregunta = consulta.split(' ').filter(p => p.length > 2);
     const resultados = [];
 
     for (const [id, caso] of Object.entries(this.baseCasos.casos)) {
       let score = 0;
       const kws = (caso.keywords || []).map(k => normalizar(k));
+      
       for (const kw of kws) {
+        const kwPalabras = kw.split(' ').filter(p => p.length > 2);
+        
+        // Coincidencia exacta de keyword completa (máxima prioridad)
         if (consulta.includes(kw)) {
-          // Ponderar por longitud y coincidencia exacta
-          score += Math.min(kw.length, 20) / 4;
-        } else {
-          // Coincidencias parciales de palabras clave
-          const kwPartes = kw.split(' ').filter(p => p.length > 3);
-          const subCoincidencias = kwPartes.reduce((acc, p) => acc + (partes.includes(p) ? 1 : 0), 0);
-          if (subCoincidencias > 0) {
-            score += subCoincidencias * 0.75;
+          score += 10 + kw.length * 0.5;
+        }
+        // Palabra clave completa encontrada en la pregunta
+        else if (palabrasPregunta.includes(kw) && kwPalabras.length === 1) {
+          score += 8 + kw.length * 0.4;
+        }
+        // Todas las palabras de una keyword multi-palabra presentes
+        else if (kwPalabras.length > 1) {
+          const todasPresentes = kwPalabras.every(p => palabrasPregunta.includes(p));
+          if (todasPresentes) {
+            score += 7 + kwPalabras.length * 2;
+          } else {
+            // Coincidencia parcial de keywords multi-palabra
+            const coincidencias = kwPalabras.filter(p => palabrasPregunta.includes(p)).length;
+            if (coincidencias > 0) {
+              score += coincidencias * 2;
+            }
+          }
+        }
+        // Coincidencia parcial para keywords de una palabra
+        else {
+          if (palabrasPregunta.some(p => p.includes(kw) || kw.includes(p))) {
+            score += 1.5;
           }
         }
       }
+      
       if (score > 0) {
         resultados.push({ id, caso, score: Math.round(score * 100) / 100 });
       }
@@ -268,9 +305,16 @@ class IAContextual {
 
     resultados.sort((a, b) => b.score - a.score);
     if (resultados.length === 0) return null;
+    
     // Guardar top-3 en la instancia para sugerencias posteriores
     this.ultimosResultados = resultados.slice(0, 3);
     const mejor = resultados[0];
+    
+    // Guardar para debug
+    this.ultimoCasoEncontrado = mejor.id;
+    this.ultimoScore = mejor.score;
+    
+    console.log(`🎯 Caso encontrado: ${mejor.id} (score: ${mejor.score})`);
     return { id: mejor.id, ...mejor.caso, _score: mejor.score };
   }
 
@@ -322,7 +366,7 @@ class IAContextual {
     ];
     
     if (patronesAyuda.some(p => p.test(preguntaLower))) {
-      return `💡 **Puedes preguntarme sobre:**\n\n✅ **Permisos y licencias:** bajas médicas, hospitalización familiar, matrimonio, fallecimiento, consultas médicas\n\n✅ **Salario y nómina:** plus de nocturnidad, incrementos salariales, pagas extra, reclamación de nómina\n\n✅ **Vacaciones y jornada:** días de vacaciones, jornada laboral, horas extra, días de lluvia\n\n✅ **Derechos laborales:** despidos, finiquitos, subrogación, acoso laboral, igualdad, contratos\n\n✅ **Trámites:** reducción de jornada, excedencias, certificados, jubilación, elecciones sindicales\n\n**Ejemplos:**\n• "Háblame de bajas médicas"\n• "¿Cuántos días tengo por hospitalización de mi madre?"\n• "¿Cuánto es el plus de nocturnidad?"\n• "¿Cómo reclamo una nómina incorrecta?"\n\n¡Prueba con cualquiera! 😊`;
+      return `💡 **Puedes preguntarme sobre:**\n\n✅ **Permisos y licencias:** bajas médicas, hospitalización familiar, matrimonio, fallecimiento, consultas médicas\n\n✅ **Salario y nómina:** plus de nocturnidad, incrementos salariales, pagas extra, reclamación de nómina\n\n✅ **Vacaciones y jornada:** días de vacaciones, jornada laboral, horas extra, días de lluvia\n\n✅ **Derechos laborales:** despidos, finiquitos, subrogación, acoso laboral, igualdad, contratos\n\n✅ **Trámites:** reducción de jornada, certificados, jubilación, elecciones sindicales\n\n**Ejemplos:**\n• "Háblame de bajas médicas"\n• "¿Cuántos días tengo por hospitalización de mi madre?"\n• "¿Cuánto es el plus de nocturnidad?"\n• "¿Cómo reclamo una nómina incorrecta?"\n\n¡Prueba con cualquiera! 😊`;
     }
 
     // Si la respuesta es "sí" o "no" y la última pregunta fue de seguimiento, actuar en consecuencia
@@ -358,7 +402,9 @@ class IAContextual {
     if (/administraci[oó]n p[úu]blica|funcionario|empleado p[úu]blico|ayuntamiento|sector p[úu]blico/i.test(pregunta)) {
       return 'ℹ️ Para consultas sobre administración pública, funcionarios o empleados públicos, puedes contactar con el sindicato ATRM en el 968 626 511 o con el área de personal de tu ayuntamiento. También puedes consultar la web oficial del ayuntamiento o la sede electrónica.';
     }
-    await this.esperarBaseCasos();
+    
+    // CRÍTICO: Esperar a que los casos estén cargados
+    await this.esperarCasos();
     
     const contexto = this.buscarContextoHistorial(pregunta);
     const caso = this.encontrarCaso(pregunta);

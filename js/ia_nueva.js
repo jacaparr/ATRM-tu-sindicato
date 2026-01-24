@@ -255,7 +255,7 @@ class IAConvenioATRM {
   }
 
   /**
-   * Método principal: procesa pregunta y genera respuesta
+   * Método principal: procesa pregunta y genera respuesta con Gemini
    */
   async responder(pregunta) {
     console.log('🤖 IA.responder() llamada con:', pregunta);
@@ -288,27 +288,69 @@ class IAConvenioATRM {
       return this.generarAyuda();
     }
 
-    // Buscar tema relevante
+    // Intentar buscar tema relevante en datos locales primero
     const match = this.detectarTema(pregunta);
     console.log('🔍 Match detectado:', match ? match.id : 'ninguno');
     
-    if (!match) {
-      console.log('❓ No se encontró match, generando respuesta genérica');
-      return this.generarNoEncontrado(pregunta);
+    if (match) {
+      // Si encontramos coincidencia local, usar eso
+      this.contextoActual = match;
+      this.historial.push({
+        pregunta,
+        tema: match.id,
+        timestamp: Date.now()
+      });
+      const respuesta = this.formatearRespuesta(match);
+      console.log('📤 Respuesta local generada');
+      return respuesta;
     }
 
-    // Guardar contexto
-    this.contextoActual = match;
-    this.historial.push({
-      pregunta,
-      tema: match.id,
-      timestamp: Date.now()
-    });
+    // Si no encontramos coincidencia local, usar Gemini API
+    console.log('🌐 Usando Gemini API para responder...');
+    try {
+      const respuestaGemini = await this.consultarGemini(pregunta);
+      if (respuestaGemini) {
+        this.historial.push({
+          pregunta,
+          tema: 'gemini',
+          timestamp: Date.now()
+        });
+        return respuestaGemini;
+      }
+    } catch (error) {
+      console.error('❌ Error al consultar Gemini:', error);
+    }
 
-    // Generar y devolver respuesta formateada
-    const respuesta = this.formatearRespuesta(match);
-    console.log('📤 Respuesta generada:', respuesta.substring(0, 100) + '...');
-    return respuesta;
+    // Fallback a respuesta genérica si todo falla
+    console.log('❓ No se encontró información, mostrando ayuda');
+    return this.generarNoEncontrado(pregunta);
+  }
+
+  /**
+   * Consulta a Google Gemini API
+   */
+  async consultarGemini(pregunta) {
+    try {
+      const resp = await fetch('/api/chat-gemini', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          pregunta,
+          tipo_convenio: 'viaria'
+        })
+      });
+      
+      if (!resp.ok) {
+        console.error('API Gemini error:', resp.status);
+        return null;
+      }
+      
+      const data = await resp.json();
+      return data?.respuesta || null;
+    } catch (e) {
+      console.error('Error consultando API Gemini:', e);
+      return null;
+    }
   }
 
   /**

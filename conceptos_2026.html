@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conceptos Salariales 2026 · ATRM</title>
+  <link rel="manifest" href="manifest.json">
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial, sans-serif;background:white;color:#2C3E50}
+    header{background:#ff6b35;color:#fff;padding:16px;text-align:center;font-weight:700}
+    main{max-width:1100px;margin:0 auto;padding:20px}
+    .btn{display:inline-block;background:#ff6b35;color:#fff;padding:10px 14px;border-radius:8px;text-decoration:none;margin-bottom:16px}
+    table{width:100%;border-collapse:collapse;margin-top:10px}
+    th,td{border:1px solid #ddd;padding:10px;text-align:center}
+    th{background:#ff6b35;color:#fff}
+    td:first-child{text-align:left}
+  </style>
+</head>
+<body>
+  <header>Conceptos salariales y prestaciones · 2026</header>
+  <main>
+    <a class="btn" href="index.html">← Volver</a>
+
+    <h2>Otros conceptos salariales 2026</h2>
+    <div id="otros"></div>
+
+    <h2 style="margin-top:24px">Prestaciones no salariales 2026</h2>
+    <div id="prest"></div>
+  </main>
+  <script>
+    const labels = {
+      'retenes_fines_semana_art6': 'Retenes fines de semana (Art. 6)',
+      'plus_festividad_art21': 'Plus de festividad (Art. 21)',
+      'plus_funcional_planta_art21': 'Plus funcional de planta (Art. 21)',
+      'plus_funcional_responsabilidad_art21': 'Plus funcional de responsabilidad (Art. 21)',
+      'plus_funcional_colector_art21': 'Plus funcional de colector (Art. 21)',
+      'dieta_art24': 'Dieta (Art. 24)',
+      'kilometraje_art24': 'Kilometraje (Art. 24)',
+      'ayuda_social_yg_art31': 'Ayuda social V.G. (Art. 31)',
+      'plus_funcional_peon_espec_recogida_art30': 'Plus peón especial recogida (Art. 50)',
+      'plus_funcional_peon_espec_limpieza_art30': 'Plus peón especial limpieza (Art. 50)'
+    };
+    function eur(n){
+      const num = Number(n);
+      return isNaN(num)?n:new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR'}).format(num);
+    }
+    function render(obj){
+      const rows = Object.entries(obj).map(([k,v])=>`<tr><td>${labels[k]||k}</td><td>${eur(v)}</td></tr>`).join('');
+      return `<table><thead><tr><th>Concepto</th><th>Importe</th></tr></thead><tbody>${rows}</tbody></table>`;
+    }
+    fetch('data/conceptos_salariales_2026.json')
+      .then(r=>{if(!r.ok) throw new Error('not found'); return r.json();})
+      .then(d=>{
+        if(d.otros_conceptos_salariales) document.getElementById('otros').innerHTML = render(d.otros_conceptos_salariales);
+        if(d.prestaciones_no_salariales) document.getElementById('prest').innerHTML = render(d.prestaciones_no_salariales);
+      })
+      .catch(()=>{
+        const msg = '<div style="padding:12px;border:1px solid #ffd2b5;background:#fff5f2;border-radius:8px">No se pudieron cargar los conceptos.</div>';
+        document.getElementById('otros').innerHTML = msg;
+        document.getElementById('prest').innerHTML = msg;
+      });
+  </script>
+  <script src="js/pwa.js"></script>
+</body>
+</html>

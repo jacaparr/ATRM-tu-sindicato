@@ -1,0 +1,110 @@
+
+/* Skeleton Loading Animation */
+@keyframes shimmer {
+  0% { background-position: -468px 0; }
+  100% { background-position: 468px 0; }
+}
+
+.skeleton {
+  background: #f6f7f8;
+  background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+  background-repeat: no-repeat;
+  background-size: 800px 104px; 
+  display: inline-block;
+  position: relative;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: shimmer;
+  animation-timing-function: linear;
+  border-radius: 4px;
+}
+
+.skeleton-card {
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.skeleton-date {
+  height: 10px;
+  width: 60px;
+  margin-bottom: 6px;
+}
+
+.skeleton-title {
+  height: 16px;
+  width: 90%;
+  margin-bottom: 6px;
+}
+
+.skeleton-text {
+  height: 12px;
+  width: 100%;
+}
+
+/* Cookie Banner */
+.cookie-banner {
+  position: fixed;
+  bottom: 80px; /* Above bottom nav */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 600px;
+  background: #fff;
+  border: 1px solid #e2e2ee;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  border-radius: 12px;
+  padding: 16px;
+  z-index: 9999;
+  display: none; /* Hidden by default */
+  flex-direction: column;
+  gap: 12px;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from { transform: translate(-50%, 20px); opacity: 0; }
+  to { transform: translate(-50%, 0); opacity: 1; }
+}
+
+.cookie-content {
+  font-size: 13px;
+  color: #444;
+  line-height: 1.5;
+}
+
+.cookie-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.cookie-btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  border: none;
+}
+
+.cookie-accept {
+  background: var(--primary);
+  color: #fff;
+}
+
+.cookie-reject {
+  background: transparent;
+  color: #666;
+  border: 1px solid #ddd;
+}
+
+@media (min-width: 768px) {
+  .cookie-banner {
+    bottom: 20px;
+    right: 20px;
+    left: auto;
+    transform: none;
+    width: 350px;
+  }
+}

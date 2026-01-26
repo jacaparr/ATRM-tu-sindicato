@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ATRM Â· TrÃ¡mites y AdministraciÃ³n</title>
+  <title>ATRM · Trámites y Administración</title>
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#FF6B35">
   <style>
@@ -32,35 +32,35 @@
   </style>
 </head>
 <body>
-  <header>ATRM Â· TrÃ¡mites y AdministraciÃ³n PÃºblica</header>
+  <header>ATRM · Trámites y Administración Pública</header>
   <main>
     <div class="toolbar">
-      <a class="btn" href="./index.html">â† Volver</a>
+      <a class="btn" href="./index.html">← Volver</a>
     </div>
 
     <div class="card">
-      <h2>ðŸ›ï¸ TrÃ¡mites rÃ¡pidos con la administraciÃ³n</h2>
-      <p>Gestiona tus trÃ¡mites administrativos con guÃ­as paso a paso y acceso directo a los servicios oficiales.</p>
+      <h2>🏛️ Trámites rápidos con la administración</h2>
+      <p>Gestiona tus trámites administrativos con guías paso a paso y acceso directo a los servicios oficiales.</p>
     </div>
 
     <div class="grid">
       <!-- Vida Laboral -->
       <div class="card">
-        <h3>ðŸ“Š Solicitar Informe de Vida Laboral</h3>
-        <p>ObtÃ©n tu historial laboral oficial de la Seguridad Social en menos de 5 minutos.</p>
+        <h3>📊 Solicitar Informe de Vida Laboral</h3>
+        <p>Obtén tu historial laboral oficial de la Seguridad Social en menos de 5 minutos.</p>
         
         <div class="step">
-          <strong>ðŸŽ¯ Â¿Para quÃ© lo necesitas?</strong><br>
-          â€¢ Solicitudes de empleo<br>
-          â€¢ CÃ¡lculos de pensiÃ³n<br>
-          â€¢ PrÃ©stamos bancarios<br>
-          â€¢ Verificar cotizaciones
+          <strong>🎯 ¿Para qué lo necesitas?</strong><br>
+          • Solicitudes de empleo<br>
+          • Cálculos de pensión<br>
+          • Préstamos bancarios<br>
+          • Verificar cotizaciones
         </div>
 
-        <h4>ðŸ“‹ Requisitos previos:</h4>
+        <h4>📋 Requisitos previos:</h4>
         <ul class="checklist" id="vidaLaboralChecklist">
           <li><input type="checkbox"> DNI/NIE en vigor</li>
-          <li><input type="checkbox"> MÃ³vil registrado en Seg. Social</li>
+          <li><input type="checkbox"> Móvil registrado en Seg. Social</li>
           <li><input type="checkbox"> Cl@ve PIN/certificado digital (opcional)</li>
           <li><input type="checkbox"> Email activo</li>
         </ul>
@@ -70,31 +70,31 @@
         </div>
         
         <div class="success" id="vidaLaboralReady" style="display:none">
-          âœ… <strong>Todo listo.</strong> Haz clic en el botÃ³n para acceder al portal oficial.
+          ✅ <strong>Todo listo.</strong> Haz clic en el botón para acceder al portal oficial.
         </div>
         
   <a href="https://sede.seg-social.gob.es/wps/portal/sede/sede/ciudadanos/informes+certificados/vida+laboral" 
            class="btn" target="_blank" rel="noopener">
-          ðŸš€ Solicitar Vida Laboral (Import@ss)
+          🚀 Solicitar Vida Laboral (Import@ss)
         </a>
         
         <div class="warning">
-          âš ï¸ <strong>Importante:</strong> Si es tu primera vez, elige "Sin certificado digital" y usa SMS.
+          ⚠️ <strong>Importante:</strong> Si es tu primera vez, elige "Sin certificado digital" y usa SMS.
         </div>
       </div>
 
-      <!-- Buscador Datos PÃºblicos -->
+      <!-- Buscador Datos Públicos -->
       <div class="card">
-        <h3>ðŸ” Buscador de Datos PÃºblicos</h3>
-        <p>Consulta informaciÃ³n oficial sobre empleo, convenios y normativas.</p>
+        <h3>🔍 Buscador de Datos Públicos</h3>
+        <p>Consulta información oficial sobre empleo, convenios y normativas.</p>
         
         <input type="text" class="search-box" id="searchPublicData" 
                placeholder="Busca: convenio limpieza, empleo Murcia, prestaciones...">
         
         <div class="step">
-          <strong>ðŸ’¡ BÃºsquedas populares:</strong><br>
-          <a href="#" onclick="searchData('convenio limpieza viaria')">Convenio limpieza viaria</a> â€¢
-          <a href="#" onclick="searchData('empleo Murcia')">Empleo Murcia</a> â€¢
+          <strong>💡 Búsquedas populares:</strong><br>
+          <a href="#" onclick="searchData('convenio limpieza viaria')">Convenio limpieza viaria</a> •
+          <a href="#" onclick="searchData('empleo Murcia')">Empleo Murcia</a> •
           <a href="#" onclick="searchData('seguridad social')">Seguridad Social</a>
         </div>
         
@@ -103,85 +103,85 @@
         </div>
         
         <div class="success">
-          ðŸ“ˆ <strong>Fuente oficial:</strong> <a href="https://datos.gob.es" target="_blank">datos.gob.es</a> 
-          - Portal de transparencia del Gobierno de EspaÃ±a
+          📈 <strong>Fuente oficial:</strong> <a href="https://datos.gob.es" target="_blank">datos.gob.es</a> 
+          - Portal de transparencia del Gobierno de España
         </div>
       </div>
 
-      <!-- Registro ElectrÃ³nico -->
+      <!-- Registro Electrónico -->
       <div class="card">
-        <h3>ðŸ“ Registro ElectrÃ³nico (Escritos y Solicitudes)</h3>
-        <p>Presenta documentos oficiales ante cualquier administraciÃ³n pÃºblica.</p>
+        <h3>📝 Registro Electrónico (Escritos y Solicitudes)</h3>
+        <p>Presenta documentos oficiales ante cualquier administración pública.</p>
         
         <div class="step">
-          <strong>ðŸŽ¯ Â¿CuÃ¡ndo usarlo?</strong><br>
-          â€¢ Reclamaciones laborales<br>
-          â€¢ Solicitudes al ayuntamiento<br>
-          â€¢ Recursos administrativos<br>
-          â€¢ Quejas y sugerencias oficiales
+          <strong>🎯 ¿Cuándo usarlo?</strong><br>
+          • Reclamaciones laborales<br>
+          • Solicitudes al ayuntamiento<br>
+          • Recursos administrativos<br>
+          • Quejas y sugerencias oficiales
         </div>
 
-        <h4>ðŸ”§ Plataformas disponibles:</h4>
+        <h4>🔧 Plataformas disponibles:</h4>
         <div style="display:grid;gap:8px">
           <a href="https://rec.redsara.es/registro/action/are/acceso.do" 
              class="btn" target="_blank" rel="noopener">
-            ðŸ“¤ SIR - Registro General
+            📤 SIR - Registro General
           </a>
           <a href="https://sede.administracion.gob.es/pagina/index/directorio/geiser" 
              class="btn" target="_blank" rel="noopener">
-            ðŸ›ï¸ GEISER - GestiÃ³n Integrada
+            🏛️ GEISER - Gestión Integrada
           </a>
         </div>
         
         <div class="warning">
-          ðŸ“‹ <strong>Documentos necesarios:</strong> Certificado digital o Cl@ve, documento a presentar (PDF), justificante de representaciÃ³n si actÃºas por terceros.
+          📋 <strong>Documentos necesarios:</strong> Certificado digital o Cl@ve, documento a presentar (PDF), justificante de representación si actúas por terceros.
         </div>
       </div>
 
       <!-- Citas Previas -->
       <div class="card">
-        <h3>ðŸ“… Citas en AdministraciÃ³n</h3>
-        <p>Solicita citas previas en los principales organismos pÃºblicos.</p>
+        <h3>📅 Citas en Administración</h3>
+        <p>Solicita citas previas en los principales organismos públicos.</p>
         
         <div style="display:grid;gap:8px">
           <a href="https://sede.sepe.gob.es/citaprevia/" 
              class="btn" target="_blank" rel="noopener">
-            ðŸ’¼ SEPE (Empleo)
+            💼 SEPE (Empleo)
           </a>
           <a href="https://sede.seg-social.gob.es/wps/portal/sede/sede/Ciudadanos/CitaPrevia" 
              class="btn" target="_blank" rel="noopener">
-            ðŸ¥ Seguridad Social
+            🏥 Seguridad Social
           </a>
           <a href="https://www.carm.es/web/pagina?IDCONTENIDO=1134&IDTIPO=100" 
              class="btn" target="_blank" rel="noopener">
-            ðŸ›ï¸ CARM (Reg. Murcia)
+            🏛️ CARM (Reg. Murcia)
           </a>
         </div>
         
         <div class="step">
-          ðŸ’¡ <strong>Consejo:</strong> Solicita citas con 7-15 dÃ­as de antelaciÃ³n. Lleva siempre DNI y documentaciÃ³n relacionada con tu consulta.
+          💡 <strong>Consejo:</strong> Solicita citas con 7-15 días de antelación. Lleva siempre DNI y documentación relacionada con tu consulta.
         </div>
       </div>
 
       <!-- Ayudas y Subvenciones -->
       <div class="card">
-        <h3>ðŸ’° Buscador de Ayudas</h3>
-        <p>Encuentra subvenciones y ayudas pÃºblicas disponibles para trabajadores.</p>
+        <h3>💰 Buscador de Ayudas</h3>
+        <p>Encuentra subvenciones y ayudas públicas disponibles para trabajadores.</p>
         
         <input type="text" class="search-box" id="searchAyudas" 
-               placeholder="Busca ayudas por: formaciÃ³n, familia, vivienda...">
+               placeholder="Busca ayudas por: formación, familia, vivienda...">
         
         <div class="step">
-          <strong>ðŸŽ¯ Tipos de ayudas:</strong><br>
-          â€¢ FormaciÃ³n para el empleo<br>
-          â€¢ Ayudas familiares<br>
-          â€¢ Subvenciones vivienda<br>
-          â€¢ Programas de inserciÃ³n laboral
+          <strong>🎯 Tipos de ayudas:</strong><br>
+          • Formación para el empleo<br>
+          • Ayudas familiares<br>
+          • Subvenciones vivienda<br>
+          • Programas de inserción laboral
         </div>
         
         <a href="https://administracion.gob.es/pagFront/empleoBecas/becasAyudasPremios/buscadorBecas.htm" 
            class="btn" target="_blank" rel="noopener">
-          ðŸ” Buscador Oficial de Ayudas
+          🔍 Buscador Oficial de Ayudas
         </a>
       </div>
     </div>
@@ -211,7 +211,7 @@
       }
     }
     
-    // Buscador datos pÃºblicos
+    // Buscador datos públicos
     const searchInput = document.getElementById('searchPublicData');
     const searchResults = document.getElementById('searchResults');
     
@@ -237,35 +237,35 @@
       }
       
       searchResults.style.display = 'block';
-      searchResults.innerHTML = '<div class="result-item">ðŸ” Buscando en datos.gob.es...</div>';
+      searchResults.innerHTML = '<div class="result-item">🔍 Buscando en datos.gob.es...</div>';
       
       try {
-        // SimulaciÃ³n de bÃºsqueda - en producciÃ³n conectar con API datos.gob.es
+        // Simulación de búsqueda - en producción conectar con API datos.gob.es
         setTimeout(() => {
           const mockResults = generateMockResults(query);
           displaySearchResults(mockResults);
         }, 1000);
         
       } catch (error) {
-        searchResults.innerHTML = '<div class="result-item">âŒ Error en la bÃºsqueda. Intenta de nuevo.</div>';
+        searchResults.innerHTML = '<div class="result-item">❌ Error en la búsqueda. Intenta de nuevo.</div>';
       }
     }
     
     function generateMockResults(query) {
       const results = [
         {
-          title: "Convenio Colectivo Limpieza PÃºblica Viaria - RegiÃ³n de Murcia",
+          title: "Convenio Colectivo Limpieza Pública Viaria - Región de Murcia",
           description: "Texto completo del convenio vigente 2024-2027",
           url: "https://www.borm.es/services/anuncio/ano/2025/numero/599/pdf?id=834051"
         },
         {
-          title: "EstadÃ­sticas de Empleo - RegiÃ³n de Murcia",
+          title: "Estadísticas de Empleo - Región de Murcia",
           description: "Datos oficiales de empleo y paro por sectores",
           url: "https://datos.gob.es/es/catalogo/a05003465-estadistica-de-empleo"
         },
         {
           title: "Portal de Transparencia - CARM",
-          description: "InformaciÃ³n pÃºblica de la Comunidad AutÃ³noma",
+          description: "Información pública de la Comunidad Autónoma",
           url: "https://transparencia.carm.es/"
         }
       ];
@@ -278,7 +278,7 @@
     
     function displaySearchResults(results) {
       if (results.length === 0) {
-        searchResults.innerHTML = '<div class="result-item">ðŸ¤· No se encontraron resultados. Prueba con otros tÃ©rminos.</div>';
+        searchResults.innerHTML = '<div class="result-item">🤷 No se encontraron resultados. Prueba con otros términos.</div>';
         return;
       }
       
@@ -300,12 +300,12 @@
     
     // Verificar enlaces al cargar
     document.addEventListener('DOMContentLoaded', function() {
-      console.log('âœ… TrÃ¡mites page loaded successfully');
-      console.log('ðŸ“Š Enlaces verificados:');
-      console.log('  â€¢ Vida Laboral: Import@ss');
-      console.log('  â€¢ Registro: SIR y GEISER');
-      console.log('  â€¢ Citas: SEPE, Seg. Social, CARM');
-      console.log('  â€¢ Ayudas: Portal oficial');
+      console.log('✅ Trámites page loaded successfully');
+      console.log('📊 Enlaces verificados:');
+      console.log('  • Vida Laboral: Import@ss');
+      console.log('  • Registro: SIR y GEISER');
+      console.log('  • Citas: SEPE, Seg. Social, CARM');
+      console.log('  • Ayudas: Portal oficial');
     });
     
     // Buscador ayudas

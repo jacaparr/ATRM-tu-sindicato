@@ -1,0 +1,81 @@
+:root {
+  --nav-height: 60px;
+  --nav-bg: #ffffff;
+  --nav-border: #eee;
+  --nav-active: #FF6B35;
+  --nav-inactive: #94a3b8;
+}
+
+/* Espacio al final del body para que el contenido no quede tapado por la barra */
+body {
+  padding-bottom: calc(var(--nav-height) + 20px);
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-height);
+  background: var(--nav-bg);
+  border-top: 1px solid var(--nav-border);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+  padding-bottom: env(safe-area-inset-bottom); /* Soporte para iPhone con muesca */
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--nav-inactive);
+  font-size: 0.75rem;
+  font-family: inherit;
+  flex: 1;
+  height: 100%;
+  transition: all 0.2s ease;
+}
+
+.nav-item svg {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 4px;
+  fill: currentColor;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.nav-item.active {
+  color: var(--nav-active);
+  font-weight: 600;
+}
+
+.nav-item.active svg {
+  transform: translateY(-2px);
+}
+
+.nav-item:active {
+  background-color: #f8fafc;
+}
+
+@media (min-width: 769px) {
+  /* Opcional: Ocultar en pantallas grandes si se prefiere solo móvil, 
+     pero a veces es útil tenerlo siempre. 
+     Para este caso, lo haremos estilo "App Móvil" así que lo ocultamos en desktop 
+     si ya hay menú superior, pero como no todas las páginas tienen menú superior 
+     igual, vamos a dejarlo visible o adaptarlo.
+     
+     Mejor estrategia: Mostrarlo siempre en móvil (< 768px). 
+     En desktop, si quieres que desaparezca, descomenta lo siguiente:
+  */
+  .bottom-nav {
+    display: none;
+  }
+  body {
+    padding-bottom: 0;
+  }
+}

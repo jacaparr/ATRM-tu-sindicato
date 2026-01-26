@@ -1,0 +1,211 @@
+=== INFORME DE DATOS SALARIALES Y CONCEPTOS 2026 ===
+Año de vigencia: 2026
+IPC Aplicado: 2.9%
+
+
+--- TABLA SALARIAL POR CATEGORÍA ---
+Esta sección detalla el salario base, pluses y pagas extras para cada categoría profesional.
+
+
+CATEGORÍA: PEÓN RECOGIDA
+- Salario Base Mensual: 1360.42€
+- Plus Tóxico/Penoso: 408.13€
+- Plus Transporte: 70.79€
+- Paga Extra Marzo: 1933.54€
+- Paga Extra Junio: 1933.54€
+- Paga Extra Septiembre: 1933.54€
+- Paga Extra Navidad: 1933.54€
+- Paga Extra Enero: 1693.18€
+- Total Anual: 33475.19€
+------------------------------
+CATEGORÍA: PEÓN LIMPIEZA, GUARDA Y CONTROLADOR
+- Salario Base Mensual: 1360.42€
+- Plus Tóxico/Penoso: 408.13€
+- Plus Transporte: 70.79€
+- Paga Extra Marzo: 1804.14€
+- Paga Extra Junio: 1804.14€
+- Paga Extra Septiembre: 1804.14€
+- Paga Extra Navidad: 1804.14€
+- Paga Extra Enero: 1639.12€
+- Total Anual: 31353.79€
+------------------------------
+CATEGORÍA: PEÓN JARDINERÍA Y LAVADERO
+- Salario Base Mensual: 1362.62€
+- Plus Tóxico/Penoso: 408.79€
+- Plus Transporte: 70.79€
+- Paga Extra Marzo: 1807.0€
+- Paga Extra Junio: 1807.0€
+- Paga Extra Septiembre: 1807.0€
+- Paga Extra Navidad: 1807.0€
+- Paga Extra Enero: 1640.35€
+- Total Anual: 31406.82€
+------------------------------
+CATEGORÍA: CONDUCTOR REC. MECÁNICO Y ELÉCTRIC
+- Salario Base Mensual: 1434.73€
+- Plus Tóxico/Penoso: 430.42€
+- Plus Transporte: 70.79€
+- Paga Extra Marzo: 2146.68€
+- Paga Extra Junio: 2146.68€
+- Paga Extra Septiembre: 2146.68€
+- Paga Extra Navidad: 2146.68€
+- Paga Extra Enero: 1782.19€
+- Total Anual: 36977.49€
+------------------------------
+CATEGORÍA: CONDUCTOR LIMPIEZA Y AYUD. MECÁNICO
+- Salario Base Mensual: 1434.73€
+- Plus Tóxico/Penoso: 430.42€
+- Plus Transporte: 70.79€
+- Paga Extra Marzo: 1996.73€
+- Paga Extra Junio: 1996.73€
+- Paga Extra Septiembre: 1996.73€
+- Paga Extra Navidad: 1996.73€
+- Paga Extra Enero: 1719.71€
+- Total Anual: 34515.87€
+------------------------------
+CATEGORÍA: ENCARGADO BRIGADA DE RECOGIDA
+- Salario Base Mensual: 1501.4€
+- Plus Tóxico/Penoso: 450.42€
+- Plus Transporte: 70.79€
+- Paga Extra Marzo: 2227.46€
+- Paga Extra Junio: 2227.46€
+- Paga Extra Septiembre: 2227.46€
+- Paga Extra Navidad: 2227.46€
+- Paga Extra Enero: 1815.93€
+- Total Anual: 38303.77€
+------------------------------
+CATEGORÍA: ENCARGADO BRIGADA DE LIMPIEZA
+- Salario Base Mensual: 1501.4€
+- Plus Tóxico/Penoso: 450.42€
+- Plus Transporte: 70.79€
+- Paga Extra Marzo: 2077.24€
+- Paga Extra Junio: 2077.24€
+- Paga Extra Septiembre: 2077.24€
+- Paga Extra Navidad: 2077.24€
+- Paga Extra Enero: 1753.19€
+- Total Anual: 35857.43€
+------------------------------
+CATEGORÍA: INSPECTOR DISTRITO DE RECOGIDA
+- Salario Base Mensual: 1558.95€
+- Plus Tóxico/Penoso: 467.68€
+- Plus Transporte: 70.79€
+- Paga Extra Marzo: 2296.92€
+- Paga Extra Junio: 2296.92€
+- Paga Extra Septiembre: 2296.92€
+- Paga Extra Navidad: 2296.92€
+- Paga Extra Enero: 1844.91€
+- Total Anual: 39444.61€
+------------------------------
+CATEGORÍA: INSPECTOR DISTRITO DE LIMPIEZA
+- Salario Base Mensual: 1558.95€
+- Plus Tóxico/Penoso: 467.68€
+- Plus Transporte: 70.79€
+- Paga Extra Marzo: 2146.84€
+- Paga Extra Junio: 2146.84€
+- Paga Extra Septiembre: 2146.84€
+- Paga Extra Navidad: 2146.84€
+- Paga Extra Enero: 1782.27€
+- Total Anual: 36960.09€
+------------------------------
+CATEGORÍA: AUXILIAR ADMON. Y TELEFONISTA
+- Salario Base Mensual: 1360.99€
+- Plus Tóxico/Penoso: 408.3€
+- Plus Transporte: 78.91€
+- Paga Extra Marzo: 1795.02€
+- Paga Extra Junio: 1795.02€
+- Paga Extra Septiembre: 1795.02€
+- Paga Extra Navidad: 1795.02€
+- Paga Extra Enero: 1637.95€
+- Total Anual: 31305.2€
+------------------------------
+CATEGORÍA: OFICIAL ADMON. 2ª Y ALMACENERO
+- Salario Base Mensual: 1601.13€
+- Plus Tóxico/Penoso: 480.34€
+- Plus Transporte: 145.46€
+- Paga Extra Marzo: 2119.13€
+- Paga Extra Junio: 2119.13€
+- Paga Extra Septiembre: 2119.13€
+- Paga Extra Navidad: 2119.13€
+- Paga Extra Enero: 1794.13€
+- Total Anual: 37443.56€
+------------------------------
+CATEGORÍA: OFICIAL ADMON 1ª
+- Salario Base Mensual: 1787.92€
+- Plus Tóxico/Penoso: 536.38€
+- Plus Transporte: 138.28€
+- Paga Extra Marzo: 2361.67€
+- Paga Extra Junio: 2361.67€
+- Paga Extra Septiembre: 2361.67€
+- Paga Extra Navidad: 2361.67€
+- Paga Extra Enero: 1893.14€
+- Total Anual: 41335.14€
+------------------------------
+CATEGORÍA: JEFE ADMON. JEFE DE TALLER
+- Salario Base Mensual: 1833.28€
+- Plus Tóxico/Penoso: 549.98€
+- Plus Transporte: 134.02€
+- Paga Extra Marzo: 2420.38€
+- Paga Extra Junio: 2420.38€
+- Paga Extra Septiembre: 2420.38€
+- Paga Extra Navidad: 2420.38€
+- Paga Extra Enero: 1916.31€
+- Total Anual: 42250.52€
+------------------------------
+CATEGORÍA: JEFE ADMON. 1ª Y A.T.S
+- Salario Base Mensual: 1974.9€
+- Plus Tóxico/Penoso: 592.47€
+- Plus Transporte: 129.5€
+- Paga Extra Marzo: 2603.37€
+- Paga Extra Junio: 2603.37€
+- Paga Extra Septiembre: 2603.37€
+- Paga Extra Navidad: 2603.37€
+- Paga Extra Enero: 1989.0€
+- Total Anual: 45065.9€
+------------------------------
+CATEGORÍA: MÉDICO DE EMPRESA
+- Salario Base Mensual: 2134.25€
+- Plus Tóxico/Penoso: 640.27€
+- Plus Transporte: 105.33€
+- Paga Extra Marzo: 2806.01€
+- Paga Extra Junio: 2806.01€
+- Paga Extra Septiembre: 2806.01€
+- Paga Extra Navidad: 2806.01€
+- Paga Extra Enero: 2068.34€
+- Total Anual: 48228.48€
+------------------------------
+CATEGORÍA: SUBDIRECTOR
+- Salario Base Mensual: 2299.33€
+- Plus Tóxico/Penoso: 689.8€
+- Plus Transporte: 99.85€
+- Paga Extra Marzo: 3019.37€
+- Paga Extra Junio: 3019.37€
+- Paga Extra Septiembre: 3019.37€
+- Paga Extra Navidad: 3019.37€
+- Paga Extra Enero: 2152.53€
+- Total Anual: 51538.28€
+------------------------------
+CATEGORÍA: DIRECTOR
+- Salario Base Mensual: 2536.51€
+- Plus Tóxico/Penoso: 760.95€
+- Plus Transporte: 67.09€
+- Paga Extra Marzo: 3325.94€
+- Paga Extra Junio: 3325.94€
+- Paga Extra Septiembre: 3325.94€
+- Paga Extra Navidad: 3325.94€
+- Paga Extra Enero: 2273.48€
+- Total Anual: 56293.59€
+------------------------------
+
+
+--- OTROS CONCEPTOS SALARIALES Y EXTRAS ---
+Conceptos variables o específicos:
+- Retenes fines de semana (Art. 6): 93.62€
+- Plus Festividad (Art. 21): 179.36€
+- Dieta (Art. 24): 43.85€
+- Kilometraje (Art. 24): 0.5€
+- Ayuda Social (Art. 31): 103.78€
+
+
+--- PRESTACIONES NO SALARIALES ---
+- Gratificación Matrimonio: 711.6€
+- Ayuda discapacitados a cargo: 126.15€
+- Ayuda escolar/estudios: 80.48€

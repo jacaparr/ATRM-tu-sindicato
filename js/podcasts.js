@@ -10,7 +10,7 @@ class SistemaPodcasts {
         categoria: 'tramites',
         duracion: '5:30',
         thumbnail: 'https://via.placeholder.com/400x225/667eea/ffffff?text=Vida+Laboral',
-        audioUrl: 'https://example.com/podcast1.mp3', // URL del audio generado por NotebookLM
+        audioUrl: 'assets/audio/podcast1.mp3', // ⚠️ Debes añadir este archivo
         tags: ['vida laboral', 'seguridad social', 'trámites', 'documentación'],
         generadoCon: 'NotebookLM'
       },
@@ -21,7 +21,7 @@ class SistemaPodcasts {
         categoria: 'derechos',
         duracion: '12:45',
         thumbnail: 'https://via.placeholder.com/400x225/764ba2/ffffff?text=Derechos+Laborales',
-        audioUrl: 'https://example.com/podcast2.mp3',
+        audioUrl: 'assets/audio/podcast2.mp3',
         tags: ['derechos', 'trabajador', 'convenio', 'laboral'],
         generadoCon: 'NotebookLM'
       },
@@ -32,32 +32,11 @@ class SistemaPodcasts {
         categoria: 'salarios',
         duracion: '8:15',
         thumbnail: 'https://via.placeholder.com/400x225/f093fb/ffffff?text=Nómina',
-        audioUrl: 'https://example.com/podcast3.mp3',
+        audioUrl: 'assets/audio/podcast3.mp3',
         tags: ['nómina', 'salario', 'irpf', 'deducciones', 'cotizaciones'],
         generadoCon: 'NotebookLM'
       },
-      {
-        id: 4,
-        titulo: 'Solicitud de vacaciones',
-        descripcion: 'Diálogo sobre cómo y cuándo solicitar tus vacaciones según el convenio colectivo.',
-        categoria: 'tramites',
-        duracion: '6:20',
-        thumbnail: 'https://via.placeholder.com/400x225/48dbfb/ffffff?text=Vacaciones',
-        audioUrl: 'https://example.com/podcast4.mp3',
-        tags: ['vacaciones', 'permisos', 'convenio', 'solicitud'],
-        generadoCon: 'NotebookLM'
-      },
-      {
-        id: 5,
-        titulo: 'Convenio Colectivo de Transportes',
-        descripcion: 'Conversación detallada sobre las principales cláusulas del convenio colectivo del sector transportes.',
-        categoria: 'convenios',
-        duracion: '15:30',
-        thumbnail: 'https://via.placeholder.com/400x225/2ed573/ffffff?text=Convenio+Transportes',
-        audioUrl: 'https://example.com/podcast5.mp3',
-        tags: ['convenio', 'transportes', 'atrm', 'condiciones'],
-        generadoCon: 'NotebookLM'
-      },
+
       {
         id: 6,
         titulo: 'Convenio de Limpieza de Interiores',
@@ -65,43 +44,11 @@ class SistemaPodcasts {
         categoria: 'convenios',
         duracion: '10:45',
         thumbnail: 'https://via.placeholder.com/400x225/ffa502/ffffff?text=Convenio+Interiores',
-        audioUrl: 'https://example.com/podcast6.mp3',
+        audioUrl: 'assets/audio/podcast6.mp3',
         tags: ['convenio', 'interiores', 'limpieza', 'condiciones'],
         generadoCon: 'NotebookLM'
       },
-      {
-        id: 7,
-        titulo: 'Reclamar horas extras',
-        descripcion: 'Diálogo sobre cómo reclamar las horas extras no pagadas de forma correcta.',
-        categoria: 'derechos',
-        duracion: '7:50',
-        thumbnail: 'https://via.placeholder.com/400x225/ff4757/ffffff?text=Horas+Extras',
-        audioUrl: 'https://example.com/podcast7.mp3',
-        tags: ['horas extras', 'reclamación', 'derechos', 'salario'],
-        generadoCon: 'NotebookLM'
-      },
-      {
-        id: 8,
-        titulo: 'Cómo afiliarse al sindicato',
-        descripcion: 'Conversación sobre el proceso de afiliación a ATRM y beneficios de ser miembro del sindicato.',
-        categoria: 'tramites',
-        duracion: '4:15',
-        thumbnail: 'https://via.placeholder.com/400x225/5f27cd/ffffff?text=Afiliación',
-        audioUrl: 'https://example.com/podcast8.mp3',
-        tags: ['afiliación', 'sindicato', 'atrm', 'miembro'],
-        generadoCon: 'NotebookLM'
-      },
-      {
-        id: 9,
-        titulo: 'Calcular finiquito',
-        descripcion: 'Explicación detallada sobre cómo calcular tu finiquito correctamente y qué conceptos debe incluir.',
-        categoria: 'salarios',
-        duracion: '9:30',
-        thumbnail: 'https://via.placeholder.com/400x225/1abc9c/ffffff?text=Finiquito',
-        audioUrl: 'https://example.com/podcast9.mp3',
-        tags: ['finiquito', 'despido', 'cálculo', 'indemnización'],
-        generadoCon: 'NotebookLM'
-      },
+
       {
         id: 10,
         titulo: 'Permisos retribuidos',
@@ -109,8 +56,19 @@ class SistemaPodcasts {
         categoria: 'derechos',
         duracion: '11:20',
         thumbnail: 'https://via.placeholder.com/400x225/e74c3c/ffffff?text=Permisos',
-        audioUrl: 'https://example.com/podcast10.mp3',
+        audioUrl: 'assets/audio/podcast10.mp3',
         tags: ['permisos', 'retribuidos', 'convenio', 'ausencias'],
+        generadoCon: 'NotebookLM'
+      },
+      {
+        id: 11,
+        titulo: 'Convenio de Limpieza Pública Viaria',
+        descripcion: 'Resumen completo del Convenio de Limpieza Viaria de la Región de Murcia (2024-2027).',
+        categoria: 'convenios',
+        duracion: '12:00',
+        thumbnail: 'https://via.placeholder.com/400x225/2ecc71/ffffff?text=Convenio+Viaria',
+        audioUrl: 'assets/audio/podcast11.mp3',
+        tags: ['convenio', 'viaria', 'limpieza', 'murcia'],
         generadoCon: 'NotebookLM'
       }
     ];
@@ -137,17 +95,15 @@ class SistemaPodcasts {
     sinResultados.style.display = 'none';
     
     grid.innerHTML = podcasts.map(podcast => `
-      <div class="podcast-card" onclick="abrirPodcast(${podcast.id})">
-        <div class="podcast-thumbnail">
-          <img src="${podcast.thumbnail}" alt="${podcast.titulo}">
-          <div class="podcast-duracion">🎙️ ${podcast.duracion}</div>
-          <div class="podcast-play">▶</div>
+      <div class="card" onclick="abrirPodcast(${podcast.id})" style="cursor:pointer;display:flex;flex-direction:column;justify-content:space-between">
+        <div>
+          <h3 style="margin-top:0">${this.obtenerIconoCategoria(podcast.categoria)} ${podcast.titulo}</h3>
+          <p style="color:#555;font-size:0.95em">${podcast.descripcion}</p>
         </div>
-        <div class="podcast-info-card">
-          <h3>${podcast.titulo}</h3>
-          <p>${podcast.descripcion}</p>
-          <div class="podcast-categoria">${this.obtenerIconoCategoria(podcast.categoria)} ${this.obtenerNombreCategoria(podcast.categoria)}</div>
-          <div class="notebooklm-badge">🤖 ${podcast.generadoCon}</div>
+        
+        <div class="podcast-meta">
+          <div class="podcast-duration">⏱️ ${podcast.duracion}</div>
+          <div class="podcast-play-btn">▶</div>
         </div>
       </div>
     `).join('');
@@ -228,7 +184,7 @@ function abrirPodcast(id) {
   
   document.getElementById('podcastPlayer').innerHTML = `
     <audio controls style="width:100%;margin:20px 0">
-      <source src="${podcast.audioUrl}" type="audio/mpeg">
+      <source src="${podcast.audioUrl}">
       Tu navegador no soporta el elemento de audio.
     </audio>
   `;

@@ -1,0 +1,31 @@
+=== Limpieza de Edificios y Locales - Región de Murcia ===
+Vigencia: 2024-2027
+
+
+--- CATEGORÍAS PROFESIONALES Y SALARIOS ---
+Grupo: Personal de Limpieza
+  * Puesto: Peón/a Limpiador/a
+    - Salario Base Mensual: 1050.0€
+    - Descripción: Personal de limpieza básica de edificios y locales
+  * Puesto: Limpiador/a Especialista
+    - Salario Base Mensual: 1100.0€
+    - Descripción: Limpieza con especialización técnica o de áreas específicas
+  * Puesto: Limpiador/a Especialista Cristalero/a
+    - Salario Base Mensual: 1150.0€
+    - Descripción: Limpieza de cristales en altura o con medios técnicos
+
+Grupo: Mandos Intermedios
+  * Puesto: Jefe/a de Equipo
+    - Salario Base Mensual: 1250.0€
+    - Descripción: Coordinación de pequeños equipos de limpieza
+  * Puesto: Encargado/a
+    - Salario Base Mensual: 1400.0€
+    - Descripción: Supervisión y coordinación de servicios de limpieza
+
+Grupo: Personal Administrativo
+  * Puesto: Auxiliar Administrativo/a
+    - Salario Base Mensual: 1100.0€
+    - Descripción: Tareas administrativas auxiliares
+  * Puesto: Oficial Administrativo/a
+    - Salario Base Mensual: 1300.0€
+    - Descripción: Gestión administrativa completa

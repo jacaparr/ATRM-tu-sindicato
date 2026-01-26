@@ -1,88 +1,103 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Podcasts ATRM - NotebookLM</title>
-  <link rel="manifest" href="manifest.json">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ATRM · Podcasts con NotebookLM</title>
+  <link rel="manifest" href="./manifest.json">
   <meta name="theme-color" content="#FF6B35">
   <style>
     :root{ --primary:#FF6B35; --secondary:#FF8C42; --accent:#FFA726; --dark:#2C3E50; }
     body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial;color:var(--dark);background:linear-gradient(180deg,#fff,#fff7f0)}
-    .top-header{position:sticky;top:0;z-index:100;background:linear-gradient(90deg,var(--primary),var(--secondary));color:#fff}
-    .nav{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
-    .logo{font-weight:800;letter-spacing:.3px}
-    .menu a{color:#fff;text-decoration:none;margin:0 10px;padding:8px 12px;border-radius:10px;transition:.2s}
-    .menu a:hover{background:rgba(255,255,255,.15)}
+    header{position:sticky;top:0;background:linear-gradient(90deg,var(--primary),var(--secondary));color:#fff;padding:12px 16px;font-weight:800;z-index:100;display:flex;justify-content:space-between;align-items:center}
+    main{max-width:1100px;margin:16px auto;padding:0 16px}
+    .toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+    .btn{padding:10px 12px;border-radius:10px;background:linear-gradient(90deg,var(--primary),var(--secondary));color:#fff;border:none;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
+    .btn:hover{background:linear-gradient(90deg,var(--secondary),var(--primary));text-decoration:none}
+    .card{background:#fff;border:1px solid #ffe2cf;border-radius:18px;box-shadow:0 10px 24px rgba(255,119,51,.08);padding:20px;margin-bottom:16px;transition:transform 0.2s}
+    .card:hover{transform:translateY(-2px)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+    .search-box{width:100%;padding:12px;border:1px solid #ffd2b5;border-radius:10px;margin:8px 0;font-size:16px}
+    
+    /* Podcast specific styles */
+    .filter-container{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;justify-content:center}
+    .filter-btn{background:#fff;border:1px solid #ffe2cf;color:var(--dark);padding:8px 16px;border-radius:20px;cursor:pointer;font-weight:600;transition:all 0.2s}
+    .filter-btn:hover{background:#fff7f0}
+    .filter-btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+    
+    .podcast-meta{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:0.9em;color:#666}
+    .podcast-duration{background:#eee;padding:4px 8px;border-radius:4px}
+    .podcast-play-btn{width:40px;height:40px;border-radius:50%;background:var(--primary);color:white;display:flex;align-items:center;justify-content:center;font-size:1.2em}
+    
+    /* Modal */
+    .modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;align-items:center;justify-content:center;z-index:1000;backdrop-filter:blur(4px)}
+    .modal-content{background:white;padding:24px;border-radius:18px;max-width:600px;width:90%;position:relative;box-shadow:0 20px 40px rgba(0,0,0,0.2)}
+    .close-modal{position:absolute;top:16px;right:16px;border:none;background:none;font-size:1.5em;cursor:pointer}
+    .tags-container{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .tag{background:#f0f0f0;padding:4px 8px;border-radius:4px;font-size:0.85em;color:#555}
+    .notebooklm-badge{font-size:0.8em;color:#666;display:flex;align-items:center;gap:6px;margin-top:12px;padding-top:12px;border-top:1px solid #eee}
   </style>
-  <link rel="stylesheet" href="css/podcasts.css">
 </head>
 <body>
-  <div class="top-header">
-    <div class="nav">
-      <div class="logo">ATRM · Tu Sindicato</div>
-      <nav class="menu">
-        <a href="index.html">Inicio</a>
-        <a href="index.html#convenio">Convenio</a>
-        <a href="salaries.html">Salarios</a>
-        <a href="tramites.html">Trámites</a>
-        <a href="festivos.html">Festivos</a>
-        <a href="podcasts.html" style="background:rgba(255,255,255,.15)">🎙️ Podcasts</a>
-      </nav>
-    </div>
-  </div>
-  
   <header>
-    <h1>🎙️ Podcasts ATRM con NotebookLM</h1>
-    <p>Escucha conversaciones generadas por IA sobre tus derechos, trámites y convenios</p>
-    <div class="ai-badge">
-      <span>✨ Generado con NotebookLM de Google</span>
-    </div>
+    <span>🎙️ ATRM · Podcasts IA</span>
+    <a href="index.html" style="color:white;text-decoration:none;font-size:0.9em">Inicio</a>
   </header>
-
+  
   <main>
-    <div class="buscador-podcasts">
-      <input type="text" id="buscarPodcast" placeholder="🔍 Buscar podcasts..." onkeyup="buscarPodcasts()">
-      <div class="filtros-categorias">
-        <button class="filtro-btn active" onclick="filtrarPorCategoria('todas')">Todas</button>
-        <button class="filtro-btn" onclick="filtrarPorCategoria('tramites')">🏛️ Trámites</button>
-        <button class="filtro-btn" onclick="filtrarPorCategoria('derechos')">⚖️ Derechos</button>
-        <button class="filtro-btn" onclick="filtrarPorCategoria('convenios')">📋 Convenios</button>
-        <button class="filtro-btn" onclick="filtrarPorCategoria('salarios')">💰 Salarios</button>
+    <div class="toolbar">
+      <a class="btn" href="./index.html"> Volver al Inicio</a>
+    </div>
+
+    <div class="card">
+      <h2>🎙️ Conversaciones generadas con IA</h2>
+      <p>Escucha diálogos explicativos sobre trámites, derechos y ayudas, generados por <strong>NotebookLM</strong> (Gemini) a partir de la documentación oficial.</p>
+    </div>
+
+    <!-- Buscador -->
+    <div class="card">
+      <input type="text" class="search-box" id="buscarPodcast" placeholder="🔍  Buscar por título, tema o palabra clave..." onkeyup="buscarPodcasts()">
+      
+      <div class="filter-container">
+        <button class="filter-btn active" onclick="filtrarPorCategoria('todas')">Todas</button>
+        <button class="filter-btn" onclick="filtrarPorCategoria('tramites')">🏛️ Trámites</button>
+        <button class="filter-btn" onclick="filtrarPorCategoria('derechos')">⚖️ Derechos</button>
+        <button class="filter-btn" onclick="filtrarPorCategoria('convenios')">📋 Convenios</button>
+        <button class="filter-btn" onclick="filtrarPorCategoria('salarios')">💰 Salarios</button>
       </div>
     </div>
 
-    <div class="podcasts-grid" id="podcastsGrid">
-      <!-- Los podcasts se cargarán dinámicamente -->
+    <!-- Grid de Podcasts -->
+    <div class="grid" id="podcastsGrid">
+      <!-- Se llena via JS -->
     </div>
 
-    <div class="sin-resultados" id="sinResultados" style="display: none;">
-      <p>😔 No se encontraron podcasts con esa búsqueda</p>
+    <div id="sinResultados" style="text-align:center;padding:20px;display:none;color:#666">
+      😔 No hemos encontrado podcasts con esos términos.
     </div>
+
   </main>
 
-  <div id="modalPodcast" class="modal-podcast" style="display: none;" onclick="cerrarModalPodcast(event)">
-    <div class="modal-podcast-contenido" onclick="event.stopPropagation()">
-      <button class="btn-cerrar-modal" onclick="cerrarModalPodcast()">✕</button>
-      <div class="podcast-player" id="podcastPlayer"></div>
-      <div class="podcast-info">
-        <h2 id="podcastTitulo"></h2>
-        <p id="podcastDescripcion"></p>
-        <div class="podcast-tags" id="podcastTags"></div>
-        <div class="notebooklm-info">
-          <span class="ai-icon">🤖</span>
-          <p>Este podcast fue generado automáticamente por <strong>NotebookLM</strong> a partir de documentos oficiales del convenio y normativa laboral.</p>
-        </div>
+  <!-- Modal Player -->
+  <div id="modalPodcast" class="modal-overlay" onclick="cerrarModalPodcast(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button class="close-modal" onclick="cerrarModalPodcast()">×</button>
+      <h2 id="podcastTitulo" style="margin-top:0;color:var(--primary)">Titulo Podcast</h2>
+      <p id="podcastDescripcion" style="color:#444;line-height:1.5">Descripción...</p>
+      
+      <div id="podcastPlayer" style="margin:20px 0"></div>
+      
+      <div class="tags-container" id="podcastTags"></div>
+      
+      <div class="notebooklm-badge">
+        <span>✨ Generado con NotebookLM de Google</span>
       </div>
     </div>
   </div>
-
-  <footer>
-    <p>💡 ¿Quieres un podcast sobre un tema específico? <a href="mailto:info@atrm.es">Sugíerelo aquí</a></p>
-    <a href="index.html" class="btn-home">🏠 Volver al inicio</a>
-  </footer>
 
   <script src="js/podcasts.js"></script>
   <script src="js/pwa.js"></script>
+  <script src='js/bottom-nav.js'></script>
 </body>
 </html>
+

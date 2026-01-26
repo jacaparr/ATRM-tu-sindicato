@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -26,10 +26,10 @@
   </style>
 </head>
 <body>
-  <h1>🧪 Test Completo de IA - ATRM Sindicato</h1>
+  <h1>ðŸ§ª Test Completo de IA - ATRM Sindicato</h1>
   
   <div class="stats" id="stats">
-    <h3>📊 Estadísticas de Pruebas</h3>
+    <h3>ðŸ“Š EstadÃ­sticas de Pruebas</h3>
     <div class="stats-grid">
       <div class="stat-box">
         <div class="stat-num" id="total">0</div>
@@ -37,20 +37,20 @@
       </div>
       <div class="stat-box">
         <div class="stat-num" style="color:#4CAF50" id="correctas">0</div>
-        <div class="stat-label">Correctas ✅</div>
+        <div class="stat-label">Correctas âœ…</div>
       </div>
       <div class="stat-box">
         <div class="stat-num" style="color:#f44336" id="incorrectas">0</div>
-        <div class="stat-label">Incorrectas ❌</div>
+        <div class="stat-label">Incorrectas âŒ</div>
       </div>
       <div class="stat-box">
         <div class="stat-num" id="porcentaje">0%</div>
-        <div class="stat-label">Precisión</div>
+        <div class="stat-label">PrecisiÃ³n</div>
       </div>
     </div>
   </div>
 
-  <button class="btn-all" onclick="ejecutarTodosLosTests()">▶️ Ejecutar Todos los Tests</button>
+  <button class="btn-all" onclick="ejecutarTodosLosTests()">â–¶ï¸ Ejecutar Todos los Tests</button>
 
   <div id="tests-container"></div>
 
@@ -61,43 +61,43 @@
 
     const TESTS = {
       'Permisos por fallecimiento': [
-        { pregunta: 'días por fallecimiento de suegra', esperado: ['fallecimiento', '3 días', '2º grado'], noEsperado: ['excedencia'] },
-        { pregunta: 'ha muerto mi padre cuantos dias tengo', esperado: ['fallecimiento', '3 días', '1er grado'], noEsperado: [] },
-        { pregunta: 'fallecimiento abuelo', esperado: ['fallecimiento', '2º grado'], noEsperado: [] },
-        { pregunta: 'mi hermano ha fallecido', esperado: ['fallecimiento', '2º grado'], noEsperado: [] },
+        { pregunta: 'dÃ­as por fallecimiento de suegra', esperado: ['fallecimiento', '3 dÃ­as', '2Âº grado'], noEsperado: ['excedencia'] },
+        { pregunta: 'ha muerto mi padre cuantos dias tengo', esperado: ['fallecimiento', '3 dÃ­as', '1er grado'], noEsperado: [] },
+        { pregunta: 'fallecimiento abuelo', esperado: ['fallecimiento', '2Âº grado'], noEsperado: [] },
+        { pregunta: 'mi hermano ha fallecido', esperado: ['fallecimiento', '2Âº grado'], noEsperado: [] },
         { pregunta: 'muerte de mi hijo', esperado: ['fallecimiento', '1er grado'], noEsperado: [] },
-        { pregunta: 'ha muerto mi tío', esperado: ['fallecimiento', '3er grado', '1 día'], noEsperado: [] },
+        { pregunta: 'ha muerto mi tÃ­o', esperado: ['fallecimiento', '3er grado', '1 dÃ­a'], noEsperado: [] },
       ],
-      'Hospitalización familiar': [
-        { pregunta: 'mi madre está ingresada en el hospital', esperado: ['hospitalización', '5 días'], noEsperado: [] },
-        { pregunta: 'operación de mi suegra', esperado: ['hospitalización', '5 días', '2º grado'], noEsperado: [] },
-        { pregunta: 'intervención quirúrgica hermano', esperado: ['hospitalización', '5 días'], noEsperado: [] },
-        { pregunta: 'padre en el hospital', esperado: ['hospitalización', '5 días'], noEsperado: [] },
+      'HospitalizaciÃ³n familiar': [
+        { pregunta: 'mi madre estÃ¡ ingresada en el hospital', esperado: ['hospitalizaciÃ³n', '5 dÃ­as'], noEsperado: [] },
+        { pregunta: 'operaciÃ³n de mi suegra', esperado: ['hospitalizaciÃ³n', '5 dÃ­as', '2Âº grado'], noEsperado: [] },
+        { pregunta: 'intervenciÃ³n quirÃºrgica hermano', esperado: ['hospitalizaciÃ³n', '5 dÃ­as'], noEsperado: [] },
+        { pregunta: 'padre en el hospital', esperado: ['hospitalizaciÃ³n', '5 dÃ­as'], noEsperado: [] },
       ],
-      'Salarios y nómina': [
+      'Salarios y nÃ³mina': [
         { pregunta: 'plus de nocturnidad', esperado: ['28%', 'salario base', '22:00', '06:00'], noEsperado: [] },
         { pregunta: 'incremento salarial 2026', esperado: ['IPC', '2025'], noEsperado: [] },
-        { pregunta: 'cuánto cobro como peón', esperado: ['salario', 'peón'], noEsperado: [] },
+        { pregunta: 'cuÃ¡nto cobro como peÃ³n', esperado: ['salario', 'peÃ³n'], noEsperado: [] },
         { pregunta: 'plus de toxicidad', esperado: ['30%', 'salario base'], noEsperado: [] },
       ],
       'Vacaciones y jornada': [
-        { pregunta: 'cuántos días de vacaciones tengo', esperado: ['28 días', 'laborales'], noEsperado: [] },
+        { pregunta: 'cuÃ¡ntos dÃ­as de vacaciones tengo', esperado: ['28 dÃ­as', 'laborales'], noEsperado: [] },
         { pregunta: 'jornada laboral', esperado: ['37 horas', '30 minutos'], noEsperado: [] },
         { pregunta: 'horas extra', esperado: ['80%'], noEsperado: [] },
       ],
       'Permisos varios': [
-        { pregunta: 'permiso por matrimonio', esperado: ['15 días', 'naturales'], noEsperado: [] },
+        { pregunta: 'permiso por matrimonio', esperado: ['15 dÃ­as', 'naturales'], noEsperado: [] },
         { pregunta: 'nacimiento de hijo', esperado: ['paterni'], noEsperado: [] },
-        { pregunta: 'traslado de vivienda', esperado: ['2 días'], noEsperado: [] },
-        { pregunta: 'consulta médica', esperado: ['3 horas'], noEsperado: [] },
+        { pregunta: 'traslado de vivienda', esperado: ['2 dÃ­as'], noEsperado: [] },
+        { pregunta: 'consulta mÃ©dica', esperado: ['3 horas'], noEsperado: [] },
       ],
       'Despidos y finiquitos': [
         { pregunta: 'me han despedido', esperado: ['despido', 'inden'], noEsperado: [] },
         { pregunta: 'finiquito', esperado: ['finiquito'], noEsperado: [] },
-        { pregunta: 'despido improcedente', esperado: ['indemni', '33 días'], noEsperado: [] },
+        { pregunta: 'despido improcedente', esperado: ['indemni', '33 dÃ­as'], noEsperado: [] },
       ],
       'Casos complejos': [
-        { pregunta: 'qué puedo preguntar', esperado: ['puedes preguntarme'], noEsperado: ['excedencia'] },
+        { pregunta: 'quÃ© puedo preguntar', esperado: ['puedes preguntarme'], noEsperado: ['excedencia'] },
         { pregunta: 'ayuda', esperado: ['puedes preguntarme', 'ejemplos'], noEsperado: [] },
         { pregunta: 'hola', esperado: ['hola', 'ayud'], noEsperado: [] },
       ]
@@ -127,7 +127,7 @@
 
     async function ejecutarTest(test, containerId) {
       const container = document.getElementById(containerId);
-      container.innerHTML = '<div class="loading">⏳ Consultando IA...</div>';
+      container.innerHTML = '<div class="loading">â³ Consultando IA...</div>';
       
       await new Promise(resolve => setTimeout(resolve, 300));
       const respuesta = await ia.generarRespuesta(test.pregunta);
@@ -140,14 +140,14 @@
       actualizarStats();
       
       const clase = esCorrecta ? 'correcto' : 'incorrecto';
-      const icono = esCorrecta ? '✅' : '❌';
+      const icono = esCorrecta ? 'âœ…' : 'âŒ';
       
       let detalles = '';
       if (!esCorrecta) {
         const faltantes = test.esperado.filter(e => !respuesta.toLowerCase().includes(e.toLowerCase()));
         const presentes = test.noEsperado.filter(e => respuesta.toLowerCase().includes(e.toLowerCase()));
-        if (faltantes.length) detalles += `<br><small>❌ Falta: ${faltantes.join(', ')}</small>`;
-        if (presentes.length) detalles += `<br><small>⚠️ No debería incluir: ${presentes.join(', ')}</small>`;
+        if (faltantes.length) detalles += `<br><small>âŒ Falta: ${faltantes.join(', ')}</small>`;
+        if (presentes.length) detalles += `<br><small>âš ï¸ No deberÃ­a incluir: ${presentes.join(', ')}</small>`;
       }
       
       container.innerHTML = `
@@ -192,14 +192,16 @@
         }
       }
       
-      console.log('✅ Tests completados');
-      console.log(`📊 Resultado: ${stats.correctas}/${stats.total} correctas (${Math.round((stats.correctas/stats.total)*100)}%)`);
+      console.log('âœ… Tests completados');
+      console.log(`ðŸ“Š Resultado: ${stats.correctas}/${stats.total} correctas (${Math.round((stats.correctas/stats.total)*100)}%)`);
     }
 
     window.addEventListener('load', () => {
       generarHTML();
-      console.log('🧪 Test suite cargado. Pulsa "Ejecutar Todos los Tests" para comenzar.');
+      console.log('ðŸ§ª Test suite cargado. Pulsa "Ejecutar Todos los Tests" para comenzar.');
     });
   </script>
+  <script src='js/bottom-nav.js'></script>
 </body>
 </html>
+

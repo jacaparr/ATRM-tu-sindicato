@@ -5,6 +5,59 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 const TelegramBot = require('node-telegram-bot-api');
+const Parser = require('rss-parser');
+const fs = require('fs');
+
+// --- AUTO-UPDATE NOTICIAS ---
+let cachedNews = [];
+const parser = new Parser();
+
+// Función para buscar noticias
+async function fetchUnionNews() {
+    console.log("🔄 Buscando noticias sindicales...");
+    try {
+        // Feed 1: Búsqueda Google News "Sindicato Murcia"
+        const feed1 = await parser.parseURL('https://news.google.com/rss/search?q=Sindicato+Murcia+OR+Convenio+Limpieza&hl=es&gl=ES&ceid=ES:es');
+        
+        // Feed 2: Noticias Laborales Generales (RTVE por ejemplo o Google)
+        // Usamos Google News para tener variedad
+        const feed2 = await parser.parseURL('https://news.google.com/rss/search?q=Derechos+Laborales+España&hl=es&gl=ES&ceid=ES:es');
+
+        const allItems = [...feed1.items, ...feed2.items];
+        
+        // Procesar y limpiar
+        const processed = allItems.map((item, index) => ({
+            id: `auto-${Date.now()}-${index}`,
+            fecha: new Date(item.pubDate).toISOString().split('T')[0],
+            titulo: item.title,
+            resumen: item.contentSnippet || item.title,
+            contenido: item.content || item.contentSnippet || "Haz clic para leer la noticia completa en la fuente original.",
+            categoria: "actualidad",
+            url: item.link
+        }));
+
+        // Eliminar duplicados por título y limitar
+        const unique = [];
+        const seen = new Set();
+        for (const item of processed) {
+            if (!seen.has(item.titulo)) {
+                seen.add(item.titulo);
+                unique.push(item);
+            }
+        }
+
+        // Guardar en memoria (las 10 más recientes)
+        cachedNews = unique.sort((a,b) => new Date(b.fecha) - new Date(a.fecha)).slice(0, 10);
+        console.log(`✅ Noticias actualizadas: ${cachedNews.length} encontradas.`);
+
+    } catch (error) {
+        console.error("❌ Error actualizando noticias:", error.message);
+    }
+}
+
+// Ejecutar al inicio y cada 12 horas (43200000 ms) - O cada hora si prefieres
+fetchUnionNews(); 
+setInterval(fetchUnionNews, 1000 * 60 * 60 * 12); 
 
 // --- CONFIG ---
 const app = express();
@@ -105,6 +158,31 @@ app.get('/api/denuncias-list', (req, res) => {
         return res.status(401).json({ error: 'No autorizado' });
     }
     res.json({ items: [] }); // Empty list for now until Supabase is linked properly
+});
+
+// --- API: NOTICIAS (MIX MANUAL + AUTO) ---
+app.get('/api/noticias', async (req, res) => {
+    try {
+        // Leer noticias manuales (fijas)
+        let manualNews = [];
+        try {
+            const raw = fs.readFileSync(path.join(__dirname, 'data', 'noticias.json'), 'utf-8');
+            manualNews = JSON.parse(raw).noticias || [];
+        } catch (e) {
+            console.error("Error leyendo noticias.json manuales:", e);
+        }
+
+        // Combinar: Manuales primero, luego automáticas
+        // Opcional: Mezclar y ordenar por fecha
+        const allNews = [...manualNews, ...cachedNews];
+        
+        // Orden final por fecha
+        allNews.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+
+        res.json({ noticias: allNews });
+    } catch (e) {
+        res.status(500).json({ error: "Error obteniendo noticias" });
+    }
 });
 
 // --- START ---

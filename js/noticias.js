@@ -1,7 +1,8 @@
 // Script para cargar y mostrar noticias en index.html
 async function cargarNoticias() {
   try {
-    const response = await fetch('data/noticias.json');
+    // CAMBIO: Ahora pedimos al nuevo endpoint unificado
+    const response = await fetch('/api/noticias');
     const data = await response.json();
     const noticias = data.noticias;
     

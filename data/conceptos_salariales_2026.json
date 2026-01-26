@@ -1,0 +1,20 @@
+{
+  "año": 2026,
+  "otros_conceptos_salariales": {
+    "retenes_fines_semana_art6": 93.62,
+    "plus_festividad_art21": 179.36,
+    "plus_funcional_planta_art21": 280.33,
+    "plus_funcional_responsabilidad_art21": 245.90,
+    "plus_funcional_colector_art21": 190.57,
+    "dieta_art24": 43.85,
+    "kilometraje_art24": 0.50,
+    "ayuda_social_yg_art31": 103.78,
+    "plus_funcional_peon_espec_recogida_art30": 60.84,
+    "plus_funcional_peon_espec_limpieza_art30": 60.84
+  },
+  "prestaciones_no_salariales": {
+    "gratificacion_matrimonio_art6": 711.60,
+    "ayuda_discapacitados_cargo_art33": 126.15,
+    "ayuda_estudios_art34": 80.48
+  }
+}

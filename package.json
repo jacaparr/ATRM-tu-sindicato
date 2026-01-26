@@ -10,7 +10,7 @@
     "web": "npx http-server -p 8000"
   },
   "engines": {
-    "node": "20.x",
+    "node": ">=20.0.0",
     "npm": ">=9.0.0"
   },
   "keywords": [

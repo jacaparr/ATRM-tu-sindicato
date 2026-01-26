@@ -55,9 +55,9 @@ async function fetchUnionNews() {
     }
 }
 
-// Ejecutar al inicio y cada 12 horas (43200000 ms) - O cada hora si prefieres
-fetchUnionNews(); 
-setInterval(fetchUnionNews, 1000 * 60 * 60 * 12); 
+// Ejecutar al inicio y cada 1 hora
+fetchUnionNews();
+setInterval(fetchUnionNews, 1000 * 60 * 60 * 1); // 1h
 
 // --- CONFIG ---
 const app = express();
@@ -109,23 +109,43 @@ if (TELEGRAM_TOKEN) {
 
 // --- API: DENUNCIA (Re-implemented from api/denuncia.js) ---
 const REQUIRED_ENV_DENUNCIA = ['RESEND_API_KEY', 'RESEND_FROM', 'RESEND_TO'];
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000; // 10 minutos
+const RATE_LIMIT_MAX = 5; // máximo 5 envíos por ventana
+const rateLimitMap = new Map();
+
+function allowRequest(ip) {
+    const now = Date.now();
+    const entry = rateLimitMap.get(ip) || { count: 0, start: now };
+    if (now - entry.start > RATE_LIMIT_WINDOW_MS) {
+        entry.count = 0;
+        entry.start = now;
+    }
+    entry.count += 1;
+    rateLimitMap.set(ip, entry);
+    return entry.count <= RATE_LIMIT_MAX;
+}
 
 app.post('/api/denuncia', async (req, res) => {
+    const ip = req.headers?.['x-forwarded-for']?.split(',')[0]?.trim() || req.socket?.remoteAddress || 'unknown';
+
+    if (!allowRequest(ip)) {
+        return res.status(429).json({ error: 'Has enviado demasiadas denuncias en poco tiempo. Intenta más tarde.' });
+    }
+
     // Check Env
     const missing = REQUIRED_ENV_DENUNCIA.filter(k => !process.env[k]);
     if (missing.length > 0) {
         console.error("Faltan variables EMAIL:", missing);
-        // Fallback for demo: just success if no mail config, to avoid user error
-        return res.json({ success: true, warning: "Email no enviado (configuración faltante)" });
+        return res.status(500).json({ error: 'Servicio de correo no configurado. Contacta por teléfono o email.' });
     }
 
     const { texto } = req.body;
-    if (!texto) return res.status(400).json({ error: 'Texto obligatorio' });
+    if (!texto || !texto.trim()) return res.status(400).json({ error: 'Texto obligatorio' });
+    if (texto.length < 10) return res.status(400).json({ error: 'La denuncia debe tener al menos 10 caracteres.' });
+    if (texto.length > 5000) return res.status(413).json({ error: 'La denuncia es demasiado extensa (máx. 5000 caracteres)' });
 
-    // Send Email via Resend
+    // Send Email via Resend (usa fetch nativo de Node 20+)
     try {
-        const fetch = (await import('node-fetch')).default; // Dynamic import for node-fetch if needed, or use native fetch in node 18+
-        
         const response = await fetch('https://api.resend.com/emails', {
             method: 'POST',
             headers: {
@@ -134,8 +154,8 @@ app.post('/api/denuncia', async (req, res) => {
             },
             body: JSON.stringify({
                 from: process.env.RESEND_FROM,
-                to: process.env.RESEND_TO.split(','),
-                subject: '🚨 Nueva Denuncias Anónima ATRM',
+                to: process.env.RESEND_TO.split(',').map(s => s.trim()).filter(Boolean),
+                subject: '🚨 Nueva denuncia anónima ATRM',
                 html: `<p>Nueva denuncia recibida:</p><blockquote>${texto}</blockquote>`
             })
         });
@@ -173,8 +193,10 @@ app.get('/api/noticias', async (req, res) => {
         }
 
         // Combinar: Manuales primero, luego automáticas
-        // Opcional: Mezclar y ordenar por fecha
-        const allNews = [...manualNews, ...cachedNews];
+        const allNews = [...manualNews];
+        if (cachedNews && cachedNews.length) {
+            allNews.push(...cachedNews);
+        }
         
         // Orden final por fecha
         allNews.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));

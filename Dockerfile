@@ -10,10 +10,8 @@ COPY package*.json ./
 # Instalar dependencias de producción
 RUN npm ci --only=production
 
-# Copiar código del bot
-COPY bot/ ./bot/
-COPY api/ ./api/
-COPY data/ ./data/
+# Copiar todo el proyecto (web + bot + app + data)
+COPY . .
 
 # Crear usuario no-root por seguridad
 RUN addgroup -g 1001 -S nodejs && \
@@ -26,5 +24,5 @@ USER nodejs
 # Exponer puerto (Railway lo asigna automáticamente)
 EXPOSE 3000
 
-# Comando para ejecutar el bot
-CMD ["node", "bot/telegram-bot.js"]
+# Comando para ejecutar el servidor (Web + Bot)
+CMD ["node", "server.js"]

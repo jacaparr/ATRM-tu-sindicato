@@ -71,6 +71,83 @@
 
       <h2 style="margin-top:24px;color:#ff6b35">Prestaciones no salariales 2026</h2>
       <div class="card" id="prestaciones"></div>
+
+      <h2 style="margin-top:32px;color:#ff6b35">💰 Calculadora de Salario</h2>
+      <div class="card" style="padding:24px">
+        <p style="color:#666;margin-bottom:16px">Calcula tu salario bruto anual según tu categoría y antigüedad.</p>
+        
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
+          <div>
+            <label style="display:block;font-weight:600;margin-bottom:8px">Categoría profesional</label>
+            <select id="calcCategoria" style="width:100%;padding:10px;border:1px solid #ffd2b5;border-radius:8px;font-size:14px">
+              <option value="">-- Selecciona categoría --</option>
+              <option value="PEÓN RECOGIDA">Peón Recogida</option>
+              <option value="PEÓN LIMPIEZA">Peón Limpieza</option>
+              <option value="CONDUCTOR RECOGIDA">Conductor Recogida</option>
+              <option value="CONDUCTOR LIMPIEZA Y AYD. MECÁNICO">Conductor Limpieza y Ayudante Mecánico</option>
+              <option value="ENCARGADO BRIGADA">Encargado Brigada</option>
+              <option value="INSPECTOR DISTRITO">Inspector Distrito</option>
+              <option value="OFICIAL ADMON 2ª">Oficial Administración 2ª</option>
+              <option value="OFICIAL ADMON 1ª">Oficial Administración 1ª</option>
+              <option value="JEFE ADMON">Jefe Administración</option>
+              <option value="DIRECTOR">Director</option>
+            </select>
+          </div>
+          
+          <div>
+            <label style="display:block;font-weight:600;margin-bottom:8px">Años de antigüedad</label>
+            <input type="number" id="calcAntiguedad" min="0" max="50" value="0" style="width:100%;padding:10px;border:1px solid #ffd2b5;border-radius:8px;font-size:14px">
+          </div>
+        </div>
+
+        <button onclick="calcularSalario()" style="background:linear-gradient(90deg,#FF6B35,#FF8C42);color:#fff;padding:12px 24px;border:none;border-radius:12px;font-weight:700;cursor:pointer;font-size:15px;width:100%">Calcular salario</button>
+
+        <div id="calcResultado" style="margin-top:20px;display:none">
+          <div style="background:#fff5f2;border-left:4px solid #FF6B35;padding:16px;border-radius:8px">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px">
+              <div>
+                <div style="font-size:12px;color:#999;font-weight:600;margin-bottom:4px">SALARIO MENSUAL (14 pagas)</div>
+                <div style="font-size:24px;font-weight:800;color:#FF6B35" id="calcMensual">-</div>
+              </div>
+              <div>
+                <div style="font-size:12px;color:#999;font-weight:600;margin-bottom:4px">SALARIO ANUAL BRUTO</div>
+                <div style="font-size:24px;font-weight:800;color:#FF6B35" id="calcAnual">-</div>
+              </div>
+            </div>
+            
+            <div style="border-top:1px solid #ffe2cf;padding-top:12px;font-size:13px;color:#666">
+              <div style="display:flex;justify-content:space-between;margin:6px 0">
+                <span>Salario base:</span>
+                <strong id="calcBase">-</strong>
+              </div>
+              <div style="display:flex;justify-content:space-between;margin:6px 0">
+                <span>Plus toxicidad (30%):</span>
+                <strong id="calcToxico">-</strong>
+              </div>
+              <div style="display:flex;justify-content:space-between;margin:6px 0">
+                <span>Pagas extraordinarias:</span>
+                <strong id="calcPagas">-</strong>
+              </div>
+              <div style="display:flex;justify-content:space-between;margin:6px 0;color:#27ae60">
+                <span>Plus antigüedad:</span>
+                <strong id="calcAntiguedadBono">-</strong>
+              </div>
+              <div style="display:flex;justify-content:space-between;margin:6px 0">
+                <span>Plus transporte:</span>
+                <strong id="calcTransporte">-</strong>
+              </div>
+              <div style="display:flex;justify-content:space-between;margin:6px 0">
+                <span>Otros conceptos (P.R.D.):</span>
+                <strong id="calcOtros">-</strong>
+              </div>
+            </div>
+            
+            <div style="margin-top:12px;padding:12px;background:#fff;border-radius:6px;border:1px solid #ffd2b5;font-size:12px;color:#666">
+              <strong>ℹ️ Nota:</strong> Este cálculo es estimado basado en los conceptos 2026. Para un cálculo exacto de tu nómina, contacta con ATRM.
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
   <script>
@@ -122,6 +199,76 @@
           document.getElementById('otros-conceptos').innerHTML = '<div style="padding:12px;border:1px solid #ffd2b5;background:#fff5f2;border-radius:8px">No se pudieron cargar los conceptos adicionales.</div>';
         });
     })();
+  </script>
+  
+  <script>
+    // Datos de las categorías con salario base y otros conceptos
+    const categorias = {
+      "PEÓN RECOGIDA": { base: 1360.42, toxico: 408.13, pagas: 1933.94, enero: 1693.18, prd: 164.90, transporte: 70.79, total: 33475.19 },
+      "PEÓN LIMPIEZA": { base: 1360.42, toxico: 408.13, pagas: 1804.14, enero: 1639.12, prd: 35.59, transporte: 70.79, total: 31353.79 },
+      "CONDUCTOR RECOGIDA": { base: 1434.73, toxico: 430.42, pagas: 2146.68, enero: 1782.19, prd: 281.52, transporte: 70.79, total: 36977.49 },
+      "CONDUCTOR LIMPIEZA Y AYD. MECÁNICO": { base: 1434.73, toxico: 430.42, pagas: 1996.73, enero: 1719.71, prd: 137.58, transporte: 70.79, total: 34515.87 },
+      "ENCARGADO BRIGADA": { base: 1501.40, toxico: 450.42, pagas: 2227.46, enero: 1815.93, prd: 275.64, transporte: 70.79, total: 36237.45 },
+      "INSPECTOR DISTRITO": { base: 1558.95, toxico: 467.68, pagas: 2296.92, enero: 1644.91, prd: 270.29, transporte: 70.79, total: 39444.51 },
+      "OFICIAL ADMON 2ª": { base: 1601.13, toxico: 480.34, pagas: 2119.13, enero: 1794.13, prd: 37.65, transporte: 145.46, total: 37443.56 },
+      "OFICIAL ADMON 1ª": { base: 1787.92, toxico: 536.39, pagas: 2361.67, enero: 1893.31, prd: 37.37, transporte: 139.28, total: 41332.14 },
+      "JEFE ADMON": { base: 1833.28, toxico: 549.99, pagas: 2420.38, enero: 1916.31, prd: 37.12, transporte: 134.02, total: 42250.52 },
+      "DIRECTOR": { base: 2536.51, toxico: 760.95, pagas: 3325.94, enero: 2273.48, prd: 28.48, transporte: 67.08, total: 56293.59 }
+    };
+
+    function formatEUR(num) {
+      return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(num);
+    }
+
+    function calcularSalario() {
+      const categoria = document.getElementById('calcCategoria').value;
+      const antiguedad = parseInt(document.getElementById('calcAntiguedad').value) || 0;
+
+      if (!categoria) {
+        alert('Por favor selecciona una categoría');
+        return;
+      }
+
+      const datos = categorias[categoria];
+      if (!datos) {
+        alert('Categoría no encontrada');
+        return;
+      }
+
+      // Calcular plus antigüedad (5% primeros 3 bienios, 7% después)
+      let bonusAntiguedad = 0;
+      if (antiguedad > 0) {
+        const bienios = Math.floor(antiguedad / 2);
+        if (bienios <= 3) {
+          bonusAntiguedad = datos.base * (bienios * 0.05);
+        } else {
+          bonusAntiguedad = (datos.base * 0.15) + (datos.base * ((bienios - 3) * 0.07));
+        }
+      }
+
+      // Salario anual bruto estimado
+      const anualBruto = datos.total + bonusAntiguedad;
+      const mensual = anualBruto / 14;
+
+      // Mostrar resultados
+      document.getElementById('calcMensual').textContent = formatEUR(mensual);
+      document.getElementById('calcAnual').textContent = formatEUR(anualBruto);
+      document.getElementById('calcBase').textContent = formatEUR(datos.base);
+      document.getElementById('calcToxico').textContent = formatEUR(datos.toxico);
+      document.getElementById('calcPagas').textContent = formatEUR(datos.pagas + datos.enero);
+      document.getElementById('calcAntiguedadBono').textContent = bonusAntiguedad > 0 ? formatEUR(bonusAntiguedad) : '0 €';
+      document.getElementById('calcTransporte').textContent = formatEUR(datos.transporte);
+      document.getElementById('calcOtros').textContent = formatEUR(datos.prd);
+
+      document.getElementById('calcResultado').style.display = 'block';
+    }
+
+    // Permitir calcular con Enter
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('calcAntiguedad').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') calcularSalario();
+      });
+    });
   </script>
   <script src="js/pwa.js"></script>
   <script src='js/bottom-nav.js'></script>

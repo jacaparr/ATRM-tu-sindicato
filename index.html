@@ -3,47 +3,48 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ATRM - Tu Sindicato</title>
+  <title>ATRM - Tu Sindicato | Limpieza Viaria e Interiores Región de Murcia</title>
+  <meta name="description" content="Sindicato ATRM. Defensa de derechos laborales, convenios colectivos, tabla salarial 2026, calculadora de salarios y trámites para trabajadores.">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#FF6B35">
+  <link rel="stylesheet" href="css/professional-theme.css">
   <link rel="stylesheet" href="css/preloader.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
   <style>
+    /* Legacy styles - keeping for compatibility */
     :root{ --primary:#FF6B35; --secondary:#FF8C42; --accent:#FFA726; --dark:#2C3E50; --light:#FFFFFF; }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial;color:var(--dark);background:linear-gradient(180deg, #fff 0%, #fff7f0 100%)}
-    header{position:sticky;top:0;z-index:10;background:linear-gradient(90deg,var(--primary),var(--secondary));color:#fff}
-    .nav{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
-    .logo{font-weight:800;letter-spacing:.3px}
-    .menu a{color:#fff;text-decoration:none;margin:0 10px;padding:8px 12px;border-radius:10px;transition:.2s}
-    .menu a:hover{background:rgba(255,255,255,.15)}
 
     /* Carrusel noticias */
-    .news-carousel{background:linear-gradient(90deg,var(--primary),var(--secondary));color:#fff;padding:10px 0}
+    .news-carousel{background:linear-gradient(135deg,var(--primary),var(--primary-dark) 50%,var(--secondary));color:#fff;padding:12px 0;box-shadow:var(--shadow-md)}
     .carousel-wrap{max-width:1100px;margin:0 auto;position:relative;padding:0 48px}
     .slides{display:flex;overflow:hidden;scroll-behavior:smooth}
-    .slide{min-width:100%;padding:10px 0}
-    .slide a{color:#fff;text-decoration:none}
-    .title{font-weight:800}
-    .dots{display:flex;gap:6px;justify-content:center;margin-top:6px}
-    .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer}
-    .dot.active{background:#fff}
-    .arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;cursor:pointer}
-    .arrow:hover{background:rgba(255,255,255,.35)}
+    .slide{min-width:100%;padding:12px 0}
+    .slide a{color:#fff;text-decoration:none;transition:opacity 0.2s}
+    .slide a:hover{opacity:0.9}
+    .title{font-weight:800;font-size:1.05rem}
+    .dots{display:flex;gap:8px;justify-content:center;margin-top:8px}
+    .dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:all 0.3s}
+    .dot:hover{background:rgba(255,255,255,.5)}
+    .dot.active{background:#fff;width:24px;border-radius:5px}
+    .arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.2);border:none;color:#fff;width:40px;height:40px;border-radius:50%;cursor:pointer;transition:all 0.3s;backdrop-filter:blur(4px)}
+    .arrow:hover{background:rgba(255,255,255,.35);transform:translateY(-50%) scale(1.1)}
     .prev{left:10px}.next{right:10px}
 
-    .hero{max-width:1100px;margin:28px auto;padding:24px 20px;display:grid;grid-template-columns:1.1fr .9fr;gap:28px}
-    .card{background:#fff;border:1px solid #ffe2cf;border-radius:18px;box-shadow:0 10px 24px rgba(255,119,51,.08)}
-    .hero .left{padding:28px}
-    .badge{display:inline-block;background:linear-gradient(90deg,var(--secondary),var(--accent));color:#4e2b00;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700}
-    h1{margin:10px 0 14px;font-size:36px}
-    .cta{display:flex;gap:12px;margin-top:18px}
-    .btn{background:linear-gradient(90deg,var(--primary),var(--secondary));border:none;color:#fff;padding:12px 16px;border-radius:12px;cursor:pointer;font-weight:700;text-decoration:none;display:inline-block;transition:.2s}
-    .btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(255,107,53,.3)}
-    .btn.alt{background:#fff;color:var(--primary);border:2px solid var(--primary)}
-    .news{padding:18px}
-    .grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:0 20px 40px}
+    .hero{max-width:1100px;margin:40px auto;padding:0 20px;display:grid;grid-template-columns:1.1fr .9fr;gap:32px}
+    .hero .left{padding:40px}
+    .badge{display:inline-block;background:linear-gradient(90deg,var(--secondary),var(--accent));color:#4e2b00;padding:8px 14px;border-radius:999px;font-size:13px;font-weight:700;box-shadow:var(--shadow-sm)}
+    h1{margin:16px 0 18px;font-size:clamp(2rem,5vw,3rem);line-height:1.2}
+    .cta{display:flex;gap:14px;margin-top:24px;flex-wrap:wrap}
+    .news{padding:24px}
+    .grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;padding:0 20px 60px}
 
-    @media(max-width:900px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.carousel-wrap{padding:0 40px}}
+    @media(max-width:900px){
+      .hero{grid-template-columns:1fr;gap:24px}
+      .grid{grid-template-columns:1fr;padding:0 16px 40px}
+      .carousel-wrap{padding:0 40px}
+    }
   </style>
 </head>
 <body>
@@ -58,9 +59,9 @@
     </div>
   </div>
   
-  <header>
-    <div class="nav">
-      <div class="logo">ATRM · Tu Sindicato</div>
+  <header class="premium-header">
+    <div class="header-content">
+      <a href="index.html" class="logo">🔥 ATRM · Tu Sindicato</a>
       <nav class="menu">
         <a href="#inicio">Inicio</a>
         <a href="#convenio">Viaria</a>
@@ -69,7 +70,7 @@
         <a href="conceptos_2026.html">Conceptos 2026</a>
         <a href="tramites.html">Trámites</a>
         <a href="festivos.html">Festivos</a>
-        <a href="generador.html">📝 Documentos</a>
+        <a href="generador.html">📝 Docs</a>
         <a href="podcasts.html">🎙️ Podcasts</a>
         <a href="#contacto">Contacto</a>
       </nav>
@@ -94,8 +95,8 @@
   </section>
 
   <main id="inicio" class="hero">
-    <section class="left card">
-      <span class="badge">Limpieza Pública Viaria · Región de Murcia</span>
+    <section class="left card premium-card">
+      <span class="badge">✨ Limpieza Pública Viaria · Región de Murcia</span>
       <h1>Defendemos tus derechos con cercanía y resultados</h1>
 
       <!-- Buscador Global Injectado por JS -->
@@ -103,39 +104,39 @@
       
       <p>ATRM es el sindicato de referencia para los trabajadores de limpieza viaria y servicios municipales en la Región de Murcia.</p>
       <div class="cta">
-        <a class="btn" href="#convenio">Ver Convenio</a>
-        <a class="btn alt" href="tramites.html">Trámites</a>
+        <a class="btn btn-premium" href="#convenio">Ver Convenio</a>
+        <a class="btn btn-premium btn-outline" href="tramites.html">Trámites</a>
       </div>
     </section>
-    <aside class="card news" id="noticias">
-      <h3>Últimas noticias</h3>
+    <aside class="card premium-card news" id="noticias">
+      <h3 style="color:var(--primary)">🔥 Últimas noticias</h3>
       <div id="newsList"></div>
     </aside>
   </main>
 
   <section id="convenio" class="grid">
-    <div class="card" style="padding:20px">
-      <h3>Convenio Colectivo 2024–2027</h3>
+    <div class="card premium-card" style="padding:20px">
+      <h3 style="color:var(--primary)">📋 Convenio Colectivo 2024–2027</h3>
       <p id="convenioResumen"></p>
       <ul id="convenioDatos"></ul>
       <div style="margin-top:16px">
         <p style="font-weight:600;margin-bottom:8px">💬 Asistente IA del convenio:</p>
         <input id="preguntaIAInline" placeholder="Escribe tu pregunta (ej: tabla salarial, permisos...)" style="width:100%;padding:12px;border:1px solid #ffd2b5;border-radius:10px;font-size:15px;margin-bottom:10px" />
-        <button class="btn" onclick="preguntarIAInline()">Preguntar</button>
+        <button class="btn btn-premium" onclick="preguntarIAInline()">🤖 Preguntar</button>
       </div>
       <div id="vistaRespuesta" style="display:none;margin-top:16px;padding:16px;background:#fff7f0;border-radius:10px;border:1px solid #ffd2b5"></div>
     </div>
-    <div class="card" style="padding:20px">
-      <h3>Ámbito de aplicación</h3>
+    <div class="card premium-card" style="padding:20px">
+      <h3 style="color:var(--primary)">🗺️ Ámbito de aplicación</h3>
       <p id="ambito"></p>
     </div>
-    <div class="card" style="padding:20px">
-      <h3>Documentación</h3>
+    <div class="card premium-card" style="padding:20px">
+      <h3 style="color:var(--primary)">📚 Documentación</h3>
       <p>Accede a la tabla salarial y calendario de festivos 2026.</p>
-      <a class="btn alt" href="festivos.html">Ver festivos 2026</a>
+      <a class="btn btn-premium btn-outline" href="festivos.html">📅 Ver festivos 2026</a>
     </div>
-    <div class="card" style="padding:20px;grid-column:1/-1">
-      <h3>📂 Descarga de documentos</h3>
+    <div class="card premium-card" style="padding:20px;grid-column:1/-1">
+      <h3 style="color:var(--primary)">📂 Descarga de documentos</h3>
       <div style="display:flex;flex-wrap:wrap;gap:16px 24px;align-items:center">
         <a class="btn" href="assets/calendarios/calendario-descansos-2026.png" download="calendario-descansos-atrm-2026.png">📥 Calendario de descansos 2026</a>
         <a class="btn alt" href="salaries.html" target="_blank">📊 Tabla Salarial 2026</a>
@@ -702,6 +703,9 @@
 
   <!-- Preloader Script (must load early) -->
   <script src="js/preloader-auto.js"></script>
+  
+  <!-- Premium Animations -->
+  <script src="js/animations.js"></script>
   
   <!-- Scripts para nuevas funcionalidades -->
   <link rel="stylesheet" href="css/notificaciones.css">

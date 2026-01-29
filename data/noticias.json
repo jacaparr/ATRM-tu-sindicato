@@ -1,49 +1,49 @@
-{
+﻿{
   "noticias": [
     {
       "id": 1,
       "fecha": "2025-11-13",
       "titulo": "El CES destaca el valor de la inmigración y pide frenar el odio",
       "resumen": "CCOO, UGT, CEOE y CEPYME respaldan un informe que reivindica la aportación de la migración y reclama un pacto de Estado por la convivencia.",
-      "contenido": "El Consejo Económico y Social ha aprobado un informe sobre migraciones que subraya el impacto positivo de la población migrante en el desarrollo económico, social y cultural de España. El documento, respaldado por todas las organizaciones presentes en el órgano, urge a reforzar los recursos públicos, actualizar los instrumentos de gestión de flujos y combatir los discursos de odio con un pacto de Estado por la convivencia.",
-  "categoria": "informacion",
-      "url": "https://www.ccoo.es/noticia:741791--El_CES_destaca_el_papel_positivo_de_la_inmigracion_en_el_desarrollo_socioeconomico_y_cultural_de_Espana_y_alerta_del_riesgo_de_los_discursos_de_odio"
+      "contenido": "El Consejo Económico y Social ha aprobado un informe sobre migraciones que subraya el impacto positivo de la población migrante en el desarrollo económico, social y cultural de España.",
+      "categoria": "informacion",
+      "url": "https://www.ccoo.es/noticia:741791"
     },
     {
       "id": 2,
       "fecha": "2025-11-12",
       "titulo": "Fairwork 2025 suspende a las plataformas en salarios y prevención",
       "resumen": "CCOO presenta un informe que evidencia las carencias de las plataformas digitales en derechos laborales, transparencia y seguridad.",
-      "contenido": "Durante la jornada ‘Plataformización del trabajo: nuevas formas, viejas dinámicas’, CCOO y la Fundación 1º de Mayo han presentado el informe Fairwork España 2025. El estudio concluye que la mayoría de las plataformas analizadas no garantizan salarios dignos ni políticas eficaces de prevención de riesgos. El sindicato reclama transparencia algorítmica, negociación colectiva y la transposición ambiciosa de la Directiva europea sobre trabajo en plataformas.",
-  "categoria": "derechos",
-      "url": "https://www.ccoo.es/noticia:741696--La_mayoria_de_las_plataformas_digitales_suspenden_en_salarios_justos_y_prevencion_de_riesgos_laborales"
+      "contenido": "El estudio concluye que la mayoría de las plataformas analizadas no garantizan salarios dignos ni políticas eficaces de prevención de riesgos.",
+      "categoria": "derechos",
+      "url": "https://www.ccoo.es/noticia:741696"
     },
     {
       "id": 3,
       "fecha": "2025-11-12",
       "titulo": "Fondo del amianto: CCOO y UGT exigen reformar el reglamento",
       "resumen": "Las víctimas siguen sin acceder a las indemnizaciones por las restricciones que impone el Real Decreto 483/2025.",
-      "contenido": "CCOO, UGT y la federación de víctimas del amianto (FEDAVICA) denuncian que el reglamento del fondo de compensación sólo permite tramitar casos con incapacidad profesional reconocida, dejando fuera a la mayoría de personas afectadas y a sus familias. Las organizaciones han solicitado una reunión urgente con el Ministerio de Inclusión para ampliar el acceso, agilizar los trámites y revisar al alza las cuantías previstas.",
-  "categoria": "derechos",
-      "url": "https://www.ccoo.es/noticia:741652--El_Gobierno_fracasa_con_la_entrada_en_vigor_del_fondo_del_amianto_que_impide_a_la_mayoria_de_las_victimas_ejercer_su_derecho_a_una_indemnizacion"
+      "contenido": "CCOO, UGT y la federación de víctimas del amianto denuncian que el reglamento del fondo de compensación solo permite tramitar casos con incapacidad profesional reconocida.",
+      "categoria": "derechos",
+      "url": "https://www.ccoo.es/noticia:741652"
     },
     {
       "id": 4,
       "fecha": "2025-11-05",
       "titulo": "El Estatuto del Becario avanza contra la precariedad juvenil",
-      "resumen": "CCOO llama al Parlamento a tramitar sin dilaciones un marco que garantice derechos a quienes realizan prácticas.",
-      "contenido": "Tras la aprobación del anteproyecto en el Consejo de Ministros, la Secretaría de Juventud de CCOO ha presentado una hoja de ruta de movilizaciones para asegurar que el Estatuto del Becario entre en vigor. El sindicato reivindica que las personas becarias cuenten con prevención de riesgos, representación sindical y remuneraciones dignas, y exige a los grupos parlamentarios que no bloqueen la norma.",
-  "categoria": "derechos",
-      "url": "https://www.ccoo.es/noticia:741019--El_Estatuto_del_Becario_marca_un_antes_y_un_despues_en_la_lucha_contra_la_precariedad_juvenil"
+      "resumen": "CCOO llama al Parlamento a tramitar sin dilaciones un marco que garantice derechos a quienes realizan practicas.",
+      "contenido": "La Secretaria de Juventud de CCOO ha presentado una hoja de ruta de movilizaciones para asegurar que el Estatuto del Becario entre en vigor.",
+      "categoria": "derechos",
+      "url": "https://www.ccoo.es/noticia:741019"
     },
     {
       "id": 5,
       "fecha": "2025-11-04",
       "titulo": "Campaña sindical para visibilizar los riesgos laborales ocultos",
-      "resumen": "CCOO y la Fundación 1º de Mayo lanzan ‘Protege la vida, visibiliza el riesgo’ para reforzar la cultura preventiva.",
-      "contenido": "Con motivo del 30º aniversario de la Ley de Prevención de Riesgos Laborales, CCOO impulsa una campaña que pone el foco en el cáncer laboral, las caídas en altura, los trastornos musculoesqueléticos y la salud mental. El sindicato reclama más recursos públicos, compromiso empresarial y un diálogo social que desbloquee medidas frente a la siniestralidad, tras registrar 489 fallecimientos laborales en lo que va de 2025.",
-  "categoria": "informacion",
-      "url": "https://www.ccoo.es/noticia:740915--CCOO_intensifica_la_sensibilizacion_sobre_la_prevencion_de_riesgos_laborales"
+      "resumen": "CCOO y la Fundación 1º de Mayo lanzan Protege la vida, visibiliza el riesgo para reforzar la cultura preventiva.",
+      "contenido": "Con motivo del 30 aniversario de la Ley de Prevención de Riesgos Laborales, CCOO impulsa una campaña sobre el cancer laboral, caidas en altura y trastornos musculoesqueleticos.",
+      "categoria": "informacion",
+      "url": "https://www.ccoo.es/noticia:740915"
     },
     {
       "id": 6,

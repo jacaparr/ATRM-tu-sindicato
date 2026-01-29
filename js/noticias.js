@@ -1,10 +1,7 @@
 // Script para cargar y mostrar noticias en index.html
 async function cargarNoticias() {
   try {
-    // CAMBIO: Ahora pedimos al nuevo endpoint unificado
-    const response = await fetch('/api/noticias');
-    const data = await response.json();
-    const noticias = data.noticias;
+    const noticias = await obtenerNoticias();
     
     // Ordenar por fecha (más reciente primero)
     noticias.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
@@ -63,6 +60,21 @@ async function cargarNoticias() {
     if (newsList) {
       newsList.innerHTML = '<div style="color:#999;padding:12px;text-align:center">No hay noticias disponibles en este momento.</div>';
     }
+  }
+}
+
+async function obtenerNoticias() {
+  // Intentar API primero (entorno con backend)
+  try {
+    const response = await fetch('/api/noticias');
+    if (!response.ok) throw new Error('API no disponible');
+    const data = await response.json();
+    return data.noticias || [];
+  } catch (error) {
+    // Fallback para despliegues estáticos (GitHub Pages)
+    const response = await fetch('data/noticias.json');
+    const data = await response.json();
+    return data.noticias || [];
   }
 }
 

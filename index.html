@@ -361,9 +361,19 @@
       const d1 = document.getElementById('slideDynamic1');
       const d2 = document.getElementById('slideDynamic2');
       try {
-        const response = await fetch('/api/noticias');
-        const data = await response.json();
-        const noticias = (data.noticias || []).sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+        let noticias = [];
+        try {
+          const response = await fetch('/api/noticias');
+          if (!response.ok) throw new Error('API no disponible');
+          const data = await response.json();
+          noticias = data.noticias || [];
+        } catch (error) {
+          const response = await fetch('data/noticias.json');
+          const data = await response.json();
+          noticias = data.noticias || [];
+        }
+
+        noticias = noticias.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
         const n1 = noticias[0];
         const n2 = noticias[1];
 

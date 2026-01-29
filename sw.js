@@ -1,4 +1,4 @@
-const CACHE_NAME = 'atrm-cache-v10';
+const CACHE_NAME = 'atrm-cache-v11';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -10,12 +10,19 @@ const ASSETS_TO_CACHE = [
   './conceptos_2026.html',
   './tramites.html',
   './festivos.html',
+  './noticias.html',
+  './css/professional-theme.css',
+  './css/professional-ui.css',
   './css/preloader.css',
   './css/christmas.css',
   './css/videos.css',
   './css/generador.css',
   './css/notificaciones.css',
   './css/telegram_widget.css',
+  './css/bottom-nav.css',
+  './css/global-search.css',
+  './css/pwa.css',
+  './css/podcasts.css',
   './assets/calendarios/turnos-vacaciones-2026.jpeg',
   './js/preloader.js',
   './js/preloader-auto.js',

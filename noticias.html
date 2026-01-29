@@ -125,6 +125,9 @@
             <span class="badge" style="background:var(--accent);color:#4e2b00">${noticia.categoria}</span>
           </div>
           <p style="font-size:16px;line-height:1.6;margin:12px 0">${noticia.contenido}</p>
+          ${noticia.videoUrl ? `<div style="margin:16px 0">
+            <video controls preload="metadata" style="width:100%;max-height:420px;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.15)" src="${noticia.videoUrl}"></video>
+          </div>` : ''}
           ${noticia.url !== '#' ? `<a href="${noticia.url}" class="btn alt" style="margin-top:12px">Leer más →</a>` : ''}
         </article>
       `).join('');

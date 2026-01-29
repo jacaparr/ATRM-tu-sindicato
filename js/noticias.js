@@ -20,7 +20,11 @@ async function cargarNoticias() {
           <a href="${noticia.url}" style="text-decoration:none;color:var(--dark)">
             <div style="font-weight:700;margin-bottom:4px;color:var(--primary)">${noticia.titulo}</div>
             <div style="font-size:14px;color:#666">${noticia.resumen}</div>
+            ${noticia.videoUrl ? '<div style="font-size:12px;color:#999;margin-top:6px">🎥 Video disponible</div>' : ''}
           </a>
+          ${noticia.videoUrl ? `<div style="margin-top:8px">
+            <a href="${noticia.videoUrl}" class="btn alt" style="display:inline-block;padding:6px 12px;font-size:12px">Ver video</a>
+          </div>` : ''}
         </div>
       `).join('');
       
@@ -45,6 +49,9 @@ async function cargarNoticias() {
             <span class="badge" style="background:var(--accent);color:#4e2b00;padding:6px 12px;border-radius:20px;font-size:11px;text-transform:uppercase">${noticia.categoria}</span>
           </div>
           <p style="font-size:16px;line-height:1.6;margin:12px 0">${noticia.contenido}</p>
+          ${noticia.videoUrl ? `<div style="margin:16px 0">
+            <video controls preload="metadata" style="width:100%;max-height:420px;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.15)" src="${noticia.videoUrl}"></video>
+          </div>` : ''}
           <a href="${noticia.url}" class="btn alt" style="margin-top:12px">Leer más →</a>
         </article>
       `).join('');

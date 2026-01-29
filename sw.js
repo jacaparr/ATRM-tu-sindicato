@@ -16,7 +16,7 @@ const ASSETS_TO_CACHE = [
   './css/generador.css',
   './css/notificaciones.css',
   './css/telegram_widget.css',
-  './css/estadisticas.css',
+  './assets/calendarios/turnos-vacaciones-2026.jpeg',
   './js/preloader.js',
   './js/preloader-auto.js',
   './js/christmas-snow.js',
@@ -24,7 +24,6 @@ const ASSETS_TO_CACHE = [
   './js/ia_mejorada.js',
   './js/notificaciones.js',
   './js/telegram_widget.js',
-  './js/estadisticas.js',
   './assets/pwa/logo.svg',
   './data/atrm_sindicato_data.json',
   './data/casos.json'

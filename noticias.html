@@ -54,7 +54,7 @@
   <main class="container">
     <div class="card">
       <h1>📰 Últimas Noticias del Sector</h1>
-      <p style="font-size:16px;color:#666;margin-bottom:20px">
+      <p style="font-size:16px;color:#2C3E50;margin-bottom:20px">
         Mantente informado sobre las novedades del convenio colectivo, cambios normativos, derechos laborales y todas las actualizaciones relevantes para los trabajadores del sector de limpieza en la Región de Murcia.
       </p>
       
@@ -83,9 +83,9 @@
   <footer style="background:var(--dark);color:#fff;padding:32px 20px;text-align:center;margin-top:40px">
     <div style="max-width:1100px;margin:0 auto">
       <div style="font-weight:700;font-size:18px;margin-bottom:12px">ATRM · Tu Sindicato</div>
-      <p style="margin:8px 0;color:#ccc">Asociación de Trabajadores de la Región de Murcia</p>
-      <p style="margin:8px 0;color:#ccc">📞 968 30 00 37 | 📧 info@atrm-sindicato.es</p>
-      <div style="margin-top:16px;font-size:13px;color:#999">
+      <p style="margin:8px 0;color:#e8e8e8">Asociación de Trabajadores de la Región de Murcia</p>
+      <p style="margin:8px 0;color:#e8e8e8">📞 968 30 00 37 | 📧 info@atrm-sindicato.es</p>
+      <div style="margin-top:16px;font-size:13px;color:#495057">
         © 2025 ATRM. Todos los derechos reservados.
       </div>
     </div>
@@ -111,7 +111,7 @@
     function mostrarNoticias(noticias) {
       const container = document.getElementById('noticiasCompletas');
       if (!noticias || noticias.length === 0) {
-        container.innerHTML = '<div class="card"><p style="text-align:center;color:#999">No hay noticias disponibles.</p></div>';
+        container.innerHTML = '<div class="card"><p style="text-align:center;color:#495057">No hay noticias disponibles.</p></div>';
         return;
       }
       
@@ -119,7 +119,7 @@
         <article class="card" style="padding:24px;margin-bottom:20px">
           <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px;flex-wrap:wrap;gap:12px">
             <div>
-              <div style="font-size:12px;color:#999;margin-bottom:6px">${formatearFecha(noticia.fecha)}</div>
+              <div style="font-size:12px;color:#495057;margin-bottom:6px">${formatearFecha(noticia.fecha)}</div>
               <h2 style="margin:0;color:var(--primary)">${noticia.titulo}</h2>
             </div>
             <span class="badge" style="background:var(--accent);color:#4e2b00">${noticia.categoria}</span>

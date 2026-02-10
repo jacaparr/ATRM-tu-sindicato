@@ -175,13 +175,13 @@
         const news = [...data.noticias];
         const list = document.getElementById('newsList');
         const lastUpdate = document.createElement('div');
-        lastUpdate.style.cssText = 'font-size:12px;color:#666;margin-bottom:8px;text-align:right';
+        lastUpdate.style.cssText = 'font-size:12px;color:#2C3E50;margin-bottom:8px;text-align:right';
         lastUpdate.textContent = `Última actualización: ${new Date().toLocaleDateString('es-ES')}`;
         list.appendChild(lastUpdate);
         news.forEach(n=>{
           const div = document.createElement('div');
           div.className = 'item';
-          div.innerHTML = `<strong>${n.fecha}</strong><br>${n.titulo}<br><small style=\"color:#888\">${n.fuente}</small>`;
+          div.innerHTML = `<strong>${n.fecha}</strong><br>${n.titulo}<br><small style="color:#495057">${n.fuente}</small>`;
           list.appendChild(div);
         });
         
@@ -220,7 +220,7 @@
         
       } catch(error) {
         console.error('Error cargando datos:', error);
-        document.getElementById('newsList').innerHTML = '<p style="color:#999">Error cargando las noticias. Por favor, recarga la página.</p>';
+        document.getElementById('newsList').innerHTML = '<p style="color:#495057">Error cargando las noticias. Por favor, recarga la página.</p>';
       }
     }
     
@@ -345,7 +345,7 @@
         const data = await res.json();
         const container = document.getElementById('tablaSalarialInteriores');
         
-        let html = `<p style="margin-top:0;font-size:14px;color:#666">${data.convenio} (${data.vigencia})</p>`;
+        let html = `<p style="margin-top:0;font-size:14px;color:#2C3E50">${data.convenio} (${data.vigencia})</p>`;
         
         // Notas importantes
         html += `<div class="update-notice" style="margin:10px 0">`;
@@ -370,7 +370,7 @@
             html += `<tr style="background:${bg}">
               <td style="padding:10px;border:1px solid #ffd2b5;font-weight:600">${cat.nombre}</td>
               <td style="padding:10px;border:1px solid #ffd2b5;text-align:right;font-weight:700;color:var(--primary)">${cat.salario_base_mensual.toFixed(2)} €</td>
-              <td style="padding:10px;border:1px solid #ffd2b5;font-size:13px;color:#666">${cat.descripcion}</td>
+              <td style="padding:10px;border:1px solid #ffd2b5;font-size:13px;color:#2C3E50">${cat.descripcion}</td>
             </tr>`;
           });
           html += `</tbody></table>`;
@@ -404,7 +404,7 @@
             • <strong>Total mensual aprox: ${ej.total_mensual_aproximado.toFixed(2)} €</strong><br>
             • Pagas extra (3 al año): ${ej.pagas_extra_anuales.toFixed(2)} €<br>
             • <strong>Total anual aprox: ${ej.total_anual_aproximado.toFixed(2)} €</strong><br>
-            <small style="color:#666;display:block;margin-top:6px">${ej.nota}</small>
+            <small style="color:#2C3E50;display:block;margin-top:6px">${ej.nota}</small>
           </div>`;
         }
         
@@ -412,7 +412,7 @@
       } catch (error) {
         console.error('Error cargando tabla salarial:', error);
         document.getElementById('tablaSalarialInteriores').innerHTML = 
-          '<p style="color:#999">No se pudo cargar la tabla salarial. Contacta con ATRM 968 30 00 37 para consultar salarios.</p>';
+          '<p style="color:#495057">No se pudo cargar la tabla salarial. Contacta con ATRM 968 30 00 37 para consultar salarios.</p>';
       }
     }
 

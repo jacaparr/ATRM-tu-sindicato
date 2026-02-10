@@ -82,7 +82,7 @@ class IAInteriores {
   }
 
   formatearArticulo(articulo) {
-    const referencia = articulo.referencia ? ` <span style="color:#888;font-size:13px">(${articulo.referencia})</span>` : '';
+    const referencia = articulo.referencia ? ` <span style="color:#495057;font-size:13px">(${articulo.referencia})</span>` : '';
     return `<strong>${articulo.titulo}</strong><br>${articulo.texto}${referencia}`;
   }
 
@@ -181,7 +181,7 @@ class IAInteriores {
       if (faq) {
         console.log('📚 FAQ encontrada');
         respuestaObj = {
-          resumen: `${faq.respuesta} <br><span style='color:#888;font-size:13px'>(Referencia: ${faq.referencia})</span>`
+          resumen: `${faq.respuesta} <br><span style='color:#495057;font-size:13px'>(Referencia: ${faq.referencia})</span>`
         };
       }
     }

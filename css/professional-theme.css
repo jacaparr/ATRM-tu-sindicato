@@ -99,7 +99,7 @@ h4 { font-size: clamp(1.25rem, 2.5vw, 1.5rem); }
 
 p {
   margin-bottom: var(--space-md);
-  color: var(--gray-700);
+  color: #2C3E50;
 }
 
 /* Premium Header */
@@ -421,7 +421,7 @@ p {
 /* Utility Classes */
 .text-center { text-align: center; }
 .text-primary { color: var(--primary); }
-.text-muted { color: var(--gray-600); }
+.text-muted { color: #495057; }
 .font-bold { font-weight: 700; }
 .mt-lg { margin-top: var(--space-lg); }
 .mb-lg { margin-bottom: var(--space-lg); }

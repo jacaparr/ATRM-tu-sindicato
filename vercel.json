@@ -1,0 +1,38 @@
+{
+  "version": 2,
+  "public": true,
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "framework": "nodejs",
+  "env": [
+    "TELEGRAM_BOT_TOKEN",
+    "RESEND_API_KEY",
+    "RESEND_FROM",
+    "RESEND_TO",
+    "SUPABASE_URL",
+    "SUPABASE_SERVICE_ROLE",
+    "ADMIN_API_TOKEN",
+    "SITE_URL",
+    "PORT"
+  ],
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "api/**/*.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/"
+    }
+  ]
+}

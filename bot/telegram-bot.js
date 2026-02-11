@@ -10,6 +10,7 @@ const axios = require('axios');
 
 // Cargar token desde variable de entorno
 const token = process.env.TELEGRAM_BOT_TOKEN;
+const siteUrl = process.env.SITE_URL || 'https://atrm-tu-sindicato.vercel.app';
 
 if (!token) {
   console.error('❌ Error: TELEGRAM_BOT_TOKEN no configurado');
@@ -78,7 +79,7 @@ bot.onText(/\/convenio/, (msg) => {
     `• 2024: 400€ lineales\n` +
     `• 2025-2027: IPC real nacional\n\n` +
     `🌐 Consulta el convenio completo en:\n` +
-    `https://atrm-tu-sindicato.vercel.app`,
+    `${siteUrl}`,
     { parse_mode: 'Markdown' }
   );
 });
@@ -115,12 +116,12 @@ bot.onText(/\/web/, (msg) => {
     `✅ Descargar calendarios y documentos\n` +
     `✅ Chat con IA para consultas 24/7\n` +
     `✅ Guías de trámites paso a paso\n\n` +
-    `👉 https://atrm-tu-sindicato.vercel.app`,
+    `👉 ${siteUrl}`,
     {
       parse_mode: 'Markdown',
       reply_markup: {
         inline_keyboard: [[
-          { text: '🌐 Abrir Web', url: 'https://atrm-tu-sindicato.vercel.app' }
+          { text: '🌐 Abrir Web', url: siteUrl }
         ]]
       }
     }
@@ -146,7 +147,7 @@ bot.on('message', async (msg) => {
     bot.sendMessage(chatId, respuesta, {
       reply_markup: {
         inline_keyboard: [[
-          { text: '💬 Chat Web', url: 'https://atrm-tu-sindicato.vercel.app' },
+          { text: '💬 Chat Web', url: siteUrl },
           { text: '📞 Contacto', callback_data: 'contacto' }
         ]]
       }
@@ -167,8 +168,6 @@ bot.on('message', async (msg) => {
 async function obtenerRespuestaIA(pregunta) {
   try {
     // Intentar usar la API local primero (si está desplegada)
-    const siteUrl = process.env.SITE_URL || 'https://atrm-tu-sindicato.vercel.app';
-    
     try {
       const response = await axios.post(`${siteUrl}/api/chat`, {
         prompt: pregunta

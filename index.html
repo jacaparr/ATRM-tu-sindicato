@@ -189,8 +189,9 @@
       <div style="display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-bottom:10px">
         <a href="https://wa.me/34658876771?text=Hola%20ATRM%2C%20quisiera%20informaci%C3%B3n" target="_blank" class="btn" style="background:#25D366"><span style="font-size:20px">🟢</span> WhatsApp</a>
         <a href="mailto:info@atrm-sindicato.es" class="btn alt" style="background:#fff;color:#FF6B35;border:2px solid #FF6B35"><span style="font-size:20px">✉️</span> Email</a>
-        <a href="https://www.facebook.com/share.php?u=https://jacaparr.github.io/ATRM-tu-sindicato/" target="_blank" class="btn" style="background:#4267B2"><span style="font-size:20px">🔵</span> Facebook</a>
+        <a id="fbShareBtn" href="#" target="_blank" class="btn" style="background:#4267B2"><span style="font-size:20px">🔵</span> Facebook</a>
       </div>
+      <script>document.addEventListener('DOMContentLoaded', function() { document.getElementById('fbShareBtn').href = 'https://www.facebook.com/share.php?u=' + encodeURIComponent(window.location.origin + window.location.pathname); });</script>
       <div style="font-size:13px;color:#2C3E50">Contacta por WhatsApp, correo o comparte la web en Facebook.</div>
     </div>
     <div class="card" style="padding:20px;grid-column:1/-1">

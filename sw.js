@@ -1,8 +1,7 @@
-const CACHE_NAME = 'atrm-cache-v11';
+const CACHE_NAME = 'atrm-cache-v12';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
-  './videos.html',
   './generador.html',
   './interiores.html',
   './tabla_salarial_2026.html',
@@ -15,7 +14,6 @@ const ASSETS_TO_CACHE = [
   './css/professional-ui.css',
   './css/preloader.css',
   './css/christmas.css',
-  './css/videos.css',
   './css/generador.css',
   './css/notificaciones.css',
   './css/telegram_widget.css',

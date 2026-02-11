@@ -9,29 +9,30 @@
   <style>
     :root{ --primary:#FF6B35; --secondary:#FF8C42; --accent:#FFA726; --dark:#2C3E50; }
     body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial;color:var(--dark)}
-    .top-header{position:sticky;top:0;z-index:100;background:linear-gradient(90deg,var(--primary),var(--secondary));color:#fff}
-    .nav{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
-    .logo{font-weight:800;letter-spacing:.3px}
-    .menu a{color:#fff;text-decoration:none;margin:0 10px;padding:8px 12px;border-radius:10px;transition:.2s}
-    .menu a:hover{background:rgba(255,255,255,.15)}
+    /* Nav styles loaded from css/nav.css */
   </style>
   <link rel="stylesheet" href="css/generador.css">
 </head>
 <body>
-  <div class="top-header">
-    <div class="nav">
-      <div class="logo">ATRM · Tu Sindicato</div>
+  <link rel="stylesheet" href="css/nav.css">
+  <header class="premium-header">
+    <div class="header-content">
+      <a href="index.html" class="logo">🔥 ATRM · Tu Sindicato</a>
+      <button class="menu-toggle" onclick="document.querySelector('.menu').classList.toggle('open')" aria-label="Menú">☰</button>
       <nav class="menu">
         <a href="index.html">Inicio</a>
-        <a href="index.html#convenio">Convenio</a>
+        <a href="index.html#convenio">Viaria</a>
+        <a href="interiores.html">Interiores</a>
         <a href="salaries.html">Salarios</a>
+        <a href="conceptos_2026.html">Conceptos 2026</a>
         <a href="tramites.html">Trámites</a>
         <a href="festivos.html">Festivos</a>
-        <a href="generador.html" style="background:rgba(255,255,255,.15)">📝 Documentos</a>
+        <a href="generador.html" class="active">📝 Docs</a>
         <a href="podcasts.html">🎙️ Podcasts</a>
+        <a href="index.html#contacto">Contacto</a>
       </nav>
     </div>
-  </div>
+  </header>
   
   <header>
     <h1>📝 Generador de Documentos</h1>

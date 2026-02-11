@@ -9,7 +9,7 @@
   <style>
     :root{ --primary:#FF6B35; --secondary:#FF8C42; --accent:#FFA726; --dark:#2C3E50; }
     body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial;color:var(--dark);background:linear-gradient(180deg,#fff,#fff7f0)}
-    header{position:sticky;top:0;background:linear-gradient(90deg,var(--primary),var(--secondary));color:#fff;padding:12px 16px;font-weight:800;z-index:100;display:flex;justify-content:space-between;align-items:center}
+    /* Nav styles loaded from css/nav.css */
     main{max-width:1100px;margin:16px auto;padding:0 16px}
     .toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
     .btn{padding:10px 12px;border-radius:10px;background:linear-gradient(90deg,var(--primary),var(--secondary));color:#fff;border:none;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
@@ -39,9 +39,24 @@
   </style>
 </head>
 <body>
-  <header>
-    <span>🎙️ ATRM · Podcasts IA</span>
-    <a href="index.html" style="color:white;text-decoration:none;font-size:0.9em">Inicio</a>
+  <link rel="stylesheet" href="css/nav.css">
+  <header class="premium-header">
+    <div class="header-content">
+      <a href="index.html" class="logo">🔥 ATRM · Tu Sindicato</a>
+      <button class="menu-toggle" onclick="document.querySelector('.menu').classList.toggle('open')" aria-label="Menú">☰</button>
+      <nav class="menu">
+        <a href="index.html">Inicio</a>
+        <a href="index.html#convenio">Viaria</a>
+        <a href="interiores.html">Interiores</a>
+        <a href="salaries.html">Salarios</a>
+        <a href="conceptos_2026.html">Conceptos 2026</a>
+        <a href="tramites.html">Trámites</a>
+        <a href="festivos.html">Festivos</a>
+        <a href="generador.html">📝 Docs</a>
+        <a href="podcasts.html" class="active">🎙️ Podcasts</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+    </div>
   </header>
   
   <main>

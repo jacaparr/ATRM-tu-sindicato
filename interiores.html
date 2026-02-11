@@ -10,12 +10,7 @@
     :root{ --primary:#FF6B35; --secondary:#FF8C42; --accent:#FFA726; --dark:#2C3E50; --light:#FFFFFF; }
     *{box-sizing:border-box}
     body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial;color:var(--dark);background:linear-gradient(180deg, #fff 0%, #fff7f0 100%)}
-    header{position:sticky;top:0;z-index:10;background:linear-gradient(90deg,var(--primary),var(--secondary));color:#fff}
-    .nav{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
-    .logo{font-weight:800;letter-spacing:.3px}
-    .menu a{color:#fff;text-decoration:none;margin:0 10px;padding:8px 12px;border-radius:10px;transition:.2s}
-    .menu a:hover{background:rgba(255,255,255,.15)}
-    .menu a.active{background:rgba(255,255,255,.25)}
+    /* Nav styles loaded from css/nav.css */
 
     .hero{max-width:1100px;margin:28px auto;padding:24px 20px;display:grid;grid-template-columns:1.1fr .9fr;gap:28px}
     .card{background:#fff;border:1px solid #ffe2cf;border-radius:18px;box-shadow:0 10px 24px rgba(255,119,51,.08)}
@@ -44,17 +39,20 @@
   </style>
 </head>
 <body>
-  <header>
-    <div class="nav">
-      <div class="logo">ATRM · Tu Sindicato</div>
+  <link rel="stylesheet" href="css/nav.css">
+  <header class="premium-header">
+    <div class="header-content">
+      <a href="index.html" class="logo">🔥 ATRM · Tu Sindicato</a>
+      <button class="menu-toggle" onclick="document.querySelector('.menu').classList.toggle('open')" aria-label="Menú">☰</button>
       <nav class="menu">
         <a href="index.html">Inicio</a>
         <a href="index.html#convenio">Viaria</a>
         <a href="interiores.html" class="active">Interiores</a>
         <a href="salaries.html">Salarios</a>
+        <a href="conceptos_2026.html">Conceptos 2026</a>
         <a href="tramites.html">Trámites</a>
         <a href="festivos.html">Festivos</a>
-        <a href="generador.html">📝 Documentos</a>
+        <a href="generador.html">📝 Docs</a>
         <a href="podcasts.html">🎙️ Podcasts</a>
         <a href="index.html#contacto">Contacto</a>
       </nav>

@@ -4,17 +4,16 @@
   "buildCommand": "npm run build",
   "devCommand": "npm run dev",
   "framework": "nodejs",
-  "env": [
-    "TELEGRAM_BOT_TOKEN",
-    "RESEND_API_KEY",
-    "RESEND_FROM",
-    "RESEND_TO",
-    "SUPABASE_URL",
-    "SUPABASE_SERVICE_ROLE",
-    "ADMIN_API_TOKEN",
-    "SITE_URL",
-    "PORT"
-  ],
+  "env": {
+    "TELEGRAM_BOT_TOKEN": "@TELEGRAM_BOT_TOKEN",
+    "RESEND_API_KEY": "@RESEND_API_KEY",
+    "RESEND_FROM": "@RESEND_FROM",
+    "RESEND_TO": "@RESEND_TO",
+    "SUPABASE_URL": "@SUPABASE_URL",
+    "SUPABASE_SERVICE_ROLE": "@SUPABASE_SERVICE_ROLE",
+    "ADMIN_API_TOKEN": "@ADMIN_API_TOKEN",
+    "SITE_URL": "@SITE_URL"
+  },
   "builds": [
     {
       "src": "server.js",

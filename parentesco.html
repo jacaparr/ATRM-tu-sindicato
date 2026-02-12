@@ -141,6 +141,61 @@
       <p>Guía visual para saber qué grado de parentesco tiene cada familiar.<br>Imprescindible para solicitar permisos retribuidos.</p>
     </div>
 
+    <!-- CONSULTOR DE PERMISOS POR FAMILIAR -->
+    <div class="card" style="padding:24px;margin-bottom:24px;border:2px solid var(--primary)">
+      <h2 style="margin:0 0 4px;color:var(--primary)">🔍 Consulta tus permisos por familiar</h2>
+      <p style="color:#555;margin:0 0 16px;font-size:.93em">Selecciona un familiar y te diremos su grado y todos los permisos que te corresponden.</p>
+      
+      <select id="selectorFamiliar" onchange="mostrarPermisosFamiliar()" style="width:100%;padding:14px 16px;border:2px solid #ffd2b5;border-radius:12px;font-size:1.05em;font-weight:600;color:var(--dark);background:#fff;cursor:pointer;appearance:auto">
+        <option value="">-- Elige un familiar --</option>
+        <optgroup label="1.er Grado — Consanguinidad">
+          <option value="padre">👨 Padre</option>
+          <option value="madre">👩 Madre</option>
+          <option value="hijo">👦 Hijo</option>
+          <option value="hija">👧 Hija</option>
+        </optgroup>
+        <optgroup label="1.er Grado — Afinidad">
+          <option value="suegro">🤝 Suegro</option>
+          <option value="suegra">🤝 Suegra</option>
+          <option value="yerno">🤝 Yerno</option>
+          <option value="nuera">🤝 Nuera</option>
+        </optgroup>
+        <optgroup label="2.º Grado — Consanguinidad">
+          <option value="hermano">👫 Hermano</option>
+          <option value="hermana">👫 Hermana</option>
+          <option value="abuelo">👴 Abuelo</option>
+          <option value="abuela">👵 Abuela</option>
+          <option value="nieto">👶 Nieto</option>
+          <option value="nieta">👶 Nieta</option>
+        </optgroup>
+        <optgroup label="2.º Grado — Afinidad">
+          <option value="cunado">👫 Cuñado</option>
+          <option value="cunada">👫 Cuñada</option>
+        </optgroup>
+        <optgroup label="3.er Grado — Consanguinidad">
+          <option value="tio">👨 Tío</option>
+          <option value="tia">👩 Tía</option>
+          <option value="sobrino">🧒 Sobrino</option>
+          <option value="sobrina">🧒 Sobrina</option>
+        </optgroup>
+        <optgroup label="3.er Grado — Afinidad">
+          <option value="tio_politico">👨 Tío político</option>
+          <option value="tia_politica">👩 Tía política</option>
+        </optgroup>
+        <optgroup label="4.º Grado — Consanguinidad">
+          <option value="primo">👦 Primo</option>
+          <option value="prima">👧 Prima</option>
+        </optgroup>
+        <optgroup label="Otros">
+          <option value="conyuge">💍 Cónyuge / Pareja de hecho</option>
+        </optgroup>
+      </select>
+
+      <div id="resultadoFamiliar" style="display:none;margin-top:20px">
+        <!-- Se llena con JS -->
+      </div>
+    </div>
+
     <!-- Leyenda -->
     <div class="leyenda">
       <div class="leyenda-item"><span class="leyenda-dot dot-consang"></span> Consanguinidad (familia de sangre)</div>
@@ -378,5 +433,189 @@
 
   <script src="js/pwa.js"></script>
   <script src="js/bottom-nav.js"></script>
+  <script>
+  const familiares = {
+    conyuge:       { nombre:'Cónyuge / Pareja de hecho', grado:'Equiparado a 1.er grado', tipo:'Vínculo matrimonial / pareja de hecho', icono:'💍', color:'#e91e63' },
+    padre:         { nombre:'Padre',        grado:'1.er grado', tipo:'Consanguinidad', icono:'👨', color:'#e74c3c' },
+    madre:         { nombre:'Madre',        grado:'1.er grado', tipo:'Consanguinidad', icono:'👩', color:'#e74c3c' },
+    hijo:          { nombre:'Hijo',         grado:'1.er grado', tipo:'Consanguinidad', icono:'👦', color:'#e74c3c' },
+    hija:          { nombre:'Hija',         grado:'1.er grado', tipo:'Consanguinidad', icono:'👧', color:'#e74c3c' },
+    suegro:        { nombre:'Suegro',       grado:'1.er grado', tipo:'Afinidad',       icono:'🤝', color:'#e74c3c' },
+    suegra:        { nombre:'Suegra',       grado:'1.er grado', tipo:'Afinidad',       icono:'🤝', color:'#e74c3c' },
+    yerno:         { nombre:'Yerno',        grado:'1.er grado', tipo:'Afinidad',       icono:'🤝', color:'#e74c3c' },
+    nuera:         { nombre:'Nuera',        grado:'1.er grado', tipo:'Afinidad',       icono:'🤝', color:'#e74c3c' },
+    hermano:       { nombre:'Hermano',      grado:'2.º grado',  tipo:'Consanguinidad', icono:'👫', color:'#e67e22' },
+    hermana:       { nombre:'Hermana',      grado:'2.º grado',  tipo:'Consanguinidad', icono:'👫', color:'#e67e22' },
+    abuelo:        { nombre:'Abuelo',       grado:'2.º grado',  tipo:'Consanguinidad', icono:'👴', color:'#e67e22' },
+    abuela:        { nombre:'Abuela',       grado:'2.º grado',  tipo:'Consanguinidad', icono:'👵', color:'#e67e22' },
+    nieto:         { nombre:'Nieto',        grado:'2.º grado',  tipo:'Consanguinidad', icono:'👶', color:'#e67e22' },
+    nieta:         { nombre:'Nieta',        grado:'2.º grado',  tipo:'Consanguinidad', icono:'👶', color:'#e67e22' },
+    cunado:        { nombre:'Cuñado',       grado:'2.º grado',  tipo:'Afinidad',       icono:'👫', color:'#e67e22' },
+    cunada:        { nombre:'Cuñada',       grado:'2.º grado',  tipo:'Afinidad',       icono:'👫', color:'#e67e22' },
+    tio:           { nombre:'Tío',          grado:'3.er grado', tipo:'Consanguinidad', icono:'👨', color:'#f1c40f' },
+    tia:           { nombre:'Tía',          grado:'3.er grado', tipo:'Consanguinidad', icono:'👩', color:'#f1c40f' },
+    sobrino:       { nombre:'Sobrino',      grado:'3.er grado', tipo:'Consanguinidad', icono:'🧒', color:'#f1c40f' },
+    sobrina:       { nombre:'Sobrina',      grado:'3.er grado', tipo:'Consanguinidad', icono:'🧒', color:'#f1c40f' },
+    tio_politico:  { nombre:'Tío político', grado:'3.er grado', tipo:'Afinidad',       icono:'👨', color:'#f1c40f' },
+    tia_politica:  { nombre:'Tía política', grado:'3.er grado', tipo:'Afinidad',       icono:'👩', color:'#f1c40f' },
+    primo:         { nombre:'Primo',        grado:'4.º grado',  tipo:'Consanguinidad', icono:'👦', color:'#3498db' },
+    prima:         { nombre:'Prima',        grado:'4.º grado',  tipo:'Consanguinidad', icono:'👧', color:'#3498db' }
+  };
+
+  // Licencias por grado (Art. 14 Convenio Limpieza Viaria)
+  function obtenerLicencias(key) {
+    const f = familiares[key];
+    const g = f.grado;
+    const licencias = [];
+
+    // -- FALLECIMIENTO --
+    if (g.includes('1.er') || key === 'conyuge') {
+      licencias.push({
+        icono:'⚫', titulo:'Fallecimiento',
+        dias:'3 días naturales (5 con desplazamiento)',
+        detalle:'Art. 14.B — No se computa si coincide con día de descanso. Desplazamiento = funeral fuera del municipio.',
+        color:'#444'
+      });
+    } else if (g.includes('2.º')) {
+      licencias.push({
+        icono:'⚫', titulo:'Fallecimiento',
+        dias:'3 días naturales (5 con desplazamiento)',
+        detalle:'Art. 14.B — Hasta 2.º grado de consanguinidad o afinidad.',
+        color:'#444'
+      });
+    } else if (g.includes('3.er')) {
+      licencias.push({
+        icono:'⚫', titulo:'Fallecimiento',
+        dias:'1 día natural',
+        detalle:'Art. 14.B — Solo 3.er grado de consanguinidad (tíos, sobrinos).',
+        color:'#666'
+      });
+    } else {
+      licencias.push({
+        icono:'⚫', titulo:'Fallecimiento',
+        dias:'Sin permiso retribuido',
+        detalle:'No contemplado en convenio para 4.º grado.',
+        color:'#999'
+      });
+    }
+
+    // -- HOSPITALIZACIÓN / ENFERMEDAD GRAVE / INTERVENCIÓN --
+    if (g.includes('1.er') || g.includes('2.º') || key === 'conyuge') {
+      licencias.push({
+        icono:'🏥', titulo:'Hospitalización / Enfermedad grave / Intervención quirúrgica',
+        dias:'5 días naturales',
+        detalle:'Art. 14.A — Incluye accidente grave, hospitalización e intervención sin hospitalización con reposo domiciliario. Ampliable si ingreso >15 días.',
+        color:'#e67e22'
+      });
+    } else {
+      licencias.push({
+        icono:'🏥', titulo:'Hospitalización / Enfermedad grave',
+        dias:'Sin permiso retribuido',
+        detalle:'Solo aplica hasta 2.º grado de consanguinidad o afinidad.',
+        color:'#999'
+      });
+    }
+
+    // -- MATRIMONIO DE FAMILIAR --
+    if (key === 'conyuge') {
+      licencias.push({
+        icono:'💒', titulo:'Matrimonio propio',
+        dias:'15 días naturales + 672,72 € de gratificación',
+        detalle:'Art. 14.C — Incluye matrimonio civil, religioso y registro de pareja de hecho. Días consecutivos.',
+        color:'#e91e63'
+      });
+    } else if (['hijo','hija','hermano','hermana'].includes(key)) {
+      licencias.push({
+        icono:'💒', titulo:'Matrimonio de ' + f.nombre.toLowerCase(),
+        dias:'1 día natural',
+        detalle:'Art. 14.C — Permiso por boda de hijo/a o hermano/a.',
+        color:'#e91e63'
+      });
+    }
+
+    // -- NACIMIENTO (solo para cónyuge/hijos) --
+    if (key === 'conyuge') {
+      licencias.push({
+        icono:'👶', titulo:'Nacimiento de hijo/a',
+        dias:'16 semanas (permiso por nacimiento)',
+        detalle:'Regulado por RD-Ley 6/2019. Ambos progenitores: 16 semanas, las 6 primeras obligatorias e ininterrumpidas tras el parto.',
+        color:'#27ae60'
+      });
+    }
+
+    // -- MUDANZA --
+    if (key === 'conyuge' || g.includes('1.er')) {
+      licencias.push({
+        icono:'📦', titulo:'Mudanza / Traslado de domicilio',
+        dias:'1-2 días',
+        detalle:'Art. 14 — Por cambio de domicilio habitual. No requiere parentesco específico (es derecho del trabajador).',
+        color:'#9b59b6'
+      });
+    }
+
+    // -- CONSULTAS MÉDICAS --
+    if (g.includes('1.er') || key === 'conyuge') {
+      licencias.push({
+        icono:'⏰', titulo:'Acompañamiento a consulta médica',
+        dias:'Tiempo imprescindible',
+        detalle:'Para familiares de 1.er grado y cónyuge. Requiere justificante médico.',
+        color:'#3498db'
+      });
+    }
+
+    // -- CUIDADO DE FAMILIAR (EXCEDENCIA) --
+    if (g.includes('1.er') || g.includes('2.º') || key === 'conyuge') {
+      licencias.push({
+        icono:'🏠', titulo:'Excedencia por cuidado de familiar',
+        dias:'Hasta 2 años (hijos: hasta 3 años)',
+        detalle:'Art. 46.3 ET — Para familiares hasta 2.º grado. Reserva de puesto el primer año. Sin sueldo pero computa antigüedad.',
+        color:'#607d8b'
+      });
+    }
+
+    return licencias;
+  }
+
+  function mostrarPermisosFamiliar() {
+    const sel = document.getElementById('selectorFamiliar').value;
+    const div = document.getElementById('resultadoFamiliar');
+    if (!sel) { div.style.display = 'none'; return; }
+
+    const f = familiares[sel];
+    const licencias = obtenerLicencias(sel);
+
+    let html = '';
+    // Cabecera con info del familiar
+    html += `<div style="background:linear-gradient(135deg,${f.color},${f.color}dd);color:#fff;padding:18px 20px;border-radius:14px;margin-bottom:16px;display:flex;align-items:center;gap:14px">`;
+    html += `<span style="font-size:2.5em">${f.icono}</span>`;
+    html += `<div>`;
+    html += `<div style="font-size:1.4em;font-weight:800">${f.nombre}</div>`;
+    html += `<div style="opacity:.92;font-size:.95em">${f.grado} · ${f.tipo}</div>`;
+    html += `</div></div>`;
+
+    // Licencias
+    html += `<div style="font-weight:700;margin-bottom:12px;color:var(--dark)">📋 Licencias y permisos que te corresponden:</div>`;
+
+    licencias.forEach(l => {
+      const sinPermiso = l.dias.includes('Sin permiso');
+      html += `<div style="border-left:4px solid ${sinPermiso ? '#ccc' : l.color};padding:14px 16px;margin-bottom:10px;border-radius:0 12px 12px 0;background:${sinPermiso ? '#f5f5f5' : '#fff'};box-shadow:0 2px 8px rgba(0,0,0,.04)">`;
+      html += `<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">`;
+      html += `<strong style="font-size:1em;color:${sinPermiso ? '#999' : 'var(--dark)'}">${l.icono} ${l.titulo}</strong>`;
+      html += `<span style="background:${sinPermiso ? '#eee' : l.color};color:${sinPermiso ? '#999' : '#fff'};padding:4px 14px;border-radius:20px;font-weight:700;font-size:.88em;white-space:nowrap">${l.dias}</span>`;
+      html += `</div>`;
+      html += `<div style="margin-top:8px;font-size:.87em;color:#555;line-height:1.6">${l.detalle}</div>`;
+      html += `</div>`;
+    });
+
+    // Nota de contacto
+    html += `<div style="text-align:center;padding:12px;background:#fff3e0;border-radius:10px;margin-top:8px;font-size:.9em">`;
+    html += `⚠️ Datos según <strong>Convenio Limpieza Viaria Región de Murcia</strong>. Para dudas: <strong style="color:var(--primary)">📞 ATRM 968 626 511</strong>`;
+    html += `</div>`;
+
+    div.innerHTML = html;
+    div.style.display = 'block';
+    div.scrollIntoView({ behavior:'smooth', block:'nearest' });
+  }
+  </script>
 </body>
 </html>

@@ -328,7 +328,7 @@ Recuerda: Eres experto en este convenio específico y debes dar información pre
     const p = pregunta.toLowerCase();
     if (tipo_convenio === 'viaria') {
       if (p.includes('ingreso') && (p.includes('madre') || p.includes('familiar') || p.includes('hospital'))) {
-        respuestaFallback = '🏥 **Permiso por hospitalización familiar**: 5 días retribuidos por ingreso hospitalario de familiares hasta 2º grado (madre, padre, hijos, hermanos, abuelos, suegros). Ampliable si la hospitalización supera 15 días.';
+        respuestaFallback = '🏥 **Permiso por hospitalización familiar**: 5 días retribuidos por ingreso hospitalario de familiares hasta 2º grado consanguinidad o afinidad. Si hospitalización >15 días: +1 día más. Disfrutables de forma continuada o alterna.';
       } else if (p.includes('jornada') || p.includes('horas')) {
         respuestaFallback = '⏰ **Jornada**: 37h 30min semanales (1.680h anuales). Descanso 20min bocadillo + 10min opcionales.';
       } else if (p.includes('increment') || p.includes('salari')) {
@@ -338,11 +338,11 @@ Recuerda: Eres experto en este convenio específico y debes dar información pre
       }
     } else {
       if (p.includes('jornada') || p.includes('horas')) {
-        respuestaFallback = '⏰ **Jornada**: 1.792 horas anuales (40 horas semanales). Descanso 1,5 días (36 horas) ininterrumpidos.';
+        respuestaFallback = '⏰ **Jornada**: 1.748 horas anuales (40 horas semanales). Descanso de 30 minutos diarios en jornada continuada (Art. 5).';
       } else if (p.includes('vacacion')) {
-        respuestaFallback = '🏖️ **Vacaciones**: 27 días laborables por año completo. Mínimo 19 días ininterrumpidos preferentemente en verano.';
+        respuestaFallback = '🏖️ **Vacaciones**: 27 días laborables por año completo. Mínimo 19 días ininterrumpidos preferentemente en verano (Art. 6).';
       } else if (p.includes('salari') || p.includes('paga')) {
-        respuestaFallback = '💰 **Pagas**: 3 pagas extraordinarias (junio, diciembre, marzo). Antigüedad en trienios al 5% del salario base.';
+        respuestaFallback = '💰 **Pagas**: 4 pagas extraordinarias (15 marzo, 30 junio, 15 septiembre, 15 diciembre - Art. 22). Antigüedad consolidada congelada desde 31/12/2008 (Art. 20).';
       } else {
         respuestaFallback += 'Intenta con: jornada, vacaciones, pagas, permisos, baja médica, o contacta ATRM: 968 30 00 37.';
       }

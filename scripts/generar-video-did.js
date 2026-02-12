@@ -169,7 +169,7 @@ Si tienes dudas, en ATRM estamos para ayudarte. ¡Contáctanos!
 
   const video2_texto = `
 ¿Cuántas horas debes trabajar según el convenio?
-La jornada laboral máxima es de 1792 horas anuales, lo que equivale a 40 horas semanales en promedio.
+La jornada laboral máxima es de 1748 horas anuales, lo que equivale a 40 horas semanales en promedio.
 El convenio permite jornadas especiales como tiempo parcial, nocturno o por turnos, siempre respetando tus derechos.
 El horario debe respetarse estrictamente: cualquier hora extra debe ser compensada según lo establecido.
 Además, tienes derecho a descansos durante tu jornada y entre jornadas.

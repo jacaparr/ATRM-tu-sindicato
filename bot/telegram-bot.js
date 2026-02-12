@@ -188,10 +188,10 @@ async function obtenerRespuestaIA(pregunta) {
     
     // Respuestas contextuales según palabras clave
     if (preguntaLower.includes('vacaciones')) {
-      return `🏖️ *Vacaciones según convenio:*\n\n` +
-             `• 30 días naturales al año\n` +
-             `• Se disfrutan preferentemente entre junio y septiembre\n` +
-             `• Deben ser notificadas con al menos 2 meses de antelación\n\n` +
+      return `🏖️ *Vacaciones según convenio viaria:*\n\n` +
+             `• 28 días laborales al año\n` +
+             `• Se acuerdan entre empresa y comité/delegados\n` +
+             `• No pueden ser sustituidas por dinero (salvo fin de contrato)\n\n` +
              `📖 Consulta el artículo completo en la web: ${siteUrl}`;
     }
     

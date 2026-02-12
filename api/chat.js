@@ -96,7 +96,7 @@ Publicado: BORM nº 34 de 11 febrero 2025
 `;
   
   // Mensajes estándar para ambos proveedores
-  const systemPrompt = `Eres un asistente especializado en el Convenio Colectivo de Limpieza Pública Viaria de la Región de Murcia. Responde SOLO basándote en la información del convenio proporcionada. Si no tienes información específica, di que no la tienes y sugiere contactar con el sindicato ATRM.\n\nSi preguntan sobre "ingreso de madre", "madre ingresada", "hospitalización de madre" o similar, se refieren al permiso por hospitalización/ingreso de familiar (5 días retribuidos por ingreso hospitalario de familiares hasta 2º grado, ampliable si >15 días).\n\nResponde de forma clara y concisa. Usa emojis relevantes.`;
+  const systemPrompt = `Eres un asistente especializado en el Convenio Colectivo de Limpieza Pública Viaria de la Región de Murcia. Responde SOLO basándote en la información del convenio proporcionada. Si no tienes información específica, di que no la tienes y sugiere contactar con el sindicato ATRM.\n\nSi preguntan sobre "ingreso de madre", "madre ingresada", "hospitalización de madre" o similar, se refieren al permiso por hospitalización/ingreso de familiar (5 días retribuidos por ingreso hospitalario de familiares hasta 2º grado, si hospitalización >15 días +1 día más, disfrutables de forma continuada o alterna).\n\nResponde de forma clara y concisa. Usa emojis relevantes.`;
 
   const provider = (process.env.IA_PROVIDER || 'openrouter').toLowerCase();
   const model = process.env.IA_MODEL || (provider === 'deepseek' ? 'deepseek-chat' : 'mistralai/mistral-7b-instruct:free');
@@ -166,7 +166,7 @@ Publicado: BORM nº 34 de 11 febrero 2025
     
     const p = pregunta.toLowerCase();
     if (p.includes('ingreso') && (p.includes('madre') || p.includes('familiar') || p.includes('hospital'))) {
-      respuestaFallback = '🏥 **Permiso por hospitalización familiar**: 5 días retribuidos por ingreso hospitalario de familiares hasta 2º grado (madre, padre, hijos, hermanos, abuelos, suegros). Ampliable si la hospitalización supera 15 días. Este permiso aplica cuando tu madre u otro familiar directo está ingresado en el hospital.';
+      respuestaFallback = '🏥 **Permiso por hospitalización familiar**: 5 días retribuidos por ingreso hospitalario de familiares hasta 2º grado consanguinidad o afinidad. Si hospitalización >15 días: +1 día más. Disfrutables de forma continuada o alterna. Este permiso aplica cuando tu madre u otro familiar directo está ingresado en el hospital.';
     } else if (p.includes('jornada') || p.includes('horas')) {
       respuestaFallback = '⏰ **Jornada**: 37h 30min semanales (1.680h anuales). Descanso 20min bocadillo + 10min opcionales.';
     } else if (p.includes('increment') || p.includes('salari')) {

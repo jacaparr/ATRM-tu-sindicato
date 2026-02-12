@@ -381,7 +381,7 @@ class IAContextual {
           // Hospitalización ampliada
           if (respuestaCorta.startsWith('s')) {
             if (caso.id === 'hospitalizacion_familiar') {
-              return '✨ Si la hospitalización supera 15 días, el permiso puede ampliarse según el convenio. Contacta ATRM para tramitar la ampliación.';
+              return '✨ Si la hospitalización supera 15 días, tienes derecho a +1 día más de permiso según el convenio (Art. 14.A). Contacta ATRM para tramitarlo.';
             }
             // Derechos fundamentales
             if (caso.id === 'derechos_fundamentales') {

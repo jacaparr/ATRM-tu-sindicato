@@ -114,8 +114,26 @@
           </div>
           
           <div>
-            <label style="display:block;font-weight:600;margin-bottom:8px">Años de antigüedad</label>
-            <input type="number" id="calcAntiguedad" min="0" max="50" value="0" style="width:100%;padding:10px;border:1px solid #ffd2b5;border-radius:8px;font-size:14px">
+            <label style="display:block;font-weight:600;margin-bottom:8px">📅 Fecha de alta en la empresa</label>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+              <select id="calcMesAlta" style="width:100%;padding:10px;border:1px solid #ffd2b5;border-radius:8px;font-size:14px">
+                <option value="1">Enero</option>
+                <option value="2">Febrero</option>
+                <option value="3">Marzo</option>
+                <option value="4">Abril</option>
+                <option value="5">Mayo</option>
+                <option value="6">Junio</option>
+                <option value="7">Julio</option>
+                <option value="8">Agosto</option>
+                <option value="9">Septiembre</option>
+                <option value="10">Octubre</option>
+                <option value="11">Noviembre</option>
+                <option value="12">Diciembre</option>
+              </select>
+              <select id="calcAnioAlta" style="width:100%;padding:10px;border:1px solid #ffd2b5;border-radius:8px;font-size:14px">
+              </select>
+            </div>
+            <div id="calcAntiguedadInfo" style="margin-top:6px;font-size:12px;color:#27ae60;font-weight:600"></div>
           </div>
         </div>
 
@@ -150,6 +168,8 @@
               <div style="display:flex;justify-content:space-between;margin:6px 0;color:#27ae60">
                 <span>Plus antigüedad:</span>
                 <strong id="calcAntiguedadBono">-</strong>
+              </div>
+              <div id="calcAntiguedadDetalle" style="display:none;background:#e8f5e9;padding:10px 12px;border-radius:8px;margin:8px 0;font-size:12px;color:#2e7d32;line-height:1.7">
               </div>
               <div style="display:flex;justify-content:space-between;margin:6px 0">
                 <span>Plus transporte:</span>
@@ -318,9 +338,85 @@
       return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(num);
     }
 
+    // Rellenar select de años (desde 1970 hasta año actual)
+    (function() {
+      const sel = document.getElementById('calcAnioAlta');
+      const anioActual = new Date().getFullYear();
+      for (let y = anioActual; y >= 1970; y--) {
+        const opt = document.createElement('option');
+        opt.value = y; opt.textContent = y;
+        sel.appendChild(opt);
+      }
+    })();
+
+    // Mostrar antigüedad al cambiar fecha
+    function actualizarInfoAntiguedad() {
+      const mes = parseInt(document.getElementById('calcMesAlta').value);
+      const anio = parseInt(document.getElementById('calcAnioAlta').value);
+      const fechaAlta = new Date(anio, mes - 1, 1);
+      const hoy = new Date();
+      if (fechaAlta > hoy) {
+        document.getElementById('calcAntiguedadInfo').textContent = '';
+        return;
+      }
+      const diffMs = hoy - fechaAlta;
+      const diffAnios = diffMs / (1000 * 60 * 60 * 24 * 365.25);
+      const aniosCompletos = Math.floor(diffAnios);
+      const mesesRestantes = Math.floor((diffAnios - aniosCompletos) * 12);
+      document.getElementById('calcAntiguedadInfo').textContent = 
+        `⏳ Antigüedad: ${aniosCompletos} año${aniosCompletos !== 1 ? 's' : ''} y ${mesesRestantes} mes${mesesRestantes !== 1 ? 'es' : ''}`;
+    }
+    document.getElementById('calcMesAlta').addEventListener('change', actualizarInfoAntiguedad);
+    document.getElementById('calcAnioAlta').addEventListener('change', actualizarInfoAntiguedad);
+
+    function calcularAntiguedadDesdeAlta() {
+      const mes = parseInt(document.getElementById('calcMesAlta').value);
+      const anio = parseInt(document.getElementById('calcAnioAlta').value);
+      const fechaAlta = new Date(anio, mes - 1, 1);
+      const hoy = new Date();
+      if (fechaAlta > hoy) return { anios: 0, fechaAlta };
+      const diffAnios = (hoy - fechaAlta) / (1000 * 60 * 60 * 24 * 365.25);
+      return { anios: diffAnios, fechaAlta };
+    }
+
+    function calcularProximaSubida(fechaAlta, antiguedadAnios) {
+      const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+      // Bienios: años 2, 4, 6. Después quinquenios: 11, 16, 21...
+      const hitos = [2, 4, 6, 11, 16, 21, 26, 31, 36, 41];
+      let proximoHito = null;
+      for (const h of hitos) {
+        if (antiguedadAnios < h) { proximoHito = h; break; }
+      }
+      if (!proximoHito) return null;
+
+      const fechaSubida = new Date(fechaAlta.getFullYear() + proximoHito, fechaAlta.getMonth(), 1);
+      const hoy = new Date();
+      const diffMs = fechaSubida - hoy;
+      const diasFaltan = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+      const mesesFaltan = Math.ceil(diasFaltan / 30.44);
+
+      let tipo, porcentaje;
+      if (proximoHito <= 6) {
+        const numBienio = proximoHito / 2;
+        tipo = `${numBienio}º bienio`;
+        porcentaje = '5%';
+      } else {
+        const numQuinquenio = Math.floor((proximoHito - 6) / 5);
+        tipo = `${numQuinquenio}º quinquenio`;
+        porcentaje = '7%';
+      }
+
+      return {
+        fecha: `${meses[fechaSubida.getMonth()]} ${fechaSubida.getFullYear()}`,
+        faltan: mesesFaltan > 12 
+          ? `${Math.floor(mesesFaltan/12)} año${Math.floor(mesesFaltan/12)!==1?'s':''} y ${mesesFaltan%12} mes${mesesFaltan%12!==1?'es':''}`
+          : `${mesesFaltan} mes${mesesFaltan !== 1 ? 'es' : ''}`,
+        tipo, porcentaje
+      };
+    }
+
     function calcularSalario() {
       const categoria = document.getElementById('calcCategoria').value;
-      const antiguedad = parseInt(document.getElementById('calcAntiguedad').value) || 0;
 
       if (!categoria) {
         alert('Por favor selecciona una categoría');
@@ -333,16 +429,20 @@
         return;
       }
 
+      const { anios: antiguedadExacta, fechaAlta } = calcularAntiguedadDesdeAlta();
+      const antiguedad = Math.floor(antiguedadExacta);
+
       // Calcular plus antigüedad (3 bienios al 5%, después quinquenios al 7%)
       let bonusAntiguedad = 0;
+      let detalleBienios = 0, detalleQuinquenios = 0;
       if (antiguedad > 0) {
-        // Primeros 3 bienios (años 0-6): cada 2 años = 5% del salario base
         const bienios = Math.min(Math.floor(antiguedad / 2), 3);
+        detalleBienios = bienios;
         bonusAntiguedad = datos.base * (bienios * 0.05);
 
-        // Después de 6 años: quinquenios (cada 5 años) al 7% del salario base
         if (antiguedad > 6) {
           const quinquenios = Math.floor((antiguedad - 6) / 5);
+          detalleQuinquenios = quinquenios;
           bonusAntiguedad += datos.base * (quinquenios * 0.07);
         }
       }
@@ -361,14 +461,36 @@
       document.getElementById('calcTransporte').textContent = formatEUR(datos.transporte);
       document.getElementById('calcOtros').textContent = formatEUR(datos.prd);
 
+      // Detalle antigüedad y próxima subida
+      const detalleDiv = document.getElementById('calcAntiguedadDetalle');
+      let html = '';
+      if (detalleBienios > 0) {
+        html += `✅ <strong>${detalleBienios} bienio${detalleBienios>1?'s':''}</strong> al 5% = ${formatEUR(datos.base * detalleBienios * 0.05)}/año<br>`;
+      }
+      if (detalleQuinquenios > 0) {
+        html += `✅ <strong>${detalleQuinquenios} quinquenio${detalleQuinquenios>1?'s':''}</strong> al 7% = ${formatEUR(datos.base * detalleQuinquenios * 0.07)}/año<br>`;
+      }
+      const proxima = calcularProximaSubida(fechaAlta, antiguedadExacta);
+      if (proxima) {
+        html += `<br>⏭️ <strong>Próxima subida:</strong> ${proxima.tipo} (${proxima.porcentaje}) en <strong>${proxima.fecha}</strong><br>`;
+        html += `⏳ Faltan aprox. <strong>${proxima.faltan}</strong>`;
+      } else if (antiguedad >= 41) {
+        html += `<br>🏆 Ya has alcanzado el máximo de antigüedad.`;
+      }
+      if (html) {
+        detalleDiv.innerHTML = html;
+        detalleDiv.style.display = 'block';
+      } else {
+        detalleDiv.style.display = 'none';
+      }
+
+      actualizarInfoAntiguedad();
       document.getElementById('calcResultado').style.display = 'block';
     }
 
     // Permitir calcular con Enter
     document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('calcAntiguedad').addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') calcularSalario();
-      });
+      actualizarInfoAntiguedad();
       document.getElementById('bajaNumDias').addEventListener('keypress', (e) => {
         if (e.key === 'Enter') calcularBaja();
       });

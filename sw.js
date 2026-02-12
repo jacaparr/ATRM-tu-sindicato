@@ -1,4 +1,4 @@
-const CACHE_NAME = 'atrm-cache-v15';
+const CACHE_NAME = 'atrm-cache-v16';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -70,6 +70,11 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   // Ignorar requests que no sean http/https (extensiones de Chrome, etc.)
   if (!event.request.url.startsWith('http')) {
+    return;
+  }
+
+  // No cachear peticiones POST ni API
+  if (event.request.method !== 'GET' || event.request.url.includes('/api/')) {
     return;
   }
 

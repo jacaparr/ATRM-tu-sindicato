@@ -55,7 +55,7 @@ Publicado: BORM nº 34 de 11 febrero 2025
 - Fallecimiento: 3 días (cónyuge, 2º grado) + 2 días si desplazamiento >65km
 - Matrimonio: 15 días + 672,72€ gratificación
 - Consulta médica: 3 horas (jornada completa si >35km)
-- Asuntos propios: 4 días laborales/año
+- Asuntos propios: 4 días laborales/año (Art. 15, ampliados de 3 a 4 desde 2023). Primer día: aviso con antelación. 2º, 3º y 4º: petición escrita con 3 días laborales de antelación. No más del % pactado con Comité.
 - Traslado vivienda: 2 días
 - Fuerza mayor: hasta 4 días/año urgencias familiares
 

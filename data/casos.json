@@ -320,6 +320,37 @@
       "comparativa_sectorial": "Valencia: 1 día mudanza. Madrid: 2 días nacimiento. Cataluña: 1 día mudanza, 2 días nacimiento.",
       "contacto": "ATRM 968 626 511"
     },
+    "asuntos_propios": {
+      "keywords": [
+        "asuntos propios",
+        "dias propios",
+        "días propios",
+        "libre disposicion",
+        "libre disposición",
+        "dia libre",
+        "día libre",
+        "faltar al trabajo",
+        "ausentarme",
+        "4 dias",
+        "articulo 15",
+        "art 15",
+        "art. 15"
+      ],
+      "titulo": "Días de asuntos propios (Art. 15)",
+      "resumen": "4 días laborales al año para asuntos propios, retribuidos.",
+      "detalle": "🗓️ **Días de Asuntos Propios - Art. 15 Convenio Limpieza Viaria:**\n\n**Tienes derecho a 4 días laborales al año** (ampliados de 3 a 4 desde 2023).\n\n**Condiciones:**\n- **Primer día:** Avisando con suficiente antelación\n- **2º, 3º y 4º día:** Petición por escrito con **3 días laborales de antelación**\n- No pueden coincidir más del porcentaje que cada empresa negocie con su Comité/Delegados de Personal\n- Son **retribuidos** (con derecho a remuneración)\n\n**⚠️ Importante:** Estos 4 días son adicionales a los permisos retribuidos del Art. 14. No los confundas con los días de vacaciones (28 días laborales, Art. 11).\n\n📞 Si la empresa te deniega un día de asuntos propios, contacta con ATRM.",
+      "documentos": [
+        "Solicitud escrita de día de asuntos propios",
+        "Modelo de petición con 3 días de antelación"
+      ],
+      "casos_reales": [
+        "Trabajador solicitó 1er día de asuntos propios avisando el día anterior → concedido sin problema.",
+        "Peón limpieza pidió 2º día por escrito con 3 días de antelación → concedido.",
+        "Empresa denegó día alegando coincidencia de plantilla > porcentaje pactado → ATRM medió y se reprogramó."
+      ],
+      "comparativa_sectorial": "Interiores Murcia: 1 día libre disposición + 12 ausencias médicos hijos. Valencia Viaria: 3 días. Madrid Viaria: 2 días.",
+      "contacto": "ATRM 968 30 00 37"
+    },
     "finiquito_despido": {
       "keywords": [
         "finiquito",

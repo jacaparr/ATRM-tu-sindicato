@@ -179,7 +179,10 @@ Publicado: BORM nº 34 de 11 febrero 2025
 
 **Consulta médica:** 3 horas (jornada completa si >35km)
 
-**Asuntos propios:** 4 días laborales/año
+**Asuntos propios:** 4 días laborales/año (Art. 15, ampliados de 3 a 4 desde 2023)
+• Primer día: aviso con suficiente antelación
+• 2º, 3º y 4º día: petición por escrito con 3 días laborales de antelación
+• No pueden coincidir más del porcentaje pactado con Comité/Delegados
 
 **Traslado vivienda:** 2 días
 

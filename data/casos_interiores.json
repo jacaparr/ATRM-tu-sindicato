@@ -10,8 +10,8 @@
     "jornada": {
       "keywords": ["jornada", "horas", "semanales", "anuales", "horario", "turno", "descanso", "cuántas horas", "jornada máxima"],
       "titulo": "Jornada y descansos",
-      "resumen": "Máximo anual 1.792 h; ordinaria 40 h/semana",
-      "detalle": "⏱ Jornada: máxima anual 1.792 horas. Ordinaria: 40 horas semanales salvo reducción por acuerdo. Descanso semanal: 1,5 días ininterrumpidos. Pausa diaria: 15 minutos si la jornada supera 6 horas.",
+      "resumen": "Máximo anual 1.748 h; ordinaria 40 h/semana",
+      "detalle": "⏱ Jornada: máxima anual 1.748 horas efectivas (a partir de 2024). Ordinaria: 40 horas semanales salvo reducción por acuerdo. Descanso semanal: 1,5 días ininterrumpidos (36 horas). Pausa diaria: 15 minutos si la jornada supera 6 horas.",
       "contacto": "ATRM 968 30 00 37"
     },
     "permisos_retribuidos": {
@@ -24,8 +24,8 @@
     "salarios": {
       "keywords": ["salario", "nómina", "sueldo", "pagas extra", "tabla salarial", "cuánto cobro", "cuánto gano", "antigüedad", "trienios", "paga", "cuanto cobra", "cuanto gana", "nomina", "retribucion", "categoria"],
       "titulo": "Salarios y pagas extra",
-      "resumen": "Tabla salarial por categoría; 3 pagas extra (junio, dic., marzo)",
-      "detalle": "💶 **Salarios por categoría profesional (2024):**<br><br>**Personal de Limpieza:**<br>• Peón/a Limpiador/a: 1.050 €/mes<br>• Limpiador/a Especialista: 1.100 €/mes<br>• Especialista Cristalero/a: 1.150 €/mes<br><br>**Mandos Intermedios:**<br>• Jefe/a de Equipo: 1.250 €/mes<br>• Encargado/a: 1.400 €/mes<br><br>**Personal Administrativo:**<br>• Auxiliar Administrativo/a: 1.100 €/mes<br>• Oficial Administrativo/a: 1.300 €/mes<br><br>**Pagas extra:** 3 al año (junio, diciembre y marzo) - 30 días de salario base cada una<br>**Antigüedad:** trienios al 5% del salario base consolidado<br>**Pluses:** asistencia, permanencia, nocturnidad según convenio<br><br>📋 Consulta la tabla completa en la sección de Interiores de la web.",
+      "resumen": "Tabla salarial por categoría; 4 pagas extra (marzo, junio, septiembre, diciembre)",
+      "detalle": "💶 **Salarios por categoría profesional (2024):**<br><br>**Personal de Limpieza:**<br>• Peón/a Limpiador/a: 1.050 €/mes<br>• Limpiador/a Especialista: 1.100 €/mes<br>• Especialista Cristalero/a: 1.150 €/mes<br><br>**Mandos Intermedios:**<br>• Jefe/a de Equipo: 1.250 €/mes<br>• Encargado/a: 1.400 €/mes<br><br>**Personal Administrativo:**<br>• Auxiliar Administrativo/a: 1.100 €/mes<br>• Oficial Administrativo/a: 1.300 €/mes<br><br>**Pagas extra:** 4 al año (15 marzo, 30 junio, 15 septiembre, 15 diciembre) - Art. 22<br>**Antigüedad:** consolidada, congelada desde 31/12/2008 (Art. 20)<br>**Pluses:** asistencia, permanencia, nocturnidad según convenio<br>**Incrementos:** 2024: +2%, 2025: +2%, 2026: +2,75%, 2027: +3,75% (Art. 32)<br><br>📋 Consulta la calculadora salarial en la sección de Interiores de la web.",
       "contacto": "ATRM 968 30 00 37"
     },
     "excedencias": {
@@ -40,6 +40,13 @@
       "titulo": "Baja médica e incapacidad temporal",
       "resumen": "Complemento de prestación según convenio.",
       "detalle": "Durante la baja médica, la empresa complementa la prestación de la Seguridad Social hasta el 100% del salario desde el primer día en caso de accidente laboral y a partir del día 16 en caso de enfermedad común.",
+      "contacto": "ATRM 968 30 00 37"
+    },
+    "asuntos_propios": {
+      "keywords": ["asuntos propios", "días propios", "dias propios", "libre disposición", "libre disposicion", "día libre", "dia libre", "ausentarme", "faltar al trabajo", "ausencia justificada", "acompañar médico", "acompañar medico", "hijo médico", "artículo 7", "art 7"],
+      "titulo": "Día de libre disposición y ausencias médicas (Art. 7)",
+      "resumen": "1 día libre disposición + 12 ausencias para médicos de hijos/familiares",
+      "detalle": "🗓️ **Libre disposición y ausencias - Art. 7 Convenio Interiores:**\n\n**Art. 7.3 - Día de libre disposición (desde 2022):**\n- **1 día laboral al año** con derecho a remuneración\n- Preaviso de **1 semana de antelación**\n- Máximo **10% de la plantilla** simultáneamente\n\n**Art. 7.2 - Ausencias médicas justificadas:**\n- **12 ausencias al año** por el tiempo indispensable\n- Para acompañar al médico a **hijos/as menores de 14 años**\n- O **familiares con incapacidad** que convivan con el trabajador\n- Requiere justificante médico\n\n**⚠️ Comparativa con Viaria:** El convenio de Limpieza Viaria concede 4 días de asuntos propios al año (Art. 15). Interiores tiene 1 día + 12 ausencias médicas.\n\n📞 Contacta ATRM para cualquier duda.",
       "contacto": "ATRM 968 30 00 37"
     },
     "subrogacion": {

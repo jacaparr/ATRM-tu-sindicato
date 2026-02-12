@@ -10,9 +10,16 @@
     {
       "id": 8,
       "titulo": "Jornada y descansos",
-      "texto": "La jornada máxima será de 1.792 horas efectivas al año. La jornada ordinaria se fija en 40 horas semanales salvo que, por acuerdo, se pacte una distribución distinta. El descanso semanal mínimo es de 36 horas ininterrumpidas (un día y medio). Las personas con una jornada diaria superior a 6 horas tienen derecho a una pausa retribuida de 15 minutos. Se permite la distribución irregular de la jornada respetando los límites anuales y la compensación en los cuatro meses siguientes.",
+      "texto": "La jornada máxima será de 1.748 horas efectivas al año a partir de 2024. La jornada ordinaria se fija en 40 horas semanales salvo que, por acuerdo, se pacte una distribución distinta. El descanso semanal mínimo es de 36 horas ininterrumpidas (un día y medio). Las personas con una jornada diaria superior a 6 horas tienen derecho a una pausa retribuida de 15 minutos. Se permite la distribución irregular de la jornada respetando los límites anuales y la compensación en los cuatro meses siguientes.",
       "referencia": "Art. 8",
-      "keywords": ["jornada", "1792", "descanso", "pausa", "horas", "turno", "articulo 8"]
+      "keywords": ["jornada", "1748", "descanso", "pausa", "horas", "turno", "articulo 8"]
+    },
+    {
+      "id": 7,
+      "titulo": "Permisos especiales y libre disposición",
+      "texto": "Artículo 7.2: Se dispondrá de 12 ausencias justificadas al trabajo al año y por el tiempo indispensable para acompañar al médico a los hijos/as menores de 14 años o familiares con incapacidad que convivan con el trabajador. Artículo 7.3 - Día de libre disposición (en vigor desde 2022): Avisando con una semana de antelación, todos los trabajadores del sector podrán faltar o ausentarse del trabajo con derecho a remuneración un día laboral al año. Máximo el 10% de la plantilla simultáneamente.",
+      "referencia": "Art. 7.2 y 7.3",
+      "keywords": ["libre disposicion", "asuntos propios", "dia libre", "ausencia medico", "hijo medico", "12 ausencias", "articulo 7"]
     },
     {
       "id": 6,
@@ -30,10 +37,10 @@
     },
     {
       "id": 20,
-      "titulo": "Salario y pagas extraordinarias",
-      "texto": "El salario base y los complementos se establecen en las tablas anexas del convenio. Además del salario mensual, se abonan tres pagas extraordinarias: junio (prorrateada de enero a mayo), diciembre (prorrateada de junio a noviembre) y marzo, equivalente a 30 días de salario base. La antigüedad se reconoce mediante trienios al 5% del salario base consolidado. Todos los pluses habituales (asistencia, permanencia, nocturnidad, etc.) deben abonarse según lo pactado.",
-      "referencia": "Art. 20",
-      "keywords": ["salario", "pagas", "extra", "junio", "diciembre", "marzo", "antiguedad"]
+      "titulo": "Salario, antigüedad y pagas extraordinarias",
+      "texto": "El salario base se especifica en la tabla salarial anexa para cada categoría (Art. 19). La antigüedad quedó consolidada a 31/12/2008 como condición más beneficiosa individual, no generándose más antigüedad desde esa fecha (Art. 20). Se abonan 4 pagas extraordinarias: 15 de marzo, 30 de junio, 15 de septiembre y 15 de diciembre, a las que se añade la antigüedad consolidada (Art. 22). Las pagas de marzo y septiembre se prorratea en 12 meses; las de junio y diciembre en 6 meses. Además del salario mensual se perciben: plus de asistencia (Art. 23), complemento de permanencia (Art. 24) y productividad variable (Art. 21). Incrementos: 2024: +2%, 2025: +2%, 2026: +2,75%, 2027: +3,75% sobre tabla anterior (Art. 32).",
+      "referencia": "Art. 19-24, 32",
+      "keywords": ["salario", "pagas", "extra", "junio", "diciembre", "marzo", "septiembre", "antiguedad", "consolidada", "incremento"]
     },
     {
       "id": 23,

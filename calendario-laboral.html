@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendario Laboral Interactivo 2026 - ATRM</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#FF6B35">
+  <style>
+    :root{ --primary:#FF6B35; --secondary:#FF8C42; --accent:#FFA726; --dark:#2C3E50; --light:#FFFFFF; --green:#27ae60; --blue:#2980b9; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial;color:var(--dark);background:linear-gradient(180deg,#fff 0%,#fff7f0 100%)}
+    .container{max-width:1100px;margin:0 auto;padding:20px}
+    .page-title{background:linear-gradient(90deg,var(--primary),var(--secondary));color:#fff;padding:22px;text-align:center}
+    .page-title h1{font-size:28px}
+    .page-title p{opacity:.9;margin-top:4px;font-size:14px}
+    .card{background:#fff;border:1px solid #ffe2cf;border-radius:18px;box-shadow:0 10px 24px rgba(255,119,51,.08);padding:24px;margin-bottom:20px}
+    .card h2{color:var(--primary);margin-bottom:16px;font-size:20px}
+    .btn{background:linear-gradient(90deg,var(--primary),var(--secondary));border:none;color:#fff;padding:12px 20px;border-radius:12px;cursor:pointer;font-weight:700;font-size:14px;transition:.2s;font-family:inherit;text-decoration:none;display:inline-block}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(255,107,53,.3)}
+    .btn.alt{background:#fff;color:var(--primary);border:2px solid var(--primary)}
+    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+
+    /* Resumen */
+    .summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:16px 0}
+    .summary-item{text-align:center;padding:16px 10px;border-radius:14px;background:#f8f4f0}
+    .summary-item .val{font-size:28px;font-weight:900}
+    .summary-item .lbl{font-size:11px;color:#888;margin-top:2px}
+
+    /* Calendar grid */
+    .year-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+    .month-card{border:1px solid #ffe2cf;border-radius:14px;padding:14px;background:#fff}
+    .month-card h3{text-align:center;color:var(--primary);font-size:16px;margin-bottom:10px}
+    .cal-table{width:100%;border-collapse:collapse;table-layout:fixed}
+    .cal-table th{font-size:11px;color:#888;padding:4px;text-align:center;font-weight:600}
+    .cal-table td{text-align:center;padding:6px 2px;font-size:13px;cursor:default;position:relative;border-radius:6px}
+    .cal-table td.today{box-shadow:inset 0 0 0 2px var(--dark);font-weight:900}
+    .cal-table td.festivo-nacional{background:#FF6B35;color:#fff;font-weight:700;cursor:pointer}
+    .cal-table td.festivo-local{background:#4CAF50;color:#fff;font-weight:700;cursor:pointer}
+    .cal-table td.festivo-regional{background:#9C27B0;color:#fff;font-weight:700;cursor:pointer}
+    .cal-table td.puente{background:#FFF3E0;color:#e65100;font-weight:600;cursor:pointer}
+    .cal-table td.domingo{color:#e74c3c;font-weight:600}
+    .cal-table td.sabado{color:#2980b9}
+    .cal-table td.vacaciones{background:#E3F2FD;color:#1565C0;font-weight:600}
+    .cal-table td:hover:not(:empty){transform:scale(1.15);transition:.1s}
+
+    /* Leyenda */
+    .legend{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:16px 0;font-size:13px}
+    .legend-item{display:flex;align-items:center;gap:5px}
+    .legend-dot{width:16px;height:16px;border-radius:4px;flex-shrink:0}
+
+    /* Tooltip */
+    .tooltip{position:fixed;background:var(--dark);color:#fff;padding:10px 16px;border-radius:10px;font-size:13px;z-index:9999;pointer-events:none;max-width:280px;box-shadow:0 8px 24px rgba(0,0,0,.3);display:none}
+    .tooltip.show{display:block}
+
+    /* Configuración de turno */
+    .turno-config{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:16px 0}
+    .turno-config label{font-weight:700;font-size:13px;color:#555}
+    .turno-config select,.turno-config input{width:100%;padding:10px;border:2px solid #ffe2cf;border-radius:10px;font-size:14px;font-family:inherit}
+    .turno-config select:focus,.turno-config input:focus{outline:none;border-color:var(--primary)}
+
+    /* Timeline */
+    .timeline{position:relative;margin:16px 0;padding-left:20px;border-left:3px solid #ffe2cf}
+    .timeline-item{padding:10px 0 10px 16px;position:relative}
+    .timeline-item::before{content:'';position:absolute;left:-11px;top:14px;width:10px;height:10px;border-radius:50%;border:2px solid var(--primary);background:#fff}
+    .timeline-item.past::before{background:var(--green);border-color:var(--green)}
+    .timeline-item.next::before{background:var(--primary);border-color:var(--primary)}
+    .timeline-item .t-date{font-weight:800;color:var(--primary);font-size:14px}
+    .timeline-item .t-name{font-size:14px;color:var(--dark)}
+    .timeline-item .t-days{font-size:12px;color:#888}
+
+    .info-box{background:linear-gradient(90deg,#fff3e7,#ffe2cf);border-left:4px solid var(--accent);padding:14px;margin:12px 0;border-radius:8px;font-size:14px;line-height:1.6}
+
+    @media(max-width:600px){.turno-config{grid-template-columns:1fr}.year-grid{grid-template-columns:1fr}.summary-grid{grid-template-columns:repeat(3,1fr)}}
+  </style>
+</head>
+<body>
+  <link rel="stylesheet" href="css/nav.css">
+  <header class="premium-header">
+    <div class="header-content">
+      <a href="index.html" class="logo">🔥 ATRM · Tu Sindicato</a>
+      <button class="menu-toggle" onclick="document.querySelector('.menu').classList.toggle('open')" aria-label="Menú">☰</button>
+      <nav class="menu">
+        <a href="index.html">Inicio</a>
+        <a href="index.html#convenio">Viaria</a>
+        <a href="interiores.html">Interiores</a>
+        <a href="salaries.html">Salarios</a>
+        <a href="conceptos_2026.html">Conceptos 2026</a>
+        <a href="tramites.html">Trámites</a>
+        <a href="festivos.html">Festivos</a>
+        <a href="generador.html">📝 Docs</a>
+        <a href="podcasts.html">🎙️ Podcasts</a>
+        <a href="parentesco.html">👨‍👩‍👧‍👦 Parentesco</a>
+        <a href="verificador-nomina.html">🧾 Nómina</a>
+        <a href="calculadora-despido.html">📊 Despido</a>
+        <a href="calculadora-jubilacion.html">🏖️ Jubilación</a>
+        <a href="actas-transparencia.html">📋 Transparencia</a>
+        <a href="calendario-laboral.html">📅 Calendario</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <header class="page-title">
+    <h1>📅 CALENDARIO LABORAL INTERACTIVO 2026</h1>
+    <p>Festivos, puentes, vacaciones y cuenta atrás hasta el próximo descanso</p>
+  </header>
+
+  <div class="container">
+    <div class="actions">
+      <a class="btn alt" href="index.html">← Volver</a>
+      <a class="btn alt" href="festivos.html">📋 Festivos detallados</a>
+      <button class="btn" onclick="descargarICS()">📥 Descargar .ics</button>
+    </div>
+
+    <!-- Resumen anual -->
+    <div class="card">
+      <h2>📊 Resumen del año 2026</h2>
+      <div class="summary-grid">
+        <div class="summary-item"><div class="val" style="color:var(--primary)">14</div><div class="lbl">Festivos oficiales</div></div>
+        <div class="summary-item"><div class="val" style="color:var(--green)">52</div><div class="lbl">Domingos</div></div>
+        <div class="summary-item"><div class="val" style="color:var(--blue)">52</div><div class="lbl">Sábados</div></div>
+        <div class="summary-item"><div class="val" style="color:#9C27B0" id="resPuentes">3</div><div class="lbl">Posibles puentes</div></div>
+        <div class="summary-item"><div class="val" style="color:#e74c3c" id="resLaborables">249</div><div class="lbl">Días laborables</div></div>
+      </div>
+    </div>
+
+    <!-- Próximo festivo -->
+    <div class="card" id="proximoFestivo">
+      <h2>⏰ Próximo festivo / descanso</h2>
+      <div style="text-align:center;padding:20px">
+        <div style="font-size:48px;font-weight:900;color:var(--primary)" id="countdown">--</div>
+        <div style="font-size:14px;color:#888;margin:4px 0" id="countdownLabel">días para...</div>
+        <div style="font-size:20px;font-weight:700" id="countdownName">--</div>
+        <div style="font-size:14px;color:#666" id="countdownDate">--</div>
+      </div>
+    </div>
+
+    <!-- Leyenda -->
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#FF6B35"></div>Festivo nacional</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#4CAF50"></div>Festivo local</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#9C27B0"></div>Festivo regional</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#FFF3E0;border:1px solid #e65100"></div>Puente</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#e74c3c"></div>Domingo</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#E3F2FD;border:1px solid #1565C0"></div>Vacaciones</div>
+    </div>
+
+    <!-- Calendario anual -->
+    <div class="year-grid" id="yearGrid"></div>
+
+    <!-- Timeline de festivos -->
+    <div class="card" style="margin-top:20px">
+      <h2>🗓️ Línea temporal de festivos 2026</h2>
+      <div class="timeline" id="timeline"></div>
+    </div>
+
+    <!-- Info puentes -->
+    <div class="card">
+      <h2>🌉 Puentes y recomendaciones</h2>
+      <div id="puentesContent"></div>
+      <div class="info-box" style="margin-top:16px">
+        <strong>💡 Consejo ATRM:</strong> Planifica tus vacaciones con antelación. Recuerda que según convenio, el cuadrante de vacaciones debe publicarse con suficiente antelación y rotación equitativa. Si tienes dudas, consulta con el comité.
+      </div>
+    </div>
+  </div>
+
+  <div class="tooltip" id="tooltip"></div>
+
+  <link rel="stylesheet" href="css/bottom-nav.css">
+  <nav class="bottom-nav">
+    <a href="index.html" class="bottom-nav-item"><span class="bottom-nav-icon">🏠</span><span>Inicio</span></a>
+    <a href="salaries.html" class="bottom-nav-item"><span class="bottom-nav-icon">💰</span><span>Salarios</span></a>
+    <a href="noticias.html" class="bottom-nav-item"><span class="bottom-nav-icon">📰</span><span>Noticias</span></a>
+    <a href="tramites.html" class="bottom-nav-item"><span class="bottom-nav-icon">📋</span><span>Trámites</span></a>
+    <a href="index.html#contacto" class="bottom-nav-item"><span class="bottom-nav-icon">📞</span><span>Contacto</span></a>
+  </nav>
+
+<script>
+const YEAR = 2026;
+
+const festivos = [
+  { dia: 1, mes: 0, tipo: 'nacional', nombre: 'Año Nuevo' },
+  { dia: 6, mes: 0, tipo: 'nacional', nombre: 'Epifanía del Señor (Reyes)' },
+  { dia: 19, mes: 2, tipo: 'regional', nombre: 'San José (Región de Murcia)' },
+  { dia: 2, mes: 3, tipo: 'nacional', nombre: 'Jueves Santo' },
+  { dia: 3, mes: 3, tipo: 'nacional', nombre: 'Viernes Santo' },
+  { dia: 7, mes: 3, tipo: 'local', nombre: 'Bando de la Huerta (Murcia)' },
+  { dia: 1, mes: 4, tipo: 'nacional', nombre: 'Fiesta del Trabajo' },
+  { dia: 9, mes: 5, tipo: 'regional', nombre: 'Día de la Región de Murcia' },
+  { dia: 15, mes: 7, tipo: 'nacional', nombre: 'Asunción de la Virgen' },
+  { dia: 15, mes: 8, tipo: 'local', nombre: 'Romería de la Fuensanta (Murcia)' },
+  { dia: 12, mes: 9, tipo: 'nacional', nombre: 'Fiesta Nacional de España' },
+  { dia: 7, mes: 11, tipo: 'nacional', nombre: 'Día de la Constitución (trasladado)' },
+  { dia: 8, mes: 11, tipo: 'nacional', nombre: 'Inmaculada Concepción' },
+  { dia: 25, mes: 11, tipo: 'nacional', nombre: 'Natividad del Señor' }
+];
+
+// Puentes potenciales (día entre festivo y fin de semana)
+const puentes = [
+  { dia: 2, mes: 0, nombre: 'Puente de Año Nuevo', desc: 'Viernes 2 de enero (entre festivo y fin de semana)' },
+  { dia: 5, mes: 0, nombre: 'Puente de Reyes', desc: 'Lunes 5 de enero (víspera de Reyes, martes)' },
+  { dia: 20, mes: 2, nombre: 'Puente de San José', desc: 'Viernes 20 de marzo (San José es jueves)' }
+];
+
+const meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const diasSemana = ['Lu','Ma','Mi','Ju','Vi','Sá','Do'];
+
+// Tooltip
+const tooltip = document.getElementById('tooltip');
+function showTooltip(e, text) {
+  tooltip.textContent = text;
+  tooltip.classList.add('show');
+  tooltip.style.left = Math.min(e.clientX + 10, window.innerWidth - 300) + 'px';
+  tooltip.style.top = (e.clientY - 40) + 'px';
+}
+function hideTooltip() { tooltip.classList.remove('show'); }
+
+function esFestivo(dia, mes) {
+  return festivos.find(f => f.dia === dia && f.mes === mes);
+}
+function esPuente(dia, mes) {
+  return puentes.find(p => p.dia === dia && p.mes === mes);
+}
+
+function renderYearCalendar() {
+  const grid = document.getElementById('yearGrid');
+  const hoy = new Date();
+  let html = '';
+
+  for (let mes = 0; mes < 12; mes++) {
+    html += `<div class="month-card"><h3>${meses[mes]}</h3>`;
+    html += '<table class="cal-table"><thead><tr>';
+    diasSemana.forEach(d => html += `<th>${d}</th>`);
+    html += '</tr></thead><tbody><tr>';
+
+    const diasMes = new Date(YEAR, mes + 1, 0).getDate();
+    const primerDia = (new Date(YEAR, mes, 1).getDay() + 6) % 7;
+
+    for (let i = 0; i < primerDia; i++) html += '<td></td>';
+
+    for (let dia = 1; dia <= diasMes; dia++) {
+      const diaSem = (primerDia + dia - 1) % 7;
+      const fecha = new Date(YEAR, mes, dia);
+      const festivo = esFestivo(dia, mes);
+      const puente = esPuente(dia, mes);
+      const esHoy = hoy.getDate() === dia && hoy.getMonth() === mes && hoy.getFullYear() === YEAR;
+
+      let cls = [];
+      let title = '';
+
+      if (esHoy) cls.push('today');
+      if (festivo) {
+        cls.push('festivo-' + festivo.tipo);
+        title = festivo.nombre;
+      } else if (puente) {
+        cls.push('puente');
+        title = puente.nombre;
+      } else if (diaSem === 6) {
+        cls.push('domingo');
+      } else if (diaSem === 5) {
+        cls.push('sabado');
+      }
+
+      html += `<td class="${cls.join(' ')}" ${title ? `onmouseenter="showTooltip(event,'${title}')" onmouseleave="hideTooltip()" onclick="showTooltip(event,'${title}')"` : ''}>${dia}</td>`;
+
+      if (diaSem === 6 && dia < diasMes) html += '</tr><tr>';
+    }
+
+    // Rellenar fila final
+    const ultimoDia = (primerDia + diasMes - 1) % 7;
+    for (let i = ultimoDia + 1; i <= 6; i++) html += '<td></td>';
+
+    html += '</tr></tbody></table></div>';
+  }
+
+  grid.innerHTML = html;
+}
+
+function renderTimeline() {
+  const hoy = new Date();
+  const container = document.getElementById('timeline');
+  let html = '';
+
+  festivos.forEach(f => {
+    const fecha = new Date(YEAR, f.mes, f.dia);
+    const diasHasta = Math.ceil((fecha - hoy) / (1000 * 60 * 60 * 24));
+    const tipoClass = diasHasta < 0 ? 'past' : (diasHasta <= 30 ? 'next' : '');
+    const diasTexto = diasHasta < 0 ? `Hace ${Math.abs(diasHasta)} días` : diasHasta === 0 ? '¡HOY!' : `En ${diasHasta} días`;
+
+    html += `<div class="timeline-item ${tipoClass}">
+      <span class="t-date">${f.dia} de ${meses[f.mes]}</span>
+      <span class="t-name"> — ${f.nombre}</span>
+      <span class="t-days"> (${diasTexto})</span>
+    </div>`;
+  });
+
+  container.innerHTML = html;
+}
+
+function renderCountdown() {
+  const hoy = new Date();
+  hoy.setHours(0, 0, 0, 0);
+  let proximo = null;
+  let diasMin = Infinity;
+
+  festivos.forEach(f => {
+    const fecha = new Date(YEAR, f.mes, f.dia);
+    const diff = Math.ceil((fecha - hoy) / (1000 * 60 * 60 * 24));
+    if (diff >= 0 && diff < diasMin) {
+      diasMin = diff;
+      proximo = f;
+    }
+  });
+
+  if (proximo) {
+    const fecha = new Date(YEAR, proximo.mes, proximo.dia);
+    document.getElementById('countdown').textContent = diasMin === 0 ? '🎉' : diasMin;
+    document.getElementById('countdownLabel').textContent = diasMin === 0 ? '¡Hoy es festivo!' : (diasMin === 1 ? 'día para...' : 'días para...');
+    document.getElementById('countdownName').textContent = proximo.nombre;
+    document.getElementById('countdownDate').textContent = fecha.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  } else {
+    document.getElementById('countdown').textContent = '🏁';
+    document.getElementById('countdownLabel').textContent = '';
+    document.getElementById('countdownName').textContent = 'No quedan más festivos este año';
+    document.getElementById('countdownDate').textContent = '';
+  }
+}
+
+function renderPuentes() {
+  const container = document.getElementById('puentesContent');
+  let html = '';
+
+  // Analizar puentes reales
+  const puentesReales = [];
+  festivos.forEach(f => {
+    const fecha = new Date(YEAR, f.mes, f.dia);
+    const diaSem = (fecha.getDay() + 6) % 7; // 0=Lu .. 6=Do
+
+    if (diaSem === 1) { // Martes → lunes es puente
+      puentesReales.push({ dia: f.dia - 1, mes: f.mes, nombre: `Puente antes de ${f.nombre}`, desc: `Lunes ${f.dia - 1} de ${meses[f.mes]} — 4 días libres (sáb-dom-lun-mar)` });
+    }
+    if (diaSem === 3) { // Jueves → viernes es puente
+      puentesReales.push({ dia: f.dia + 1, mes: f.mes, nombre: `Puente después de ${f.nombre}`, desc: `Viernes ${f.dia + 1} de ${meses[f.mes]} — 4 días libres (jue-vie-sáb-dom)` });
+    }
+  });
+
+  if (puentesReales.length === 0) {
+    html = '<p style="color:#888;text-align:center;padding:16px">No se detectan puentes claros este año.</p>';
+  } else {
+    puentesReales.forEach(p => {
+      html += `<div style="display:flex;align-items:center;gap:12px;padding:12px;border-bottom:1px solid #f0e0d6">
+        <span style="font-size:28px">🌉</span>
+        <div>
+          <div style="font-weight:700;font-size:14px">${p.nombre}</div>
+          <div style="font-size:13px;color:#666">${p.desc}</div>
+        </div>
+      </div>`;
+    });
+  }
+
+  document.getElementById('resPuentes').textContent = puentesReales.length;
+
+  // Calcular laborables
+  let laborables = 0;
+  for (let m = 0; m < 12; m++) {
+    const dias = new Date(YEAR, m + 1, 0).getDate();
+    for (let d = 1; d <= dias; d++) {
+      const diaSem = (new Date(YEAR, m, d).getDay() + 6) % 7;
+      if (diaSem < 5 && !esFestivo(d, m)) laborables++;
+    }
+  }
+  document.getElementById('resLaborables').textContent = laborables;
+
+  container.innerHTML = html;
+}
+
+function descargarICS() {
+  let ics = 'BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//ATRM//Calendario 2026//ES\nCALSCALE:GREGORIAN\n';
+  festivos.forEach(f => {
+    const d = new Date(YEAR, f.mes, f.dia);
+    const fecha = d.toISOString().slice(0, 10).replace(/-/g, '');
+    ics += `BEGIN:VEVENT\nSUMMARY:${f.nombre}\nDTSTART;VALUE=DATE:${fecha}\nDTEND;VALUE=DATE:${fecha}\nDESCRIPTION:Festivo ${f.tipo} - ATRM Tu Sindicato\nEND:VEVENT\n`;
+  });
+  ics += 'END:VCALENDAR';
+  const blob = new Blob([ics.replace(/\n/g, '\r\n')], { type: 'text/calendar' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'calendario-atrm-2026.ics';
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 500);
+}
+
+// Init
+renderYearCalendar();
+renderTimeline();
+renderCountdown();
+renderPuentes();
+
+// Auto-refresh countdown every minute
+setInterval(renderCountdown, 60000);
+</script>
+</body>
+</html>

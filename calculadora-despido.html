@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Indemnización por Despido - ATRM</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#FF6B35">
+  <style>
+    :root{ --primary:#FF6B35; --secondary:#FF8C42; --accent:#FFA726; --dark:#2C3E50; --light:#FFFFFF; --green:#27ae60; --red:#e74c3c; --blue:#2980b9; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial;color:var(--dark);background:linear-gradient(180deg,#fff 0%,#fff7f0 100%)}
+    .container{max-width:900px;margin:0 auto;padding:20px}
+    .page-title{background:linear-gradient(90deg,var(--primary),var(--secondary));color:#fff;padding:22px;text-align:center}
+    .page-title h1{font-size:28px}
+    .page-title p{opacity:.9;margin-top:4px;font-size:14px}
+    .card{background:#fff;border:1px solid #ffe2cf;border-radius:18px;box-shadow:0 10px 24px rgba(255,119,51,.08);padding:24px;margin-bottom:20px}
+    .card h2{color:var(--primary);margin-bottom:16px;font-size:20px}
+    .form-group{margin-bottom:16px}
+    .form-group label{display:block;font-weight:700;margin-bottom:6px;font-size:14px;color:#555}
+    .form-group select,.form-group input{width:100%;padding:12px;border:2px solid #ffe2cf;border-radius:12px;font-size:15px;transition:.2s;font-family:inherit}
+    .form-group select:focus,.form-group input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(255,107,53,.15)}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .btn{background:linear-gradient(90deg,var(--primary),var(--secondary));border:none;color:#fff;padding:14px 24px;border-radius:12px;cursor:pointer;font-weight:700;font-size:16px;width:100%;transition:.2s;font-family:inherit}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(255,107,53,.3)}
+    .btn.alt{background:#fff;color:var(--primary);border:2px solid var(--primary)}
+    .result-panel{display:none}
+    .result-panel.show{display:block}
+    .result-big{text-align:center;padding:24px;background:linear-gradient(135deg,#fff3e6,#ffe8d6);border-radius:16px;margin:16px 0}
+    .result-big .amount{font-size:42px;font-weight:900;color:var(--primary);line-height:1.2}
+    .result-big .label{font-size:14px;color:#888;margin-top:4px}
+    .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+    .detail-item{background:#f8f4f0;padding:14px;border-radius:12px;text-align:center}
+    .detail-item .val{font-size:22px;font-weight:800;color:var(--dark)}
+    .detail-item .lbl{font-size:12px;color:#888;margin-top:2px}
+    .info-box{background:linear-gradient(90deg,#fff3e7,#ffe2cf);border-left:4px solid var(--accent);padding:14px;margin:12px 0;border-radius:8px;font-size:14px;line-height:1.6}
+    .type-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+    .type-card{padding:16px;border:2px solid #ffe2cf;border-radius:14px;cursor:pointer;transition:.2s;text-align:center}
+    .type-card:hover{border-color:var(--primary);background:#fff7f0}
+    .type-card.selected{border-color:var(--primary);background:#fff3e6;box-shadow:0 4px 12px rgba(255,107,53,.15)}
+    .type-card h3{font-size:16px;margin-bottom:6px}
+    .type-card p{font-size:12px;color:#777}
+    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+    .actions .btn{width:auto;font-size:14px;padding:10px 16px}
+    .warning{background:#fef3cd;border-left:4px solid #f39c12;padding:14px;border-radius:8px;margin:12px 0;font-size:14px}
+    @media(max-width:600px){.form-row,.type-cards,.detail-grid{grid-template-columns:1fr}.result-big .amount{font-size:32px}}
+  </style>
+</head>
+<body>
+  <link rel="stylesheet" href="css/nav.css">
+  <header class="premium-header">
+    <div class="header-content">
+      <a href="index.html" class="logo">🔥 ATRM · Tu Sindicato</a>
+      <button class="menu-toggle" onclick="document.querySelector('.menu').classList.toggle('open')" aria-label="Menú">☰</button>
+      <nav class="menu">
+        <a href="index.html">Inicio</a>
+        <a href="index.html#convenio">Viaria</a>
+        <a href="interiores.html">Interiores</a>
+        <a href="salaries.html">Salarios</a>
+        <a href="conceptos_2026.html">Conceptos 2026</a>
+        <a href="tramites.html">Trámites</a>
+        <a href="festivos.html">Festivos</a>
+        <a href="generador.html">📝 Docs</a>
+        <a href="podcasts.html">🎙️ Podcasts</a>
+        <a href="parentesco.html">👨‍👩‍👧‍👦 Parentesco</a>
+        <a href="verificador-nomina.html">🧾 Nómina</a>
+        <a href="calculadora-despido.html">📊 Despido</a>
+        <a href="calculadora-jubilacion.html">🏖️ Jubilación</a>
+        <a href="actas-transparencia.html">📋 Transparencia</a>
+        <a href="calendario-laboral.html">📅 Calendario</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <header class="page-title">
+    <h1>📊 CALCULADORA DE INDEMNIZACIÓN</h1>
+    <p>Calcula lo que te corresponde por despido</p>
+  </header>
+
+  <div class="container">
+    <div class="actions">
+      <a class="btn alt" href="index.html">← Volver</a>
+      <a class="btn alt" href="verificador-nomina.html">🧾 Verificar Nómina</a>
+      <a class="btn alt" href="calculadora-jubilacion.html">🏖️ Jubilación</a>
+    </div>
+
+    <div class="card">
+      <h2>📝 Tipo de despido</h2>
+      <div class="type-cards">
+        <div class="type-card" id="tipo-improcedente" onclick="selTipo('improcedente')">
+          <h3>❌ Improcedente</h3>
+          <p>33 días/año trabajado<br>Máximo 24 mensualidades</p>
+        </div>
+        <div class="type-card" id="tipo-objetivo" onclick="selTipo('objetivo')">
+          <h3>📋 Objetivo (procedente)</h3>
+          <p>20 días/año trabajado<br>Máximo 12 mensualidades</p>
+        </div>
+        <div class="type-card" id="tipo-colectivo" onclick="selTipo('colectivo')">
+          <h3>👥 ERE / Colectivo</h3>
+          <p>20 días/año trabajado<br>Máximo 12 mensualidades</p>
+        </div>
+        <div class="type-card" id="tipo-disciplinario" onclick="selTipo('disciplinario')">
+          <h3>⚖️ Disciplinario improcedente</h3>
+          <p>33 días/año trabajado<br>Máximo 24 mensualidades</p>
+        </div>
+      </div>
+      <input type="hidden" id="tipoDespido" value="">
+    </div>
+
+    <div class="card">
+      <h2>💼 Datos laborales</h2>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Salario bruto MENSUAL (€)</label>
+          <input type="number" id="salarioMes" step="0.01" placeholder="Ej: 1800" value="">
+        </div>
+        <div class="form-group">
+          <label>Salario bruto ANUAL (€)</label>
+          <input type="number" id="salarioAnual" step="0.01" placeholder="Se calcula solo" value="">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Fecha de inicio en la empresa</label>
+          <input type="date" id="fechaInicio">
+        </div>
+        <div class="form-group">
+          <label>Fecha del despido</label>
+          <input type="date" id="fechaDespido" value="">
+        </div>
+      </div>
+      <div class="info-box">
+        ℹ️ El salario debe incluir TODOS los conceptos: base + complementos + prorrata de pagas extra. Si no lo sabes, divide tu bruto anual entre 12.
+      </div>
+    </div>
+
+    <button class="btn" onclick="calcular()">📊 CALCULAR INDEMNIZACIÓN</button>
+
+    <div id="resultado" class="result-panel">
+      <div class="card">
+        <h2>💰 Tu indemnización</h2>
+        <div class="result-big">
+          <div class="amount" id="resTotal">0,00 €</div>
+          <div class="label">Indemnización bruta estimada</div>
+        </div>
+        <div class="detail-grid">
+          <div class="detail-item">
+            <div class="val" id="resAnios">0</div>
+            <div class="lbl">Años trabajados</div>
+          </div>
+          <div class="detail-item">
+            <div class="val" id="resMeses">0</div>
+            <div class="lbl">Meses adicionales</div>
+          </div>
+          <div class="detail-item">
+            <div class="val" id="resDiasAnio">0</div>
+            <div class="lbl">Días / año</div>
+          </div>
+          <div class="detail-item">
+            <div class="val" id="resTope">0</div>
+            <div class="lbl">Tope mensualidades</div>
+          </div>
+        </div>
+        <div id="detalleCalculo" class="info-box"></div>
+        <div class="warning">
+          <strong>⚠️ Importante:</strong> Esta indemnización está <strong>exenta de IRPF</strong> hasta la cuantía obligatoria. La empresa debe abonarte también los salarios de tramitación si aplica (despido improcedente judicial). Consulta con ATRM para revisar tu carta de despido.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>📚 ¿Qué tipo de despido es el mío?</h2>
+      <div class="info-box">
+        <strong>Despido improcedente:</strong> La empresa no justifica la causa o no sigue el procedimiento legal. 33 días/año, máximo 24 mensualidades.<br><br>
+        <strong>Despido objetivo:</strong> Causas económicas, técnicas, organizativas o de producción debidamente acreditadas. 20 días/año, máximo 12 mensualidades.<br><br>
+        <strong>ERE / Despido colectivo:</strong> Afecta a múltiples trabajadores. Misma indemnización que objetivo (20 días/año).<br><br>
+        <strong>Despido disciplinario declarado improcedente:</strong> La empresa alega una falta grave pero no la prueba. 33 días/año.<br><br>
+        <strong>📞 Si te despiden, contacta INMEDIATAMENTE con ATRM.</strong> Tienes 20 días hábiles para impugnar.
+      </div>
+    </div>
+  </div>
+
+  <link rel="stylesheet" href="css/bottom-nav.css">
+  <nav class="bottom-nav">
+    <a href="index.html" class="bottom-nav-item"><span class="bottom-nav-icon">🏠</span><span>Inicio</span></a>
+    <a href="salaries.html" class="bottom-nav-item"><span class="bottom-nav-icon">💰</span><span>Salarios</span></a>
+    <a href="noticias.html" class="bottom-nav-item"><span class="bottom-nav-icon">📰</span><span>Noticias</span></a>
+    <a href="tramites.html" class="bottom-nav-item"><span class="bottom-nav-icon">📋</span><span>Trámites</span></a>
+    <a href="index.html#contacto" class="bottom-nav-item"><span class="bottom-nav-icon">📞</span><span>Contacto</span></a>
+  </nav>
+
+<script>
+// Auto-calculate annual from monthly
+document.getElementById('salarioMes').addEventListener('input', function() {
+  const m = parseFloat(this.value);
+  if (m > 0) document.getElementById('salarioAnual').value = (m * 12).toFixed(2);
+});
+document.getElementById('salarioAnual').addEventListener('input', function() {
+  const a = parseFloat(this.value);
+  if (a > 0) document.getElementById('salarioMes').value = (a / 12).toFixed(2);
+});
+
+// Set default despido date to today
+document.getElementById('fechaDespido').value = new Date().toISOString().split('T')[0];
+
+let tipoSeleccionado = '';
+function selTipo(tipo) {
+  tipoSeleccionado = tipo;
+  document.querySelectorAll('.type-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById('tipo-' + tipo).classList.add('selected');
+}
+
+function calcular() {
+  if (!tipoSeleccionado) { alert('Selecciona el tipo de despido'); return; }
+  const salarioAnual = parseFloat(document.getElementById('salarioAnual').value);
+  const fechaInicio = document.getElementById('fechaInicio').value;
+  const fechaDespido = document.getElementById('fechaDespido').value;
+  
+  if (!salarioAnual || !fechaInicio || !fechaDespido) {
+    alert('Completa todos los campos'); return;
+  }
+
+  const inicio = new Date(fechaInicio);
+  const despido = new Date(fechaDespido);
+  if (despido <= inicio) { alert('La fecha de despido debe ser posterior a la de inicio'); return; }
+
+  // Calcula años y meses
+  const diffMs = despido - inicio;
+  const totalDias = diffMs / (1000 * 60 * 60 * 24);
+  const anios = Math.floor(totalDias / 365.25);
+  const mesesRestantes = Math.floor((totalDias % 365.25) / 30.44);
+  const fraccionAnio = totalDias / 365.25;
+
+  // Tipo de despido
+  let diasPorAnio, topeMensualidades;
+  if (tipoSeleccionado === 'improcedente' || tipoSeleccionado === 'disciplinario') {
+    diasPorAnio = 33;
+    topeMensualidades = 24;
+  } else {
+    diasPorAnio = 20;
+    topeMensualidades = 12;
+  }
+
+  // Salario diario
+  const salarioDiario = salarioAnual / 365;
+  
+  // Indemnización = días/año × años trabajados × salario diario
+  let indemnizacion = diasPorAnio * fraccionAnio * salarioDiario;
+  
+  // Tope
+  const topeIndemnizacion = topeMensualidades * (salarioAnual / 12);
+  const aplicaTope = indemnizacion > topeIndemnizacion;
+  if (aplicaTope) indemnizacion = topeIndemnizacion;
+
+  // Mostrar resultado
+  document.getElementById('resTotal').textContent = indemnizacion.toLocaleString('es-ES', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' €';
+  document.getElementById('resAnios').textContent = anios;
+  document.getElementById('resMeses').textContent = mesesRestantes;
+  document.getElementById('resDiasAnio').textContent = diasPorAnio;
+  document.getElementById('resTope').textContent = topeMensualidades;
+
+  document.getElementById('detalleCalculo').innerHTML = `
+    <strong>📐 Detalle del cálculo:</strong><br>
+    • Salario diario: ${salarioDiario.toFixed(2)} € (${salarioAnual.toFixed(2)} € ÷ 365)<br>
+    • Tiempo trabajado: ${anios} años y ${mesesRestantes} meses (${fraccionAnio.toFixed(2)} años)<br>
+    • Cálculo: ${diasPorAnio} días × ${fraccionAnio.toFixed(2)} años × ${salarioDiario.toFixed(2)} €/día = <strong>${(diasPorAnio * fraccionAnio * salarioDiario).toFixed(2)} €</strong><br>
+    ${aplicaTope ? '• ⚠️ Se aplica tope de ' + topeMensualidades + ' mensualidades: ' + topeIndemnizacion.toFixed(2) + ' €' : '• No se aplica tope (' + topeMensualidades + ' mensualidades = ' + topeIndemnizacion.toFixed(2) + ' €)'}
+  `;
+
+  document.getElementById('resultado').classList.add('show');
+  document.getElementById('resultado').scrollIntoView({behavior: 'smooth'});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verificador de Nómina - ATRM</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#FF6B35">
+  <style>
+    :root{ --primary:#FF6B35; --secondary:#FF8C42; --accent:#FFA726; --dark:#2C3E50; --light:#FFFFFF; --green:#27ae60; --red:#e74c3c; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial;color:var(--dark);background:linear-gradient(180deg,#fff 0%,#fff7f0 100%)}
+    .container{max-width:900px;margin:0 auto;padding:20px}
+    .page-title{background:linear-gradient(90deg,var(--primary),var(--secondary));color:#fff;padding:22px;text-align:center}
+    .page-title h1{font-size:28px}
+    .page-title p{opacity:.9;margin-top:4px;font-size:14px}
+    .card{background:#fff;border:1px solid #ffe2cf;border-radius:18px;box-shadow:0 10px 24px rgba(255,119,51,.08);padding:24px;margin-bottom:20px}
+    .card h2{color:var(--primary);margin-bottom:16px;font-size:20px;display:flex;align-items:center;gap:8px}
+    .form-group{margin-bottom:16px}
+    .form-group label{display:block;font-weight:700;margin-bottom:6px;font-size:14px;color:#555}
+    .form-group select,.form-group input{width:100%;padding:12px;border:2px solid #ffe2cf;border-radius:12px;font-size:15px;transition:.2s;font-family:inherit}
+    .form-group select:focus,.form-group input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(255,107,53,.15)}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .btn{background:linear-gradient(90deg,var(--primary),var(--secondary));border:none;color:#fff;padding:14px 24px;border-radius:12px;cursor:pointer;font-weight:700;font-size:16px;width:100%;transition:.2s;font-family:inherit}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(255,107,53,.3)}
+    .btn.alt{background:#fff;color:var(--primary);border:2px solid var(--primary)}
+    .result-panel{display:none;margin-top:20px}
+    .result-panel.show{display:block}
+    .result-table{width:100%;border-collapse:collapse;margin:12px 0}
+    .result-table th{background:var(--primary);color:#fff;padding:10px;text-align:left;font-size:13px}
+    .result-table td{padding:10px;border-bottom:1px solid #f0e0d6;font-size:14px}
+    .result-table tr:hover{background:#fff7f0}
+    .col-concepto{width:40%}
+    .col-convenio,.col-tunomina,.col-diff{width:20%;text-align:right}
+    .ok{color:var(--green);font-weight:700}
+    .error{color:var(--red);font-weight:700}
+    .summary-box{padding:16px;border-radius:12px;margin-top:16px;font-weight:700;text-align:center;font-size:18px}
+    .summary-ok{background:#e8f8f0;border:2px solid var(--green);color:var(--green)}
+    .summary-error{background:#fde8e8;border:2px solid var(--red);color:var(--red)}
+    .info-box{background:linear-gradient(90deg,#fff3e7,#ffe2cf);border-left:4px solid var(--accent);padding:14px;margin:12px 0;border-radius:8px;font-size:14px}
+    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+    .actions .btn{width:auto;font-size:14px;padding:10px 16px}
+    .tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700}
+    .tag-viaria{background:#fff3e6;color:var(--primary)}
+    .tag-interiores{background:#e8f0ff;color:#2980b9}
+    @media(max-width:600px){.form-row{grid-template-columns:1fr}.result-table{font-size:12px}.result-table td,.result-table th{padding:8px 6px}}
+  </style>
+</head>
+<body>
+  <link rel="stylesheet" href="css/nav.css">
+  <header class="premium-header">
+    <div class="header-content">
+      <a href="index.html" class="logo">🔥 ATRM · Tu Sindicato</a>
+      <button class="menu-toggle" onclick="document.querySelector('.menu').classList.toggle('open')" aria-label="Menú">☰</button>
+      <nav class="menu">
+        <a href="index.html">Inicio</a>
+        <a href="index.html#convenio">Viaria</a>
+        <a href="interiores.html">Interiores</a>
+        <a href="salaries.html">Salarios</a>
+        <a href="conceptos_2026.html">Conceptos 2026</a>
+        <a href="tramites.html">Trámites</a>
+        <a href="festivos.html">Festivos</a>
+        <a href="generador.html">📝 Docs</a>
+        <a href="podcasts.html">🎙️ Podcasts</a>
+        <a href="parentesco.html">👨‍👩‍👧‍👦 Parentesco</a>
+        <a href="verificador-nomina.html" class="active">🧾 Nómina</a>
+        <a href="calculadora-despido.html">📊 Despido</a>
+        <a href="calculadora-jubilacion.html">🏖️ Jubilación</a>
+        <a href="actas-transparencia.html">📋 Transparencia</a>
+        <a href="calendario-laboral.html">📅 Calendario</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <header class="page-title">
+    <h1>🧾 VERIFICADOR DE NÓMINA</h1>
+    <p>Comprueba si tu nómina es correcta según convenio</p>
+  </header>
+
+  <div class="container">
+    <div class="actions">
+      <a class="btn alt" href="index.html">← Volver</a>
+      <a class="btn alt" href="calculadora-despido.html">📊 Indemnización</a>
+      <a class="btn alt" href="calculadora-jubilacion.html">🏖️ Jubilación</a>
+    </div>
+
+    <div class="card">
+      <h2>📋 Datos del trabajador</h2>
+      
+      <div class="form-group">
+        <label>Convenio</label>
+        <select id="convenio" onchange="cargarCategorias()">
+          <option value="">-- Selecciona convenio --</option>
+          <option value="viaria">🟠 Limpieza Pública Viaria</option>
+          <option value="interiores">🔵 Limpieza de Edificios e Interiores</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Categoría profesional</label>
+        <select id="categoria">
+          <option value="">-- Selecciona primero el convenio --</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Antigüedad en la empresa (años)</label>
+          <input type="number" id="antiguedad" min="0" max="50" value="0" placeholder="Ej: 8">
+        </div>
+        <div class="form-group" id="turnoGroup" style="display:none">
+          <label>Turno</label>
+          <select id="turno">
+            <option value="diurno">Diurno</option>
+            <option value="nocturno">Nocturno</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>💰 Datos de tu nómina (este mes)</h2>
+      <div class="info-box">
+        ℹ️ Introduce los importes BRUTOS que aparecen en tu nómina. Si un concepto no aparece, déjalo a 0.
+      </div>
+
+      <div id="camposViaria" style="display:none">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Salario Base</label>
+            <input type="number" id="n_sbase" step="0.01" value="0" placeholder="0.00">
+          </div>
+          <div class="form-group">
+            <label>Plus Toxicidad</label>
+            <input type="number" id="n_tox" step="0.01" value="0" placeholder="0.00">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Plus Rendimiento (P.R.D.)</label>
+            <input type="number" id="n_prd" step="0.01" value="0" placeholder="0.00">
+          </div>
+          <div class="form-group">
+            <label>Plus Transporte</label>
+            <input type="number" id="n_transporte" step="0.01" value="0" placeholder="0.00">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Antigüedad / Quinquenios</label>
+            <input type="number" id="n_antiguedad_v" step="0.01" value="0" placeholder="0.00">
+          </div>
+          <div class="form-group">
+            <label>Horas Extra (si aplica)</label>
+            <input type="number" id="n_horas_extra" step="0.01" value="0" placeholder="0.00">
+          </div>
+        </div>
+      </div>
+
+      <div id="camposInteriores" style="display:none">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Salario Base</label>
+            <input type="number" id="n_sbase_i" step="0.01" value="0" placeholder="0.00">
+          </div>
+          <div class="form-group">
+            <label>Plus Asistencia</label>
+            <input type="number" id="n_asistencia" step="0.01" value="0" placeholder="0.00">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Plus Nocturnidad</label>
+            <input type="number" id="n_nocturnidad" step="0.01" value="0" placeholder="0.00">
+          </div>
+          <div class="form-group">
+            <label>Antigüedad (consolidada)</label>
+            <input type="number" id="n_antiguedad_i" step="0.01" value="0" placeholder="0.00">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn" onclick="verificar()">🔍 VERIFICAR MI NÓMINA</button>
+
+    <div id="resultado" class="result-panel">
+      <div class="card">
+        <h2>📊 Resultado de la verificación</h2>
+        <div id="tagConvenio"></div>
+        <table class="result-table">
+          <thead>
+            <tr>
+              <th class="col-concepto">Concepto</th>
+              <th class="col-convenio">Según convenio</th>
+              <th class="col-tunomina">Tu nómina</th>
+              <th class="col-diff">Diferencia</th>
+            </tr>
+          </thead>
+          <tbody id="resultBody"></tbody>
+        </table>
+        <div id="summaryBox"></div>
+        <div class="info-box" id="recomendacion" style="display:none"></div>
+      </div>
+    </div>
+  </div>
+
+  <link rel="stylesheet" href="css/bottom-nav.css">
+  <nav class="bottom-nav">
+    <a href="index.html" class="bottom-nav-item"><span class="bottom-nav-icon">🏠</span><span>Inicio</span></a>
+    <a href="salaries.html" class="bottom-nav-item"><span class="bottom-nav-icon">💰</span><span>Salarios</span></a>
+    <a href="noticias.html" class="bottom-nav-item"><span class="bottom-nav-icon">📰</span><span>Noticias</span></a>
+    <a href="tramites.html" class="bottom-nav-item"><span class="bottom-nav-icon">📋</span><span>Trámites</span></a>
+    <a href="index.html#contacto" class="bottom-nav-item"><span class="bottom-nav-icon">📞</span><span>Contacto</span></a>
+  </nav>
+
+<script>
+// DATOS VIARIA
+const datosViaria = [
+  {nombre:"PEÓN RECOGIDA",salario_base:1360.42,toxico:408.13,prd:164.90,plus_transporte:70.79,total_anual:33475.19},
+  {nombre:"PEÓN LIMPIEZA",salario_base:1360.42,toxico:408.13,prd:35.59,plus_transporte:70.79,total_anual:31353.79},
+  {nombre:"PEÓN JARDINERÍA Y LAVADERO",salario_base:1362.62,toxico:408.79,prd:35.59,plus_transporte:70.79,total_anual:31406.82},
+  {nombre:"CONDUCTOR RECOGIDA",salario_base:1434.73,toxico:430.42,prd:281.52,plus_transporte:70.79,total_anual:36977.49},
+  {nombre:"CONDUCTOR LIMPIEZA Y AYD. MECÁNICO",salario_base:1434.73,toxico:430.42,prd:137.58,plus_transporte:70.79,total_anual:34515.87},
+  {nombre:"ENCARGADO BRIGADA RECOGIDA",salario_base:1501.40,toxico:450.42,prd:275.64,plus_transporte:70.79,total_anual:38303.77},
+  {nombre:"ENCARGADO BRIGADA LIMPIEZA",salario_base:1501.40,toxico:450.42,prd:125.41,plus_transporte:70.79,total_anual:35857.43},
+  {nombre:"INSPECTOR DISTRITO RECOGIDA",salario_base:1558.95,toxico:467.68,prd:270.29,plus_transporte:70.79,total_anual:39444.61},
+  {nombre:"INSPECTOR DISTRITO LIMPIEZA",salario_base:1558.95,toxico:467.68,prd:120.21,plus_transporte:70.79,total_anual:36960.09},
+  {nombre:"AUXILIAR ADMON. Y TELEFONISTA",salario_base:1360.99,toxico:408.30,prd:25.74,plus_transporte:78.91,total_anual:31305.20},
+  {nombre:"OFICIAL ADMON. 2ª",salario_base:1601.13,toxico:480.34,prd:37.65,plus_transporte:145.46,total_anual:37443.56},
+  {nombre:"OFICIAL ADMON 1ª",salario_base:1787.92,toxico:536.38,prd:37.37,plus_transporte:138.28,total_anual:41335.14},
+  {nombre:"JEFE ADMON. / JEFE TALLER",salario_base:1833.28,toxico:549.98,prd:37.12,plus_transporte:134.02,total_anual:42250.52}
+];
+
+// DATOS INTERIORES
+const datosInteriores = [
+  {nombre:"Peón/a Limpiador/a",salario_base:1050.00},
+  {nombre:"Limpiador/a Especialista",salario_base:1100.00},
+  {nombre:"Limpiador/a Especialista Cristalero/a",salario_base:1150.00},
+  {nombre:"Jefe/a de Equipo",salario_base:1250.00},
+  {nombre:"Encargado/a",salario_base:1400.00},
+  {nombre:"Auxiliar Administrativo/a",salario_base:1100.00},
+  {nombre:"Oficial Administrativo/a",salario_base:1300.00}
+];
+
+function cargarCategorias() {
+  const conv = document.getElementById('convenio').value;
+  const sel = document.getElementById('categoria');
+  sel.innerHTML = '<option value="">-- Selecciona categoría --</option>';
+  
+  document.getElementById('camposViaria').style.display = conv === 'viaria' ? 'block' : 'none';
+  document.getElementById('camposInteriores').style.display = conv === 'interiores' ? 'block' : 'none';
+  document.getElementById('turnoGroup').style.display = conv === 'interiores' ? 'block' : 'none';
+
+  const datos = conv === 'viaria' ? datosViaria : conv === 'interiores' ? datosInteriores : [];
+  datos.forEach((c, i) => {
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = c.nombre;
+    sel.appendChild(opt);
+  });
+}
+
+function verificar() {
+  const conv = document.getElementById('convenio').value;
+  const catIdx = document.getElementById('categoria').value;
+  if (!conv || catIdx === '') { alert('Selecciona convenio y categoría'); return; }
+
+  const antiguedad = parseInt(document.getElementById('antiguedad').value) || 0;
+  const body = document.getElementById('resultBody');
+  body.innerHTML = '';
+  let errores = 0;
+  let totalDiffMes = 0;
+
+  if (conv === 'viaria') {
+    const cat = datosViaria[catIdx];
+    // Quinquenios: 5% del salario base cada 5 años, máx 5 quinquenios
+    const numQuinquenios = Math.min(Math.floor(antiguedad / 5), 5);
+    const importeQuinquenio = numQuinquenios * (cat.salario_base * 0.05);
+
+    const conceptos = [
+      {nombre: 'Salario Base', convenio: cat.salario_base, nomina: parseFloat(document.getElementById('n_sbase').value) || 0},
+      {nombre: 'Plus Toxicidad (30%)', convenio: cat.toxico, nomina: parseFloat(document.getElementById('n_tox').value) || 0},
+      {nombre: 'Plus Rendimiento (P.R.D.)', convenio: cat.prd, nomina: parseFloat(document.getElementById('n_prd').value) || 0},
+      {nombre: 'Plus Transporte', convenio: cat.plus_transporte, nomina: parseFloat(document.getElementById('n_transporte').value) || 0},
+      {nombre: `Antigüedad (${numQuinquenios} quinquenios)`, convenio: importeQuinquenio, nomina: parseFloat(document.getElementById('n_antiguedad_v').value) || 0}
+    ];
+
+    conceptos.forEach(c => {
+      const diff = c.nomina - c.convenio;
+      totalDiffMes += diff;
+      const esOk = Math.abs(diff) < 1;
+      if (!esOk) errores++;
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${c.nombre}</td>
+        <td style="text-align:right;font-weight:700">${c.convenio.toFixed(2)} €</td>
+        <td style="text-align:right">${c.nomina.toFixed(2)} €</td>
+        <td style="text-align:right" class="${esOk ? 'ok' : 'error'}">${diff >= 0 ? '+' : ''}${diff.toFixed(2)} € ${esOk ? '✅' : '❌'}</td>`;
+      body.appendChild(tr);
+    });
+
+    document.getElementById('tagConvenio').innerHTML = '<span class="tag tag-viaria">🟠 Viaria - ' + cat.nombre + '</span>';
+    
+  } else {
+    const cat = datosInteriores[catIdx];
+    const turno = document.getElementById('turno').value;
+    const plusNocturnidad = turno === 'nocturno' ? cat.salario_base * 0.25 : 0;
+
+    const conceptos = [
+      {nombre: 'Salario Base', convenio: cat.salario_base, nomina: parseFloat(document.getElementById('n_sbase_i').value) || 0},
+      {nombre: 'Plus Asistencia', convenio: 80, nomina: parseFloat(document.getElementById('n_asistencia').value) || 0},
+    ];
+    if (turno === 'nocturno') {
+      conceptos.push({nombre: 'Plus Nocturnidad (25%)', convenio: plusNocturnidad, nomina: parseFloat(document.getElementById('n_nocturnidad').value) || 0});
+    }
+    conceptos.push({nombre: 'Antigüedad (consolidada)', convenio: 0, nomina: parseFloat(document.getElementById('n_antiguedad_i').value) || 0, skip: true});
+
+    conceptos.forEach(c => {
+      const diff = c.nomina - c.convenio;
+      if (!c.skip) totalDiffMes += diff;
+      const esOk = c.skip || Math.abs(diff) < 1;
+      if (!esOk) errores++;
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${c.nombre}</td>
+        <td style="text-align:right;font-weight:700">${c.skip ? 'Variable' : c.convenio.toFixed(2) + ' €'}</td>
+        <td style="text-align:right">${c.nomina.toFixed(2)} €</td>
+        <td style="text-align:right" class="${esOk ? 'ok' : 'error'}">${c.skip ? 'ℹ️' : (diff >= 0 ? '+' : '') + diff.toFixed(2) + ' € ' + (esOk ? '✅' : '❌')}</td>`;
+      body.appendChild(tr);
+    });
+
+    document.getElementById('tagConvenio').innerHTML = '<span class="tag tag-interiores">🔵 Interiores - ' + cat.nombre + '</span>';
+  }
+
+  // Summary
+  const sumBox = document.getElementById('summaryBox');
+  const recBox = document.getElementById('recomendacion');
+  if (errores === 0) {
+    sumBox.className = 'summary-box summary-ok';
+    sumBox.innerHTML = '✅ Tu nómina parece CORRECTA según convenio';
+    recBox.style.display = 'none';
+  } else {
+    sumBox.className = 'summary-box summary-error';
+    sumBox.innerHTML = `❌ Se han encontrado ${errores} diferencia${errores > 1 ? 's' : ''} — ${totalDiffMes < 0 ? 'Te deben' : 'Diferencia de'} <strong>${Math.abs(totalDiffMes).toFixed(2)} €/mes</strong> (${Math.abs(totalDiffMes * 12).toFixed(2)} €/año)`;
+    recBox.style.display = 'block';
+    recBox.innerHTML = `<strong>⚠️ ¿Qué hacer?</strong><br>
+    1. Guarda una captura de esta verificación<br>
+    2. Contacta con tu delegado de ATRM<br>
+    3. Presenta reclamación formal a la empresa<br>
+    4. Si no responden, denuncia ante la Inspección de Trabajo<br><br>
+    📞 <strong>ATRM te ayuda gratis</strong> — Contacta con nosotros`;
+  }
+
+  document.getElementById('resultado').classList.add('show');
+  document.getElementById('resultado').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>

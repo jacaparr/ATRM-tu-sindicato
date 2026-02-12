@@ -1,4 +1,4 @@
-const CACHE_NAME = 'atrm-cache-v21';
+const CACHE_NAME = 'atrm-cache-v22';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -11,6 +11,11 @@ const ASSETS_TO_CACHE = [
   './festivos.html',
   './noticias.html',
   './podcasts.html',
+  './verificador-nomina.html',
+  './calculadora-despido.html',
+  './calculadora-jubilacion.html',
+  './actas-transparencia.html',
+  './calendario-laboral.html',
   './css/nav.css',
   './css/professional-theme.css',
   './css/professional-ui.css',

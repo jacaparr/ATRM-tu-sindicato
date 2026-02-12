@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actas y Transparencia - ATRM</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#FF6B35">
+  <style>
+    :root{ --primary:#FF6B35; --secondary:#FF8C42; --accent:#FFA726; --dark:#2C3E50; --light:#FFFFFF; --green:#27ae60; --blue:#2980b9; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial;color:var(--dark);background:linear-gradient(180deg,#fff 0%,#fff7f0 100%)}
+    .container{max-width:960px;margin:0 auto;padding:20px}
+    .page-title{background:linear-gradient(90deg,var(--primary),var(--secondary));color:#fff;padding:22px;text-align:center}
+    .page-title h1{font-size:28px}
+    .page-title p{opacity:.9;margin-top:4px;font-size:14px}
+    .card{background:#fff;border:1px solid #ffe2cf;border-radius:18px;box-shadow:0 10px 24px rgba(255,119,51,.08);padding:24px;margin-bottom:20px}
+    .card h2{color:var(--primary);margin-bottom:16px;font-size:20px}
+    .btn{background:linear-gradient(90deg,var(--primary),var(--secondary));border:none;color:#fff;padding:14px 24px;border-radius:12px;cursor:pointer;font-weight:700;font-size:16px;transition:.2s;font-family:inherit;text-decoration:none;display:inline-block}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(255,107,53,.3)}
+    .btn.alt{background:#fff;color:var(--primary);border:2px solid var(--primary)}
+    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+    .actions .btn{font-size:14px;padding:10px 16px}
+
+    /* Principios */
+    .principles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:16px 0}
+    .principle{text-align:center;padding:20px;background:linear-gradient(135deg,#fff7f0,#ffe8d6);border-radius:16px;border:1px solid #ffe2cf}
+    .principle .icon{font-size:40px;margin-bottom:8px}
+    .principle h3{font-size:16px;color:var(--dark);margin-bottom:4px}
+    .principle p{font-size:13px;color:#666}
+
+    /* Actas */
+    .acta{border:2px solid #ffe2cf;border-radius:16px;padding:20px;margin:12px 0;transition:.2s}
+    .acta:hover{border-color:var(--primary);box-shadow:0 4px 16px rgba(255,107,53,.1)}
+    .acta-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+    .acta-header h3{font-size:16px;color:var(--dark)}
+    .acta-date{background:var(--primary);color:#fff;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700}
+    .acta-type{display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;margin:6px 4px 6px 0}
+    .acta-type.comite{background:#e8f0fe;color:#1a73e8}
+    .acta-type.asamblea{background:#e6f4ea;color:#137333}
+    .acta-type.negociacion{background:#fef3e0;color:#e37400}
+    .acta-type.empresa{background:#fce8e6;color:#c5221f}
+    .acta-body{margin-top:10px;font-size:14px;color:#555;line-height:1.7}
+    .acta-body ul{margin:6px 0 6px 20px}
+    .acta-body li{margin:4px 0}
+    .acta-tags{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
+    .acta-tag{background:#f0e0d6;color:var(--dark);padding:3px 10px;border-radius:12px;font-size:11px}
+
+    /* Cuentas */
+    .cuenta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:16px 0}
+    .cuenta-item{background:linear-gradient(135deg,#f8f9fa,#e9ecef);padding:16px;border-radius:14px;text-align:center}
+    .cuenta-item .val{font-size:24px;font-weight:800;color:var(--primary)}
+    .cuenta-item .lbl{font-size:12px;color:#888;margin-top:2px}
+    .cuenta-item.ingreso{border-left:4px solid var(--green)}
+    .cuenta-item.gasto{border-left:4px solid #e74c3c}
+    .cuenta-item.saldo{border-left:4px solid var(--blue)}
+
+    .year-select{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+    .year-btn{padding:8px 20px;border:2px solid #e0e0e0;border-radius:12px;cursor:pointer;font-weight:700;font-size:14px;background:#fff;transition:.2s;font-family:inherit}
+    .year-btn.active{border-color:var(--primary);background:var(--primary);color:#fff}
+    .year-btn:hover{border-color:var(--primary)}
+
+    .filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+    .filter-btn{padding:6px 14px;border:1px solid #ddd;border-radius:20px;cursor:pointer;font-size:13px;background:#fff;transition:.2s;font-family:inherit}
+    .filter-btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+    .info-box{background:linear-gradient(90deg,#fff3e7,#ffe2cf);border-left:4px solid var(--accent);padding:14px;margin:12px 0;border-radius:8px;font-size:14px;line-height:1.6}
+    @media(max-width:600px){.cuenta-grid{grid-template-columns:1fr 1fr}.acta-header{flex-direction:column;align-items:flex-start}}
+  </style>
+</head>
+<body>
+  <link rel="stylesheet" href="css/nav.css">
+  <header class="premium-header">
+    <div class="header-content">
+      <a href="index.html" class="logo">🔥 ATRM · Tu Sindicato</a>
+      <button class="menu-toggle" onclick="document.querySelector('.menu').classList.toggle('open')" aria-label="Menú">☰</button>
+      <nav class="menu">
+        <a href="index.html">Inicio</a>
+        <a href="index.html#convenio">Viaria</a>
+        <a href="interiores.html">Interiores</a>
+        <a href="salaries.html">Salarios</a>
+        <a href="conceptos_2026.html">Conceptos 2026</a>
+        <a href="tramites.html">Trámites</a>
+        <a href="festivos.html">Festivos</a>
+        <a href="generador.html">📝 Docs</a>
+        <a href="podcasts.html">🎙️ Podcasts</a>
+        <a href="parentesco.html">👨‍👩‍👧‍👦 Parentesco</a>
+        <a href="verificador-nomina.html">🧾 Nómina</a>
+        <a href="calculadora-despido.html">📊 Despido</a>
+        <a href="calculadora-jubilacion.html">🏖️ Jubilación</a>
+        <a href="actas-transparencia.html">📋 Transparencia</a>
+        <a href="calendario-laboral.html">📅 Calendario</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <header class="page-title">
+    <h1>📋 ACTAS Y TRANSPARENCIA</h1>
+    <p>Toda la actividad sindical, abierta y accesible</p>
+  </header>
+
+  <div class="container">
+    <div class="actions">
+      <a class="btn alt" href="index.html">← Volver</a>
+    </div>
+
+    <!-- Principios -->
+    <div class="card">
+      <h2>🏛️ Nuestro compromiso con la transparencia</h2>
+      <div class="principles">
+        <div class="principle">
+          <div class="icon">📋</div>
+          <h3>Actas públicas</h3>
+          <p>Todas las reuniones documentadas y accesibles para los afiliados</p>
+        </div>
+        <div class="principle">
+          <div class="icon">💰</div>
+          <h3>Cuentas claras</h3>
+          <p>Ingresos y gastos detallados trimestre a trimestre</p>
+        </div>
+        <div class="principle">
+          <div class="icon">🗳️</div>
+          <h3>Democracia real</h3>
+          <p>Los afiliados deciden en asamblea. Un trabajador, un voto</p>
+        </div>
+        <div class="principle">
+          <div class="icon">🔍</div>
+          <h3>Control social</h3>
+          <p>Cualquier afiliado puede solicitar información adicional</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cuentas -->
+    <div class="card">
+      <h2>💰 Cuentas del sindicato</h2>
+      <div class="year-select">
+        <button class="year-btn active" onclick="selectYear(2026)">2026</button>
+        <button class="year-btn" onclick="selectYear(2025)">2025</button>
+      </div>
+      <div id="cuentasContent">
+        <!-- Se rellena por JS -->
+      </div>
+    </div>
+
+    <!-- Actas -->
+    <div class="card">
+      <h2>📝 Actas y reuniones</h2>
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterActas('todas')">Todas</button>
+        <button class="filter-btn" onclick="filterActas('comite')">Comité</button>
+        <button class="filter-btn" onclick="filterActas('asamblea')">Asambleas</button>
+        <button class="filter-btn" onclick="filterActas('negociacion')">Negociación</button>
+        <button class="filter-btn" onclick="filterActas('empresa')">Con Empresa</button>
+      </div>
+      <div id="actasContent">
+        <!-- Se rellena por JS -->
+      </div>
+    </div>
+
+    <!-- Logros -->
+    <div class="card">
+      <h2>🏆 Logros y gestiones realizadas</h2>
+      <div id="logrosContent">
+        <!-- Se rellena por JS -->
+      </div>
+    </div>
+
+    <div class="info-box">
+      <strong>📩 ¿Quieres más información?</strong><br>
+      Como afiliado de ATRM tienes derecho a solicitar cualquier documentación adicional. Escríbenos por los canales habituales o ven a la próxima asamblea.
+    </div>
+  </div>
+
+  <link rel="stylesheet" href="css/bottom-nav.css">
+  <nav class="bottom-nav">
+    <a href="index.html" class="bottom-nav-item"><span class="bottom-nav-icon">🏠</span><span>Inicio</span></a>
+    <a href="salaries.html" class="bottom-nav-item"><span class="bottom-nav-icon">💰</span><span>Salarios</span></a>
+    <a href="noticias.html" class="bottom-nav-item"><span class="bottom-nav-icon">📰</span><span>Noticias</span></a>
+    <a href="tramites.html" class="bottom-nav-item"><span class="bottom-nav-icon">📋</span><span>Trámites</span></a>
+    <a href="index.html#contacto" class="bottom-nav-item"><span class="bottom-nav-icon">📞</span><span>Contacto</span></a>
+  </nav>
+
+<script>
+// Datos de actas
+const actas = [
+  {
+    id: 1,
+    fecha: '2026-01-20',
+    tipo: 'comite',
+    titulo: 'Reunión ordinaria del Comité de Empresa - Enero 2026',
+    puntos: [
+      'Revisión del cumplimiento del convenio colectivo vigente',
+      'Análisis de incidencias laborales del mes de diciembre',
+      'Propuesta de mejora de EPIs para la campaña de lluvias',
+      'Estado de las reclamaciones de horas extra pendientes',
+      'Ruegos y preguntas'
+    ],
+    acuerdos: [
+      'Se exigirá a la empresa la entrega de chaquetas impermeables antes del 1 de febrero',
+      'Se solicitará reunión urgente por las horas extra no abonadas del trimestre anterior',
+      'Se aprueba calendario de asambleas para el primer trimestre'
+    ],
+    tags: ['EPIs', 'Horas extra', 'Convenio']
+  },
+  {
+    id: 2,
+    fecha: '2026-01-10',
+    tipo: 'asamblea',
+    titulo: 'Asamblea General de Afiliados - Balance Anual 2025',
+    puntos: [
+      'Memoria de actividades 2025',
+      'Informe económico: cuotas, gastos y balance',
+      'Logros conseguidos durante el año',
+      'Objetivos sindicales para 2026',
+      'Elección de nuevos cargos de la Sección Sindical'
+    ],
+    acuerdos: [
+      'Aprobación por unanimidad de la memoria 2025 y las cuentas',
+      'Se definen los 5 ejes de trabajo para 2026: salarios, seguridad, formación, conciliación y transparencia',
+      'Se renueva la confianza en la ejecutiva actual'
+    ],
+    tags: ['Asamblea', 'Balance', 'Objetivos 2026']
+  },
+  {
+    id: 3,
+    fecha: '2025-12-15',
+    tipo: 'negociacion',
+    titulo: 'Mesa de Negociación - Tabla Salarial 2026',
+    puntos: [
+      'Propuesta de revisión salarial para 2026',
+      'Aplicación del IPC acumulado',
+      'Mejora del plus de transporte',
+      'Revisión del plus de toxicidad'
+    ],
+    acuerdos: [
+      'ATRM propone subida del 4,5% sobre tablas salariales',
+      'La empresa ofrece IPC + 0,5%. ATRM rechaza por insuficiente',
+      'Se acuerda nueva reunión en enero con propuesta mejorada'
+    ],
+    tags: ['Salarios', 'IPC', 'Negociación']
+  },
+  {
+    id: 4,
+    fecha: '2025-12-03',
+    tipo: 'empresa',
+    titulo: 'Reunión con Dirección - Turnos de Navidad',
+    puntos: [
+      'Organización de turnos durante festivos navideños',
+      'Compensaciones por trabajo en festivos',
+      'Refuerzo de plantilla para el periodo',
+      'Reclamación por falta de pago de complemento festivo de octubre'
+    ],
+    acuerdos: [
+      'La empresa se compromete a abonar complemento festivo pendiente antes del 20/12',
+      'Se repartirán turnos de forma equitativa con voluntariedad prioritaria',
+      'ATRM supervisará que se cumpla el descanso compensatorio de 2 días por festivo trabajado'
+    ],
+    tags: ['Turnos', 'Festivos', 'Navidad']
+  },
+  {
+    id: 5,
+    fecha: '2025-11-20',
+    tipo: 'comite',
+    titulo: 'Reunión extraordinaria - Accidente laboral en ruta 7',
+    puntos: [
+      'Análisis del accidente del compañero en ruta 7 el día 18/11',
+      'Estado del trabajador afectado',
+      'Revisión de medidas de seguridad en esa zona',
+      'Propuesta de denuncia a Inspección de Trabajo'
+    ],
+    acuerdos: [
+      'Se presenta denuncia ante Inspección de Trabajo por falta de señalización',
+      'Se exige a la empresa evaluación de riesgos actualizada para todas las rutas',
+      'Se organiza recogida solidaria para el compañero durante su baja'
+    ],
+    tags: ['Seguridad', 'Accidente', 'Inspección']
+  },
+  {
+    id: 6,
+    fecha: '2025-11-05',
+    tipo: 'asamblea',
+    titulo: 'Asamblea Informativa - Nuevo Convenio Interiores',
+    puntos: [
+      'Explicación de los cambios del nuevo convenio de limpieza de interiores',
+      'Comparativa tablas salariales anterior vs nuevo convenio',
+      'Nuevos derechos: permisos, jornada, vacaciones',
+      'Turno de preguntas de los afiliados'
+    ],
+    acuerdos: [
+      'Se aprueba guía informativa para distribuir entre todos los trabajadores',
+      'Se programan consultas individuales para resolver dudas salariales',
+      'Los afiliados muestran su apoyo a la labor de ATRM en las negociaciones'
+    ],
+    tags: ['Convenio', 'Interiores', 'Información']
+  }
+];
+
+// Datos de cuentas
+const cuentas = {
+  2026: {
+    trimestres: [
+      {
+        nombre: 'T1 (Ene-Mar)',
+        ingresos: { cuotas: 1840, subvenciones: 0, otros: 0 },
+        gastos: { asesoria: 300, material: 120, comunicacion: 45, desplazamientos: 80, formacion: 0, varios: 35 }
+      }
+    ],
+    totalAfiliados: 46,
+    cuotaMensual: 10
+  },
+  2025: {
+    trimestres: [
+      {
+        nombre: 'T1 (Ene-Mar)',
+        ingresos: { cuotas: 1320, subvenciones: 0, otros: 50 },
+        gastos: { asesoria: 250, material: 95, comunicacion: 30, desplazamientos: 60, formacion: 200, varios: 40 }
+      },
+      {
+        nombre: 'T2 (Abr-Jun)',
+        ingresos: { cuotas: 1380, subvenciones: 0, otros: 0 },
+        gastos: { asesoria: 250, material: 80, comunicacion: 40, desplazamientos: 75, formacion: 0, varios: 25 }
+      },
+      {
+        nombre: 'T3 (Jul-Sep)',
+        ingresos: { cuotas: 1440, subvenciones: 0, otros: 0 },
+        gastos: { asesoria: 250, material: 60, comunicacion: 35, desplazamientos: 50, formacion: 150, varios: 30 }
+      },
+      {
+        nombre: 'T4 (Oct-Dic)',
+        ingresos: { cuotas: 1560, subvenciones: 0, otros: 100 },
+        gastos: { asesoria: 300, material: 150, comunicacion: 50, desplazamientos: 90, formacion: 0, varios: 45 }
+      }
+    ],
+    totalAfiliados: 42,
+    cuotaMensual: 10
+  }
+};
+
+const logros = [
+  { icon: '💰', text: 'Recuperación de 12.400€ en horas extra no abonadas para 8 compañeros', fecha: '2025' },
+  { icon: '⚖️', text: 'Denuncia a Inspección de Trabajo por falta de EPIs - Resuelta favorablemente', fecha: '2025' },
+  { icon: '📋', text: 'Negociación de mejora de plus de transporte: +15% sobre tabla anterior', fecha: '2025' },
+  { icon: '🏥', text: 'Consegida cobertura de riesgos específicos para limpieza con productos químicos', fecha: '2025' },
+  { icon: '📄', text: 'Asesoramiento y defensa en 14 expedientes disciplinarios (12 ganados)', fecha: '2025' },
+  { icon: '🗓️', text: 'Acuerdo de cuadrante de vacaciones con rotación equitativa', fecha: '2025' },
+  { icon: '👷', text: 'Formación en PRL para 30 trabajadores gestionada con ATRM', fecha: '2025' },
+  { icon: '📢', text: 'Lanzamiento de web y app del sindicato para acceso 24h a información', fecha: '2025' }
+];
+
+// Renderizar
+function selectYear(year) {
+  document.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  renderCuentas(year);
+}
+
+function renderCuentas(year) {
+  const data = cuentas[year];
+  if (!data) { document.getElementById('cuentasContent').innerHTML = '<p>No hay datos para este año.</p>'; return; }
+
+  let totalIngresos = 0, totalGastos = 0;
+  data.trimestres.forEach(t => {
+    totalIngresos += Object.values(t.ingresos).reduce((a,b) => a+b, 0);
+    totalGastos += Object.values(t.gastos).reduce((a,b) => a+b, 0);
+  });
+  const saldo = totalIngresos - totalGastos;
+
+  let html = `<div class="cuenta-grid">
+    <div class="cuenta-item ingreso"><div class="val">${totalIngresos.toLocaleString('es-ES')} €</div><div class="lbl">Total ingresos</div></div>
+    <div class="cuenta-item gasto"><div class="val">${totalGastos.toLocaleString('es-ES')} €</div><div class="lbl">Total gastos</div></div>
+    <div class="cuenta-item saldo"><div class="val" style="color:${saldo >= 0 ? 'var(--green)' : '#e74c3c'}">${saldo >= 0 ? '+' : ''}${saldo.toLocaleString('es-ES')} €</div><div class="lbl">Saldo</div></div>
+  </div>`;
+
+  html += `<p style="font-size:13px;color:#888;margin:8px 0">Afiliados: ${data.totalAfiliados} | Cuota: ${data.cuotaMensual} €/mes</p>`;
+  
+  html += '<div style="margin-top:16px">';
+  data.trimestres.forEach(t => {
+    const ing = Object.values(t.ingresos).reduce((a,b) => a+b, 0);
+    const gas = Object.values(t.gastos).reduce((a,b) => a+b, 0);
+    html += `<div style="border:1px solid #e0e0e0;border-radius:12px;padding:14px;margin:8px 0">
+      <h4 style="color:var(--primary);margin-bottom:8px">${t.nombre}</h4>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:13px">
+        <div>
+          <strong style="color:var(--green)">Ingresos: ${ing.toLocaleString('es-ES')} €</strong>
+          ${Object.entries(t.ingresos).filter(([,v])=>v>0).map(([k,v]) => `<br>• ${k.charAt(0).toUpperCase()+k.slice(1)}: ${v.toLocaleString('es-ES')} €`).join('')}
+        </div>
+        <div>
+          <strong style="color:#e74c3c">Gastos: ${gas.toLocaleString('es-ES')} €</strong>
+          ${Object.entries(t.gastos).filter(([,v])=>v>0).map(([k,v]) => `<br>• ${k.charAt(0).toUpperCase()+k.slice(1)}: ${v.toLocaleString('es-ES')} €`).join('')}
+        </div>
+      </div>
+    </div>`;
+  });
+  html += '</div>';
+
+  document.getElementById('cuentasContent').innerHTML = html;
+}
+
+function filterActas(tipo) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  renderActas(tipo);
+}
+
+function renderActas(filtro) {
+  const filtered = filtro === 'todas' ? actas : actas.filter(a => a.tipo === filtro);
+  if (filtered.length === 0) {
+    document.getElementById('actasContent').innerHTML = '<p style="color:#888;padding:16px;text-align:center">No hay actas de este tipo.</p>';
+    return;
+  }
+
+  const html = filtered.map(a => `
+    <div class="acta" data-tipo="${a.tipo}">
+      <div class="acta-header">
+        <h3>${a.titulo}</h3>
+        <span class="acta-date">${new Date(a.fecha).toLocaleDateString('es-ES', {day:'numeric',month:'short',year:'numeric'})}</span>
+      </div>
+      <span class="acta-type ${a.tipo}">${a.tipo === 'comite' ? '🏢 Comité' : a.tipo === 'asamblea' ? '🗳️ Asamblea' : a.tipo === 'negociacion' ? '🤝 Negociación' : '🏭 Empresa'}</span>
+      <div class="acta-body">
+        <strong>Orden del día:</strong>
+        <ul>${a.puntos.map(p => `<li>${p}</li>`).join('')}</ul>
+        <strong>Acuerdos adoptados:</strong>
+        <ul>${a.acuerdos.map(ac => `<li>✅ ${ac}</li>`).join('')}</ul>
+      </div>
+      <div class="acta-tags">${a.tags.map(t => `<span class="acta-tag">#${t}</span>`).join('')}</div>
+    </div>
+  `).join('');
+
+  document.getElementById('actasContent').innerHTML = html;
+}
+
+function renderLogros() {
+  document.getElementById('logrosContent').innerHTML = logros.map(l => `
+    <div style="display:flex;align-items:center;gap:12px;padding:12px;border-bottom:1px solid #f0e0d6">
+      <span style="font-size:28px">${l.icon}</span>
+      <div>
+        <div style="font-size:14px;font-weight:600">${l.text}</div>
+        <div style="font-size:12px;color:#999">${l.fecha}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// Init
+renderCuentas(2026);
+renderActas('todas');
+renderLogros();
+</script>
+</body>
+</html>

@@ -10,16 +10,16 @@
     {
       "id": 8,
       "titulo": "Jornada y descansos",
-      "texto": "La jornada máxima será de 1.748 horas efectivas al año a partir de 2024. La jornada ordinaria se fija en 40 horas semanales salvo que, por acuerdo, se pacte una distribución distinta. El descanso semanal mínimo es de 36 horas ininterrumpidas (un día y medio). Las personas con una jornada diaria superior a 6 horas tienen derecho a una pausa retribuida de 15 minutos. Se permite la distribución irregular de la jornada respetando los límites anuales y la compensación en los cuatro meses siguientes.",
-      "referencia": "Art. 8",
-      "keywords": ["jornada", "1748", "descanso", "pausa", "horas", "turno", "articulo 8"]
+      "texto": "La jornada máxima será de 1.748 horas efectivas al año a partir de 2024. La jornada ordinaria se fija en 40 horas semanales salvo que, por acuerdo, se pacte una distribución distinta. El descanso semanal mínimo es de 36 horas ininterrumpidas (un día y medio). Se establece un descanso de 30 minutos diarios dentro del cómputo de la jornada continuada, proporcional para contratos desde media jornada en adelante. Se permite la distribución irregular de la jornada respetando los límites anuales y la compensación en los cuatro meses siguientes.",
+      "referencia": "Art. 5",
+      "keywords": ["jornada", "1748", "descanso", "pausa", "horas", "turno", "articulo 5", "30 minutos"]
     },
     {
       "id": 7,
       "titulo": "Permisos especiales y libre disposición",
-      "texto": "Artículo 7.2: Se dispondrá de 12 ausencias justificadas al trabajo al año y por el tiempo indispensable para acompañar al médico a los hijos/as menores de 14 años o familiares con incapacidad que convivan con el trabajador. Artículo 7.3 - Día de libre disposición (en vigor desde 2022): Avisando con una semana de antelación, todos los trabajadores del sector podrán faltar o ausentarse del trabajo con derecho a remuneración un día laboral al año. Máximo el 10% de la plantilla simultáneamente.",
+      "texto": "Artículo 7.2: Se dispondrá de 12 ausencias justificadas al trabajo al año y por el tiempo indispensable para acompañar al médico a los hijos/as menores de 14 años o familiares con incapacidad que convivan con el trabajador. Artículo 7.3 - Días de libre disposición: Se establecen 2 días de libre disposición (1 ordinario + 1 extraordinario mientras la jornada completa sea ≥ 1.748 h anuales desde 2024). Ambos son retribuidos, con preaviso de 7 días naturales. Máximo el 10% de la plantilla simultáneamente. El Art. 5 confirma: la jornada se obtiene 'tras la deducción de los 2 días de libre disposición'.",
       "referencia": "Art. 7.2 y 7.3",
-      "keywords": ["libre disposicion", "asuntos propios", "dia libre", "ausencia medico", "hijo medico", "12 ausencias", "articulo 7"]
+      "keywords": ["libre disposicion", "asuntos propios", "dia libre", "ausencia medico", "hijo medico", "12 ausencias", "articulo 7", "2 dias"]
     },
     {
       "id": 6,
@@ -31,9 +31,9 @@
     {
       "id": 16,
       "titulo": "Permisos retribuidos",
-      "texto": "El artículo 16 recoge los permisos retribuidos con derecho a salario íntegro: matrimonio o pareja de hecho, 15 días naturales; nacimiento de hijo/a, 2 días laborables (4 si se requiere desplazamiento); fallecimiento de cónyuge, padres, hijos o familiares hasta segundo grado, 2 días (4 con desplazamiento); fallecimiento de tíos o sobrinos, 1 día; hospitalización o intervención quirúrgica grave de familiares hasta segundo grado, 2 días (4 con desplazamiento); traslado de domicilio habitual, 1 día; realización de exámenes oficiales, el tiempo indispensable; guarda legal de hijas/os menores de 12 años o personas con discapacidad, reducción de jornada con reducción proporcional del salario. Todos los permisos requieren aviso y justificación.",
-      "referencia": "Art. 16",
-      "keywords": ["permiso", "matrimonio", "fallecimiento", "nacimiento", "mudanza", "hospitalizacion"]
+      "texto": "El artículo 7.1 recoge los permisos retribuidos con derecho a salario íntegro: a) Matrimonio o pareja de hecho: 16 días naturales. b) Alumbramiento de hija o nuera: 2 días laborales misma provincia, 5 días fuera de provincia. c) Fallecimiento de cónyuge, ascendientes o descendientes directos: 3 días laborables; suegros/as y hermanos/as políticos: 2 días laborables; fuera de provincia: 5 días laborables. d) Hospitalización/enfermedad grave/intervención quirúrgica de cónyuge, pareja de hecho o familiares hasta 2º grado consanguinidad o afinidad: 5 días (6 si traslado a otra provincia); disfrutables en 15 días, de forma continuada o alterna. g) Traslado de vivienda: 2 días naturales. h) Matrimonio de hijos/as o hermanos/as: 1 día. j) Consulta médica propia SMS: permiso retribuido justificado. k) Intervención quirúrgica sin hospitalización 2º grado: 2 días. l) Fallecimiento de tío carnal o sobrino: 1 día natural. Lactancia: 1 hora diaria (hasta 9 meses). Guarda legal hijos <12 años o discapacitados: reducción de jornada proporcional. Exámenes: tiempo necesario. Extensible a parejas de hecho registradas.",
+      "referencia": "Art. 7.1",
+      "keywords": ["permiso", "matrimonio", "fallecimiento", "nacimiento", "mudanza", "hospitalizacion", "16 dias", "alumbramiento"]
     },
     {
       "id": 20,
@@ -45,9 +45,9 @@
     {
       "id": 23,
       "titulo": "Subrogación",
-      "texto": "Cuando se produce un cambio de empresa adjudicataria en un servicio de limpieza, la nueva empresa está obligada a subrogar al personal adscrito. Se conservan antigüedad, categoría, salario y demás condiciones. La empresa saliente debe entregar la relación de trabajadores y la entrante debe respetar íntegramente el convenio. Ninguna persona puede ser despedida por el mero hecho de la subrogación.",
-      "referencia": "Art. 23",
-      "keywords": ["subrogacion", "cambio", "empresa", "antiguedad", "nueva adjudicataria"]
+      "texto": "Cuando se produce un cambio de empresa adjudicataria en un servicio de limpieza, la nueva empresa está obligada a subrogar al personal adscrito. Se conservan antigüedad, categoría, salario y demás condiciones. La empresa saliente debe entregar la relación de trabajadores (plazo 5-15 días naturales) y la entrante debe respetar íntegramente el convenio. Ninguna persona puede ser despedida por el mero hecho de la subrogación. Se regulan expresamente la liquidación de retribuciones, vacaciones y pagas entre empresa saliente y entrante.",
+      "referencia": "Art. 16",
+      "keywords": ["subrogacion", "cambio", "empresa", "antiguedad", "nueva adjudicataria", "articulo 16"]
     }
   ]
 }

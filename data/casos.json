@@ -83,14 +83,14 @@
       ],
       "titulo": "Hospitalización/Intervención de familiar",
       "resumen": "5 días retribuidos por hospitalización o intervención quirúrgica de familiares",
-      "detalle": "✅ **Según Art. 14.A del Convenio de Limpieza Viaria:**\n\n**Derecho: 5 días retribuidos** por:\n- Accidente o enfermedad graves\n- Hospitalización\n- Intervención quirúrgica sin hospitalización que precise reposo domiciliario\n\n👥 **Familiares incluidos (hasta 2º grado):**\n- Cónyuge o pareja de hecho\n- Padres, hijos, hermanos\n- Abuelos, nietos\n- Suegros, yernos/nueras, cuñados\n- Familiar consanguíneo de la pareja de hecho\n- Cualquier persona que conviva en el mismo domicilio y requiera cuidado efectivo\n\n📋 **Requisitos:**\n- Avisar con la posible antelación\n- Justificarlo documentalmente\n- Acreditación médica del motivo\n\n⏰ **Cómputo:** Los días son naturales desde el conocimiento del hecho",
+      "detalle": "✅ **Según Art. 14.A del Convenio de Limpieza Viaria:**\n\n**Derecho: 5 días retribuidos** por:\n- Accidente o enfermedad graves\n- Hospitalización\n- Intervención quirúrgica sin hospitalización que precise reposo domiciliario\n\n👥 **Familiares incluidos (hasta 2º grado consanguinidad o afinidad):**\n- Cónyuge o pareja de hecho\n- Padres, hijos, hermanos\n- Abuelos, nietos\n- Suegros, yernos/nueras, cuñados\n- Familiar consanguíneo de la pareja de hecho\n- Cualquier persona que conviva en el mismo domicilio y requiera cuidado efectivo\n\n**Haya o no necesidad de desplazamiento.**\n\n⏰ **Ampliación:** Si la hospitalización supera 15 días → **+1 día más**\n\n📋 **Cómputo:** Los días se pueden disfrutar de forma **continuada o alterna**, mientras exista hospitalización o reposo domiciliario posterior por prescripción médica.\n\n📋 **Requisitos:**\n- Avisar con la posible antelación\n- Justificarlo documentalmente",
       "documentos": [
         "Parte médico",
         "Justificante hospitalario",
         "Certificado de parentesco si es requerido"
       ],
       "casos_reales": [
-        "Trabajador peón recogida: hermano operado → 5 días concedidos + 2 días adicionales por hospitalización >15 días",
+        "Trabajador peón recogida: hermano operado → 5 días concedidos + 1 día adicional por hospitalización >15 días",
         "Conductora limpieza: madre ingresada en UCI → 5 días + desplazamiento reconocido (otra provincia)"
       ],
       "comparativa_sectorial": "Valencia: 4 días. Madrid: 5 días sin ampliación. Cataluña: 6 días máximo.",
@@ -198,11 +198,11 @@
       ],
       "titulo": "Permiso por fallecimiento",
       "resumen": "3 días para 2º grado (5 si desplazamiento), 1 día para 3er grado según Art. 14.B",
-      "detalle": "💔 **Permiso por fallecimiento - Art. 14.B:**\n\n**Cónyuge, pareja de hecho o familiares hasta 2º grado:**\n- **3 días naturales** (sin desplazamiento)\n- **5 días naturales** si requiere desplazamiento\n\n**Familiares de 3er grado (tío o sobrino):**\n- **1 día natural**\n\n📋 **Condiciones específicas:**\n- No se computa si el fallecimiento coincide con día de descanso del trabajador\n- El permiso incluye el día del fallecimiento y los siguientes\n- Para desplazamiento: se considera cuando el lugar del funeral está fuera del municipio de residencia\n\n👨‍👩‍👧‍👦 **Grados de parentesco:**\n- **1er grado:** padres, hijos\n- **2º grado:** abuelos, nietos, hermanos\n- **3er grado:** tíos, sobrinos\n\n⚠️ **Importante:** Avisar a la empresa con la posible antelación y presentar certificado de defunción.",
+      "detalle": "💔 **Permiso por fallecimiento - Art. 14.B:**\n\n**Cónyuge, pareja de hecho o familiares hasta 2º grado consanguinidad o 1er grado afinidad:**\n- **3 días naturales** (sin desplazamiento)\n- **5 días naturales** si requiere desplazamiento (>65 km del domicilio)\n\n**Familiares de 3er grado (tío o sobrino):**\n- **1 día natural**\n\n📋 **Condiciones específicas:**\n- No se computa si el fallecimiento coincide con día de descanso del trabajador\n- Se considera desplazamiento cuando el hecho esté a más de **65 km** del domicilio\n\n👨‍👩‍👧‍👦 **Grados de parentesco incluidos:**\n- **1er grado consanguinidad:** padres, hijos\n- **2º grado consanguinidad:** abuelos, nietos, hermanos\n- **1er grado afinidad:** suegros\n- **3er grado consanguinidad:** tíos, sobrinos (1 día)\n\n⚠️ **Importante:** Avisar a la empresa con la posible antelación y presentar certificado de defunción.",
       "documentos": [
         "Certificado de defunción",
         "Libro de familia o certificado de parentesco",
-        "Justificante de desplazamiento si aplica (distancia >50 km)"
+        "Justificante de desplazamiento si aplica (distancia >65 km)"
       ],
       "casos_reales": [
         "Conductor recogida: fallecimiento padre en Murcia → 3 días naturales",
@@ -306,15 +306,15 @@
       ],
       "titulo": "Permisos retribuidos",
       "resumen": "Licencias pagadas según Art. 14 del convenio de Limpieza Viaria",
-      "detalle": "📄 **Permisos Retribuidos - Art. 14 Convenio Limpieza Viaria:**\n\n**A) Hospitalización/Enfermedad grave de familiar:**\n- **5 días** por accidente, enfermedad grave, hospitalización o intervención quirúrgica\n- Familiares hasta 2º grado + convivientes\n- Ampliable si la hospitalización supera 15 días\n\n**B) Fallecimiento:**\n- **3 días** por fallecimiento de cónyuge, pareja de hecho o familiares hasta 2º grado\n- **5 días** si requiere desplazamiento\n- **1 día** por fallecimiento de tío o sobrino (3er grado)\n- No se computa si coincide con día de descanso\n\n**C) Matrimonio:**\n- **15 días naturales** por matrimonio o registro de pareja de hecho\n- **Gratificación: 672,72 €**\n\n**D) Traslado de vivienda:**\n- **2 días laborales** por mudanza\n- No aplica para traslados vacacionales\n\n**E) Consultas médicas propias:**\n- **3 horas** para consulta en Servicio Murciano de Salud\n- **Jornada completa** si la consulta es en otra provincia\n- Siempre debidamente justificada\n\n**F) Urgencias familiares:**\n- Por enfermedad o accidente de familiares/convivientes\n- Que hagan indispensable presencia inmediata\n- **Máximo 4 días al año** en cómputo total\n\n**G) Matrimonio de hijo/padre/madre:**\n- **1 día natural**\n\n**H) Hijo con discapacidad ≥65%:**\n- Tiempo necesario coincidente con jornada laboral\n- Para acompañamiento a consultas/tratamientos\n\n**📌 Paternidad/Nacimiento de hijo:**\n- Remite a legislación estatal (Estatuto de los Trabajadores)\n- Contacta ATRM para información actualizada sobre permisos de paternidad\n\n**Requisitos generales:**\n- Avisar con la posible antelación\n- Justificar documentalmente\n- Acreditar el motivo\n\nConsulta ATRM 968 30 00 37 para cualquier duda sobre permisos.",
+      "detalle": "📄 **Permisos Retribuidos - Art. 14 Convenio Limpieza Viaria:**\n\n**A) Hospitalización/Enfermedad grave de familiar:**\n- **5 días** por accidente, enfermedad grave, hospitalización o intervención quirúrgica\n- Familiares hasta 2º grado consanguinidad o afinidad + convivientes\n- Haya o no necesidad de desplazamiento\n- Si hospitalización >15 días: **+1 día más**\n- Disfrutables de forma continuada o alterna\n\n**B) Fallecimiento:**\n- **3 días** por fallecimiento de cónyuge, pareja de hecho o familiares hasta 2º grado consanguinidad o 1er grado afinidad\n- **5 días** si requiere desplazamiento (>65 km del domicilio)\n- **1 día** por fallecimiento de tío o sobrino (3er grado)\n- No se computa si coincide con día de descanso\n\n**C) Matrimonio:**\n- **15 días naturales** por matrimonio o registro de pareja de hecho\n- **Gratificación: 672,72 €**\n\n**D) Traslado de vivienda:**\n- **2 días laborales** por mudanza\n- No aplica para traslados vacacionales\n\n**E) Consultas médicas propias:**\n- **3 horas** para consulta en Servicio Murciano de Salud\n- **Jornada completa** si la consulta es en otra provincia\n- Siempre debidamente justificada\n\n**F) Urgencias familiares:**\n- Por enfermedad o accidente de familiares/convivientes\n- Que hagan indispensable presencia inmediata\n- **Máximo 4 días al año** en cómputo total\n\n**G) Matrimonio de hijo/padre/madre:**\n- **1 día natural**\n\n**H) Hijo con discapacidad ≥65%:**\n- Tiempo necesario coincidente con jornada laboral\n- Para acompañamiento a consultas/tratamientos\n\n**📌 Paternidad/Nacimiento de hijo:**\n- Remite a legislación estatal (Estatuto de los Trabajadores)\n- Contacta ATRM para información actualizada sobre permisos de paternidad\n\n**Requisitos generales:**\n- Avisar con la posible antelación\n- Justificar documentalmente\n- Acreditar el motivo\n\nConsulta ATRM 968 30 00 37 para cualquier duda sobre permisos.",
       "documentos": [
         "Justificante de mudanza",
         "Certificado de nacimiento",
         "Convocatoria de examen"
       ],
       "casos_reales": [
-        "Trabajador: mudanza de domicilio → 1 día retribuido",
-        "Empleado: nacimiento de hijo → 2 días retribuidos",
+        "Trabajador: mudanza de domicilio → 2 días laborales retribuidos",
+        "Empleado: nacimiento de hijo → permiso 16 semanas según legislación vigente (ET)",
         "Personal: examen oficial → permiso concedido con justificante"
       ],
       "comparativa_sectorial": "Valencia: 1 día mudanza. Madrid: 2 días nacimiento. Cataluña: 1 día mudanza, 2 días nacimiento.",
@@ -615,8 +615,8 @@
         "compensacion horas"
       ],
       "titulo": "Horas extraordinarias",
-      "resumen": "Máximo 80 horas al año, compensación 80% o en descanso",
-      "detalle": "⏱️ **Horas extraordinarias:**\n\n**Límites:**\n- Máximo 80 horas extra al año\n- No obligatorias salvo fuerza mayor\n- Voluntarias en condiciones normales\n\n**Retribución:**\n- Compensación económica: valor hora ordinaria + 80%\n- Compensación en descanso: mismo tiempo trabajado\n- La elección depende del acuerdo o convenio\n\n**Registro obligatorio:**\n- Deben quedar registradas en control horario\n- Si no aparecen, reclama\n\n**Prohibiciones:**\n- Personal nocturno\n- Menores de 18 años\n- Trabajadores con riesgos específicos\n\nContacta ATRM si no te pagan las horas extra o te obligan a hacerlas.",
+      "resumen": "Máximo 80 horas al año, compensación +80% laborables / +130% festivos",
+      "detalle": "⏱️ **Horas extraordinarias - Art. 18:**\n\n**Límites:**\n- Máximo 80 horas extra al año\n- No obligatorias salvo fuerza mayor\n- Voluntarias en condiciones normales\n\n**Retribución:**\n- **Días laborables:** valor hora ordinaria **+ 80%**\n- **Días festivos:** valor hora ordinaria **+ 130%**\n- Compensación en descanso: equivalente en 4 meses\n- La elección depende del acuerdo o convenio\n\n**Registro obligatorio:**\n- Deben quedar registradas en control horario\n- Si no aparecen, reclama\n\n**Prohibiciones:**\n- Personal nocturno\n- Menores de 18 años\n- Trabajadores con riesgos específicos\n\nContacta ATRM si no te pagan las horas extra o te obligan a hacerlas.",
       "documentos": [
         "Control horario",
         "Nómina",
@@ -691,7 +691,7 @@
       ],
       "titulo": "Baja médica e incapacidad temporal",
       "resumen": "Derechos durante la baja y cómo solicitarla",
-      "detalle": "🏥 **Baja médica (IT):**\n\n**Cómo tramitarla:**\n- El médico emite el parte de baja\n- Entrégalo en empresa en 3 días laborables\n- La empresa lo envía a la Seguridad Social\n\n**Prestación económica:**\n- Días 1-3: no se cobra\n- Días 4-15: 60% de la base reguladora\n- Día 16 en adelante: 75% de la base reguladora\n- Algunos convenios mejoran estas condiciones\n\n**Obligaciones:**\n- Entregar partes de confirmación\n- Acudir a reconocimientos médicos\n- No realizar actividades que impidan recuperación\n\n**Alta médica:**\n- Cuando el médico te da el alta\n- Si no estás de acuerdo, puedes reclamar\n- Derecho a revisión por Inspección Médica\n\n**Protección especial:**\n- No te pueden despedir estando de baja\n- Si lo hacen, despido nulo\n\nContacta ATRM si tienes problemas con tu baja o prestación.",
+      "detalle": "🏥 **Baja médica (IT) - Art. 33 Convenio Limpieza Viaria:**\n\n**Accidente laboral, hospitalización o intervención quirúrgica:**\n- ✅ **100% de la retribución real desde el primer día** hasta el alta\n\n**Enfermedad común:**\n- ✅ **100% de la retribución real** en los primeros **70 días sumados** de las **3 primeras bajas** del año, desde el primer día de cada enfermedad\n- A partir de la 4ª baja: **75%** desde el primer día\n\n**⚠️ Importante:** Estas son las condiciones del convenio, que MEJORAN las prestaciones legales de la Seguridad Social.\n\n**Cómo tramitarla:**\n- El médico emite el parte de baja\n- Entrégalo en empresa en 3 días laborables\n- La empresa lo envía a la Seguridad Social\n\n**Obligaciones:**\n- Entregar partes de confirmación\n- Acudir a reconocimientos médicos\n- No realizar actividades que impidan recuperación\n\n**Protección especial:**\n- No te pueden despedir estando de baja\n- Si lo hacen, despido nulo\n\nContacta ATRM si tienes problemas con tu baja o prestación.",
       "documentos": [
         "Parte de baja",
         "Partes de confirmación",

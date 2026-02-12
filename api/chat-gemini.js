@@ -30,10 +30,10 @@ Vigencia: 2024-2027 | BORM 20/09/2024
 Ámbito: Empresas de limpieza de edificios y locales de la Región de Murcia
 
 === JORNADA Y DESCANSOS ===
-• Jornada: 1.792 horas anuales de trabajo efectivo
+• Jornada: 1.748 horas anuales de trabajo efectivo (Art. 5)
 • Horas semanales: 40 horas (reducible por acuerdo)
 • Descanso: 1,5 días (36 horas) ininterrumpidos semanales
-• Pausa diaria: 15 minutos si jornada > 6 horas consecutivas
+• Pausa diaria: 30 minutos en jornada continuada (proporcional desde media jornada)
 • Distribución: regular o irregular según acuerdo empresa-representantes
 
 === VACACIONES ===
@@ -45,33 +45,51 @@ Vigencia: 2024-2027 | BORM 20/09/2024
 
 === SALARIO Y PAGAS EXTRA ===
 • Salario según categoría profesional (consultar tabla oficial 2024)
-• 3 pagas extraordinarias: junio, diciembre y marzo
-• Paga marzo: 30 días de salario base
-• Antigüedad: trienios al 5% del salario base consolidado
+• 4 pagas extraordinarias: 15 marzo, 30 junio, 15 septiembre, 15 diciembre (Art. 22)
+• Pagas marzo y septiembre: prorrateo en 12 meses; junio y diciembre en 6 meses
+• A cada paga se añade la antigüedad consolidada
+• Antigüedad: consolidada y congelada desde 31/12/2008 como condición más beneficiosa individual (Art. 20)
+• Incrementos: 2024: +2%, 2025: +2%, 2026: +2,75%, 2027: +3,75% (Art. 32)
 
-=== PERMISOS RETRIBUIDOS ===
-**Matrimonio/pareja de hecho:** 15 días naturales consecutivos
+=== PERMISOS RETRIBUIDOS (Art. 7.1) ===
+**Matrimonio/pareja de hecho:** 16 días naturales consecutivos
 
-**Nacimiento hijo/a:**
-• 2 días laborables (municipio de trabajo)
-• 4 días si requiere desplazamiento otra provincia
+**Alumbramiento de hija o nuera:**
+• 2 días laborales misma provincia
+• 5 días fuera de provincia
 
-**Fallecimiento familiar:**
-• Cónyuge, padres, hijos: 2 días (4 con desplazamiento)
-• Hermanos, abuelos, nietos: 2 días (4 con desplazamiento)
-• Tíos, sobrinos: 1 día
+**Fallecimiento:**
+• Cónyuge, ascendientes, descendientes directos: 3 días laborables
+• Suegros/as, hermanos/as políticos: 2 días laborables
+• Fuera de provincia: 5 días laborables
+• Tío carnal o sobrino: 1 día natural
 
-**Hospitalización grave/intervención quirúrgica:**
-• Cónyuge, padres, hijos: 2 días (4 con desplazamiento)
-• Abuelos, nietos, hermanos: 2 días (4 con desplazamiento)
+**Hospitalización grave/intervención quirúrgica (Art. 7.1.d):**
+• Cónyuge, pareja de hecho, familiares hasta 2º grado consanguinidad o afinidad: 5 días
+• Si traslado a otra provincia: 6 días laborables
+• Disfrutables dentro de 15 días, de forma continuada o alterna
 
-**Traslado de vivienda:** 1 día laborable
+**Traslado de vivienda:** 2 días naturales
 
-**Consultas médicas propias:** tiempo imprescindible justificado
+**Matrimonio de hijos/as o hermanos/as:** 1 día
+
+**Consultas médicas propias (SMS):** permiso retribuido justificado
+
+**Intervención quirúrgica sin hospitalización 2º grado:** 2 días
 
 **Guarda legal hijo <12 años o discapacitado:** reducción jornada con reducción proporcional de salario
 
 **Lactancia:** 1 hora diaria ausencia o reducción 30 minutos jornada (hasta 9 meses)
+
+=== LIBRE DISPOSICIÓN Y AUSENCIAS (Art. 7.2 y 7.3) ===
+**Días de libre disposición (Art. 7.3):**
+• 2 días al año (1 ordinario + 1 extraordinario mientras jornada ≥ 1.748 h)
+• Retribuidos, preaviso 7 días naturales
+• Máximo 10% de la plantilla simultáneamente
+
+**Ausencias médicas justificadas (Art. 7.2):**
+• 12 ausencias al año por el tiempo indispensable
+• Para acompañar al médico a hijos/as menores de 14 años o familiares con incapacidad
 
 === BAJA MÉDICA E INCAPACIDAD TEMPORAL ===
 **Accidente laboral / internamiento sanatorial / intervención quirúrgica:**
@@ -169,9 +187,10 @@ Publicado: BORM nº 34 de 11 febrero 2025
 
 === LICENCIAS Y PERMISOS ===
 **HOSPITALIZACIÓN/INGRESO FAMILIAR:**
-• 5 días retribuidos por ingreso hospitalario
-• Aplica a: cónyuge, familiares hasta 2º grado (madre, padre, hijos, hermanos, abuelos, suegros)
-• Ampliable si hospitalización >15 días
+• 5 días retribuidos por ingreso hospitalario, haya o no desplazamiento
+• Aplica a: cónyuge, familiares hasta 2º grado consanguinidad o afinidad
+• Si hospitalización >15 días: +1 día más
+• Disfrutables de forma continuada o alterna mientras exista hospitalización o reposo domiciliario
 
 **Fallecimiento:** 3 días (cónyuge, 2º grado) + 2 días si desplazamiento >65km
 

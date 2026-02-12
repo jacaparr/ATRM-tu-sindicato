@@ -11,14 +11,14 @@
       "keywords": ["jornada", "horas", "semanales", "anuales", "horario", "turno", "descanso", "cuántas horas", "jornada máxima"],
       "titulo": "Jornada y descansos",
       "resumen": "Máximo anual 1.748 h; ordinaria 40 h/semana",
-      "detalle": "⏱ Jornada: máxima anual 1.748 horas efectivas (a partir de 2024). Ordinaria: 40 horas semanales salvo reducción por acuerdo. Descanso semanal: 1,5 días ininterrumpidos (36 horas). Pausa diaria: 15 minutos si la jornada supera 6 horas.",
+      "detalle": "⏱ Jornada: máxima anual 1.748 horas efectivas (a partir de 2024). Ordinaria: 40 horas semanales salvo reducción por acuerdo. Descanso semanal: 1,5 días ininterrumpidos (36 horas). Pausa diaria: 30 minutos en jornada continuada (proporcional desde media jornada). Art. 5 del Convenio.",
       "contacto": "ATRM 968 30 00 37"
     },
     "permisos_retribuidos": {
-      "keywords": ["permisos", "licencias", "matrimonio", "fallecimiento", "mudanza", "nacimiento", "boda", "muerte", "funeral", "hijo", "traslado", "examenes", "hospitalización"],
-      "titulo": "Permisos retribuidos",
-      "resumen": "Matrimonio 15 días, fallecimiento 2-4, nacimiento 2-4, mudanza 1",
-      "detalle": "📄 Permisos: Matrimonio 15 días naturales. Nacimiento de hijo/a: 2 días (4 si desplazamiento). Fallecimiento: 2 días (4 si desplazamiento). Mudanza: 1 día. Exámenes: tiempo necesario. Hospitalización familiar: 2-4 días según grado.",
+      "keywords": ["permisos", "licencias", "matrimonio", "fallecimiento", "mudanza", "nacimiento", "boda", "muerte", "funeral", "hijo", "traslado", "examenes", "hospitalización", "intervención", "cirugía", "tío", "sobrino"],
+      "titulo": "Permisos retribuidos (Art. 7.1)",
+      "resumen": "Matrimonio 16 días, fallecimiento 3 días (5 fuera prov.), hospitalización 5 días (6 fuera prov.), mudanza 2 días",
+      "detalle": "📄 **Permisos retribuidos - Art. 7.1 Convenio Interiores:**\n\n**a) Matrimonio/pareja de hecho:** 16 días naturales\n\n**b) Alumbramiento de hija o nuera:** 2 días laborales misma provincia, 5 días fuera de provincia\n\n**c) Fallecimiento:**\n- Cónyuge, ascendientes o descendientes directos: **3 días laborables**\n- Suegros/as, hermanos/as o hermanos/as políticos: **2 días laborables**\n- Fuera de provincia: **5 días laborables**\n- Tío carnal o sobrino: **1 día natural** (Art. 7.1.l)\n\n**d) Hospitalización/enfermedad grave/intervención quirúrgica:**\n- **5 días** (cónyuge, pareja de hecho, familiares hasta 2º grado consanguinidad o afinidad)\n- **6 días** si traslado a otra provincia\n- Se pueden disfrutar dentro de 15 días, de forma continuada o alterna\n\n**g) Traslado de vivienda:** 2 días naturales\n\n**h) Matrimonio de hijos/as o hermanos/as:** 1 día\n\n**j) Consulta médica propia (SMS):** permiso retribuido justificado\n\n**k) Intervención quirúrgica sin hospitalización 2º grado:** 2 días\n\n**Otros:** Exámenes (tiempo necesario), deberes públicos (tiempo necesario), lactancia (1 hora diaria hasta 9 meses)\n\n⚠️ Todos los permisos requieren aviso y justificación documental.\n📞 Extensible a parejas de hecho registradas.",
       "contacto": "ATRM 968 30 00 37"
     },
     "salarios": {
@@ -39,14 +39,14 @@
       "keywords": ["baja médica", "incapacidad temporal", "enfermedad", "lesión", "IT", "parte de baja", "estoy enfermo", "accidente laboral", "complemento"],
       "titulo": "Baja médica e incapacidad temporal",
       "resumen": "Complemento de prestación según convenio.",
-      "detalle": "Durante la baja médica, la empresa complementa la prestación de la Seguridad Social hasta el 100% del salario desde el primer día en caso de accidente laboral y a partir del día 16 en caso de enfermedad común.",
+      "detalle": "Durante la baja médica:\n\n**Accidente laboral, internamiento sanatorial o intervención quirúrgica:**\n- La empresa complementa hasta el **100%** de la base ordinaria de cotización **desde el primer día** hasta fin del proceso.\n\n**Enfermedad común (Art. 33):**\n- Hasta el día 20: complemento hasta el **80%** de la base reguladora\n- Desde el día 21: complemento hasta el **100%** hasta fin de la IT\n\n**Base reguladora IT:** salario base + antigüedad consolidada + plus de asistencia + prorrata de pagas extras.",
       "contacto": "ATRM 968 30 00 37"
     },
     "asuntos_propios": {
       "keywords": ["asuntos propios", "días propios", "dias propios", "libre disposición", "libre disposicion", "día libre", "dia libre", "ausentarme", "faltar al trabajo", "ausencia justificada", "acompañar médico", "acompañar medico", "hijo médico", "artículo 7", "art 7"],
-      "titulo": "Día de libre disposición y ausencias médicas (Art. 7)",
-      "resumen": "1 día libre disposición + 12 ausencias para médicos de hijos/familiares",
-      "detalle": "🗓️ **Libre disposición y ausencias - Art. 7 Convenio Interiores:**\n\n**Art. 7.3 - Día de libre disposición (desde 2022):**\n- **1 día laboral al año** con derecho a remuneración\n- Preaviso de **1 semana de antelación**\n- Máximo **10% de la plantilla** simultáneamente\n\n**Art. 7.2 - Ausencias médicas justificadas:**\n- **12 ausencias al año** por el tiempo indispensable\n- Para acompañar al médico a **hijos/as menores de 14 años**\n- O **familiares con incapacidad** que convivan con el trabajador\n- Requiere justificante médico\n\n**⚠️ Comparativa con Viaria:** El convenio de Limpieza Viaria concede 4 días de asuntos propios al año (Art. 15). Interiores tiene 1 día + 12 ausencias médicas.\n\n📞 Contacta ATRM para cualquier duda.",
+      "titulo": "Días de libre disposición y ausencias médicas (Art. 7)",
+      "resumen": "2 días libre disposición + 12 ausencias para médicos de hijos/familiares",
+      "detalle": "🗓️ **Libre disposición y ausencias - Art. 7 Convenio Interiores:**\n\n**Art. 7.3 - Días de libre disposición:**\n- **1 día ordinario** de libre disposición al año\n- **1 día extraordinario** adicional (mientras la jornada completa sea ≥ 1.748 h anuales, desde 2024)\n- **Total: 2 días** con derecho a remuneración\n- Preaviso de **7 días naturales** de antelación\n- Máximo **10% de la plantilla** simultáneamente\n\n**Art. 7.2 - Ausencias médicas justificadas:**\n- **12 ausencias al año** por el tiempo indispensable\n- Para acompañar al médico a **hijos/as menores de 14 años**\n- O **familiares con incapacidad** que convivan con el trabajador\n- Requiere justificante médico (hora entrada y salida)\n\n**⚠️ Comparativa con Viaria:** El convenio de Limpieza Viaria concede 4 días de asuntos propios al año (Art. 15). Interiores tiene 2 días libre disposición + 12 ausencias médicas.\n\n📞 Contacta ATRM para cualquier duda.",
       "contacto": "ATRM 968 30 00 37"
     },
     "subrogacion": {

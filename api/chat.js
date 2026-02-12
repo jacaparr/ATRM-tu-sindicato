@@ -51,7 +51,7 @@ Publicado: BORM nº 34 de 11 febrero 2025
 - Bolsa enero: según tabla + 400€ incremento 2024
 
 === LICENCIAS Y PERMISOS ===
-- HOSPITALIZACIÓN/INGRESO FAMILIAR: 5 días retribuidos por ingreso hospitalario, accidente o enfermedad grave de cónyuge o familiares hasta 2º grado (madre, padre, hijos, hermanos, abuelos, suegros). Ampliable si hospitalización >15 días.
+- HOSPITALIZACIÓN/INGRESO FAMILIAR: 5 días retribuidos por ingreso hospitalario, accidente o enfermedad grave de cónyuge o familiares hasta 2º grado consanguinidad o afinidad (madre, padre, hijos, hermanos, abuelos, suegros). Si hospitalización >15 días: +1 día más. Disfrutables de forma continuada o alterna.
 - Fallecimiento: 3 días (cónyuge, 2º grado) + 2 días si desplazamiento >65km
 - Matrimonio: 15 días + 672,72€ gratificación
 - Consulta médica: 3 horas (jornada completa si >35km)
@@ -80,9 +80,10 @@ Publicado: BORM nº 34 de 11 febrero 2025
 - Compensación: descanso equivalente en 4 meses
 
 === PRESTACIONES ===
-- Baja laboral: complemento hasta 100% primeros 60 días
-- Accidente trabajo: 100% desde primer día
-- Seguros y ayudas por discapacidad/estudios
+- Accidente laboral/hospitalización/intervención: 100% retribución real desde primer día
+- Enfermedad común: 100% primeros 70 días sumados de las 3 primeras bajas del año
+- A partir de la 4ª baja: 75% desde primer día
+- Seguro muerte/invalidez por accidente: 30.500€; muerte natural: 4.250€
 
 === CATEGORÍAS ===
 - Mandos: Encargado general, encargado, capataz

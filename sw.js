@@ -1,4 +1,4 @@
-const CACHE_NAME = 'atrm-cache-v13';
+const CACHE_NAME = 'atrm-cache-v14';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -33,7 +33,8 @@ const ASSETS_TO_CACHE = [
   './js/telegram_widget.js',
   './assets/pwa/logo.svg',
   './data/atrm_sindicato_data.json',
-  './data/casos.json'
+  './data/casos.json',
+  './js/podcasts.js'
 ];
 
 // Install event: Cache core assets

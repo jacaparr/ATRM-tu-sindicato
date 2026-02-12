@@ -118,10 +118,11 @@ class SistemaPodcasts {
     this.mostrarPodcasts(podcastsFiltrados);
     
     // Actualizar botones activos
-    document.querySelectorAll('.filtro-btn').forEach(btn => {
+    document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.classList.remove('active');
     });
-    event.target.classList.add('active');
+    const clickedBtn = document.querySelector(`.filter-btn[onclick*="'${categoria}'"]`);
+    if (clickedBtn) clickedBtn.classList.add('active');
   }
 
   buscar(termino) {
@@ -184,7 +185,7 @@ function abrirPodcast(id) {
   
   document.getElementById('podcastPlayer').innerHTML = `
     <audio controls style="width:100%;margin:20px 0">
-      <source src="${podcast.audioUrl}">
+      <source src="${podcast.audioUrl}" type="audio/mpeg">
       Tu navegador no soporta el elemento de audio.
     </audio>
   `;

@@ -78,11 +78,12 @@
     <aside class="card news">
       <h3>Datos clave del convenio</h3>
       <ul style="line-height:1.8">
-        <li><strong>Jornada máxima:</strong> 1.792 horas/año</li>
+        <li><strong>Jornada máxima:</strong> 1.748 horas/año</li>
         <li><strong>Vacaciones:</strong> 30 días naturales</li>
-        <li><strong>Pagas extra:</strong> 3 al año (jun, dic, mar)</li>
+        <li><strong>Pagas extra:</strong> 4 al año (mar, jun, sep, dic)</li>
         <li><strong>Descanso semanal:</strong> 1,5 días</li>
-        <li><strong>Vigencia:</strong> BORM 20/09/2024</li>
+        <li><strong>Antigüedad:</strong> Congelada desde 31/12/2008</li>
+        <li><strong>Vigencia:</strong> 2024-2027 (BORM 20/09/2024)</li>
       </ul>
     </aside>
   </main>
@@ -98,7 +99,7 @@
     </div>
     <div class="card" style="padding:20px">
       <h3>💰 Salario y complementos</h3>
-      <p>Salario base según categoría + trienios al 5%. Complemento de IT hasta 100% desde primer día en accidente laboral.</p>
+      <p>Salario base según categoría. Antigüedad consolidada congelada desde 31/12/2008 (Art. 20). 4 pagas extra (marzo, junio, septiembre, diciembre). Complemento IT hasta 100% en accidente laboral.</p>
     </div>
     <div class="card" style="padding:20px">
       <h3>🔄 Subrogación</h3>
@@ -108,7 +109,7 @@
       <h3>🗓️ Calculadora de vacaciones y descansos</h3>
       <form id="formVacaciones" autocomplete="off" style="display:flex;flex-direction:column;gap:12px">
         <label><strong>Jornada anual (horas):</strong>
-          <input type="number" id="jornadaInput" min="1000" max="2200" value="1792" required style="padding:8px;border-radius:8px;border:1px solid #ffd2b5;font-size:16px;width:100%">
+          <input type="number" id="jornadaInput" min="1000" max="2200" value="1748" required style="padding:8px;border-radius:8px;border:1px solid #ffd2b5;font-size:16px;width:100%">
         </label>
         <label><strong>Días trabajados al año:</strong>
           <input type="number" id="diasInput" min="1" max="365" value="225" required style="padding:8px;border-radius:8px;border:1px solid #ffd2b5;font-size:16px;width:100%">
@@ -117,6 +118,192 @@
       </form>
       <div id="resultadoVacaciones" style="margin-top:14px;font-size:16px;color:#1976D2"></div>
       <div style="font-size:13px;color:#2C3E50;margin-top:8px">Según el convenio de limpieza de interiores de la Región de Murcia: 30 días naturales de vacaciones y descansos proporcionales a la jornada.</div>
+    </div>
+  </section>
+
+  <!-- CALCULADORA SALARIAL INTERIORES -->
+  <section style="max-width:1100px;margin:0 auto;padding:0 20px 40px">
+    <h2 style="margin-top:32px;color:#27ae60">💰 Calculadora de Salario — Interiores</h2>
+    
+    <!-- Tabla salarial resumen -->
+    <div class="card" style="padding:24px;overflow-x:auto;margin-bottom:24px">
+      <h3 style="color:#27ae60;margin-bottom:12px">📊 Tabla Salarial por Año</h3>
+      <div style="margin-bottom:12px">
+        <label style="font-weight:600;margin-right:8px">Año:</label>
+        <select id="tablaAnioSelect" onchange="actualizarTablaInteriores()" style="padding:8px 12px;border:1px solid #d5f4e6;border-radius:8px;font-size:14px">
+          <option value="2024">2024</option>
+          <option value="2025">2025</option>
+          <option value="2026" selected>2026</option>
+          <option value="2027">2027</option>
+        </select>
+      </div>
+      <table style="width:100%;border-collapse:collapse;font-size:13px">
+        <thead>
+          <tr style="background:linear-gradient(90deg,#27ae60,#2ecc71);color:#fff">
+            <th style="padding:10px;text-align:left">Categoría</th>
+            <th style="padding:10px;text-align:right">Salario Base/mes</th>
+            <th style="padding:10px;text-align:right">Bruto Anual (est.)</th>
+          </tr>
+        </thead>
+        <tbody id="tablaSalarialBody"></tbody>
+      </table>
+      <div style="font-size:11px;color:#888;margin-top:8px">* Bruto anual estimado = base × 12 meses + 4 pagas extra. No incluye pluses variables ni antigüedad consolidada.</div>
+    </div>
+
+    <!-- Calculadora -->
+    <div class="card" style="padding:24px">
+      <h3 style="color:#27ae60;margin-bottom:4px">🧮 Calcula tu salario</h3>
+      <p style="color:#2C3E50;margin-bottom:16px;font-size:14px">Introduce tu categoría y opciones para estimar tu salario bruto anual según el convenio de Interiores (2024-2027).</p>
+      
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+        <div>
+          <label style="display:block;font-weight:600;margin-bottom:8px">Categoría profesional</label>
+          <select id="intCategoria" style="width:100%;padding:10px;border:1px solid #d5f4e6;border-radius:8px;font-size:14px">
+            <option value="">-- Selecciona categoría --</option>
+            <option value="PEON_LIMPIADOR">Peón/a Limpiador/a</option>
+            <option value="LIMPIADOR_ESPECIALISTA">Limpiador/a Especialista</option>
+            <option value="CRISTALERO">Limpiador/a Espec. Cristalero/a</option>
+            <option value="JEFE_EQUIPO">Jefe/a de Equipo</option>
+            <option value="ENCARGADO">Encargado/a</option>
+            <option value="AUX_ADMIN">Auxiliar Administrativo/a</option>
+            <option value="OFICIAL_ADMIN">Oficial Administrativo/a</option>
+          </select>
+        </div>
+        <div>
+          <label style="display:block;font-weight:600;margin-bottom:8px">📅 Año de cálculo</label>
+          <select id="intAnio" style="width:100%;padding:10px;border:1px solid #d5f4e6;border-radius:8px;font-size:14px">
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+            <option value="2026" selected>2026</option>
+            <option value="2027">2027</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Antigüedad consolidada -->
+      <div style="background:#e8f5e9;border-radius:10px;padding:14px;margin-bottom:16px">
+        <label style="display:block;font-weight:600;margin-bottom:6px">🕰️ Antigüedad consolidada (€/mes) — <span style="font-weight:400;font-size:12px">Art. 20: congelada desde 31/12/2008</span></label>
+        <input type="number" id="intAntiguedad" min="0" step="0.01" value="0" placeholder="0.00" style="width:100%;padding:10px;border:1px solid #a5d6a7;border-radius:8px;font-size:14px">
+        <div style="font-size:11px;color:#2e7d32;margin-top:4px">Si empezaste <strong>después de enero 2009</strong>, este valor es 0 €. Si tienes antigüedad, consulta tu nómina e introduce el importe mensual.</div>
+      </div>
+
+      <!-- Pluses opcionales -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+        <label style="display:flex;align-items:center;gap:8px;background:#f5f5f5;padding:10px;border-radius:8px;cursor:pointer">
+          <input type="checkbox" id="intPlusToxico"> 
+          <span style="font-size:13px"><strong>Plus tóxico</strong> (20% base) — Hospitales, geriátricos</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;background:#f5f5f5;padding:10px;border-radius:8px;cursor:pointer">
+          <input type="checkbox" id="intPlusAbastos">
+          <span style="font-size:13px"><strong>Plus plazas de abastos</strong> (6% base) — Industria cárnica</span>
+        </label>
+      </div>
+
+      <button onclick="calcularSalarioInteriores()" style="background:linear-gradient(90deg,#27ae60,#2ecc71);color:#fff;padding:12px 24px;border:none;border-radius:12px;font-weight:700;cursor:pointer;font-size:15px;width:100%">Calcular salario</button>
+
+      <!-- Resultados -->
+      <div id="intResultado" style="margin-top:20px;display:none">
+        <div style="background:#e8f8f5;border-left:4px solid #27ae60;padding:16px;border-radius:8px">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px">
+            <div>
+              <div style="font-size:12px;color:#495057;font-weight:600;margin-bottom:4px">SALARIO MENSUAL (16 pagas)</div>
+              <div style="font-size:24px;font-weight:800;color:#27ae60" id="intMensual">-</div>
+            </div>
+            <div>
+              <div style="font-size:12px;color:#495057;font-weight:600;margin-bottom:4px">SALARIO ANUAL BRUTO</div>
+              <div style="font-size:24px;font-weight:800;color:#27ae60" id="intAnual">-</div>
+            </div>
+          </div>
+          
+          <div style="border-top:1px solid #c8e6c9;padding-top:12px;font-size:13px;color:#2C3E50">
+            <div style="display:flex;justify-content:space-between;margin:6px 0">
+              <span>Salario base mensual (<span id="intAnioLabel">2026</span>):</span>
+              <strong id="intBaseMes">-</strong>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin:6px 0">
+              <span>Salario base × 12 meses:</span>
+              <strong id="intBase12">-</strong>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin:6px 0">
+              <span>4 pagas extra (marzo, junio, sept, dic):</span>
+              <strong id="intPagas">-</strong>
+            </div>
+            <div id="intAntRow" style="display:none;justify-content:space-between;margin:6px 0;color:#27ae60">
+              <span>Antigüedad consolidada (× 16 pagas):</span>
+              <strong id="intAntiguedadTotal">0 €</strong>
+            </div>
+            <div id="intToxicoRow" style="display:none;justify-content:space-between;margin:6px 0">
+              <span>Plus tóxico (20% base × 12):</span>
+              <strong id="intToxicoTotal">-</strong>
+            </div>
+            <div id="intAbastosRow" style="display:none;justify-content:space-between;margin:6px 0">
+              <span>Plus plazas de abastos (6% base × 12):</span>
+              <strong id="intAbastosTotal">-</strong>
+            </div>
+          </div>
+          
+          <div style="margin-top:12px;padding:12px;background:#fff;border-radius:6px;border:1px solid #c8e6c9;font-size:12px;color:#2C3E50">
+            <strong>ℹ️ Nota:</strong> Cálculo estimado según convenio de Interiores. No incluye plus de asistencia, permanencia ni productividad variable (dependen de cada empresa). Plus tóxico solo para centros hospitalarios/geriátricos públicos (Art. 26). Para un cálculo exacto, contacta con ATRM.
+          </div>
+
+          <div id="intIncremento" style="margin-top:12px;padding:12px;background:#fff3e0;border-radius:6px;border:1px solid #ffe0b2;font-size:12px;color:#e65100">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculadora de Baja Médica Interiores -->
+    <h2 style="margin-top:32px;color:#27ae60">🏥 Calculadora de Impacto por Baja Médica</h2>
+    <div class="card" style="padding:24px">
+      <p style="color:#2C3E50;margin-bottom:16px;font-size:14px">Según Art. 33: Accidente laboral/intervención = 100% hasta fin del proceso. Enfermedad común: 80% hasta día 20, después 100%.</p>
+      
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px">
+        <div>
+          <label style="display:block;font-weight:600;margin-bottom:8px">Categoría</label>
+          <select id="intBajaCategoria" style="width:100%;padding:10px;border:1px solid #d5f4e6;border-radius:8px;font-size:14px">
+            <option value="">-- Categoría --</option>
+            <option value="PEON_LIMPIADOR">Peón/a Limpiador/a</option>
+            <option value="LIMPIADOR_ESPECIALISTA">Limpiador/a Especialista</option>
+            <option value="CRISTALERO">Limpiador/a Espec. Cristalero/a</option>
+            <option value="JEFE_EQUIPO">Jefe/a de Equipo</option>
+            <option value="ENCARGADO">Encargado/a</option>
+            <option value="AUX_ADMIN">Auxiliar Administrativo/a</option>
+            <option value="OFICIAL_ADMIN">Oficial Administrativo/a</option>
+          </select>
+        </div>
+        <div>
+          <label style="display:block;font-weight:600;margin-bottom:8px">Tipo de baja</label>
+          <select id="intBajaTipo" style="width:100%;padding:10px;border:1px solid #d5f4e6;border-radius:8px;font-size:14px">
+            <option value="comun">Enfermedad común</option>
+            <option value="laboral">Accidente laboral / Intervención</option>
+          </select>
+        </div>
+        <div>
+          <label style="display:block;font-weight:600;margin-bottom:8px">Días de baja</label>
+          <input type="number" id="intBajaDias" min="1" max="365" value="30" style="width:100%;padding:10px;border:1px solid #d5f4e6;border-radius:8px;font-size:14px">
+        </div>
+      </div>
+
+      <button onclick="calcularBajaInteriores()" style="background:linear-gradient(90deg,#27ae60,#229954);color:#fff;padding:12px 24px;border:none;border-radius:12px;font-weight:700;cursor:pointer;font-size:15px;width:100%">Calcular impacto de baja</button>
+
+      <div id="intBajaResultado" style="margin-top:20px;display:none">
+        <div style="background:#e8f8f5;border-left:4px solid #27ae60;padding:16px;border-radius:8px">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+            <div style="background:#fff;padding:12px;border-radius:8px;border:1px solid #d5f4e6">
+              <div style="font-size:12px;color:#495057;font-weight:600;margin-bottom:4px">SALARIO MENSUAL NORMAL</div>
+              <div style="font-size:22px;font-weight:800;color:#27ae60" id="intBajaNormal">-</div>
+            </div>
+            <div style="background:#fff;padding:12px;border-radius:8px;border:1px solid #d5f4e6">
+              <div style="font-size:12px;color:#495057;font-weight:600;margin-bottom:4px">SALARIO CON BAJA</div>
+              <div style="font-size:22px;font-weight:800;color:#FF6B35" id="intBajaConBaja">-</div>
+            </div>
+          </div>
+          <div style="background:#fff;padding:12px;border-radius:8px;border:1px solid #d5f4e6;font-size:12px;color:#2C3E50;line-height:1.8" id="intBajaDetalle"></div>
+          <div style="margin-top:12px;padding:12px;background:#fff;border-radius:6px;border:1px solid #c8e6c9;font-size:12px;color:#2C3E50">
+            <strong>📝 Art. 33:</strong> Accidente laboral/intervención/hospitalización = 100% hasta fin del proceso. Enfermedad común = 80% hasta día 20, luego 100%.
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -373,6 +560,180 @@
 
       // Mostrar resultado
       document.getElementById('resultadoVacaciones').innerHTML = `Tienes derecho a <strong>${totalDiasDescanso.toFixed(1)}</strong> días de vacaciones y descansos al año.`;
+    });
+
+    // ===== CALCULADORA SALARIAL INTERIORES =====
+    const categoriasInt = {
+      "PEON_LIMPIADOR":         { nombre: "Peón/a Limpiador/a",                base2024: 1050.00 },
+      "LIMPIADOR_ESPECIALISTA": { nombre: "Limpiador/a Especialista",          base2024: 1100.00 },
+      "CRISTALERO":             { nombre: "Limp. Espec. Cristalero/a",         base2024: 1150.00 },
+      "JEFE_EQUIPO":            { nombre: "Jefe/a de Equipo",                  base2024: 1250.00 },
+      "ENCARGADO":              { nombre: "Encargado/a",                       base2024: 1400.00 },
+      "AUX_ADMIN":              { nombre: "Auxiliar Administrativo/a",         base2024: 1100.00 },
+      "OFICIAL_ADMIN":          { nombre: "Oficial Administrativo/a",          base2024: 1300.00 }
+    };
+
+    // Incrementos según Art. 32 del convenio
+    const incrementos = {
+      2024: 1,          // base
+      2025: 1.02,       // +2% sobre 2024
+      2026: 1.02 * 1.0275,  // +2.75% sobre 2025
+      2027: 1.02 * 1.0275 * 1.0375  // +3.75% sobre 2026
+    };
+
+    function getBaseAnio(base2024, anio) {
+      const factor = incrementos[anio] || incrementos[2026];
+      return Math.round(base2024 * factor * 100) / 100;
+    }
+
+    function formatEURInt(num) {
+      return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(num);
+    }
+
+    // Tabla salarial dinámica
+    function actualizarTablaInteriores() {
+      const anio = parseInt(document.getElementById('tablaAnioSelect').value);
+      const tbody = document.getElementById('tablaSalarialBody');
+      let html = '';
+      for (const [key, cat] of Object.entries(categoriasInt)) {
+        const base = getBaseAnio(cat.base2024, anio);
+        const brutoAnual = base * 16; // 12 meses + 4 pagas
+        html += `<tr style="border-bottom:1px solid #e0e0e0">
+          <td style="padding:8px">${cat.nombre}</td>
+          <td style="padding:8px;text-align:right;font-weight:600">${formatEURInt(base)}</td>
+          <td style="padding:8px;text-align:right;font-weight:600">${formatEURInt(brutoAnual)}</td>
+        </tr>`;
+      }
+      tbody.innerHTML = html;
+    }
+
+    // Calculadora principal
+    function calcularSalarioInteriores() {
+      const categoriaKey = document.getElementById('intCategoria').value;
+      const anio = parseInt(document.getElementById('intAnio').value);
+      const antiguedadMes = parseFloat(document.getElementById('intAntiguedad').value) || 0;
+      const plusToxico = document.getElementById('intPlusToxico').checked;
+      const plusAbastos = document.getElementById('intPlusAbastos').checked;
+
+      if (!categoriaKey) {
+        alert('Por favor selecciona una categoría');
+        return;
+      }
+
+      const cat = categoriasInt[categoriaKey];
+      const baseMes = getBaseAnio(cat.base2024, anio);
+      
+      // Cálculos
+      const base12 = baseMes * 12;
+      const pagas4 = baseMes * 4; // 4 pagas extra
+      const antiguedadAnual = antiguedadMes * 16; // se añade a las 12 mensualidades + 4 pagas
+      const toxicoAnual = plusToxico ? (baseMes * 0.20 * 12) : 0;
+      const abastosAnual = plusAbastos ? (baseMes * 0.06 * 12) : 0;
+
+      const totalAnual = base12 + pagas4 + antiguedadAnual + toxicoAnual + abastosAnual;
+      const mensual16 = totalAnual / 16;
+
+      // Mostrar resultados
+      document.getElementById('intAnioLabel').textContent = anio;
+      document.getElementById('intMensual').textContent = formatEURInt(mensual16);
+      document.getElementById('intAnual').textContent = formatEURInt(totalAnual);
+      document.getElementById('intBaseMes').textContent = formatEURInt(baseMes);
+      document.getElementById('intBase12').textContent = formatEURInt(base12);
+      document.getElementById('intPagas').textContent = formatEURInt(pagas4);
+
+      // Antigüedad
+      const antRow = document.getElementById('intAntRow');
+      if (antiguedadMes > 0) {
+        document.getElementById('intAntiguedadTotal').textContent = formatEURInt(antiguedadAnual);
+        antRow.style.display = 'flex';
+      } else {
+        antRow.style.display = 'none';
+      }
+
+      // Plus tóxico
+      const toxRow = document.getElementById('intToxicoRow');
+      if (plusToxico) {
+        document.getElementById('intToxicoTotal').textContent = formatEURInt(toxicoAnual);
+        toxRow.style.display = 'flex';
+      } else {
+        toxRow.style.display = 'none';
+      }
+
+      // Plus abastos
+      const abaRow = document.getElementById('intAbastosRow');
+      if (plusAbastos) {
+        document.getElementById('intAbastosTotal').textContent = formatEURInt(abastosAnual);
+        abaRow.style.display = 'flex';
+      } else {
+        abaRow.style.display = 'none';
+      }
+
+      // Info de incrementos
+      const pctMap = { 2024: '2% sobre 2022', 2025: '2% sobre 2024', 2026: '2,75% sobre 2025', 2027: '3,75% sobre 2026' };
+      document.getElementById('intIncremento').innerHTML = 
+        `📈 <strong>Incremento ${anio}:</strong> ${pctMap[anio]} (Art. 32 convenio)`;
+
+      document.getElementById('intResultado').style.display = 'block';
+    }
+
+    // Calculadora de baja interiores
+    function calcularBajaInteriores() {
+      const categoriaKey = document.getElementById('intBajaCategoria').value;
+      const tipoBaja = document.getElementById('intBajaTipo').value;
+      const dias = parseInt(document.getElementById('intBajaDias').value) || 0;
+
+      if (!categoriaKey) { alert('Selecciona una categoría'); return; }
+      if (dias < 1 || dias > 365) { alert('Introduce días entre 1 y 365'); return; }
+
+      const cat = categoriasInt[categoriaKey];
+      const baseMes = getBaseAnio(cat.base2024, 2026);
+      const salarioMensual = baseMes; // Salario base mensual
+      const diario = salarioMensual / 30;
+
+      let pagoBaja = 0;
+      let detalle = '';
+
+      if (tipoBaja === 'laboral') {
+        // Accidente laboral: 100% siempre
+        pagoBaja = diario * dias;
+        detalle = `<div style="display:flex;justify-content:space-between;margin:4px 0">
+          <span>✅ Días al 100% (accidente laboral):</span>
+          <strong style="color:#27ae60">${dias} días</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin:4px 0">
+          <span>Pago esperado:</span>
+          <strong>${formatEURInt(pagoBaja)}</strong>
+        </div>`;
+      } else {
+        // Enfermedad común: 80% hasta día 20, 100% desde día 21
+        const diasAl80 = Math.min(dias, 20);
+        const diasAl100 = Math.max(0, dias - 20);
+        pagoBaja = (diasAl80 * diario * 0.80) + (diasAl100 * diario);
+        detalle = `<div style="display:flex;justify-content:space-between;margin:4px 0">
+          <span>⚠️ Días al 80% (hasta día 20):</span>
+          <strong style="color:#FF9800">${diasAl80} días</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin:4px 0">
+          <span>✅ Días al 100% (desde día 21):</span>
+          <strong style="color:#27ae60">${diasAl100} días</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin:4px 0">
+          <span>Pago esperado:</span>
+          <strong>${formatEURInt(pagoBaja)}</strong>
+        </div>`;
+      }
+
+      const salarioConBaja = (pagoBaja / dias) * 30;
+
+      document.getElementById('intBajaNormal').textContent = formatEURInt(salarioMensual);
+      document.getElementById('intBajaConBaja').textContent = formatEURInt(salarioConBaja);
+      document.getElementById('intBajaDetalle').innerHTML = detalle;
+      document.getElementById('intBajaResultado').style.display = 'block';
+    }
+
+    // Inicializar tabla al cargar
+    document.addEventListener('DOMContentLoaded', () => {
+      actualizarTablaInteriores();
     });
   </script>
   <script src="js/modo_oscuro.js"></script>

@@ -543,22 +543,12 @@
       });
     }
 
-    // -- MUDANZA --
-    if (key === 'conyuge' || g.includes('1.er')) {
-      licencias.push({
-        icono:'📦', titulo:'Mudanza / Traslado de domicilio',
-        dias:'1-2 días',
-        detalle:'Art. 14 — Por cambio de domicilio habitual. No requiere parentesco específico (es derecho del trabajador).',
-        color:'#9b59b6'
-      });
-    }
-
-    // -- CONSULTAS MÉDICAS --
-    if (g.includes('1.er') || key === 'conyuge') {
+    // -- CONSULTAS MÉDICAS (solo hijos con discapacidad ≥65%) --
+    if (['hijo','hija'].includes(key)) {
       licencias.push({
         icono:'⏰', titulo:'Acompañamiento a consulta médica',
         dias:'Tiempo imprescindible',
-        detalle:'Para familiares de 1.er grado y cónyuge. Requiere justificante médico.',
+        detalle:'Solo si el hijo/a tiene una discapacidad reconocida ≥ 65%. Requiere justificante médico y certificado de discapacidad.',
         color:'#3498db'
       });
     }

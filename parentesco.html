@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grados de Parentesco - ATRM</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#FF6B35">
+  <style>
+    :root{ --primary:#FF6B35; --secondary:#FF8C42; --accent:#FFA726; --dark:#2C3E50; }
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial;color:var(--dark);background:linear-gradient(180deg,#fff,#fff7f0)}
+
+    main{max-width:1100px;margin:16px auto;padding:0 16px 100px}
+    .toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+    .btn{padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,var(--primary),var(--secondary));color:#fff;border:none;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;font-size:.95em}
+    .btn:hover{background:linear-gradient(90deg,var(--secondary),var(--primary));transform:translateY(-1px);box-shadow:0 4px 12px rgba(255,107,53,.3)}
+
+    /* Hero */
+    .hero-card{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;border-radius:20px;padding:28px 24px;margin-bottom:24px;text-align:center;box-shadow:0 12px 30px rgba(255,107,53,.2)}
+    .hero-card h1{margin:0 0 8px;font-size:1.8em}
+    .hero-card p{margin:0;opacity:.92;font-size:1.05em;line-height:1.5}
+
+    /* Info cards */
+    .info-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+    .info-card{background:#fff;border-radius:16px;padding:20px;border:1px solid #ffe2cf;box-shadow:0 6px 20px rgba(255,119,51,.06)}
+    .info-card h3{margin:0 0 10px;color:var(--primary);font-size:1.1em}
+    .info-card p{margin:0;color:#555;line-height:1.6;font-size:.93em}
+
+    /* Tabla visual */
+    .tabla-parentesco{width:100%;border-collapse:separate;border-spacing:0;border-radius:16px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.08);margin-bottom:24px}
+    .tabla-parentesco thead th{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;padding:14px 16px;font-weight:700;font-size:.95em;text-align:left;border:none}
+    .tabla-parentesco thead th:first-child{border-radius:16px 0 0 0}
+    .tabla-parentesco thead th:last-child{border-radius:0 16px 0 0}
+    .tabla-parentesco tbody td{padding:12px 16px;border-bottom:1px solid #f0e6df;font-size:.92em;vertical-align:top}
+    .tabla-parentesco tbody tr:last-child td{border-bottom:none}
+    .tabla-parentesco tbody tr:nth-child(even){background:#fff9f5}
+    .tabla-parentesco tbody tr:nth-child(odd){background:#fff}
+    .tabla-parentesco tbody tr:hover{background:#fff0e6;transition:background .2s}
+
+    .grado-badge{display:inline-block;padding:4px 12px;border-radius:20px;font-weight:700;font-size:.85em;color:#fff;min-width:24px;text-align:center}
+    .grado-1{background:linear-gradient(135deg,#e74c3c,#c0392b)}
+    .grado-2{background:linear-gradient(135deg,#e67e22,#d35400)}
+    .grado-3{background:linear-gradient(135deg,#f1c40f,#d4ac0f);color:#333}
+    .grado-4{background:linear-gradient(135deg,#3498db,#2980b9)}
+
+    .tipo-tag{display:inline-block;padding:3px 10px;border-radius:12px;font-size:.8em;font-weight:600}
+    .tipo-consanguinidad{background:#e8f5e9;color:#2e7d32}
+    .tipo-afinidad{background:#e3f2fd;color:#1565c0}
+
+    .familiar-icon{font-size:1.3em;margin-right:4px}
+
+    /* Árbol visual */
+    .arbol-section{margin-bottom:24px}
+    .arbol-section h2{text-align:center;color:var(--dark);margin-bottom:16px}
+    .arbol-container{background:#fff;border-radius:18px;padding:24px;border:1px solid #ffe2cf;box-shadow:0 8px 24px rgba(255,119,51,.06);overflow-x:auto}
+
+    .arbol-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .arbol-col{text-align:center}
+    .arbol-col h3{font-size:.95em;margin:0 0 12px;padding:10px;border-radius:12px;color:#fff}
+    .arbol-col.grado1 h3{background:linear-gradient(135deg,#e74c3c,#c0392b)}
+    .arbol-col.grado2 h3{background:linear-gradient(135deg,#e67e22,#d35400)}
+    .arbol-col.grado3 h3{background:linear-gradient(135deg,#f1c40f,#d4ac0f);color:#333}
+    .arbol-col.grado4 h3{background:linear-gradient(135deg,#3498db,#2980b9)}
+
+    .familiar-chip{display:flex;align-items:center;gap:8px;padding:10px 14px;margin-bottom:8px;border-radius:12px;font-size:.9em;font-weight:500;text-align:left}
+    .familiar-chip.consang{background:#e8f5e9;border:1px solid #c8e6c9}
+    .familiar-chip.afin{background:#e3f2fd;border:1px solid #bbdefb}
+
+    /* Leyenda */
+    .leyenda{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
+    .leyenda-item{display:flex;align-items:center;gap:6px;font-size:.9em;font-weight:600}
+    .leyenda-dot{width:14px;height:14px;border-radius:50%;display:inline-block}
+    .dot-consang{background:#4caf50}
+    .dot-afin{background:#2196f3}
+
+    /* Permisos resumen */
+    .permisos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:24px}
+    .permiso-card{background:#fff;border-radius:16px;padding:20px;border-left:5px solid;box-shadow:0 4px 16px rgba(0,0,0,.05)}
+    .permiso-card.fallecimiento{border-color:#e74c3c}
+    .permiso-card.hospitalizacion{border-color:#e67e22}
+    .permiso-card.mudanza{border-color:#9b59b6}
+    .permiso-card.matrimonio{border-color:#e91e63}
+    .permiso-card h4{margin:0 0 8px;font-size:1.05em}
+    .permiso-card ul{margin:6px 0 0;padding-left:20px;color:#555;line-height:1.7;font-size:.92em}
+
+    /* Print */
+    .btn-print{background:linear-gradient(90deg,#2C3E50,#34495e)}
+    .btn-print:hover{background:linear-gradient(90deg,#34495e,#2C3E50)}
+
+    @media print{
+      .toolbar,.premium-header,nav.bottom-nav,.btn,.no-print{display:none!important}
+      body{background:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      main{max-width:100%;margin:0;padding:0 10px}
+      .hero-card{box-shadow:none;page-break-after:avoid}
+      .tabla-parentesco{box-shadow:none}
+      .arbol-container{box-shadow:none;border:1px solid #ccc}
+      .permiso-card{box-shadow:none;border:1px solid #ddd;page-break-inside:avoid}
+    }
+
+    @media(max-width:768px){
+      .info-row{grid-template-columns:1fr}
+      .arbol-grid{grid-template-columns:repeat(2,1fr)}
+      .hero-card h1{font-size:1.4em}
+    }
+    @media(max-width:480px){
+      .arbol-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <link rel="stylesheet" href="css/nav.css">
+  <header class="premium-header">
+    <div class="header-content">
+      <a href="index.html" class="logo">🔥 ATRM · Tu Sindicato</a>
+      <button class="menu-toggle" onclick="document.querySelector('.menu').classList.toggle('open')" aria-label="Menú">☰</button>
+      <nav class="menu">
+        <a href="index.html">Inicio</a>
+        <a href="index.html#convenio">Viaria</a>
+        <a href="interiores.html">Interiores</a>
+        <a href="salaries.html">Salarios</a>
+        <a href="conceptos_2026.html">Conceptos 2026</a>
+        <a href="tramites.html">Trámites</a>
+        <a href="festivos.html">Festivos</a>
+        <a href="generador.html">📝 Docs</a>
+        <a href="podcasts.html">🎙️ Podcasts</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="toolbar">
+      <a class="btn" href="index.html">🏠 Inicio</a>
+      <a class="btn" href="generador.html">📝 Documentos</a>
+      <button class="btn btn-print" onclick="window.print()">🖨️ Imprimir / PDF</button>
+    </div>
+
+    <div class="hero-card">
+      <h1>👨‍👩‍👧‍👦 Grados de Parentesco</h1>
+      <p>Guía visual para saber qué grado de parentesco tiene cada familiar.<br>Imprescindible para solicitar permisos retribuidos.</p>
+    </div>
+
+    <!-- Leyenda -->
+    <div class="leyenda">
+      <div class="leyenda-item"><span class="leyenda-dot dot-consang"></span> Consanguinidad (familia de sangre)</div>
+      <div class="leyenda-item"><span class="leyenda-dot dot-afin"></span> Afinidad (familia política)</div>
+    </div>
+
+    <!-- Info cards -->
+    <div class="info-row">
+      <div class="info-card">
+        <h3>🩸 Consanguinidad</h3>
+        <p>Vínculo entre personas que descienden unas de otras o de un tronco común. Ejemplo: padres, hijos, hermanos, abuelos, tíos, primos.</p>
+      </div>
+      <div class="info-card">
+        <h3>💍 Afinidad</h3>
+        <p>Vínculo que se adquiere a través del matrimonio o pareja de hecho. Ejemplo: suegros, cuñados, yerno, nuera, consuegros.</p>
+      </div>
+    </div>
+
+    <!-- ÁRBOL VISUAL POR GRADOS -->
+    <div class="arbol-section">
+      <h2>🌳 Vista rápida por grado</h2>
+      <div class="arbol-container">
+        <div class="arbol-grid">
+          <div class="arbol-col grado1">
+            <h3>1.er Grado</h3>
+            <div class="familiar-chip consang">👨‍👩‍👧 Padre / Madre</div>
+            <div class="familiar-chip consang">👶 Hijo / Hija</div>
+            <div class="familiar-chip afin">🤝 Suegro / Suegra</div>
+            <div class="familiar-chip afin">🤝 Yerno / Nuera</div>
+          </div>
+          <div class="arbol-col grado2">
+            <h3>2.º Grado</h3>
+            <div class="familiar-chip consang">👴 Abuelo / Abuela</div>
+            <div class="familiar-chip consang">👫 Hermano / Hermana</div>
+            <div class="familiar-chip consang">👧 Nieto / Nieta</div>
+            <div class="familiar-chip afin">👫 Cuñado / Cuñada</div>
+          </div>
+          <div class="arbol-col grado3">
+            <h3>3.er Grado</h3>
+            <div class="familiar-chip consang">👨 Tío / Tía</div>
+            <div class="familiar-chip consang">🧒 Sobrino / Sobrina</div>
+            <div class="familiar-chip consang">👴 Bisabuelo / Bisabuela</div>
+            <div class="familiar-chip consang">👶 Biznieto / Biznieta</div>
+            <div class="familiar-chip afin">👨 Tío/a político/a</div>
+          </div>
+          <div class="arbol-col grado4">
+            <h3>4.º Grado</h3>
+            <div class="familiar-chip consang">👦 Primo / Prima</div>
+            <div class="familiar-chip afin">👦 Primo/a político/a</div>
+            <div class="familiar-chip afin">🤝 Consuegro/a</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABLA DETALLADA -->
+    <h2 style="text-align:center;margin-bottom:16px">📋 Tabla detallada de parentesco</h2>
+
+    <table class="tabla-parentesco">
+      <thead>
+        <tr>
+          <th>Grado</th>
+          <th>Tipo</th>
+          <th>Familiar</th>
+          <th>Relación</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 1er Grado -->
+        <tr>
+          <td><span class="grado-badge grado-1">1.º</span></td>
+          <td><span class="tipo-tag tipo-consanguinidad">🩸 Consanguinidad</span></td>
+          <td><span class="familiar-icon">👨‍👩‍👧</span> <strong>Padre / Madre</strong></td>
+          <td>Progenitores directos</td>
+        </tr>
+        <tr>
+          <td><span class="grado-badge grado-1">1.º</span></td>
+          <td><span class="tipo-tag tipo-consanguinidad">🩸 Consanguinidad</span></td>
+          <td><span class="familiar-icon">👶</span> <strong>Hijo / Hija</strong></td>
+          <td>Descendientes directos</td>
+        </tr>
+        <tr>
+          <td><span class="grado-badge grado-1">1.º</span></td>
+          <td><span class="tipo-tag tipo-afinidad">💍 Afinidad</span></td>
+          <td><span class="familiar-icon">🤝</span> <strong>Suegro / Suegra</strong></td>
+          <td>Padres de tu cónyuge/pareja</td>
+        </tr>
+        <tr>
+          <td><span class="grado-badge grado-1">1.º</span></td>
+          <td><span class="tipo-tag tipo-afinidad">💍 Afinidad</span></td>
+          <td><span class="familiar-icon">🤝</span> <strong>Yerno / Nuera</strong></td>
+          <td>Cónyuge/pareja de tu hijo/a</td>
+        </tr>
+
+        <!-- 2º Grado -->
+        <tr>
+          <td><span class="grado-badge grado-2">2.º</span></td>
+          <td><span class="tipo-tag tipo-consanguinidad">🩸 Consanguinidad</span></td>
+          <td><span class="familiar-icon">👴</span> <strong>Abuelo / Abuela</strong></td>
+          <td>Padres de tus padres</td>
+        </tr>
+        <tr>
+          <td><span class="grado-badge grado-2">2.º</span></td>
+          <td><span class="tipo-tag tipo-consanguinidad">🩸 Consanguinidad</span></td>
+          <td><span class="familiar-icon">👫</span> <strong>Hermano / Hermana</strong></td>
+          <td>Mismos padres o un padre en común</td>
+        </tr>
+        <tr>
+          <td><span class="grado-badge grado-2">2.º</span></td>
+          <td><span class="tipo-tag tipo-consanguinidad">🩸 Consanguinidad</span></td>
+          <td><span class="familiar-icon">👧</span> <strong>Nieto / Nieta</strong></td>
+          <td>Hijos de tus hijos</td>
+        </tr>
+        <tr>
+          <td><span class="grado-badge grado-2">2.º</span></td>
+          <td><span class="tipo-tag tipo-afinidad">💍 Afinidad</span></td>
+          <td><span class="familiar-icon">👫</span> <strong>Cuñado / Cuñada</strong></td>
+          <td>Hermanos de tu cónyuge/pareja</td>
+        </tr>
+        <tr>
+          <td><span class="grado-badge grado-2">2.º</span></td>
+          <td><span class="tipo-tag tipo-afinidad">💍 Afinidad</span></td>
+          <td><span class="familiar-icon">👴</span> <strong>Abuelos políticos</strong></td>
+          <td>Abuelos de tu cónyuge/pareja</td>
+        </tr>
+
+        <!-- 3er Grado -->
+        <tr>
+          <td><span class="grado-badge grado-3">3.º</span></td>
+          <td><span class="tipo-tag tipo-consanguinidad">🩸 Consanguinidad</span></td>
+          <td><span class="familiar-icon">👨</span> <strong>Tío / Tía</strong></td>
+          <td>Hermanos de tus padres</td>
+        </tr>
+        <tr>
+          <td><span class="grado-badge grado-3">3.º</span></td>
+          <td><span class="tipo-tag tipo-consanguinidad">🩸 Consanguinidad</span></td>
+          <td><span class="familiar-icon">🧒</span> <strong>Sobrino / Sobrina</strong></td>
+          <td>Hijos de tus hermanos</td>
+        </tr>
+        <tr>
+          <td><span class="grado-badge grado-3">3.º</span></td>
+          <td><span class="tipo-tag tipo-consanguinidad">🩸 Consanguinidad</span></td>
+          <td><span class="familiar-icon">👴</span> <strong>Bisabuelo / Bisabuela</strong></td>
+          <td>Padres de tus abuelos</td>
+        </tr>
+        <tr>
+          <td><span class="grado-badge grado-3">3.º</span></td>
+          <td><span class="tipo-tag tipo-consanguinidad">🩸 Consanguinidad</span></td>
+          <td><span class="familiar-icon">👶</span> <strong>Biznieto / Biznieta</strong></td>
+          <td>Hijos de tus nietos</td>
+        </tr>
+        <tr>
+          <td><span class="grado-badge grado-3">3.º</span></td>
+          <td><span class="tipo-tag tipo-afinidad">💍 Afinidad</span></td>
+          <td><span class="familiar-icon">👨</span> <strong>Tío/a político/a</strong></td>
+          <td>Tíos de tu cónyuge/pareja</td>
+        </tr>
+
+        <!-- 4º Grado -->
+        <tr>
+          <td><span class="grado-badge grado-4">4.º</span></td>
+          <td><span class="tipo-tag tipo-consanguinidad">🩸 Consanguinidad</span></td>
+          <td><span class="familiar-icon">👦</span> <strong>Primo / Prima</strong></td>
+          <td>Hijos de tus tíos</td>
+        </tr>
+        <tr>
+          <td><span class="grado-badge grado-4">4.º</span></td>
+          <td><span class="tipo-tag tipo-afinidad">💍 Afinidad</span></td>
+          <td><span class="familiar-icon">👦</span> <strong>Primo/a político/a</strong></td>
+          <td>Primos de tu cónyuge/pareja</td>
+        </tr>
+        <tr>
+          <td><span class="grado-badge grado-4">4.º</span></td>
+          <td><span class="tipo-tag tipo-afinidad">💍 Afinidad</span></td>
+          <td><span class="familiar-icon">🤝</span> <strong>Consuegro / Consuegra</strong></td>
+          <td>Padres del cónyuge de tu hijo/a</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- CÓMO CONTAR LOS GRADOS -->
+    <div class="info-card" style="margin-bottom:24px;background:linear-gradient(135deg,#fff9f5,#fff);border:2px solid #ffe2cf">
+      <h3>🧮 ¿Cómo se cuentan los grados?</h3>
+      <p style="margin-bottom:8px">Cada <strong>generación = 1 grado</strong>. Se cuenta subiendo hasta el tronco común y luego bajando.</p>
+      <p style="margin-bottom:4px">📌 <strong>Padre:</strong> TÚ → Padre = 1 salto = <strong>1.er grado</strong></p>
+      <p style="margin-bottom:4px">📌 <strong>Hermano:</strong> TÚ → Padre → Hermano = 2 saltos = <strong>2.º grado</strong></p>
+      <p style="margin-bottom:4px">📌 <strong>Tío:</strong> TÚ → Padre → Abuelo → Tío = 3 saltos = <strong>3.er grado</strong></p>
+      <p>📌 <strong>Primo:</strong> TÚ → Padre → Abuelo → Tío → Primo = 4 saltos = <strong>4.º grado</strong></p>
+    </div>
+
+    <!-- PERMISOS RELACIONADOS -->
+    <h2 style="text-align:center;margin-bottom:16px">📅 Permisos retribuidos según parentesco</h2>
+    <div class="permisos-grid">
+      <div class="permiso-card fallecimiento">
+        <h4>⚫ Fallecimiento</h4>
+        <ul>
+          <li><strong>Cónyuge, hijos, padres (1.º):</strong> hasta 5 días</li>
+          <li><strong>Hermanos, abuelos, nietos (2.º):</strong> hasta 3 días</li>
+          <li><strong>Tíos, sobrinos (3.º):</strong> 1 día</li>
+          <li>Con desplazamiento: días adicionales</li>
+        </ul>
+      </div>
+      <div class="permiso-card hospitalizacion">
+        <h4>🏥 Hospitalización / Enfermedad grave</h4>
+        <ul>
+          <li><strong>Familiares hasta 2.º grado:</strong> 5 días</li>
+          <li>Incluye: padres, hijos, hermanos, abuelos, suegros, cuñados</li>
+          <li>Ampliable si supera 15 días de ingreso</li>
+        </ul>
+      </div>
+      <div class="permiso-card matrimonio">
+        <h4>💒 Matrimonio</h4>
+        <ul>
+          <li><strong>Propio:</strong> 15 días naturales</li>
+          <li><strong>Hijo/a, hermano/a:</strong> 1 día</li>
+        </ul>
+      </div>
+      <div class="permiso-card mudanza">
+        <h4>📦 Mudanza / Traslado</h4>
+        <ul>
+          <li><strong>Domicilio habitual:</strong> 1-2 días</li>
+          <li>No requiere grado de parentesco</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Nota importante -->
+    <div class="info-card" style="background:#fff3e0;border-color:#ffb74d;text-align:center">
+      <h3>⚠️ Importante</h3>
+      <p>El <strong>cónyuge o pareja de hecho</strong> no tiene grado de parentesco, pero siempre está incluido en todos los permisos con los mismos derechos que el 1.er grado de consanguinidad. Consulta tu convenio o contacta con ATRM para dudas.</p>
+      <p style="margin-top:12px;font-weight:700;color:var(--primary)">📞 ATRM: 968 626 511</p>
+    </div>
+
+  </main>
+
+  <script src="js/pwa.js"></script>
+  <script src="js/bottom-nav.js"></script>
+</body>
+</html>

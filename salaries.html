@@ -333,14 +333,17 @@
         return;
       }
 
-      // Calcular plus antigüedad (5% primeros 3 bienios, 7% después)
+      // Calcular plus antigüedad (3 bienios al 5%, después quinquenios al 7%)
       let bonusAntiguedad = 0;
       if (antiguedad > 0) {
-        const bienios = Math.floor(antiguedad / 2);
-        if (bienios <= 3) {
-          bonusAntiguedad = datos.base * (bienios * 0.05);
-        } else {
-          bonusAntiguedad = (datos.base * 0.15) + (datos.base * ((bienios - 3) * 0.07));
+        // Primeros 3 bienios (años 0-6): cada 2 años = 5% del salario base
+        const bienios = Math.min(Math.floor(antiguedad / 2), 3);
+        bonusAntiguedad = datos.base * (bienios * 0.05);
+
+        // Después de 6 años: quinquenios (cada 5 años) al 7% del salario base
+        if (antiguedad > 6) {
+          const quinquenios = Math.floor((antiguedad - 6) / 5);
+          bonusAntiguedad += datos.base * (quinquenios * 0.07);
         }
       }
 

@@ -26,7 +26,8 @@
     .btn.alt{background:#fff;color:var(--primary);border:2px solid var(--primary)}
     .result-panel{display:none;margin-top:20px}
     .result-panel.show{display:block}
-    .result-table{width:100%;border-collapse:collapse;margin:12px 0}
+    .table-responsive{overflow-x:auto;margin:12px 0}
+    .result-table{width:100%;border-collapse:collapse;min-width:520px}
     .result-table th{background:var(--primary);color:#fff;padding:10px;text-align:left;font-size:13px}
     .result-table td{padding:10px;border-bottom:1px solid #f0e0d6;font-size:14px}
     .result-table tr:hover{background:#fff7f0}
@@ -43,7 +44,14 @@
     .tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700}
     .tag-viaria{background:#fff3e6;color:var(--primary)}
     .tag-interiores{background:#e8f0ff;color:#2980b9}
-    @media(max-width:600px){.form-row{grid-template-columns:1fr}.result-table{font-size:12px}.result-table td,.result-table th{padding:8px 6px}}
+    @media(max-width:600px){
+      .container{padding:14px}
+      .card{padding:18px}
+      .form-row{grid-template-columns:1fr}
+      .actions .btn{width:100%}
+      .result-table{font-size:12px}
+      .result-table td,.result-table th{padding:8px 6px}
+    }
   </style>
 </head>
 <body>
@@ -188,17 +196,19 @@
       <div class="card">
         <h2>📊 Resultado de la verificación</h2>
         <div id="tagConvenio"></div>
-        <table class="result-table">
-          <thead>
-            <tr>
-              <th class="col-concepto">Concepto</th>
-              <th class="col-convenio">Según convenio</th>
-              <th class="col-tunomina">Tu nómina</th>
-              <th class="col-diff">Diferencia</th>
-            </tr>
-          </thead>
-          <tbody id="resultBody"></tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="result-table">
+            <thead>
+              <tr>
+                <th class="col-concepto">Concepto</th>
+                <th class="col-convenio">Según convenio</th>
+                <th class="col-tunomina">Tu nómina</th>
+                <th class="col-diff">Diferencia</th>
+              </tr>
+            </thead>
+            <tbody id="resultBody"></tbody>
+          </table>
+        </div>
         <div id="summaryBox"></div>
         <div class="info-box" id="recomendacion" style="display:none"></div>
       </div>

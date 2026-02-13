@@ -260,22 +260,31 @@ class IAContextual {
 
     const consulta = normalizar(pregunta);
     const palabrasPregunta = consulta.split(' ').filter(p => p.length > 2);
+    const terminosGenericos = new Set([
+      'hijo', 'hija', 'madre', 'padre', 'abuelo', 'abuela', 'familiar',
+      'familia', 'esposo', 'esposa', 'pareja', 'conyuge', 'cónyuge'
+    ]);
+    const consultaTieneDiscapacidad = palabrasPregunta.some(p => p.startsWith('discap'));
     const resultados = [];
 
     for (const [id, caso] of Object.entries(this.baseCasos.casos)) {
       let score = 0;
       const kws = (caso.keywords || []).map(k => normalizar(k));
       
+      const casoTieneDiscapacidad = kws.some(k => k.includes('discap'));
+
       for (const kw of kws) {
         const kwPalabras = kw.split(' ').filter(p => p.length > 2);
+        const esGenerico = kwPalabras.length === 1 && terminosGenericos.has(kw);
+        const factorGenerico = esGenerico ? 0.3 : 1;
         
         // Coincidencia exacta de keyword completa (máxima prioridad)
         if (consulta.includes(kw)) {
-          score += 10 + kw.length * 0.5;
+          score += (10 + kw.length * 0.5) * factorGenerico;
         }
         // Palabra clave completa encontrada en la pregunta
         else if (palabrasPregunta.includes(kw) && kwPalabras.length === 1) {
-          score += 8 + kw.length * 0.4;
+          score += (8 + kw.length * 0.4) * factorGenerico;
         }
         // Todas las palabras de una keyword multi-palabra presentes
         else if (kwPalabras.length > 1) {
@@ -293,9 +302,13 @@ class IAContextual {
         // Coincidencia parcial para keywords de una palabra
         else {
           if (palabrasPregunta.some(p => p.includes(kw) || kw.includes(p))) {
-            score += 1.5;
+            score += 1.5 * factorGenerico;
           }
         }
+      }
+
+      if (consultaTieneDiscapacidad) {
+        score += casoTieneDiscapacidad ? 6 : -6;
       }
       
       if (score > 0) {

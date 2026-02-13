@@ -87,10 +87,6 @@
       <div id="vistaRespuesta" style="display:none;margin-top:12px"></div>
     </div>
     <div class="card tile">
-      <h3>Ámbito de aplicación</h3>
-      <p id="ambito"></p>
-    </div>
-    <div class="card tile">
       <h3>Documentación</h3>
       <p>Accede al texto completo del convenio publicado en el BORM nº 34.</p>
       <div class="update-notice">
@@ -201,7 +197,6 @@
           li.textContent = `Incremento ${k}: ${v}`;
           ul.appendChild(li);
         });
-        document.getElementById('ambito').textContent = data.convenio.ambito_aplicacion;
         
         // Contacto
         const c = data.contactos;

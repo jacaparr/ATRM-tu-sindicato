@@ -70,6 +70,76 @@
         
         await new Promise(resolve => setTimeout(resolve, 300));
       }
+
+      // Diagnóstico masivo por keywords
+      const casos = ia.baseCasos?.casos || {};
+      const mismatches = [];
+      const ambiguos = [];
+      const sinArticulo = [];
+
+      Object.entries(casos).forEach(([id, caso]) => {
+        const detalle = String(caso.detalle || '');
+        if (!/(art\.|artículo)\s*\d+/i.test(detalle)) {
+          sinArticulo.push({ id, titulo: caso.titulo || id });
+        }
+
+        const keywords = (caso.keywords || []).slice(0, 3);
+        keywords.forEach((kw) => {
+          const encontrado = ia.encontrarCaso(kw);
+          if (!encontrado || encontrado.id !== id) {
+            mismatches.push({
+              keyword: kw,
+              esperado: id,
+              encontrado: encontrado?.id || 'N/A'
+            });
+            return;
+          }
+
+          const top = ia.ultimosResultados || [];
+          if (top.length > 1) {
+            const diff = top[0].score - top[1].score;
+            if (diff < 2) {
+              ambiguos.push({
+                keyword: kw,
+                principal: `${top[0].id} (${top[0].score})`,
+                alternativo: `${top[1].id} (${top[1].score})`
+              });
+            }
+          }
+        });
+      });
+
+      html += `<div class="test">`;
+      html += `<h3>🧪 Diagnóstico por keywords</h3>`;
+      html += `<div class="debug">Total casos: ${Object.keys(casos).length}</div>`;
+      html += `<div class="debug">Mismatches: ${mismatches.length}</div>`;
+      html += `<div class="debug">Ambiguos (score cercano): ${ambiguos.length}</div>`;
+      html += `<div class="debug">Sin referencia a artículo: ${sinArticulo.length}</div>`;
+      html += `</div>`;
+
+      if (mismatches.length) {
+        html += `<div class="test"><h3>❌ Mismatches (primeros 20)</h3>`;
+        mismatches.slice(0, 20).forEach(m => {
+          html += `<div class="debug">Keyword "${m.keyword}" → esperado: ${m.esperado} | encontrado: ${m.encontrado}</div>`;
+        });
+        html += `</div>`;
+      }
+
+      if (ambiguos.length) {
+        html += `<div class="test"><h3>⚠️ Ambiguos (primeros 20)</h3>`;
+        ambiguos.slice(0, 20).forEach(a => {
+          html += `<div class="debug">Keyword "${a.keyword}" → ${a.principal} vs ${a.alternativo}</div>`;
+        });
+        html += `</div>`;
+      }
+
+      if (sinArticulo.length) {
+        html += `<div class="test"><h3>📌 Sin artículo (primeros 20)</h3>`;
+        sinArticulo.slice(0, 20).forEach(s => {
+          html += `<div class="debug">${s.id} — ${s.titulo}</div>`;
+        });
+        html += `</div>`;
+      }
       
       // Info adicional
       html += `<div class="test">`;

@@ -26,9 +26,9 @@ class ModoOscuro {
     btn.style.cssText = `
       position: fixed;
       top: 80px;
-      right: 28px;
-      z-index: 9998;
-      background: var(--primary);
+      right: 20px;
+      z-index: 99;  /* Disminuido para que no se superponga al menú móvil */
+      background: var(--primary, #FF6B35);
       color: #fff;
       border: none;
       border-radius: 50%;
@@ -42,6 +42,16 @@ class ModoOscuro {
       justify-content: center;
       transition: all 0.3s ease;
     `;
+    
+    // Media query para móviles desde JavaScript (para adaptar la posición)
+    if (window.innerWidth <= 768) {
+      btn.style.top = 'auto';
+      btn.style.bottom = '85px'; // Por encima del menú de navegación inferior si lo hay
+      btn.style.right = '20px';
+      btn.style.width = '42px';
+      btn.style.height = '42px';
+      btn.style.fontSize = '20px';
+    }
     
     btn.onclick = () => this.cambiarTema();
     

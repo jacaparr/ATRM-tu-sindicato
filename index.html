@@ -242,18 +242,40 @@
       msg.style.display = 'block';
 
       try {
-        const response = await fetch('/api/denuncia', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ texto: denuncia })
-        });
+        let sent = false;
 
-        const data = await response.json().catch(() => ({}));
+        // 1. Intentar backend Vercel (cuando está alojado online)
+        if (window.location.protocol.startsWith('http')) {
+          try {
+            const response = await fetch('/api/denuncia', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ texto: denuncia })
+            });
+            const data = await response.json().catch(() => ({}));
+            if (response.ok && data?.success) sent = true;
+          } catch (e) {
+            console.warn('Fallo API interna, activando modo emergencia:', e);
+          }
+        }
 
-        if (!response.ok || !data?.success) {
-          throw new Error(data?.error || 'No se pudo enviar la denuncia');
+        // 2. Método "Como Sea" infalible (FormSubmit) por si Vercel falla o estás probando en Local
+        if (!sent) {
+          const fsResponse = await fetch('https://formsubmit.co/ajax/jacaparr@gmail.com', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+              _subject: "🚨 NUEVA DENUNCIA ANÓNIMA (Servicio de Emergencia)",
+              contenido_denuncia: denuncia
+            })
+          });
+          
+          if (!fsResponse.ok) {
+            throw new Error('Todos los sistemas de envío fallaron');
+          }
         }
 
         msg.textContent = '✅ ¡Denuncia enviada correctamente! El sindicato la revisará de forma confidencial.';

@@ -1,5 +1,45 @@
-﻿{
+{
   "noticias": [
+    {
+      "id": 1774470459,
+      "fecha": "2026-03-25",
+      "titulo": "Esclavitud moderna: 92.600 empleos irregulares en 2024 evidencian explotación laboral - Sindicato USO",
+      "resumen": "Esclavitud moderna: 92.600 empleos irregulares en 2024 evidencian explotación laboral  Sindicato USO",
+      "contenido": "Noticia obtenida de Sindicato USO. Esclavitud moderna: 92.600 empleos irregulares en 2024 evidencian explotación laboral  Sindicato USO",
+      "categoria": "informacion",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQQ0hXcHBMMWc3YXFkbHBhRUN6bVItNHhPc0FNTm43eDVkRnhIdDhXNzZsYUJoOUoyMmtXSG04elhWekxjLVdEdERBSXhzcHluSUxySnUzeHJvdzV1ODhHanBHVWdqZXE1RUliTU1qVnJ1MkFpMW5GZUpBdEZmdGs1WENrR0ZGc2dSODExcnE4VF80X0pMLWZhRTBiVFFpaHkzM1lqMWkxcw?oc=5",
+      "fuente": "Sindicato USO"
+    },
+    {
+      "id": 1774529954,
+      "fecha": "2026-03-26",
+      "titulo": "El sindicato CCOO exige el “control público” de las mutuas para evitar “conflicto de intereses” en el tratamiento de las bajas laborales - Noticias Obreras",
+      "resumen": "El sindicato CCOO exige el “control público” de las mutuas para evitar “conflicto de intereses” en el tratamiento de las bajas laborales  Noticias Obr...",
+      "contenido": "Noticia obtenida de Noticias Obreras. El sindicato CCOO exige el “control público” de las mutuas para evitar “conflicto de intereses” en el tratamiento de las bajas laborales  Noticias Obreras",
+      "categoria": "informacion",
+      "url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxQdlkzRzhFSGFfZlducmdmMGQ2SEJpQWFpaElIU25TTHJINkwzbUxLYWRPc0tNeEkyUE44Rzd5Q1J1cVM0Nll6N1NrdnBCSHUwcmNORDI2bGdiMnQ3aC1DT3dnbFhKQURodUt2cHQ0bVppTFBtMXRjcHA5SU5tQ2g5aFIzRkw1UjZmRmpqQ2VXMTVTd0hnZ3hPMVU1X1M0S2NoYTc1dW1mUEtEQVBKYUFNUGtjV2VPVG14REVLTzVMUnI4SlNiT2JIRWxBdEVFYzhubnVhaEFkU2dvMzYzcVJ2SzhiSzlLSzA4VldYWGZueHV4eXUydXM0RVVnYVc?oc=5",
+      "fuente": "Noticias Obreras"
+    },
+    {
+      "id": 1774522851,
+      "fecha": "2026-03-26",
+      "titulo": "El sindicato CCOO denuncia la parálisis de los acuerdos laborales y educativos en Castilla y León - La Opinión de Zamora",
+      "resumen": "El sindicato CCOO denuncia la parálisis de los acuerdos laborales y educativos en Castilla y León  La Opinión de Zamora",
+      "contenido": "Noticia obtenida de La Opinión de Zamora. El sindicato CCOO denuncia la parálisis de los acuerdos laborales y educativos en Castilla y León  La Opinión de Zamora",
+      "categoria": "informacion",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNdDU2Skc3WlNTeWh3cWFCTmFTODFObTA2ajhNTFZYTGdmckdoUC1lT2xzZEJUb2ZxemlWbVVxaEIxQVJZd1Jaek10THlBemNCcjVUMERNS25FVjA5ZFBKLTdBN1FhZzBPMEtYekJDQ0lZMEk1c1JPZlpibmlEOVhld0tVemNDSVdpdzZpdl92UzY2VlFiM3VzOERabC15WEQ1ZjI2ODEyZTVLb1dC?oc=5",
+      "fuente": "La Opinión de Zamora"
+    },
+    {
+      "id": 1774427375,
+      "fecha": "2026-03-25",
+      "titulo": "Calendario Laboral. Modificación localidad de Alcuéscar - SGTEX Sindicato de Empleados Públicos de Extremadura",
+      "resumen": "Calendario Laboral. Modificación localidad de Alcuéscar  SGTEX Sindicato de Empleados Públicos de Extremadura",
+      "contenido": "Noticia obtenida de SGTEX Sindicato de Empleados Públicos de Extremadura. Calendario Laboral. Modificación localidad de Alcuéscar  SGTEX Sindicato de Empleados Públicos de Extremadura",
+      "categoria": "informacion",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxON2lfVF9hZjNONjlrbFNxVThObjdROWdCT0lCZ0t4cDJIcU1ORGJiSnR1MDRiN3F6dDlYQ3hSVTBxVG5NNmlQWEc2ejN4U3kzNjFmY0tjTjFEcHFZREZuWWFQU1hyUFdIMkdQQ29XU01jaHJ3TzlsOHVTOXlYd00xTEgwYS1pOUxUekpkMS0wWmRiSWxodEhTYUFCNA?oc=5",
+      "fuente": "SGTEX Sindicato de Empleados Públicos de Extremadura"
+    },
     {
       "id": 1,
       "fecha": "2025-11-13",

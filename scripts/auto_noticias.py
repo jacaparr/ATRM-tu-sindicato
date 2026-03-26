@@ -16,8 +16,8 @@ from urllib.request import Request, urlopen
 import xml.etree.ElementTree as ET
 
 BASE_DIR = Path(__file__).resolve().parents[1]
-DATA_PATH = BASE_DIR / "data" / "atrm_sindicato_data.json"
-MAX_TOTAL_NEWS = 10
+DATA_PATH = BASE_DIR / "data" / "noticias.json"
+MAX_TOTAL_NEWS = 50
 MAX_NEW_ITEMS = 4
 RSS_SOURCES: List[Tuple[str, str]] = [
     (
@@ -108,19 +108,27 @@ def build_entry(item: ET.Element) -> dict:
     pub_date = format_date(parse_pub_date(item.findtext("pubDate")))
     source = detect_source(item)
     link = item.findtext("link", default="").strip()
-    contenido = description or "Noticia relacionada con actividades sindicales."
-    if link:
-        contenido = f"{contenido} (Enlace: {link})".strip()
+    
+    # Adaptar formato al esperado en notas.json
+    # fecha debe ser un string tipo YYYY-MM-DD para ordenar bien (idealmente)
+    # o si noticias.js usa new Date() funcionara
+    raw_date = parse_pub_date(item.findtext("pubDate"))
+    fecha_iso = raw_date.strftime("%Y-%m-%d")
+
     return {
-        "fecha": pub_date,
+        "id": int(raw_date.timestamp()), # ID numerico unico aproximado
+        "fecha": fecha_iso,
         "titulo": title,
-        "contenido": contenido,
-        "fuente": source,
+        "resumen": description[:150] + "..." if len(description) > 150 else description,
+        "contenido": f"Noticia obtenida de {source}. {description}",
+        "categoria": "informacion",
+        "url": link,
+        "fuente": source
     }
 
 
 def load_data() -> dict:
-    with DATA_PATH.open("r", encoding="utf-8") as handle:
+    with DATA_PATH.open("r", encoding="utf-8-sig") as handle:
         return json.load(handle)
 
 

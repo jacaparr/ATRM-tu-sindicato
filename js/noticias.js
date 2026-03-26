@@ -14,10 +14,13 @@ async function cargarNoticias() {
       newsList.innerHTML = noticiasRecientes.map(noticia => `
         <div class="noticia-item" style="padding:12px 0;border-bottom:1px solid #f0f0f0">
           <div style="font-size:11px;color:#495057;margin-bottom:4px">${formatearFecha(noticia.fecha)}</div>
-          <a href="${noticia.url}" style="text-decoration:none;color:var(--dark)">
-            <div style="font-weight:700;margin-bottom:4px;color:var(--primary)">${noticia.titulo}</div>
-            <div style="font-size:14px;color:#2C3E50">${noticia.resumen}</div>
-            ${noticia.videoUrl ? '<div style="font-size:12px;color:#495057;margin-top:6px">🎥 Video disponible</div>' : ''}
+          <a href="${noticia.url}" style="text-decoration:none;color:var(--dark); display: flex; gap: 10px;">
+            ${noticia.imageUrl ? `<img src="${noticia.imageUrl}" alt="Portada" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px; flex-shrink: 0;" onerror="this.style.display='none'">` : ''}
+            <div style="flex: 1;">
+              <div style="font-weight:700;margin-bottom:4px;color:var(--primary)">${noticia.titulo}</div>
+              <div style="font-size:14px;color:#2C3E50">${noticia.resumen}</div>
+              ${noticia.videoUrl ? '<div style="font-size:12px;color:#495057;margin-top:6px">🎥 Video disponible</div>' : ''}
+            </div>
           </a>
           ${noticia.videoUrl ? `<div style="margin-top:8px">
             <a href="${noticia.videoUrl}" class="btn alt" style="display:inline-block;padding:6px 12px;font-size:12px">Ver video</a>
@@ -38,6 +41,7 @@ async function cargarNoticias() {
     if (noticiasCompletas) {
       noticiasCompletas.innerHTML = noticias.map(noticia => `
         <article class="card" style="padding:24px;margin-bottom:20px">
+          ${noticia.imageUrl ? `<img src="${noticia.imageUrl}" alt="Portada" style="width:100%;max-height:250px;object-fit:cover;border-radius:12px;margin-bottom:16px" onerror="this.style.display='none'">` : ''}
           <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px">
             <div>
               <div style="font-size:12px;color:#495057;margin-bottom:6px">${formatearFecha(noticia.fecha)}</div>

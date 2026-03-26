@@ -102,6 +102,23 @@ def fetch_feed(url: str) -> Iterable[ET.Element]:
     return tree.findall("channel/item")
 
 
+def get_image_from_url(url: str) -> str:
+    try:
+        req = Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        with urlopen(req, timeout=10) as resp:
+            html_content = resp.read().decode('utf-8', errors='ignore')
+            # Look for og:image
+            match = re.search(r'<meta property="og:image" content="(.*?)"', html_content, re.IGNORECASE)
+            if match:
+                return match.group(1)
+            # Look for name="twitter:image"
+            match = re.search(r'<meta name="twitter:image" content="(.*?)"', html_content, re.IGNORECASE)
+            if match:
+                return match.group(1)
+    except Exception:
+        pass
+    return ""
+
 def build_entry(item: ET.Element) -> dict:
     title = item.findtext("title", default="Noticia sin titulo").strip()
     description = clean_text(item.findtext("description"))
@@ -114,6 +131,9 @@ def build_entry(item: ET.Element) -> dict:
     # o si noticias.js usa new Date() funcionara
     raw_date = parse_pub_date(item.findtext("pubDate"))
     fecha_iso = raw_date.strftime("%Y-%m-%d")
+    
+    # Extraer imagen de la noticia original
+    image_url = get_image_from_url(link) if link else ""
 
     return {
         "id": int(raw_date.timestamp()), # ID numerico unico aproximado
@@ -123,7 +143,8 @@ def build_entry(item: ET.Element) -> dict:
         "contenido": f"Noticia obtenida de {source}. {description}",
         "categoria": "informacion",
         "url": link,
-        "fuente": source
+        "fuente": source,
+        "imageUrl": image_url
     }
 
 

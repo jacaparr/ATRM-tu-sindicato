@@ -400,6 +400,7 @@
     function setActiveDot(){ const dots=[...document.querySelectorAll('.dot')]; dots.forEach((d,i)=>d.classList.toggle('active',i===idx)); }
   </script>
   <script src="js/noticias.js"></script>
+  <script src="js/perfil.js"></script>
   <script src="js/modo_oscuro.js"></script>
   <script src="js/calculadora_vacaciones.js"></script>
   <script src='js/bottom-nav.js'></script>  <script src="js/global-search.js"></script></body>
@@ -422,7 +423,8 @@
     </div>
     <div id="chat-messages" style="padding:14px;height:260px;overflow-y:auto;background:#f7f7f7;font-size:15px;display:flex;flex-direction:column;gap:8px;"></div>
     <form id="chat-form" style="display:flex;border-top:1px solid #eee;background:#fff">
-      <input id="chat-input" type="text" placeholder="Escribe tu pregunta..." autocomplete="off" style="flex:1;padding:10px 12px;border:none;font-size:15px;border-radius:0 0 0 18px;outline:none">
+      <button type="button" id="btn-mic" onclick="toggleVozChat()" style="background:#fff;border:none;padding:0 12px;font-size:20px;cursor:pointer;border-radius:0 0 0 18px;color:#d50000;">🎤</button>
+      <input id="chat-input" type="text" placeholder="Escribe tu pregunta..." autocomplete="off" style="flex:1;padding:10px 8px;border:none;font-size:15px;outline:none">
       <button type="submit" style="background:#25D366;color:#fff;border:none;padding:0 18px;font-size:18px;cursor:pointer;border-radius:0 0 18px 0;">➤</button>
     </form>
   </div>
@@ -460,6 +462,60 @@
       agregarMensajeChat(`✅ Cambiado a convenio de ${nombreConvenio}. ¿En qué puedo ayudarte?`, 'bot');
       chatBienvenidaMostrada = true;
     }
+
+    // Funcionalidad de Voz (Web Speech API)
+    let reconocimientoVoz = null;
+    let grabandoVoz = false;
+    
+    function toggleVozChat() {
+      if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+        alert("Tu navegador no soporta entrada de voz.");
+        return;
+      }
+      
+      const btn = document.getElementById('btn-mic');
+      const input = document.getElementById('chat-input');
+      
+      if (grabandoVoz) {
+        if(reconocimientoVoz) reconocimientoVoz.stop();
+        return;
+      }
+      
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      reconocimientoVoz = new SpeechRecognition();
+      reconocimientoVoz.lang = 'es-ES';
+      reconocimientoVoz.interimResults = false;
+      reconocimientoVoz.maxAlternatives = 1;
+      
+      reconocimientoVoz.onstart = function() {
+        grabandoVoz = true;
+        btn.innerHTML = '🔴'; // Indicador grabando
+        input.placeholder = "Escuchando...";
+      };
+      
+      reconocimientoVoz.onresult = function(event) {
+        const transcripcion = event.results[0][0].transcript;
+        input.value = transcripcion;
+      };
+      
+      reconocimientoVoz.onerror = function(event) {
+        console.error("Error reconociendo voz: ", event.error);
+        input.placeholder = "Escribe tu pregunta...";
+      };
+      
+      reconocimientoVoz.onend = function() {
+        grabandoVoz = false;
+        btn.innerHTML = '🎤';
+        input.placeholder = "Escribe tu pregunta...";
+        // Si hay texto, podemos enviarlo automáticamente o dejar que el usuario lo revise
+        if(input.value.trim() !== "") {
+          document.getElementById('chat-form').dispatchEvent(new Event('submit', { bubbles:true, cancelable:true }));
+        }
+      };
+      
+      reconocimientoVoz.start();
+    }
+
     // Lógica de chat
     document.getElementById('chat-form').addEventListener('submit', async function(e){
       e.preventDefault();

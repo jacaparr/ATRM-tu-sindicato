@@ -31,6 +31,21 @@
     a{color:var(--primary);text-decoration:none}
     a:hover{text-decoration:underline}
   </style>
+<!-- Inicializar OneSignal -->
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "fe43fad2-030c-49f2-83e2-d73581d60bf8",
+      safari_web_id: "web.onesignal.auto.6908baeb-d27e-4053-9a3b-XXXXXX", // Opcional, pero OneSignal se encarga
+      notifyButton: {
+        enable: true, // Muestra el botón de la campana de OneSignal opcionalmente
+      },
+      allowLocalhostAsSecureOrigin: true,
+    });
+  });
+</script>
 </head>
 <body>
   <link rel="stylesheet" href="css/professional-theme.css">
@@ -352,3 +367,4 @@
   <script src='js/bottom-nav.js'></script>
 </body>
 </html>
+

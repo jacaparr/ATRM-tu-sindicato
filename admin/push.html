@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Notificaciones - ATRM</title>
+  <style>
+    :root { --primary: #FF6B35; --dark: #2C3E50; --bg: #f8f9fa; }
+    body { font-family: system-ui, sans-serif; background: var(--bg); margin: 0; padding: 20px; color: var(--dark); }
+    .admin-container { max-width: 600px; margin: 40px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+    h1 { color: var(--primary); text-align: center; margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 15px; }
+    .form-group { margin-bottom: 20px; }
+    label { display: block; font-weight: bold; margin-bottom: 8px; color: #555; }
+    input[type="text"], textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; box-sizing: border-box; }
+    textarea { resize: vertical; min-height: 100px; }
+    button { background: var(--primary); color: white; border: none; padding: 15px 20px; width: 100%; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; transition: background 0.3s; }
+    button:hover { background: #e85a28; }
+    button:disabled { background: #ccc; cursor: not-allowed; }
+    .info { background: #e3f2fd; padding: 15px; border-radius: 8px; font-size: 14px; margin-bottom: 25px; border-left: 4px solid #2196F3; }
+    #status { margin-top: 20px; padding: 15px; border-radius: 8px; display: none; font-weight: 500; text-align: center; }
+    .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+    .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+  </style>
+</head>
+<body>
+  <div class="admin-container">
+    <h1>🚀 Panel Push ATRM</h1>
+    <div class="info">
+      <strong>Instrucciones:</strong> Este mensaje se enviará instantáneamente a los móviles y ordenadores de todos los afiliados que hayan aceptado recibir notificaciones. Úsalo con responsabilidad.
+    </div>
+
+    <form id="pushForm">
+      <div class="form-group">
+        <label for="pushTitle">Título de la Notificación</label>
+        <input type="text" id="pushTitle" placeholder="Ej: ¡Nuevo Acuerdo Firmado!" required maxlength="60">
+      </div>
+      
+      <div class="form-group">
+        <label for="pushMessage">Mensaje Corto</label>
+        <textarea id="pushMessage" placeholder="Ej: Consulta las nuevas tablas salariales para el año 2026..." required maxlength="150"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="pushUrl">Enlace al hacer click (Opcional)</label>
+        <input type="text" id="pushUrl" placeholder="Ej: https://atrm-murcia.com/noticias.html">
+      </div>
+
+      <button type="submit" id="btnSend">Enviar a Todos 📲</button>
+    </form>
+
+    <div id="status"></div>
+  </div>
+
+  <script>
+    // Pequeño muro de seguridad simple para evitar envíos por error si alguien encuentra la url
+    const pass = prompt("Introduce la contraseña de administrador:");
+    if(pass !== "ATRM2026") {
+        document.body.innerHTML = "<h2 style='text-align:center;color:red;margin-top:50px'>Acceso Denegado</h2>";
+    }
+
+    document.getElementById("pushForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      
+      if(!confirm("¿Estás seguro de que quieres enviar este mensaje a TODOS los usuarios suscritos?")) return;
+
+      const btn = document.getElementById("btnSend");
+      const statusDiv = document.getElementById("status");
+      
+      const payload = {
+        title: document.getElementById("pushTitle").value.trim(),
+        message: document.getElementById("pushMessage").value.trim(),
+        url: document.getElementById("pushUrl").value.trim()
+      };
+
+      btn.disabled = true;
+      btn.innerText = "Enviando...";
+      statusDiv.style.display = "none";
+      statusDiv.className = "";
+
+      try {
+        const res = await fetch("/api/send-push", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        
+        const data = await res.json();
+        
+        statusDiv.style.display = "block";
+        if(res.ok && data.success) {
+            statusDiv.textContent = ✅ ¡Enviado con éxito a los dispositivos!;
+            statusDiv.classList.add("success");
+            this.reset(); // Limpiar formulario
+        } else {
+            statusDiv.textContent = "❌ Error: " + (data.error?.errors?.[0] || JSON.stringify(data.error));
+            statusDiv.classList.add("error");
+        }
+      } catch (err) {
+        statusDiv.style.display = "block";
+        statusDiv.textContent = "❌ Fallo de conexión: " + err.message;
+        statusDiv.classList.add("error");
+      } finally {
+        btn.disabled = false;
+        btn.innerText = "Enviar a Todos 📲";
+      }
+    });
+  </script>
+</body>
+</html>

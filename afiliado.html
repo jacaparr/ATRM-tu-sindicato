@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zona Privada Afiliados - ATRM</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#FF6B35">
+  <style>
+    :root{ --primary:#FF6B35; --secondary:#FF8C42; --accent:#FFA726; --dark:#2C3E50; }
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;color:var(--dark);padding-bottom:100px;background-color:#1e1e1e} /* Setting background dark */
+  </style>
+  <link rel="stylesheet" href="css/professional-theme.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/bottom-nav.css">
+  <link rel="stylesheet" href="css/afiliado.css">
+<!-- Inicializar OneSignal -->
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "fe43fad2-030c-49f2-83e2-d73581d60bf8",
+      safari_web_id: "web.onesignal.auto.6908baeb-d27e-4053-9a3b-XXXXXX", // Opcional, pero OneSignal se encarga
+      notifyButton: {
+        enable: true, // Muestra el bot�n de la campana de OneSignal opcionalmente
+      },
+      allowLocalhostAsSecureOrigin: true,
+    });
+  });
+</script>
+</head>
+<body class="dark-theme"> <!-- Enforce dark theme since card is very dark -->
+  <header class="premium-header">
+    <div class="header-content">
+      <a href="index.html" class="logo">🔥 ATRM · Tu Sindicato</a>
+      <button class="menu-toggle" onclick="document.querySelector('.menu').classList.toggle('open')" aria-label="Menú">☰</button>
+      <nav class="menu">
+        <a href="index.html">Inicio</a>
+        <a href="tramites.html">Trámites</a>
+        <a href="generador.html">📝 Docs</a>
+        <a href="afiliado.html" class="active" style="display:flex;align-items:center;gap:4px;background:var(--primary);color:white;padding:5px 10px;border-radius:15px;text-decoration:none">
+          💳 VIP
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main style="padding-top:80px;max-width:800px;margin:0 auto;position:relative">
+    <div id="login-section" class="auth-container">
+      <h2>Acceso a Zona Privada</h2>
+      <p style="text-align:center;font-size:14px;color:#aaa;margin-bottom:20px">Introduce tus datos de afiliado para obtener tu carnet virtual y acceder a los beneficios ATRM.</p>
+      <form id="afiliadoForm" class="auth-form">
+        <input type="text" id="dniInput" placeholder="DNI / NIE" required autocomplete="off">
+        <input type="text" id="numAfiliado" placeholder="Número de Afiliado (ej: 0458)" required autocomplete="off">
+        <input type="text" id="nombreAfiliado" placeholder="Tu Nombre y Apellidos" required autocomplete="off">
+        <button type="submit" class="btn btn-premium" style="width:100%;justify-content:center">Generar mi Carnet Digital</button>
+      </form>
+    </div>
+
+    <div id="carnet-section" class="carnet-wrapper" style="display:none;margin-top:20px;padding:20px">
+      <h3 style="text-align:center;color:#fff;margin-bottom:20px;font-size:22px">Tu Carnet Digital ATRM</h3>
+      
+      <!-- LA TARJETA VIRTUAL -->
+      <div class="carnet-card" id="digitalCard">
+        <div class="carnet-header">
+          <div class="carnet-logo">🔥 ATRM</div>
+          <div style="font-weight:bold;color:#FF6B35;font-size:14px;text-transform:uppercase;letter-spacing:1px">Afiliado PWA</div>
+        </div>
+        <div class="carnet-chip"></div>
+        <div class="carnet-body">
+          <div class="carnet-number" id="c-num" style="font-family:monospace;letter-spacing:4px;font-size:24px;margin-bottom:10px;color:#ccc">0000 0000</div>
+          <div style="font-size:18px;text-transform:uppercase;letter-spacing:1px;font-weight:600;color:white" id="c-name">NOMBRE APELLIDOS</div>
+        </div>
+        <div class="carnet-footer" style="display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,0.1);padding-top:15px;margin-top:10px">
+          <div style="display:flex;flex-direction:column">
+            <span style="font-size:10px;color:#888;text-transform:uppercase">Entidad</span>
+            <span class="value" style="font-size:14px;color:white">Sindicato ATRM</span>
+          </div>
+          <div style="display:flex;flex-direction:column">
+            <span style="font-size:10px;color:#888;text-transform:uppercase">Identificación</span>
+            <span class="value" id="c-dni" style="font-size:14px;color:white">12345678A</span>
+          </div>
+          <div style="display:flex;flex-direction:column">
+            <span style="font-size:10px;color:#888;text-transform:uppercase">Estado Civil</span>
+            <span class="value" style="color:#FF6B35;font-weight:bold;font-size:14px">ACTIVO</span>
+          </div>
+        </div>
+        <!-- Efecto de brillo superpuesto -->
+        <div style="position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0) 100%);transform:skewX(-20deg);animation:shine 6s infinite"></div>
+      </div>
+      
+      <div style="text-align:center;margin-top:20px">
+          <button class="btn-logout" onclick="logoutAfiliado()" style="background:transparent;border:1px solid #555;color:#aaa;padding:8px 16px;border-radius:20px;cursor:pointer;font-size:14px">Cerrar Sesión / Borrar Datos</button>
+      </div>
+    </div>
+
+    <!-- SECCION BENEFICIOS -->
+    <div id="beneficios-section" class="beneficios-container" style="display:none;padding:20px;margin-top:20px">
+      <h3 style="text-align:center;font-size:24px;color:var(--primary);margin-bottom:10px">🎁 Club de Beneficios ATRM</h3>
+      <p style="text-align:center;color:#bbb;margin-bottom:30px;font-size:14px">Muestra tu carnet virtual al solicitar estos servicios para obtener el descuento instantáneo.</p>
+      
+      <div class="beneficios-grid" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:20px">
+        <div class="beneficio-card" style="background:#2a2a2a;padding:20px;border-radius:15px;border-left:4px solid var(--primary)">
+          <h4 style="color:white;margin-top:0;margin-bottom:10px">👓 Ópticas Afiliadas</h4>
+          <p style="font-size:14px;color:#aaa;margin:0">20% de descuento en gafas graduadas y 15% en gafas de sol.</p>
+        </div>
+        <div class="beneficio-card" style="background:#2a2a2a;padding:20px;border-radius:15px;border-left:4px solid var(--primary)">
+          <h4 style="color:white;margin-top:0;margin-bottom:10px">🦷 Fisioterapia y Salud</h4>
+          <p style="font-size:14px;color:#aaa;margin:0">Sesiones a 25€ para afiliados en centros concertados de la Región de Murcia.</p>
+        </div>
+        <div class="beneficio-card" style="background:#2a2a2a;padding:20px;border-radius:15px;border-left:4px solid var(--primary)">
+          <h4 style="color:white;margin-top:0;margin-bottom:10px">🎓 Formación Continua</h4>
+          <p style="font-size:14px;color:#aaa;margin:0">Acceso prioritario y descuentos en cursos de especialización profesional y reciclaje.</p>
+        </div>
+        <div class="beneficio-card" style="background:#2a2a2a;padding:20px;border-radius:15px;border-left:4px solid var(--primary)">
+          <h4 style="color:white;margin-top:0;margin-bottom:10px">⚖️ Asesoría Jurídica Premium</h4>
+          <p style="font-size:14px;color:#aaa;margin:0">Estudios de viabilidad de demandas 100% gratuitos y prioritarios por ser afiliado.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item">
+        <span class="icon">🏠</span>
+        <span class="text">Inicio</span>
+    </a>
+    <a href="tramites.html" class="nav-item">
+        <span class="icon">📋</span>
+        <span class="text">Trámites</span>
+    </a>
+    <a href="generador.html" class="nav-item">
+        <span class="icon">📝</span>
+        <span class="text">Docs</span>
+    </a>
+    <a href="afiliado.html" class="nav-item active" style="color:var(--primary)">
+        <span class="icon">💳</span>
+        <span class="text">Carnet</span>
+    </a>
+  </nav>
+
+  <script src="js/pwa.js"></script>
+  <style>
+      @keyframes shine {
+          0% { left: -100%; opacity: 0; }
+          20% { opacity: 1; }
+          100% { left: 200%; opacity: 0; }
+      }
+      .anim-flip {
+          animation: cardFlip 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      }
+      @keyframes cardFlip {
+          from { transform: perspective(1000px) rotateY(-90deg); opacity: 0; }
+          to { transform: perspective(1000px) rotateY(0deg); opacity: 1; }
+      }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const form = document.getElementById("afiliadoForm");
+      
+      // Intentar cargar la sesion del localstorage
+      const savedAfiliado = localStorage.getItem("atrm_carnet_data");
+      if (savedAfiliado) {
+        showCarnet(JSON.parse(savedAfiliado));
+      }
+
+      form.addEventListener("submit", function(e) {
+        e.preventDefault();
+        
+        // Coger los datos y limpiar blancos extra
+        const dni = document.getElementById("dniInput").value.trim().toUpperCase();
+        let num = document.getElementById("numAfiliado").value.replace(/\D/g, ''); // solo numeros
+        const nombre = document.getElementById("nombreAfiliado").value.trim().toUpperCase();
+        
+        // Simular un poco de validacion
+        if(dni.length < 5 || nombre.length < 4 || num.length < 1) {
+            alert("Por favor, introduce datos válidos para generar tu carnet.");
+            return;
+        }
+
+        const data = { dni, num, nombre };
+        
+        // Guardar para la proxima vez que abra la app
+        localStorage.setItem("atrm_carnet_data", JSON.stringify(data));
+        showCarnet(data);
+      });
+    });
+
+    function showCarnet(data) {
+      // Ocultar login
+      document.getElementById("login-section").style.display = "none";
+      
+      // Rellenar visualmente
+      document.getElementById("c-num").textContent = String(data.num).padStart(5, "0").replace(/(.{4})/, '$1 ');
+      document.getElementById("c-name").textContent = data.nombre;
+      
+      // Enmascarar DNI (ej: ****5678A)
+      const visibleNum = data.dni.length > 4 ? data.dni.substring(data.dni.length - 4) : data.dni;
+      document.getElementById("c-dni").textContent = "****" + visibleNum;
+
+      // Mostrar card y beneficios
+      document.getElementById("carnet-section").style.display = "block";
+      document.getElementById("beneficios-section").style.display = "block";
+
+      // Trigger la animacion 3D del CSS
+      const card = document.getElementById("digitalCard");
+      card.classList.remove("anim-flip");
+      void card.offsetWidth; // trigger reflow
+      card.classList.add("anim-flip");
+      
+      // Pequeña vibracion si esta en un movil moderno (Haptic feedback)
+      if (navigator.vibrate) {
+        navigator.vibrate(50);
+      }
+    }
+
+    function logoutAfiliado() {
+      if(confirm("¿Estás seguro de que quieres cerrar sesión y borrar los datos de tu carnet de este dispositivo?")) {
+          localStorage.removeItem("atrm_carnet_data");
+          document.getElementById("carnet-section").style.display = "none";
+          document.getElementById("beneficios-section").style.display = "none";
+          document.getElementById("login-section").style.display = "block";
+          document.getElementById("afiliadoForm").reset();
+      }
+    }
+  </script>
+</body>
+</html>

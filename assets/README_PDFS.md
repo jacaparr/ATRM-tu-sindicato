@@ -1,5 +1,12 @@
 # Archivos PDF Pendientes
 
+## Convenio Nacional del sector de saneamiento público y limpieza viaria
+**Archivo**: `convenio_nacional_saneamiento_publico_limpieza_viaria_2024.pdf`
+**Estado**: Subido
+**Fuente oficial**: BOE
+**Referencia**: BOE-A-2024-22044
+**URL oficial**: https://www.boe.es/boe/dias/2024/10/25/pdfs/BOE-A-2024-22044.pdf
+
 ## Convenio de Interiores
 **Archivo**: `convenio_interiores.pdf`
 **Estado**: Pendiente de subir

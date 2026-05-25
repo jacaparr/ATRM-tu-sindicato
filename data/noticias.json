@@ -1,6 +1,50 @@
 {
   "noticias": [
     {
+      "id": 1779311058,
+      "fecha": "2026-05-20",
+      "titulo": "Sentencia de la Audiencia Nacional a demanda de USO: los sábados festivos se compensarán siempre - Sindicato USO",
+      "resumen": "Sentencia de la Audiencia Nacional a demanda de USO: los sábados festivos se compensarán siempre  Sindicato USO",
+      "contenido": "Noticia obtenida de Sindicato USO. Sentencia de la Audiencia Nacional a demanda de USO: los sábados festivos se compensarán siempre  Sindicato USO",
+      "categoria": "informacion",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNcExMeGFGc3VHS0w4cWpTOHhOQWRJMTFhcnVaOHI0WHExYTJTQm1VdWxGN09PaEJySkFzUENCR0pZQ1JkQUYwbXZVc002cHVZRlZPWHM1Z2VyZDB4UVBKaDVYTzVXUTd3QWVmUXFRS3RubjhscHd2d2V0MjRYcmVQMkZmdm4xN1ZrMjZ2UjJGbkJNWE1EQnlqV1Z2NFVaM1FEckh4R0pTQjcwQXVxemZOSTFmSzE0Zw?oc=5",
+      "fuente": "Sindicato USO",
+      "imageUrl": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300"
+    },
+    {
+      "id": 1779609600,
+      "fecha": "2026-05-24",
+      "titulo": "Ponen a ChatGPT, Gemini y Claude a hacer trabajos de oficina 24/7 y acaban queriendo fundar un sindicato - El Confidencial",
+      "resumen": "Ponen a ChatGPT, Gemini y Claude a hacer trabajos de oficina 24/7 y acaban queriendo fundar un sindicato  El Confidencial",
+      "contenido": "Noticia obtenida de El Confidencial. Ponen a ChatGPT, Gemini y Claude a hacer trabajos de oficina 24/7 y acaban queriendo fundar un sindicato  El Confidencial",
+      "categoria": "informacion",
+      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQbHJpTTBwOGxOYXcwZll1VDJleGFpTjNKeTZKUzZyLXJoVzdmQXdLeXAtZjAyaXVFVmJKWEFpUktoODZFVWJ5WTY3YVRneC1jVVY5MlcxWTJrSkhrbFJZSnh1Wlc5UG5CNHhUdktJMzUtM1YwYUhESHQweS15WmZ1d1R6SXdFSDBCTHJST0dKcVN5TEk3OUpwczc3b3JmV2hfRndDeWw3eVA?oc=5",
+      "fuente": "El Confidencial",
+      "imageUrl": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300"
+    },
+    {
+      "id": 1779342862,
+      "fecha": "2026-05-21",
+      "titulo": "Samsung frena la huelga prevista por sus trabajadores de chips ofreciendo un bonus de 300.000 euros a cada uno - Cinco Días",
+      "resumen": "Samsung frena la huelga prevista por sus trabajadores de chips ofreciendo un bonus de 300.000 euros a cada uno  Cinco Días",
+      "contenido": "Noticia obtenida de Cinco Días. Samsung frena la huelga prevista por sus trabajadores de chips ofreciendo un bonus de 300.000 euros a cada uno  Cinco Días",
+      "categoria": "informacion",
+      "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxObVRtNVNJOHNycXg1UXdpTGZ1VW13SzF2UjQ0d2FxelRzYlBLWVV0YVZWenQ0TXdDWGp5MEM4S1FDOGRDc1Ribk43MTFFRERkUE5aNE5tWG1vYjhOOFYyOFBtYlN6Z3ZIb1VtNXdMczZQNlpuVHdGc3UxdFAwQU9qem1reHRxVkhGcTI5OThPYkdSa0xGLW1OY1VFeGNyYVhweEJ6RzZITnQtYmUyaGlESDVJYV9rT2NfSjZoRDlubGpUMGhQcVdvWU1aS3RWaDBDakHSAeYBQVVfeXFMUHROVW41RFZ4czczWUtWRVV1MGFLa3QyVEpiX1p1MXFrb3B4VVFhUEw2cTc5UEQ3VG9URlA3Y0RCazA2b3ZLOWlrS3ZhemhhOUI4QnpKR2pFam9RaF93QzZYaUhVMVFqS09nek1UUFdTNS1CeUhqV1ZyeXVfa2dOeFMtTUJJRVhQY0g5czVjR1FzdkVvQU1NY3dNNnlPdFRLRXBDc29pVnl0d1VqZm1uaTBoX1hQcUIzS1R2YmJfTF84OE1lVFhQbmdscWFhdmwzLXdKVU9PeDZFZjFveGM0cHNFckQxT1E?oc=5",
+      "fuente": "Cinco Días",
+      "imageUrl": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300"
+    },
+    {
+      "id": 1778744773,
+      "fecha": "2026-05-14",
+      "titulo": "Estabilización (concurso de méritos). Repesca personal laboral - SGTEX Sindicato de Empleados Públicos de Extremadura",
+      "resumen": "Estabilización (concurso de méritos). Repesca personal laboral  SGTEX Sindicato de Empleados Públicos de Extremadura",
+      "contenido": "Noticia obtenida de SGTEX Sindicato de Empleados Públicos de Extremadura. Estabilización (concurso de méritos). Repesca personal laboral  SGTEX Sindicato de Empleados Públicos de Extremadura",
+      "categoria": "informacion",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOVHV6bFhLa01pZ3Z0YjAzT2NxTUc3NTUxU0hZcjh1bUJFSm1oM0hFTVhOSE9VRjZFbmJhanF0c1V2ZkVNX2hVcDZxQjgwdGpxRmE5X093ZUdLNkVWQ05INVBtNUt6eWlsemhfV1pXNUl5eXJqNlJFQkRHYlhFMFpWNUhTMlVzNzVBa2VKWHBUQ0I4ellwUUw2QllMdzBfX19XUUlr?oc=5",
+      "fuente": "SGTEX Sindicato de Empleados Públicos de Extremadura",
+      "imageUrl": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300"
+    },
+    {
       "id": 1779041525,
       "fecha": "2026-05-17",
       "titulo": "La importancia de la jurisprudencia del Tribunal Europeo de Derechos Humanos. Vulneración del derecho de libertad sindical. Restricciones desproporcionadas al ejercicio del derecho de huelga (Hungría). Notas a la sentencia de 12 de mayo de 2026 (dem - eduardorojotorrecilla.es",
@@ -486,15 +530,6 @@
       "categoria": "informacion",
       "url": "https://share.google/r95FxrAV16K6ynyvY",
       "videoUrl": "assets/videos/atrm-comite-empresa-2026-01-29.mp4"
-    },
-    {
-      "id": 7,
-      "fecha": "2026-02-12",
-      "titulo": "El Tribunal Supremo confirma que los permisos retribuidos deben disfrutarse siempre en días laborables",
-      "resumen": "El Alto Tribunal zanja la duda: los permisos por cuidados, enfermedad grave, hospitalización o fallecimiento deben computarse en días laborables, no naturales.",
-      "contenido": "El Tribunal Supremo ha confirmado que los permisos retribuidos del artículo 37.3 del Estatuto de los Trabajadores deben disfrutarse exclusivamente en días laborables, ya que su finalidad es permitir ausentarse del trabajo sin pérdida de salario. Si el hecho causante ocurre en día no laborable, el permiso comienza al siguiente día laborable. Esta sentencia afecta a los 5 días por accidente, enfermedad grave, hospitalización o intervención quirúrgica de familiares hasta 2.º grado, y a los 2 días por fallecimiento (ampliables a 4 con desplazamiento). Los convenios pueden mejorar, pero nunca empeorar estos derechos mínimos.",
-      "categoria": "derechos",
-      "url": "https://valorian.es/sabias-que-el-tribunal-supremo-acaba-de-confirmar-que-los-permisos-retribuidos-deben-disfrutarse-siempre-en-dias-laborables/"
     }
   ]
 }

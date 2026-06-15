@@ -1,6 +1,50 @@
 {
   "noticias": [
     {
+      "id": 1781308512,
+      "fecha": "2026-06-12",
+      "titulo": "La siniestralidad laboral en 2026 alcanza máximos: 231 muertes en cuatro meses - Sindicato USO",
+      "resumen": "La siniestralidad laboral en 2026 alcanza máximos: 231 muertes en cuatro meses  Sindicato USO",
+      "contenido": "Noticia obtenida de Sindicato USO. La siniestralidad laboral en 2026 alcanza máximos: 231 muertes en cuatro meses  Sindicato USO",
+      "categoria": "informacion",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNWF9taXFaVFE5QnFlQXB4Nnp3MVNfcFQydF82OEx6OV9mb012VjgyVGJnY1pEOUx5anBDUVA3MmhRb0JoNFE0cC1kYnQ1a3R2R1RmZG9YdzRUc21fekJYQ0thelk5bTk1alFXQ21vMXJEaHI3bnUxYzlMM1VESEI3YmxoQjBKbVdBSkNRei1XR3p6dXQzeEdZb21MR3RWdw?oc=5",
+      "fuente": "Sindicato USO",
+      "imageUrl": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300"
+    },
+    {
+      "id": 1781162464,
+      "fecha": "2026-06-11",
+      "titulo": "Acto sindical preparatorio al 28J - Sindicato OSTA",
+      "resumen": "Acto sindical preparatorio al 28J  Sindicato OSTA",
+      "contenido": "Noticia obtenida de Sindicato OSTA. Acto sindical preparatorio al 28J  Sindicato OSTA",
+      "categoria": "informacion",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5QNnU0MlhZY1FrVkxWSXRzdlJfR1NSSGVxM2k3ZW9td1NMQmdhdy1CODZQNmF5aTRQbFFCcTZ6dnk1dnU1cWhVUWxZR2VxbDBhU1NNY05VVlZSOERhNEpWYkRuVQ?oc=5",
+      "fuente": "Sindicato OSTA",
+      "imageUrl": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300"
+    },
+    {
+      "id": 1781428820,
+      "fecha": "2026-06-14",
+      "titulo": "Huelga médica en Ceuta: el SMC acusa al Ministerio de bloquear la negociación - Ceuta Actualidad",
+      "resumen": "Huelga médica en Ceuta: el SMC acusa al Ministerio de bloquear la negociación  Ceuta Actualidad",
+      "contenido": "Noticia obtenida de Ceuta Actualidad. Huelga médica en Ceuta: el SMC acusa al Ministerio de bloquear la negociación  Ceuta Actualidad",
+      "categoria": "informacion",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPR2VCSFhWSVhMcDBEVlREVFA3a1pvd0hlZ1c3OFAzQzFuemI4dUEzNzFoblB3cE44MktfTDVReExUc2phbXZuY3Q0aHpLUjlaSHBjR0hldjJvUU9fcVNNeGhJUG91ZW1sT3JLU1NlalpsRlBsUXdSSEtGM3VZNXREYlNpSEJsczZLOVZVdlpXWVBCM3hWNWVodmdUc0Q4d3hCa1ZPbklMVGxSVEJLVWtiY09maDI1aVVQT2xJaTBn0gHDAUFVX3lxTE80QU4zbVlQcG94VEttSlFQUFgxckVqYXYyV3gycVhKUlpESEhHMU9namlTNWpoZFFHdVdxS2dkWXN0WWtMSHdkellkTGl1T0Fna3JqWlA3N0RpTGFybWFDVmc2ZFgtUjItVHhvZDdHMF9oZEI2WjJyTmtXck1YTlpTQWE4OGNqbHZpQUR4UHJPUDlRN3B1NEw0M1hGTXlxSEpEekM3WXYtcUpxTWt5RVJ6bF9uMEl4d1B2ak4xanJGb1hBMA?oc=5",
+      "fuente": "Ceuta Actualidad",
+      "imageUrl": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300"
+    },
+    {
+      "id": 1781149501,
+      "fecha": "2026-06-11",
+      "titulo": "El personal laboral de la Administración del Estado se moviliza para pedir mejoras en sus condiciones - EL PAÍS",
+      "resumen": "El personal laboral de la Administración del Estado se moviliza para pedir mejoras en sus condiciones  EL PAÍS",
+      "contenido": "Noticia obtenida de EL PAÍS. El personal laboral de la Administración del Estado se moviliza para pedir mejoras en sus condiciones  EL PAÍS",
+      "categoria": "informacion",
+      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxONW50TnFaai1zcUlPVno4Y2MtV3pIdnJLeGdDRDRuS0hfTFl1dk51dEdDZHNyQnNydTdVUXBGdi1QeW13cUxOdEZ6bXp3Z3VzcjQwVnFJTTFtUTh4OVlrSDVMaWpUak11YzFhWkNvR1UtOTZjNEdQeU4wV09ZNDNRdGY5Sk5vZDJ2UTZadHVLTGVMX1lpWmZkaGFUZWt4NzZlend3NDhwUGxLTGVLaGd3ZnZCajl5aWR5a2dvRDdnNzY2eVpvQS11WHZKdjVxVFFIQVJnS0JaelRNUUw2Y3fSAfIBQVVfeXFMTk5rVEdmYm1ybXJLZ3Z3ZUt6VWt6cWxMMEtnM0ptUnVUNUZtckRGc25KVXpocTI4VHI2NmxkbUVieFBCYVd4WkZZY3dnQVRkcEozcWkwZlg0ZGNJcndzR1hrbnk2S2dSajI2Q2hPb3h3bU8yb0ZEZGdyT0lTV1hISVdVZkZrY2g2SDFUQWpZUVlLMVZrYVpoaVhic2hJdlpvOWdHb09nNmZTMkttUjltaVRkVXppS2JvVHYwaDY5b0xtc2p4NFpDOW1xTC1XYklZTXRUcmRKTXprWWR2alFUMXlRQ2xSNWdHZUdjYU9RTlZ2WFE?oc=5",
+      "fuente": "EL PAÍS",
+      "imageUrl": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300"
+    },
+    {
       "id": 1780571264,
       "fecha": "2026-06-04",
       "titulo": "El Sindicato de Trabajadores rechaza los despidos anunciados por Dow: “En Tarragona no sobra nadie” - diaridetarragona.com",
@@ -503,46 +547,6 @@
       "categoria": "informacion",
       "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPaWRwaWhfSWE3cXp0R3lnckxNTWQ4RmRCV3VrZzlKN1ktMzZYM291WFhYWnBMQkRMM0ZUZVhxYTF3VDYzNTBBaGF5dFU3YV9VY28yNWZ2OUJuYVZoVE5VRElNV203eFZrdFhjQy1Lem1mcnotWTBFRXJfQllINFJ3dENNZVRraEU?oc=5",
       "fuente": "Sindicato USO"
-    },
-    {
-      "id": 1774052113,
-      "fecha": "2026-03-21",
-      "titulo": "La WNBA y el sindicato de jugadoras confirman un acuerdo laboral \"histórico\" - France 24",
-      "resumen": "La WNBA y el sindicato de jugadoras confirman un acuerdo laboral \"histórico\"  France 24",
-      "contenido": "Noticia obtenida de France 24. La WNBA y el sindicato de jugadoras confirman un acuerdo laboral \"histórico\"  France 24",
-      "categoria": "informacion",
-      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPRV9POFljTTBENFNmY2xvZzdKRGJSM21zNm8xX20zQVZyR1ExSC1QTEdKcWdfdWtBRFBkSGt3dnZIOXdNS1FBYmZhdGlOVzhSSlNuc054RVJBVl8zTTI3MVAyeGZHSWVSQTlLbi02Y0c2LWk1UkpfaFFoQUZoZnZWejhzSW9KTDdFM3NiWnJnTFg5RVhPeHdsRHh4TjBrRlMtNXlENDQtcWZOMlhQSlgxSWk2RS1JNW1GMW9UczR0MVpYRUVxUXlsU2xmYmc?oc=5",
-      "fuente": "France 24"
-    },
-    {
-      "id": 1774321200,
-      "fecha": "2026-03-24",
-      "titulo": "La jornada laboral de 35 horas para los funcionarios encara su aprobación definitiva este miércoles - Artículo 14",
-      "resumen": "La jornada laboral de 35 horas para los funcionarios encara su aprobación definitiva este miércoles  Artículo 14",
-      "contenido": "Noticia obtenida de Artículo 14. La jornada laboral de 35 horas para los funcionarios encara su aprobación definitiva este miércoles  Artículo 14",
-      "categoria": "informacion",
-      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE4xNDFFa1EyM3FOUEREcnltbERhZmFBSEdSSzROMEhkZTJTakhwMGd2OGpoeEpWM2ZNYmhnVjJrZXh2RTFPZnQ2TzZGWVpkMmxEWVU5bUhVTkdWN2o3dFE3SE5TWjVwamZUT2RqZEg4bXFaZTlhX0FsdWU4TkFudw?oc=5",
-      "fuente": "Artículo 14"
-    },
-    {
-      "id": 1774470459,
-      "fecha": "2026-03-25",
-      "titulo": "Esclavitud moderna: 92.600 empleos irregulares en 2024 evidencian explotación laboral - Sindicato USO",
-      "resumen": "Esclavitud moderna: 92.600 empleos irregulares en 2024 evidencian explotación laboral  Sindicato USO",
-      "contenido": "Noticia obtenida de Sindicato USO. Esclavitud moderna: 92.600 empleos irregulares en 2024 evidencian explotación laboral  Sindicato USO",
-      "categoria": "informacion",
-      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQQ0hXcHBMMWc3YXFkbHBhRUN6bVItNHhPc0FNTm43eDVkRnhIdDhXNzZsYUJoOUoyMmtXSG04elhWekxjLVdEdERBSXhzcHluSUxySnUzeHJvdzV1ODhHanBHVWdqZXE1RUliTU1qVnJ1MkFpMW5GZUpBdEZmdGs1WENrR0ZGc2dSODExcnE4VF80X0pMLWZhRTBiVFFpaHkzM1lqMWkxcw?oc=5",
-      "fuente": "Sindicato USO"
-    },
-    {
-      "id": 1774529954,
-      "fecha": "2026-03-26",
-      "titulo": "El sindicato CCOO exige el “control público” de las mutuas para evitar “conflicto de intereses” en el tratamiento de las bajas laborales - Noticias Obreras",
-      "resumen": "El sindicato CCOO exige el “control público” de las mutuas para evitar “conflicto de intereses” en el tratamiento de las bajas laborales  Noticias Obr...",
-      "contenido": "Noticia obtenida de Noticias Obreras. El sindicato CCOO exige el “control público” de las mutuas para evitar “conflicto de intereses” en el tratamiento de las bajas laborales  Noticias Obreras",
-      "categoria": "informacion",
-      "url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxQdlkzRzhFSGFfZlducmdmMGQ2SEJpQWFpaElIU25TTHJINkwzbUxLYWRPc0tNeEkyUE44Rzd5Q1J1cVM0Nll6N1NrdnBCSHUwcmNORDI2bGdiMnQ3aC1DT3dnbFhKQURodUt2cHQ0bVppTFBtMXRjcHA5SU5tQ2g5aFIzRkw1UjZmRmpqQ2VXMTVTd0hnZ3hPMVU1X1M0S2NoYTc1dW1mUEtEQVBKYUFNUGtjV2VPVG14REVLTzVMUnI4SlNiT2JIRWxBdEVFYzhubnVhaEFkU2dvMzYzcVJ2SzhiSzlLSzA4VldYWGZueHV4eXUydXM0RVVnYVc?oc=5",
-      "fuente": "Noticias Obreras"
     }
   ]
 }

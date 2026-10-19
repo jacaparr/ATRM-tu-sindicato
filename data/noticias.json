@@ -1,6 +1,50 @@
 {
   "noticias": [
     {
+      "id": 1792389600,
+      "fecha": "2026-10-19",
+      "titulo": "Bajas laborales: entre la tormenta política y acuerdos puntuales - GaliciaPress",
+      "resumen": "Bajas laborales: entre la tormenta política y acuerdos puntuales  GaliciaPress",
+      "contenido": "Noticia obtenida de GaliciaPress. Bajas laborales: entre la tormenta política y acuerdos puntuales  GaliciaPress",
+      "categoria": "informacion",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPRWcyV2haU2E4MXZTTVNITDZzakdiTzFZNFdzaVBCWU9nN2xjS3I5WkVvdkZQWXZqY2drNExlSWVVNUZHZEN1cHBCYWxZU0ZqV3pzdllpdFVSYVJaTS1oWm80LUxNcGdwMFFBakVKdG5QWmFVSnk2OWQ0N2dxQ3ZwNFp4clpUVDV6andWUjljdngyRnotTVMxUEIxYWdZS0NIUEc1d0JXOVI1ZnQwVkpsZFFjQVZnejJMNklPSmpKbE8?oc=5",
+      "fuente": "GaliciaPress",
+      "imageUrl": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300"
+    },
+    {
+      "id": 1792163721,
+      "fecha": "2026-10-16",
+      "titulo": "El Sindicato Médico de Navarra cuestiona el fichaje obligatorio y reclama regular las guardias localizadas - Univadis",
+      "resumen": "El Sindicato Médico de Navarra cuestiona el fichaje obligatorio y reclama regular las guardias localizadas  Univadis",
+      "contenido": "Noticia obtenida de Univadis. El Sindicato Médico de Navarra cuestiona el fichaje obligatorio y reclama regular las guardias localizadas  Univadis",
+      "categoria": "informacion",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNT1ktOFpLRGN6U1NFTlUzWjBMMWh5R0U0NV9ZZlJLaG45WEdxQU0zX3JMb01RZUJiQ2EtQ1pDN1pHeFhjRVAxaWs1WFVvRzNIRkN3d3lJM2hDQmJaTEVDaDBKVzh3UnUwUk5xNnhPRHY3MUprakc5OE54RE50NnY5ZXJxMXllZjFtZTlIbkdwVDNTN2Nndy1zNzlKdjdHVFU3amhZMzJCY2dBN2xB?oc=5",
+      "fuente": "Univadis",
+      "imageUrl": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300"
+    },
+    {
+      "id": 1791966715,
+      "fecha": "2026-10-14",
+      "titulo": "Inspección de Trabajo detecta fallos en prevención en casi la mitad de sus actuaciones en 2025 - Sindicato USO",
+      "resumen": "Inspección de Trabajo detecta fallos en prevención en casi la mitad de sus actuaciones en 2025  Sindicato USO",
+      "contenido": "Noticia obtenida de Sindicato USO. Inspección de Trabajo detecta fallos en prevención en casi la mitad de sus actuaciones en 2025  Sindicato USO",
+      "categoria": "informacion",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQS0U3bHdPa2hEbnFCYWZWZjVLb29JdjJWLXFFUVB4aEduQ3plQzNNQlR1TlY2NHBkZF9sbGNOUW9wT1dVUTJQZTJmNmoyaHIwTmtOUllpd2lMMUZ0NDBLd3dtOVpNYmFjLWhCRkRvSmF4bWU4MWZSXzdBYUxrNVE4cVhRcUNRX20xYTRPVjNrekhoeU5nbnpQTWhEeXNrdEVOUmd4WkV2ZWk2V2pSa1l5NTRXUXg?oc=5",
+      "fuente": "Sindicato USO",
+      "imageUrl": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300"
+    },
+    {
+      "id": 1792147113,
+      "fecha": "2026-10-16",
+      "titulo": "Congreso del Sindicato de Inspectores de Trabajo con la presencia de Yolanda Díaz. Foto Myriam Martínez - El Diario de Huesca",
+      "resumen": "Congreso del Sindicato de Inspectores de Trabajo con la presencia de Yolanda Díaz. Foto Myriam Martínez  El Diario de Huesca",
+      "contenido": "Noticia obtenida de El Diario de Huesca. Congreso del Sindicato de Inspectores de Trabajo con la presencia de Yolanda Díaz. Foto Myriam Martínez  El Diario de Huesca",
+      "categoria": "informacion",
+      "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxOaG8xUWJsRUYydUxDQ0U2eXdtdlFFcWhoUVp3bzJDd2hWR3dpVmdleXZoaVFNV0h6ZWtydjQxZWkzemZMQnMyMVdkR1RLQjV1aldhMVlHbWlnMlBOOE5OSlM2ZnNucFNDT1JIdjg1d19yWkRUU2xCbjNPQkF0VlI2SDdiQlpwSTlrM2MyeUc3bW1KV2N2SldNM0ZZbUVKUDhNcUtZWjItYWxQSk0zNE5nTTRfUGxULUVZQm1UT09xT2pQMUx0QlROeTltVXRxa2YyVENQLVhaemtuN3pGOWx0bzNxTFRib3RsN3dQNFRqSTF3UTFjUnptcG9nS054UmU1bl9fNmNFaw?oc=5",
+      "fuente": "El Diario de Huesca",
+      "imageUrl": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300"
+    },
+    {
       "id": 1791779457,
       "fecha": "2026-10-12",
       "titulo": "CCOO alerta de un ambiente laboral muy tenso en la Orquesta de Extremadura y la Junta admite \"discrepancias\" - El Periódico Extremadura",
@@ -504,50 +548,6 @@
       "categoria": "informacion",
       "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOZUxYdF96SXVWYjhubFpqbVlkOHdzb01nanJOR2NWU2w1ZDNLTVRLRTRsVUd4OFItSThzUko2c1hqd0JDWFRaTHZqNnVkMUl4YXF2ekd2YjRlUkZLcFlOYzl5cVV5bXJxVEVPNW81RGFUeW84eGNKY1hIQzkyeWlvME0wR1ZIZkYyZVRsOGU0WlRUd01JU05hTk5FSWp0RE1UR1ZFcVNhVUhQQ2J6QmR2dEln?oc=5",
       "fuente": "Amyts",
-      "imageUrl": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300"
-    },
-    {
-      "id": 1785123037,
-      "fecha": "2026-07-27",
-      "titulo": "El sindicato Kim Lien Ward innova en sus actividades y apoya a los trabajadores. - Vietnam.vn",
-      "resumen": "El sindicato Kim Lien Ward innova en sus actividades y apoya a los trabajadores.  Vietnam.vn",
-      "contenido": "Noticia obtenida de Vietnam.vn. El sindicato Kim Lien Ward innova en sus actividades y apoya a los trabajadores.  Vietnam.vn",
-      "categoria": "informacion",
-      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQaDljVWZLdFlKV3pWUXBEbnhnb01uc3lWT3F1SS1XWVpIQ21SZ2tVbkoyTjcwR0NxOW9qYW0zWW50U0F4MlRKYTNkUUZQRDVFTGh6NG9oZGEzamJHZVMwZEZ3dVkwWnY1NGF1NUdpbjM0WHdQY3hKOFQ3bjU5eVBXWmR5YVFjTS1EVWh3RXFGSWdOd0taQWJBZkZIRWJLenM0?oc=5",
-      "fuente": "Vietnam.vn",
-      "imageUrl": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300"
-    },
-    {
-      "id": 1784818986,
-      "fecha": "2026-07-23",
-      "titulo": "O STA firma la primera Relación de Puestos de Trabajo en Comarca Central - Sindicato OSTA",
-      "resumen": "O STA firma la primera Relación de Puestos de Trabajo en Comarca Central  Sindicato OSTA",
-      "contenido": "Noticia obtenida de Sindicato OSTA. O STA firma la primera Relación de Puestos de Trabajo en Comarca Central  Sindicato OSTA",
-      "categoria": "informacion",
-      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQVzNiMllmcWtBcXBuOHJUYUZGeTlVT2xwWkJNUWhubXAzbVUyeW9RVHVXN2ZNWjV6MUhoV1ItLUkyT21Cd3hHSi0xWUhYeFJVa05RdXZ4bU1pUHBKZGVKOFlRRU1RX1RabzU2cjZSQ2VrQ0VhSGdFVDRHVlM5QXltSHBqNC1SRHA2TWowM2hNODI3VTkyZlE?oc=5",
-      "fuente": "Sindicato OSTA",
-      "imageUrl": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300"
-    },
-    {
-      "id": 1784222569,
-      "fecha": "2026-07-16",
-      "titulo": "El Sindicato de Trabajadores responde con ironía al \"esperpento\" de la campaña de CEOE-CEPYME Cantabria y exige su retirada inmediata - eldiariocantabria.es",
-      "resumen": "El Sindicato de Trabajadores responde con ironía al \"esperpento\" de la campaña de CEOE-CEPYME Cantabria y exige su retirada inmediata  eldiariocantabr...",
-      "contenido": "Noticia obtenida de eldiariocantabria.es. El Sindicato de Trabajadores responde con ironía al \"esperpento\" de la campaña de CEOE-CEPYME Cantabria y exige su retirada inmediata  eldiariocantabria.es",
-      "categoria": "informacion",
-      "url": "https://news.google.com/rss/articles/CBMikgJBVV95cUxPZ0U0aVBBUnlfRWNNT0pUcHFPQXQzRkc0emthY01pOWpFTm1qU0lEb25sMWcySDN2SHR5VmtUOWRjWXdNQ1VJRlBtZEMwTi14aUxRX09pYnpCNFJBcHFZdWw2VzJjd1JteWF4RWtwR1lVejh2YTRJTkF0ekJqb0dPbGVlRTk2aGRyWHlvM3lBVEwxRTBZWVRMbEJ0NVE3Sjk3NjZUbFBCNmxSb0trUnhhSU1QdzhreUJmWTVvY2RYN1M0UC1NRzcydFg4cWZYOFpaWjdEem44YXhOZHBHenBZNGhyN0pIV1RhQ2UtcTZwZGRGQVc5YzVUR2JsaFlrNzctaFZaTlJUV3h1Q2s1MGRwU2tR0gGXAkFVX3lxTE5xbFgtYUlHUGhzQUYwVDJCbU14dDdYNUpTVDJXUWp6NG9xZXFubTN5bDdwT0tfazVMRHRaMHl5RXp4aGswZHZsb1pQX1plWC1NbG9tbjdndjJJNkxmSEcwVTE1OWlaMmpEVlRLLS11bWpXV0RCN2lwNC11Qk92cUZJVHl1LVlNVzVvVXBPOWczT2NoLWc2SWs4ZnhydXdBamQ2eFFvRzVEZGhHTVpKdTBvTXQycGxhOUpRaTFHTG1oRmd2ZGtOWXBLZXZWVFc3bURZRU93VC1LX0FaYkl3V241Z0ktNlRjckwwTC1penRTYURjaVlKYU9HcGdHNWpDakZiTWlfbzlfLXU5TXlnNHV2dUdCZzVrYw?oc=5",
-      "fuente": "eldiariocantabria.es",
-      "imageUrl": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300"
-    },
-    {
-      "id": 1784339280,
-      "fecha": "2026-07-18",
-      "titulo": "La Eurocámara estudia regular la salud laboral del personal de ‘handling’ aeroportuario a petición del sindicato USO - Menorca - Es diari",
-      "resumen": "La Eurocámara estudia regular la salud laboral del personal de ‘handling’ aeroportuario a petición del sindicato USO  Menorca - Es diari",
-      "contenido": "Noticia obtenida de Menorca - Es diari. La Eurocámara estudia regular la salud laboral del personal de ‘handling’ aeroportuario a petición del sindicato USO  Menorca - Es diari",
-      "categoria": "informacion",
-      "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxPUzRIUlVfNDQ3aURpeWI3dE1MZFVLdjNDQVhDNklmdWxTV2xlZVNRdWRaTWNtV0hkODRxOEJyZHF0WmIzX0x6S2hvRmVrRDVfWk1HbUdlSmJERFlRYlAwamZCVGNxM1BmUWFQUWlSUGZCaklzVzZFaE9jLTdzQUNmcWRPV28wYnVMZlhDSnFVQWtSd19vZXJxazE4cUFPY01KZzBha2dBSGJ6TFFfUmVRNk94Y3RKamgxN1JsMFhvUFpkLXk0bDVNTEV5WUt2bFA1R3V4QUJCSVo1bWtTM0NyNWpreVNiZGJHR2ZES0Vjc0FNeVZhdVIzaS1Yb3Z6UQ?oc=5",
-      "fuente": "Menorca - Es diari",
       "imageUrl": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300"
     }
   ]

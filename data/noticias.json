@@ -1,6 +1,50 @@
 {
   "noticias": [
     {
+      "id": 1793574025,
+      "fecha": "2026-11-01",
+      "titulo": "Inteligencia Artificial en el trabajo: transparencia, derechos laborales y control sindical - LSB-USO",
+      "resumen": "Inteligencia Artificial en el trabajo: transparencia, derechos laborales y control sindical  LSB-USO",
+      "contenido": "Noticia obtenida de LSB-USO. Inteligencia Artificial en el trabajo: transparencia, derechos laborales y control sindical  LSB-USO",
+      "categoria": "informacion",
+      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxObjdabXV3eUJ1MEkxU1VSdndRbGtDTHJjZ2k0a3k0WkV5MGJPVk11bXM0XzZqNWs2NXlBTm04SXp1YjB6YWwyYldnTVNSMWg3MFNGdW9SVVNmdkFJeGtBTGxxcEpsWjBZemN6WlVPbEdoSThJVFgtNkl3UU5rM19fYm5pX1ZxNVBjYS1n?oc=5",
+      "fuente": "LSB-USO",
+      "imageUrl": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300"
+    },
+    {
+      "id": 1793266154,
+      "fecha": "2026-10-29",
+      "titulo": "Dar y recibir cuidados es un derecho esencial - Sindicato USO",
+      "resumen": "Dar y recibir cuidados es un derecho esencial  Sindicato USO",
+      "contenido": "Noticia obtenida de Sindicato USO. Dar y recibir cuidados es un derecho esencial  Sindicato USO",
+      "categoria": "informacion",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBSOElBcS1ZYTRZY0I4VndpLVdWV0lWNWtZeXZnbHoxbGhidFZfdVVmUk5ubG1nU1R6UHgxUTBOZTVGNXE4ajlLSHBZcFZENDhDQzZjcEFYbFhjd1pDVFlfRkFqaFgzTjdGVVY4VGkyMzd4VnM?oc=5",
+      "fuente": "Sindicato USO",
+      "imageUrl": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300"
+    },
+    {
+      "id": 1793550222,
+      "fecha": "2026-11-01",
+      "titulo": "Sindicato de Joviel Acevedo reaparece con convocatoria en la Plaza de la Constitución - republica.gt",
+      "resumen": "Sindicato de Joviel Acevedo reaparece con convocatoria en la Plaza de la Constitución  republica.gt",
+      "contenido": "Noticia obtenida de republica.gt. Sindicato de Joviel Acevedo reaparece con convocatoria en la Plaza de la Constitución  republica.gt",
+      "categoria": "informacion",
+      "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPeXVybnFINk9HdEdKVkZGTzRLQldDa2kweGlwU0FiRmRwY2NlMXZGT3hadUFWb2FHSUFBcVNzMG1maUt3S3RDR2ozanY4RVlMSFhCc3BQV3pjRjF1ZkVJMXJhSEJqVXJqbkYxNk1UZVBLeG84LUNOSmRlczJCejJ3SWtfQTRzNE9Wbk1QbFR5U2JNZWJmelZVU251ZVVMMFBFOEQwQ05oTnY4b2xzbGNqN2NleUxLNWdOcS1uWUNTWnlJbTQ5Y295ODVrdw?oc=5",
+      "fuente": "republica.gt",
+      "imageUrl": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300"
+    },
+    {
+      "id": 1793094567,
+      "fecha": "2026-10-27",
+      "titulo": "¡YA DISPONIBLE EL CALENDARIO LABORAL 2027 DE SOLIDARIDAD! - Sindicato Solidaridad",
+      "resumen": "¡YA DISPONIBLE EL CALENDARIO LABORAL 2027 DE SOLIDARIDAD!  Sindicato Solidaridad",
+      "contenido": "Noticia obtenida de Sindicato Solidaridad. ¡YA DISPONIBLE EL CALENDARIO LABORAL 2027 DE SOLIDARIDAD!  Sindicato Solidaridad",
+      "categoria": "informacion",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNN1c1bjNwcGcwdWlXNE5NcUdUdW9tQThWYTE4ZnJURkhQN25GeldwU2hWNXNrdW0zOVB4SVJ2dVdpVVJJeU5zYjlWbWFOUFRwRmp2VlAzVi1pR3liaGdZVy1Oa2lPc1g5NUE3MVBER2dDX3pOZ0NzcExBWHE2NkxaVmowSGE0ZF9Hek1lRXZaVzdUUQ?oc=5",
+      "fuente": "Sindicato Solidaridad",
+      "imageUrl": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300"
+    },
+    {
       "id": 1792990967,
       "fecha": "2026-10-26",
       "titulo": "Hasta siete años sin renovar el convenio: CCOO denuncia el bloqueo laboral de 70.000 trabajadores del campo - MurciaEconomía.com",
@@ -504,50 +548,6 @@
       "categoria": "informacion",
       "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOQmFBTmlBcHo5ODhYb2tnb1J6SjBmYnkwWDhiYWRGc3pzRnk3YkRXSkxWS191Z21DZUdHMk5xY3M2cXowSlBkcUpXVjVjTkJuZkVLUW53QzRhT2ExU0dlcW8wSTBVWERFS2tWSTE0Y0tkZk9sTmFPVUNwT2piaDlBbElxYWI3STNHY3VWbw?oc=5",
       "fuente": "Sindicato USO",
-      "imageUrl": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300"
-    },
-    {
-      "id": 1786096200,
-      "fecha": "2026-08-07",
-      "titulo": "El sindicato CFDT-Pays Basque informa de sus derechos a los trabajadores de temporada estival - naiz:",
-      "resumen": "El sindicato CFDT-Pays Basque informa de sus derechos a los trabajadores de temporada estival  naiz:",
-      "contenido": "Noticia obtenida de naiz:. El sindicato CFDT-Pays Basque informa de sus derechos a los trabajadores de temporada estival  naiz:",
-      "categoria": "informacion",
-      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNUDJodFBsbjBGZWVERGhNU3FvdEdZVkdqQ3lZdjJuaVlYZE1GUE9GNGcxTW5tSVhUbEVwMDRZR2ZQZ2VwemtHaTRZWC02LWplVnVyMGZGamFueEFFeFlkTEgxSmxOMUJ2eGh4ZmVuWkRvRlN6dkJBZnlIS0M2Um5BN09vcEVkVzRDVU5OR3gwNm9TRmZkc1VJd1Z6TGpHcE5DN2Q0VU5BNVFZUV9aR0VnbVBNaTlwTkowU3hibzNqVVEwREFadW9XVmlESnjSAc4BQVVfeXFMT0FVQ1pSUG5sQVJYYTY4RnpibnRMVnJWckItM25Rb1FEN0FTMDI0V3NvRVlwOFUwUHBZRHk4bm9oVWI1UDEzZXpRVG9oZWtpOWtNNjFUeG5QNWdyR1RUVlFRSUFEaHdhWkFjc3VjVU9GWFE0RS10MW1GaXBQeEtaX0w4WF9mSzBnSm51RU1hSGZPdWpqYXhUMmtuQWFHQS1QMWt3UXUyQlBWTmJKRlgyM1F4NmllZDRMWUVwUzFTTDNYazMzc1cxbUQ4SUZCM1E?oc=5",
-      "fuente": "naiz:",
-      "imageUrl": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300"
-    },
-    {
-      "id": 1786186560,
-      "fecha": "2026-08-08",
-      "titulo": "Xunta, patonal y UGT cierra un plan contra las bajas laborales y CCOO denuncia que se \"criminaliza\" a la clase trabajadora - GaliciaPress",
-      "resumen": "Xunta, patonal y UGT cierra un plan contra las bajas laborales y CCOO denuncia que se \"criminaliza\" a la clase trabajadora  GaliciaPress",
-      "contenido": "Noticia obtenida de GaliciaPress. Xunta, patonal y UGT cierra un plan contra las bajas laborales y CCOO denuncia que se \"criminaliza\" a la clase trabajadora  GaliciaPress",
-      "categoria": "informacion",
-      "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxNTlVWaEtHbUtBaVJiZE1oV192R1J3dldrbjhuNHBVREFjZzJESkxPblFnaEYwQVhhTGZaTUVFQ0QxcDdRcHhrZ3dHWHdrUmN6QzN6aktpT1g0blRmSWpZSFJsZHQ2RG9ZN0l3UEpxUjRPYXZVN3JhOEJMYmFhc2F4a2VfYldrSFYtdUtRYWZQMTA1Y21oTGtPUlJHTWxVaU9XSU1INlJUUTdESFlTX3k5TzNQUldUalFYQmtIenlobzQtdFI0TFpkdmZWWG4xQVZ6YXhrOC1aNHU5emFwZE03T201M2p0WXVEVkI4Rlp3QXVFNWs?oc=5",
-      "fuente": "GaliciaPress",
-      "imageUrl": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300"
-    },
-    {
-      "id": 1785486366,
-      "fecha": "2026-07-31",
-      "titulo": "Mercado laboral 2026: más indefinidos sobre el papel, más precariedad en la práctica - uso.es",
-      "resumen": "Mercado laboral 2026: más indefinidos sobre el papel, más precariedad en la práctica  uso.es",
-      "contenido": "Noticia obtenida de uso.es. Mercado laboral 2026: más indefinidos sobre el papel, más precariedad en la práctica  uso.es",
-      "categoria": "informacion",
-      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNZjFsN1FhWXNuZGY3UmZRM3E0QjZhUm9KSGZLME9rSkJVTm92T0doOU02Snp0YzJLZmtzdXI0eXBaTWlmd0F0ckpIWElPWFBzZHozSnYtazQ4Qnl6aTgwakhGaGNBYk5KcjUzZG9lTmItYWhPTk9jNXYtVXBvR0ZqeFN4WnJtYkFoRnpld0lXRWFXcHlNRDBqelZzTm1WNFk0VHlsMQ?oc=5",
-      "fuente": "uso.es",
-      "imageUrl": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300"
-    },
-    {
-      "id": 1785398400,
-      "fecha": "2026-07-30",
-      "titulo": "Acuerdo entre la Junta y el Sindicato Médico Andaluz para mejorar las condiciones laborales de los sanitarios - Canal Sur",
-      "resumen": "Acuerdo entre la Junta y el Sindicato Médico Andaluz para mejorar las condiciones laborales de los sanitarios  Canal Sur",
-      "contenido": "Noticia obtenida de Canal Sur. Acuerdo entre la Junta y el Sindicato Médico Andaluz para mejorar las condiciones laborales de los sanitarios  Canal Sur",
-      "categoria": "informacion",
-      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPZ0tDanhwSGZfRFloQzI2TFdvTFM0VnV0VmlrZEh4UG03anlxdUY5UFdCOU91cm12Z1NmRllGSnJpWEhQU1d2OHRwYlVHS2lzVmNTTVhlemI2TEJYTGtMV2E5ZHBHelFjY3NBSExkSWVtbjZ6QVFkblR2MDFGT1lZbWd5WHBwTjhSa3ZoOXRMLVg1Rm1OSmtyY3JiQ1o?oc=5",
-      "fuente": "Canal Sur",
       "imageUrl": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300"
     }
   ]
